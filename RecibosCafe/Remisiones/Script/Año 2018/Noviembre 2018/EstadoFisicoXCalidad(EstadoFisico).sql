@@ -1,0 +1,1 @@
+EXEC sp_RENAME 'EstadoFisicoXCalidad.IdEstadoFisico' , 'IdEdoFisico', 'COLUMN'

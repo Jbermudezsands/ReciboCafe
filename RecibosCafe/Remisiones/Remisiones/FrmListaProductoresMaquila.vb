@@ -1,0 +1,3 @@
+Public Class FrmListaProductoresMaquila
+
+End Class

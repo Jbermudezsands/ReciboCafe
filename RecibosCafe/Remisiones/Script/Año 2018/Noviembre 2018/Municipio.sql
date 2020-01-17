@@ -1,0 +1,1 @@
+EXEC sp_RENAME 'Municipio.Municipio' , 'IdMunicipio', 'COLUMN'

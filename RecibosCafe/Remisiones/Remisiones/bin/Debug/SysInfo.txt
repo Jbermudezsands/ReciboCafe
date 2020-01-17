@@ -1,0 +1,1 @@
+Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=TRANSPORTE;Data Source=JUANBERMUDEZ-PC\SQL2014

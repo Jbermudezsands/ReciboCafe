@@ -1,0 +1,1284 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>C1.Data.Express.2</name>
+    </assembly>
+    <members>
+        <member name="M:C1.Win.AboutForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:C1.Win.LicensingForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:C1.Util.Localization.C1DescriptionAttribute">
+            <summary>
+            ------------------------------------------------------------------------
+            C1DescriptionAttribute replaces the DescriptionAttribute
+            and uses the C1Localizer class to return the localized Attribute string
+            </summary>
+        </member>
+        <member name="T:C1.Util.Localization.C1CategoryAttribute">
+            <summary>
+            ------------------------------------------------------------------------
+            C1CategoryAttribute replaces the CategoryAttribute
+            and uses the C1Localizer class to return the localized Attribute string
+            </summary>
+        </member>
+        <member name="T:C1.Util.Localization.C1Localizer">
+            <summary>
+            ------------------------------------------------------------------------
+            C1Localizer contains static methods to load and look up resources
+            </summary>
+        </member>
+        <member name="T:C1.Data.Designer.Common.ComCtrlServices">
+            <summary>
+            Service functions for common controls (TreeView, ListView) and some other WinForms helpers.
+            </summary>
+        </member>
+        <member name="T:C1.Data.Express.C1ExpressConnection">
+            <summary>
+            A C1ExpressionConnection component is used when it is necessary to combine several tables into a single data set. 
+            </summary>
+            <remarks>
+            A C1ExpressConnection component is used when it is necessary to combine 
+            several tables into a single data set. <see cref="T:C1.Data.Express.C1ExpressTable"/> components are 
+            attached to a C1ExpressConnection component by setting their 
+            <see cref="P:C1.Data.Express.C1ExpressTable.ConnectionComponent"/> property. These tables share a common database 
+            connection and a common row cache (data set).
+            </remarks>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressConnection.Fill">
+            <summary>
+            Fills the tables attached to the connection with data fetching it from the database.
+            </summary>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressConnection.Update">
+            <summary>
+            Updates (commits) all changed data set rows to the database.
+            </summary>
+            <remarks>
+            An unsuccessful update, including one resulting in an exception, 
+            triggers <see cref="E:C1.Data.Express.C1ExpressConnection.UpdateError"/> event. If user code sets the event's Status argument to Continue, an update 
+            attempt is made again. This loop continues until either the update succeeds or <see cref="E:C1.Data.Express.C1ExpressConnection.UpdateError"/> event 
+            code does not set Status to Continue. See <span style="Link Topic">Handling Update Errors on the Client</span> for details.
+            </remarks>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressConnection.AcceptChanges">
+            <summary>
+            Commits all changes made to the data set since it was filled with 
+            data or the last time AcceptChanges or <see cref="M:C1.Data.Express.C1ExpressConnection.RejectChanges"/> was called.
+            </summary>
+            <remarks>
+            After this method the current state of all data set rows except deleted 
+            rows becomes also their original state.
+            <para>Any <see cref="T:C1.Data.C1DataRow"/> objects still in edit mode successfully end their edits. 
+            The <see cref="P:C1.Data.C1DataRow.RowState"/> property of each <see cref="T:C1.Data.C1DataRow"/> changes: Added and Modified rows 
+            become Unchanged, and Deleted rows are removed.</para>
+            </remarks>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressConnection.RejectChanges">
+            <summary>
+            Rolls back all changes made to the data set since it was filled with 
+            data or the last time <see cref="M:C1.Data.Express.C1ExpressConnection.AcceptChanges"/> or RejectChanges was called.
+            </summary>
+            <remarks>
+            This method returns all data set rows to their original state.
+            <para>When the RejectChanges method is called, any rows still in edit 
+            mode successfully cancel their edits. New rows are removed. Modified 
+            and deleted rows return back to their original state 
+            (<see cref="T:C1.Data.DataRowStateEnum"/>.Unchanged).</para>
+            </remarks>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressConnection.HasChanges">
+            <summary>
+            Gets a value indicating whether the data set has changes, including new, 
+            deleted, or modified rows, optionally filtered by <see cref="T:C1.Data.DataRowStateEnum"/>.
+            </summary>
+            <remarks>
+            You can examine HasChanges before calling <see cref="M:C1.Data.C1DataSet.GetChanges"/> method.
+            </remarks>
+            <seealso cref="P:C1.Data.Express.C1ExpressConnection.DataSet"/>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressConnection.HasChanges(C1.Data.DataRowStateEnum)">
+            <summary>
+            Gets a value indicating whether the data set has changes, including new, 
+            deleted, or modified rows, optionally filtered by <see cref="T:C1.Data.DataRowStateEnum"/>.
+            </summary>
+            <remarks>
+            You can examine HasChanges before calling <see cref="M:C1.Data.C1DataSet.GetChanges"/> method.
+            </remarks>
+            <param name="rowState">One of the DataRowStateEnum values.</param>
+            <seealso cref="P:C1.Data.Express.C1ExpressConnection.DataSet"/>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressConnection.PushExecutionMode(C1.Data.ExecutionModeEnum)">
+            <summary>
+            Sets the execution mode affecting actions invoked while handling 
+            another action.
+            </summary>
+            <remarks>
+            When <see cref="M:C1.Data.Express.C1ExpressConnection.PopExecutionMode"/> method is called, it restores the last mode 
+            that existed before PushExecutionMode call. PushExecutionMode 
+            and <see cref="M:C1.Data.Express.C1ExpressConnection.PopExecutionMode"/> are the push/pop operations of a stack.
+            </remarks>
+            <param name="mode">One of the <see cref="T:C1.Data.ExecutionModeEnum"/> values.</param>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressConnection.PopExecutionMode">
+            <summary>
+            Restores the execution mode affecting actions invoked while handling another action.
+            </summary>
+            <remarks>
+            When PopExecutionMode method is called, it restores the last mode that 
+            existed before <see cref="M:C1.Data.Express.C1ExpressConnection.PushExecutionMode(C1.Data.ExecutionModeEnum)"/> call. <see cref="M:C1.Data.Express.C1ExpressConnection.PushExecutionMode(C1.Data.ExecutionModeEnum)"/> and 
+            PopExecutionMode are the push/pop operations of a stack.
+            </remarks>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressConnection.WriteXml(System.String)">
+            <summary>
+            Writes XML data from the C1ExpressConnection.
+            </summary>
+            <remarks>
+            The WriteXml method is used to save the data in an XML form so it can 
+            be later restored with <see cref="M:C1.Data.Express.C1ExpressConnection.ReadXml(System.String)"/>. Together, these methods allow to save 
+            the whole data contents of a C1DataSet and restore it later, for example, 
+            to save work when no database connection is available to save it in 
+            the database, and restore it and send to the database for update when 
+            the connection becomes available.
+            </remarks>
+            <param name="fileName">The file name (including the path) to which to write.</param>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressConnection.WriteXml(System.IO.Stream)">
+            <summary>
+            Writes XML data from the C1ExpressConnection.
+            </summary>
+            <remarks>
+            The WriteXml method is used to save the data in an XML form so it can 
+            be later restored with <see cref="M:C1.Data.Express.C1ExpressConnection.ReadXml(System.String)"/>. Together, these methods allow to save 
+            the whole data contents of a C1DataSet and restore it later, for example, 
+            to save work when no database connection is available to save it in 
+            the database, and restore it and send to the database for update when 
+            the connection becomes available.
+            </remarks>
+            <param name="stream">The stream to which to write.</param>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressConnection.WriteXml(System.Xml.XmlTextWriter)">
+            <summary>
+            Writes XML data from the C1ExpressConnection.
+            </summary>
+            <param name="writer">The XmlReader to which to write.</param>
+            <remarks>
+            The WriteXml method is used to save the data in an XML form so it can 
+            be later restored with <see cref="M:C1.Data.Express.C1ExpressConnection.ReadXml(System.String)"/>. Together, these methods allow to save 
+            the whole data contents of a C1DataSet and restore it later, for example, 
+            to save work when no database connection is available to save it in 
+            the database, and restore it and send to the database for update when 
+            the connection becomes available.
+            </remarks>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressConnection.ReadXml(System.String)">
+            <summary>
+            Reads XML data into the C1ExpressConnection.
+            </summary>
+            <remarks>
+            The ReadXml method is used to restore the data previously saved by 
+            <see cref="M:C1.Data.Express.C1ExpressConnection.WriteXml(System.String)"/>. Together, these methods allow to save the whole data contents 
+            of a C1DataSet and restore it later, for example, to save work when no 
+            database connection is available to save it in the database, 
+            and restore it and send to the database for update when the 
+            connection becomes available.
+            </remarks>
+            <param name="fileName">The file name (including the path) from which to read.</param>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressConnection.ReadXml(System.IO.Stream)">
+            <summary>
+            Reads XML data into the C1ExpressConnection.
+            </summary>
+            <remarks>
+            The ReadXml method is used to restore the data previously saved by 
+            <see cref="M:C1.Data.Express.C1ExpressConnection.WriteXml(System.String)"/>. Together, these methods allow to save the whole data contents 
+            of a C1DataSet and restore it later, for example, to save work when no 
+            database connection is available to save it in the database, 
+            and restore it and send to the database for update when the 
+            connection becomes available.
+            </remarks>
+            <param name="stream">The stream from which to read.</param>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressConnection.ReadXml(System.Xml.XmlReader)">
+            <summary>
+            Reads XML data into the C1ExpressConnection.
+            </summary>
+            <remarks>
+            The ReadXml method is used to restore the data previously saved by 
+            <see cref="M:C1.Data.Express.C1ExpressConnection.WriteXml(System.String)"/>. Together, these methods allow to save the whole data contents 
+            of a C1DataSet and restore it later, for example, to save work when no 
+            database connection is available to save it in the database, 
+            and restore it and send to the database for update when the 
+            connection becomes available.
+            </remarks>
+            <param name="reader">The XmlReader which to read.</param>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressConnection.GetExportDataSet">
+            <summary>
+            Creates and fills with data an ADO.NET data set containing data for all tables in this C1ExpressConnection.
+            </summary>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressConnection.GetExportDataSet(System.Boolean)">
+            <summary>
+            Creates and fills with data an ADO.NET data set containing data for all tables in this C1ExpressConnection.
+            </summary>
+            <param name="schemaOnly">If True, System.Data.DataSet is created and returned with schema information but without data rows.</param>
+        </member>
+        <member name="E:C1.Data.Express.C1ExpressConnection.BeforeFill">
+            <summary>
+            Fired before the table attached to the connection are filled with data.
+            </summary>
+            <remarks>
+            Use this event to set FillFilter and FillSort properties for 
+            <see cref="T:C1.Data.Express.C1ExpressTable"/> components attached to the connection if the 
+            connection is filled with data at startup due to <see cref="P:C1.Data.Express.C1ExpressConnection.FillOnRequest"/> = True.
+            <para>For C1ExpressTable components connected to a C1ExpressConnection, 
+            the C1ExpressConnection's BeforeFill event is fired after all <see cref="T:C1.Data.Express.C1ExpressTable"/> 
+            components' BeforeFill.</para>
+            </remarks>
+        </member>
+        <member name="E:C1.Data.Express.C1ExpressConnection.AfterFill">
+            <summary>
+            Fired after the table attached to the connection have been filled with data.
+            </summary>
+        </member>
+        <member name="E:C1.Data.Express.C1ExpressConnection.UpdateError">
+            <summary>
+            Fired when an error occurs committing changes to the dataset.
+            </summary>
+            <remarks>
+            An unsuccessful update, including one resulting in an exception, triggers 
+            UpdateError event. If user code sets the event's Status argument to 
+            Continue, an update attempt is made again. This loop continues until either 
+            the update succeeds or UpdateError event code does not set Status to Continue. 
+            See <span style="Link Topic">Handling Update Errors on the Client</span> for details.
+            <para>If the error is a fatal failure (a program or physical error, see 
+            <span style="Link Topic">Handling Errors in Update</span>), the Error argument contains the exception 
+            object describing the failure. If this is a concurrency conflict that 
+            could not be reconciled on the server (see Handling Concurrency Conflicts), 
+            the Error argument is set to null (Nothing in Visual Basic). 
+            In case of a concurrency conflict, the rows that failed update can be 
+            found in the DataSet using the properties <see cref="P:C1.Data.C1DataRow.RowError"/>, 
+            <span style="Link Property">C1DataSet.HasErrors</span> and <span style="Link Method">C1DataTable.GetErrors</span>.</para>
+            </remarks>
+        </member>
+        <member name="E:C1.Data.Express.C1ExpressConnection.Error">
+            <summary>
+            Fired when an error occurs.
+            </summary>
+            <remarks>
+            This event gives developers full control over error (exception) handling. It allows 
+            to customize/localize error messages or provide a fully customized error handling if necessary.
+            When this event is fired, the Status argument is set either to ErrorsOccurred or to Continue. 
+            It is set to ErrorsOccurred if the error occurred during an action executed from code, and to
+             Continue if it occurred performing an action requested by data bound controls.
+             What happens next, whether the error is considered handled or throws an exception, 
+             depends on the value you assign to the Status argument:
+             <para>  1.  If you set Status to ErrorsOccurred, an exception is thrown. 
+             To specify the exception information, set the Error argument. Use this option in cases where 
+             you do not need to override the standard exception handling.</para>
+             <para>  2.  If you set Status to Skip, the error is considered handled and operation resumes 
+             as if the error has not occurred (but subsequent actions may not be executed when they depend 
+             on the successful completion of the current action). Use this option when you want to handle 
+             the error in your code, suppress the standard error handling and consider the operation successful.</para>
+             <para>  3.  If you set Status to Continue, C1DataObjects shows a standard error message box and resumes 
+             operation without throwing an exception (as in the Skip case). Use this option when you are 
+             satisfied with the standard C1DataObjects error message and want to consider the operation successful.</para>
+             <para>  4.It is also possible that you need to show a custom error message or otherwise handle the 
+             error in the Error event, then throw an exception, but do not want data bound controls 
+             to show their own error messages because you have already shown an error message. To 
+             accomplish that, set Status to ErrorsOccurred and throw an exception derived from 
+             <span style="Link Class">C1DataException</span> with ShowMessage property set to False. Note that this behavior is 
+             only supported by data bound controls honoring the ShowMessage property, such as 
+             ComponentOne FlexGrid and C1TrueDBGrid.</para>
+            </remarks>
+        </member>
+        <member name="E:C1.Data.Express.C1ExpressConnection.BeforeUpdate">
+            <summary>
+            Fired before all changes in the data set are updated to the database.
+            </summary>
+            <remarks>
+            Before any modified rows are committed to the database, the BeforeUpdate event fires. 
+            The DataSet argument contains the data set passed to the server for update. By modifying 
+            this data set, you can customize the update process, control the set of rows and field 
+            values that undergo database update. 
+            <para>You can even perform the whole update process in your code in the BeforeUpdate event and tell 
+            C1DataObjects to skip further processing, consider it done, by setting the Status argument to Skip. 
+            If you detect an unrecoverable error in this event, set the Status argument to ErrorsOccurred 
+            and set the Error argument to describe the error.</para>
+            </remarks>
+        </member>
+        <member name="E:C1.Data.Express.C1ExpressConnection.AfterUpdate">
+            <summary>
+            Fired after all changes in the data set are updated to the database.
+            </summary>
+            <remarks>
+            The AfterUpdate event is fired after the update process is completed or skipped, regardless 
+            of whether it was successful or failed. The success status of the update process is passed 
+            to the event in the Status argument. The Status argument can also be modified by the event 
+            code to make C1DataObjects ignore an error, or vice versa, to make the update fail.
+            <para>Among its possible uses, this event allows to control the whole data set (via its Tables argument) 
+            sent back to the client for refreshing updated rows, 
+            see <span style="Link Topic">Changing Data as a Result of Update (Refresh)</span>.</para>
+            </remarks>
+        </member>
+        <member name="E:C1.Data.Express.C1ExpressConnection.BeforeUpdateRow">
+            <summary>
+            Fired before modifications made to a row are committed to the database.
+            </summary>
+            <remarks>
+            For a bound table, this event can be used to examine and possibly modify the SQL command 
+            performing the update.
+            <para>For an SQL-based table, this event must be used to specify the SQL command performing the update. 
+            The IDbCommand object is created and passed as an argument to the event. Event code must set 
+            the CommandText property of the command object.</para>
+            <para>For an unbound table, updating the row must be performed in the event code. C1DataObjects 
+            does not create a command object in this case. The result of the update operation must 
+            be communicated to C1DataObjects by setting the Status, SqlStatus and 
+            Error arguments in the event code.</para>
+            <para>Although this is less frequently done, the Status, SqlStatus and Error arguments can be changed 
+            in event code for bound and SQL-based tables as well as for unbound tables. 
+            This too affects the success/failure status of the operations and determines 
+            further course of action followed by C1DataObjects.</para>
+            </remarks>
+        </member>
+        <member name="E:C1.Data.Express.C1ExpressConnection.AfterUpdateRow">
+            <summary>
+            Fired after modifications made to a row are committed to the database.
+            </summary>
+            <remarks>
+            The AfterUpdateRow event is fired for every row that fired the <see cref="E:C1.Data.Express.C1ExpressConnection.BeforeUpdateRow"/> event, 
+            regardless of the outcome of the update operation for that row. If row update was unsuccessful, 
+            that is reflected in the values of Status, SqlStatus and Error arguments.
+            <para>This event can be used to change the outcome of the operation from failure to success 
+            and vice versa, see the description of the Status, SqlStatus and Error arguments.</para>
+            <para>This event can also be used to modify values refreshed from the database after the update 
+            operation, see the description of the Row argument.</para>
+            </remarks>
+        </member>
+        <member name="E:C1.Data.Express.C1ExpressConnection.GetChildRows">
+            <summary>
+            Used to programmatically specify the list of child rows for a relation.
+            </summary>
+            <remarks>
+            This event can be used to create custom view relations, when the rule defining the list of 
+            child rows for a parent row cannot be formulated based on a simple relation between tables. 
+            <para>If the GetRowsEvent property is set to True for a relation (using component's "Edit Relations..." context menu item), the GetChildRows event 
+            is called every time C1DataExpress needs to obtain the list of child rows for a parent 
+            row for that relation. Event code sets the argument e.List to a list of rows, thus 
+            defining the child rows of the relation. The resulting list, if not empty, must 
+            contain <span style="Link Class">C1DataRow</span> objects belonging to the child 
+            table view of the relation.</para>
+            </remarks>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressConnection.DataSet">
+            <summary>
+            Gets the internal data set object.
+            </summary>
+            <remarks>
+            This property is intended for C1DataExpress users who want also to take advantage of 
+            full C1DataObjects Enterprise Edition capabilities. 
+            It returns a C1DataObjects Enterprise object, a <see cref="T:C1.Data.C1DataSet"/>.
+            </remarks>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressConnection.DbTables">
+            <summary>
+            Gets the collection of <see cref="T:C1.Data.C1DataTable"/> objects representing data 
+            in <see cref="T:C1.Data.Express.C1ExpressTable"/> components attached to this C1ExpressConnection.
+            </summary>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressConnection.ExpressTables">
+            <summary>
+            Gets the collection of <see cref="T:C1.Data.Express.C1ExpressTable"/> objects attached to this C1ExpressConnection.
+            </summary>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressConnection.FillOnRequest">
+            <summary>
+            Gets or sets a value indicating whether the data set will be automatically filled with data when a data bound control requests data from it.
+            </summary>
+            <remarks>
+            If this property is set to True (default), the data set is automatically filled with data at startup, 
+            once a control bound to it requests data. 
+            <para>If it is set to False, the data set remains empty until the <see cref="M:C1.Data.Express.C1ExpressConnection.Fill"/> method is called.
+            </para>
+            </remarks>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressConnection.CaseSensitive">
+            <summary>
+            Determines whether string comparisons are case-sensitive.
+            </summary>
+            <remarks>
+            This property affects string comparison in expression evaluation, sorting table views by 
+            the end user (via IBindingList.ApplySort) and sorting in <see cref="T:C1.Data.Express.C1ExpressView"/> objects.
+            <para>By default, all <span style="Link Class">C1DataTable</span> objects in a C1ExpressConnection use the CaseSensitive property 
+            of the C1ExpressConnection, but it can be overridden setting the <span style="Link Property">C1DataTable.CaseSensitive</span> property 
+            of the <span style="Link Class">C1DataTable</span> object.</para>
+            </remarks>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressConnection.Locale">
+            <summary>
+            Determines the locale information used in string comparisons.
+            </summary>
+            <remarks>
+            This property affects string comparison in expression evaluation, sorting table views by 
+            the end user (via IBindingList.ApplySort) and sorting in C1ExpressView objects.
+            <para>By default, all <span style="Link Class">C1DataTable</span> objects in a C1ExpressConnection use the Locale property 
+            of the C1ExpressConnection, but it can be overridden setting the <span style="Link Property">C1DataTable.Locale</span> property of 
+            the <span style="Link Class">C1DataTable</span> object.</para>
+            </remarks>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressConnection.ExecutionMode">
+            <summary>
+            Gets or sets a value indicating whether actions in handling a business logic event are deferred or performed immediately.
+            </summary>
+            <remarks>
+            This property affects how C1DataObjects performs actions while inside a business logic event.
+            <para>If this run-time property is set to Immediate (default), actions are performed immediately. 
+            If it is set to Deferred, actions are deferred until the current user action handling is completed.</para>
+            </remarks>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressConnection.ChangeInProgress">
+            <summary>
+            Gets or sets a value indicating whether firing AfterChanges event is deferred.
+            </summary>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressConnection.ConnectionType">
+            <summary>
+            Gets or sets the type of database connection, either via OLE DB or using one of the native database access options.
+            </summary>
+            <seealso><span style="Link Topic">Native and OLE DB Database Access</span></seealso>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressConnection.ConnectionString">
+            <summary>
+            Gets or sets the connection string used to connect to the database.
+            </summary>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressConnection.AlwaysEscapeNames">
+            <summary>
+            Gets or sets a value indicating whether every table and column name must be quoted 
+            to avoid collision with reserved keywords.
+            </summary>
+            <remarks>
+            This property is True by default, meaning that table and field names are always escaped 
+            in generated SQL statements. This ensures that the names do not conflict with database-
+            reserved words. Setting this property to False disables automatic quotation. 
+            Names that are not identifiers, for example, names containing spaces, are quoted 
+            regardless of this property value.
+            <para>The quotation mark is determined by C1ExpressConnection.Connection.SqlInfo.NameQuote 
+            property value, for example, [field] in MS Access, "field" in SQL Server and Oracle. </para>
+            </remarks>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressConnection.ConnectionTimeout">
+            <summary>
+            Gets the time to wait while trying to establish a connection before terminating the attempt and generating an error.
+            </summary>
+            <remarks>
+            The <see cref="P:C1.Data.Express.C1ExpressConnection.ConnectionString"/> determines the value of this property.
+            <para>The time (in seconds) to wait for a connection to open. The default value is 15 seconds.</para>
+            </remarks>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressConnection.Database">
+            <summary>
+            Gets the name of the current database or the database to be used once a connection is open.
+            </summary>
+            <remarks>
+            The <see cref="P:C1.Data.Express.C1ExpressConnection.ConnectionString"/> determines the value of this property.
+            The default value is an empty string.
+            </remarks>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressConnection.DataSource">
+            <summary>
+            Gets the location and file name of the data source.
+            </summary>
+            <remarks>
+            The <see cref="P:C1.Data.Express.C1ExpressConnection.ConnectionString"/> determines the value of this property.
+            The default value is an empty string.
+            </remarks>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressConnection.Provider">
+            <summary>
+            Gets the name of the OLE DB provider.
+            </summary>
+            <remarks>
+            The <see cref="P:C1.Data.Express.C1ExpressConnection.ConnectionString"/> determines the value of this property.
+            The default value is an empty string.
+            </remarks>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressConnection.Connection">
+            <summary>
+            Returns database connection object at run time.
+            </summary>
+            <remarks>
+            This property returns the connection object at run time. To obtain an open database 
+            connection in event code while C1DataExpress is filling the data set with data or 
+            updating data to the database, use <span style="Link Property">Connection.DbConnection</span> property. 
+            While connection to the database is closed, <span style="Link Property">Connection.DbConnection</span> is null.
+            </remarks>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressConnection.Relations">
+            <summary>
+            The collection of C1ExpressConnection relations.
+            </summary>
+            <remarks>
+            Use Relations editor to edit this collection.
+            </remarks>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressConnection.FieldDefaults">
+            <summary>
+            Gets the <span style="Link Class">FieldDefaults</span> object containing default field settings.
+            </summary>
+        </member>
+        <member name="T:C1.Data.Express.ExpressGenerateSqlEventArgs">
+            <summary>
+            Provides data for the <see cref="E:C1.Data.Express.C1ExpressTable.BeforeGenerateSql"/> and <see cref="E:C1.Data.Express.C1ExpressTable.AfterGenerateSql"/> events.
+            </summary>
+            <seealso cref="T:C1.Data.Express.ExpressGenerateSqlEventHandler"/>
+        </member>
+        <member name="P:C1.Data.Express.ExpressGenerateSqlEventArgs.TableName">
+            <summary>
+            The table name populated with the SQL SELECT statement.
+            </summary>
+        </member>
+        <member name="T:C1.Data.Express.ExpressGenerateSqlEventHandler">
+            <summary>
+            Represents the method that handles the <see cref="E:C1.Data.Express.C1ExpressTable.BeforeGenerateSql"/> and <see cref="E:C1.Data.Express.C1ExpressTable.AfterGenerateSql"/> events.
+            </summary>
+        </member>
+        <member name="T:C1.Data.Express.C1ExpressField">
+            <summary>
+            Represents a <see cref="T:C1.Data.Express.C1ExpressTable"/> field.
+            </summary>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressField.#ctor">
+            <summary>
+            Initializes a new instance of the C1ExpressField class. 
+            </summary>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressField.#ctor(C1.Data.Express.C1ExpressTable)">
+            <summary>
+            Initializes a new instance of the C1ExpressField class. 
+            </summary>
+            <param name="table">ExpressTable the field belongs to.</param>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressField.Table">
+            <summary>
+            Gets the express table to which the field belongs. 
+            </summary>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressField.DbTableName">
+            <summary>
+            Gets or sets the name of a database table on which the table is based. 
+            </summary>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressField.DbFieldName">
+            <summary>
+            Gets or sets the name of the database field this field is based on. 
+            </summary>
+            <remarks>
+            This property value can be empty string, in which case the field is not based on a database field, 
+            represents a calculated field. 
+            </remarks>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressField.Name">
+            <summary>
+            Gets or sets the name of the field. 
+            </summary>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressField.UpdateIgnore">
+            <summary>
+            Gets or sets a value indicating whether the field value is sent to the database (to the server) for update. 
+            </summary>
+            <remarks>
+            If this property is set to True, the field value is not sent to the server for update, 
+            even if the user has modified it. The default is False. 
+            </remarks>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressField.UpdateLocate">
+            <summary>
+            Gets or sets the value indicating whether the field value is used to locate the database 
+            record that is going to be updated. 
+            </summary>
+            <remarks>
+            If this property is set to False, the field is not used for locating the database record, 
+            regardless of the value of <see cref="!:Table.UpdateLocateMode"/>. If it is set to True (default), this is determined 
+            by the value of the <see cref="!:Table.UpdateLocateMode"/> property. 
+            </remarks>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressField.UpdateRefresh">
+            <summary>
+            Gets or sets the value indicating whether the field value is refreshed, retrieved from the database after updating the database record. 
+            </summary>
+            <remarks>
+            If this property is set to False, the field value is not refreshed, regardless of the value 
+            of <see cref="!:Table.UpdateRefreshMode"/>. If it is set to True (default), this is determined by the value of the 
+            <see cref="!:Table.UpdateRefreshMode"/> property. 
+            </remarks>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressField.UpdateSet">
+            <summary>
+            Gets or sets a value indicating whether the field value is set in the database record. 
+            </summary>
+            <remarks>
+            If this property is set to Always, the value in the database is always modified, 
+            set to the current field value. If it is set to Never, the value in the database is 
+            always left unchanged. If it is set to IfChanged (default), the value in the database 
+            is set to the current field value if the current field value is different from the original 
+            field value as it was last fetched from the database. The original value can be retrieved 
+            using <span style="Link Class">C1DataRow</span>.Item (field, <see cref="T:C1.Data.DataRowVersionEnum"/>.Original). 
+            </remarks>
+        </member>
+        <member name="T:C1.Data.Express.C1ExpressFieldCollection">
+            <summary>
+            Represents a collection of <see cref="T:C1.Data.Express.C1ExpressField"/> objects. 
+            </summary>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressFieldCollection.Add(C1.Data.Express.C1ExpressField)">
+            <summary>
+            Adds a new element to the collection.
+            </summary>
+            <param name="field">The object to be added to the end of the collection.</param>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressFieldCollection.Insert(System.Int32,C1.Data.Express.C1ExpressField)">
+            <summary>
+            Inserts an element into the collection at the specified index.
+            </summary>
+            <param name="index">The zero-based index at which object should be inserted.</param>
+            <param name="field">The object to insert.</param>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressFieldCollection.IndexOf(C1.Data.Express.C1ExpressField)">
+            <summary>
+            Returns the zero-based index of the field in the collection.
+            </summary>
+            <param name="field">The field to locate in the collection.</param>
+            <returns>The zero-based index of an element, if found; otherwise, -1.</returns>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressFieldCollection.IndexOf(System.String)">
+            <summary>
+            Returns the zero-based index of the field with a given name in the collection.
+            </summary>
+            <param name="name">The <see cref="P:C1.Data.Express.C1ExpressField.Name"/> of the element. The search is not case-sensitive.</param>
+            <returns>The zero-based index of the field with a given name, if found; otherwise, -1.</returns>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressFieldCollection.RemoveAt(System.Int32)">
+            <summary>
+            Removes the object at the specified index.
+            </summary>
+            <param name="index">The zero-based index of the object to remove. </param>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressFieldCollection.Remove(C1.Data.Express.C1ExpressField)">
+            <summary>
+            Removes the first occurrence of a specific object from the collection.
+            </summary>
+            <param name="field">The field to remove from the collection.</param>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressFieldCollection.CopyTo(C1.Data.Express.C1ExpressField[],System.Int32)">
+            <summary>
+            Copies the collection or a portion of it to a one-dimensional array.
+            </summary>
+            <param name="array">The one-dimensional Array that is the destination of the elements copied from collection. The Array must have zero-based indexing.</param>
+            <param name="index">The zero-based index in array at which copying begins.</param>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressFieldCollection.Contains(C1.Data.Express.C1ExpressField)">
+            <summary>
+            Determines whether an element is in the collection.
+            </summary>
+            <param name="field">The Object to locate in the collection.</param>
+            <returns>True if field is found in the collection; otherwise, False.</returns>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressFieldCollection.Item(System.Int32)">
+            <summary>
+            Gets the element of the collection at the specified index.
+            </summary>
+            <param name="index">The zero-based index of the element. </param>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressFieldCollection.Item(System.String)">
+            <summary>
+            Gets the element of the collection at the specified index.
+            </summary>
+            <param name="name">The <see cref="P:C1.Data.Express.C1ExpressField.Name"/> of the element. The search is not case-sensitive.</param>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressFieldCollection.Table">
+            <summary>
+            Gets the table to which the field collection belongs. 
+            </summary>
+        </member>
+        <member name="T:C1.Data.Express.C1ExpressRelation">
+            <summary>
+            Represents a relation between two <see cref="T:C1.Data.Express.C1ExpressTable"/> objects.
+            </summary>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressRelation.#ctor">
+            <summary>
+            Initializes a new instance of the SimpleRelation class. 
+            </summary>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressRelation.#ctor(C1.Data.Express.C1ExpressConnection)">
+            <summary>
+            Initializes a new instance of the SimpleRelation class. 
+            </summary>
+            <param name="conn">C1ExpressConnection the relation belongs to.</param>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressRelation.ParentTable">
+            <summary>
+            Gets or sets the parent <see cref="T:C1.Data.Express.C1ExpressTable"/> of the relation. 
+            </summary>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressRelation.MainParentTableName">
+            <summary>
+            If the <see cref="P:C1.Data.Express.C1ExpressRelation.ParentTable"/> is composite, gets or sets a table name in the composite table 
+            that is used as the parent table for the relation. 
+            </summary>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressRelation.ChildTable">
+            <summary>
+            Gets or sets the child <see cref="T:C1.Data.Express.C1ExpressTable"/> of the relation. 
+            </summary>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressRelation.MainChildTableName">
+            <summary>
+            If the <see cref="P:C1.Data.Express.C1ExpressRelation.ChildTable"/> is composite, gets or sets a table name in the composite 
+            table that is used as the child table for the relation.
+            </summary>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressRelation.Joins">
+            <summary>
+            Gets the joins collection of the relation. 
+            </summary>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressRelation.MasterDetail">
+            <summary>
+            Gets or sets a value indicating whether the relation is available for establishing 
+            master-detail relations in bound controls.
+            </summary>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressRelation.EnforceConstraints">
+            <summary>
+            Gets or sets a value indicating whether the rule prohibiting child rows without parent is enforced.
+            </summary>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressRelation.GetRowsEvent">
+            <summary>
+            Gets or sets a value indicating whether the relation is specified in code in
+            <see cref="E:C1.Data.Express.C1ExpressConnection.GetChildRows"/> event (and not based on <see cref="P:C1.Data.Express.C1ExpressRelation.Joins"/> 
+            between tables).
+            </summary>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressRelation.UpdateRule">
+            <summary>
+            Gets or sets a value specifying the action applied to child rows when their parent key is modified.
+            </summary>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressRelation.DeleteRule">
+            <summary>
+            Gets or sets a value specifying the action applied to child rows when their parent key is deleted.
+            </summary>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressRelation.SchemaRelationName">
+            <summary>
+            Gets or sets the relation name.
+            </summary>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressRelation.ConnectionComponent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:C1.Data.Express.C1ExpressJoin">
+            <summary>
+            Represents an equality condition between a parent and a child field of a <see cref="T:C1.Data.Express.C1ExpressRelation"/>. 
+            </summary>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressJoin.#ctor">
+            <summary>
+            Initializes a new instance of the C1ExpressJoin class. 
+            </summary>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressJoin.#ctor(C1.Data.Express.C1ExpressJoinCollection)">
+            <summary>
+            Initializes a new instance of the C1ExpressJoin class. 
+            </summary>
+            <param name="owner">The collection of join conditions of a relation this join condition belongs to.</param>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressJoin.ParentFieldName">
+            <summary>
+            Gets or sets the parent field name of the join condition. 
+            </summary>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressJoin.ChildFieldName">
+            <summary>
+            Gets or sets the child field name of the join condition. 
+            </summary>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressJoin.Owner">
+            <summary>
+            Gets the collection to which the join object belongs. 
+            </summary>
+        </member>
+        <member name="T:C1.Data.Express.C1ExpressRelationCollection">
+            <summary>
+            Represents a collection of <see cref="T:C1.Data.Express.C1ExpressRelation"/> objects of a <see cref="T:C1.Data.Express.C1ExpressConnection"/>. 
+            </summary>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressRelationCollection.Add">
+            <summary>
+            Adds a new element to the collection.
+            </summary>
+            <returns>The newly created relation object.</returns>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressRelationCollection.Add(C1.Data.Express.C1ExpressRelation)">
+            <summary>
+            Adds a new element to the collection.
+            </summary>
+            <param name="rel">The object to be added to the end of the collection.</param>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressRelationCollection.Insert(System.Int32,C1.Data.Express.C1ExpressRelation)">
+            <summary>
+            Inserts an element into the collection at the specified index.
+            </summary>
+            <param name="index">The zero-based index at which object should be inserted.</param>
+            <param name="rel">The object to insert.</param>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressRelationCollection.IndexOf(C1.Data.Express.C1ExpressRelation)">
+            <summary>
+            Returns the zero-based index of the relation object in the collection.
+            </summary>
+            <param name="relation">The relation object to locate in the collection.</param>
+            <returns>The zero-based index of an element, if found; otherwise, -1.</returns>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressRelationCollection.CopyTo(C1.Data.Express.C1ExpressRelation[],System.Int32)">
+            <summary>
+            Copies the collection or a portion of it to a one-dimensional array.
+            </summary>
+            <param name="array">The one-dimensional Array that is the destination of the elements copied from collection. The Array must have zero-based indexing.</param>
+            <param name="index">The zero-based index in array at which copying begins.</param>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressRelationCollection.Remove(C1.Data.Express.C1ExpressRelation)">
+            <summary>
+            Removes the first occurrence of a specific object from the collection.
+            </summary>
+            <param name="relation">The object to remove from the collection.</param>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressRelationCollection.Clear">
+            <summary>
+            Removes all items from the collection.
+            </summary>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressRelationCollection.Contains(C1.Data.Express.C1ExpressRelation)">
+            <summary>
+            Determines whether an element is in the collection.
+            </summary>
+            <param name="relation">The Object to locate in the collection.</param>
+            <returns>True if relation is found in the collection; otherwise, False.</returns>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressRelationCollection.Item(System.Int32)">
+            <summary>
+            Gets the element of the collection at the specified index.
+            </summary>
+            <param name="index">The zero-based index of the element.</param>
+        </member>
+        <member name="T:C1.Data.Express.C1ExpressJoinCollection">
+            <summary>
+            Represents a collection of <see cref="T:C1.Data.Express.C1ExpressJoin"/> objects of a <see cref="T:C1.Data.Express.C1ExpressRelation"/>. 
+            </summary>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressJoinCollection.Add(System.String,System.String)">
+            <summary>
+            Adds a new element to the collection.
+            </summary>
+            <param name="parentFieldName">Parent field of the join condition.</param>
+            <param name="childFieldName">Child field of the join condition.</param>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressJoinCollection.Add(C1.Data.SchemaObjects.JoinCondition)">
+            <summary>
+            Adds a new element to the collection.
+            </summary>
+            <param name="join"></param>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressJoinCollection.Insert(System.Int32,C1.Data.Express.C1ExpressJoin)">
+            <summary>
+            Inserts an element into the collection at the specified index.
+            </summary>
+            <param name="index">The zero-based index at which object should be inserted.</param>
+            <param name="join">The object to insert.</param>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressJoinCollection.IndexOf(C1.Data.Express.C1ExpressJoin)">
+            <summary>
+            Returns the zero-based index of the join object in the collection.
+            </summary>
+            <param name="join">The join object to locate in the collection.</param>
+            <returns>The zero-based index of an element, if found; otherwise, -1.</returns>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressJoinCollection.Contains(C1.Data.Express.C1ExpressJoin)">
+            <summary>
+            Determines whether an element is in the collection.
+            </summary>
+            <param name="join">The Object to locate in the collection.</param>
+            <returns>True if join is found in the collection; otherwise, False.</returns>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressJoinCollection.RemoveAt(System.Int32)">
+            <summary>
+            Removes the collection item at the specified index.
+            </summary>
+            <param name="index">The zero-based index of the object to remove.</param>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressJoinCollection.Remove(C1.Data.Express.C1ExpressJoin)">
+            <summary>
+            Removes the first occurrence of a specific object from the collection.
+            </summary>
+            <param name="join">The object to remove from the collection.</param>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressJoinCollection.CopyTo(C1.Data.Express.C1ExpressJoin[],System.Int32)">
+            <summary>
+            Copies the collection or a portion of it to a one-dimensional array.
+            </summary>
+            <param name="array">The one-dimensional Array that is the destination of the elements copied from collection. The Array must have zero-based indexing.</param>
+            <param name="index">The zero-based index in array at which copying begins.</param>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressJoinCollection.Item(System.Int32)">
+            <summary>
+            Gets the element of the collection at the specified index.
+            </summary>
+            <param name="index">The zero-based index of the element.</param>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressJoinCollection.Relation">
+            <summary>
+            Gets the <see cref="T:C1.Data.Express.C1ExpressRelation"/> this collection belongs to. 
+            </summary>
+        </member>
+        <member name="T:C1.Data.Express.C1ExpressTable">
+            <summary>
+            C1ExpressTable is the main component of C1DataExpress.
+            </summary>
+            <remarks>
+            It defines a table, a rowset. Data-aware controls, such as ComponentOne, Microsoft 
+            or third-party grid controls, can bind to a C1ExpressTable component as their DataSet.
+            </remarks>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressTable.#ctor">
+            <summary>
+            Initializes a new instance of the C1ExpressTable class. 
+            </summary>
+        </member>
+        <member name="E:C1.Data.Express.C1ExpressTable.BeforeFill">
+            <summary>
+            Fired before the table is filled with data.
+            </summary>
+            <remarks>
+            Use this event to set FillFilter and FillSort properties when the table is filled 
+            at startup due to <see cref="P:C1.Data.Express.C1ExpressTable.FillOnRequest"/> = True.
+            For C1ExpressTable components connected to a <see cref="T:C1.Data.Express.C1ExpressConnection"/>, 
+            the <see cref="T:C1.Data.Express.C1ExpressConnection"/>'s BeforeFill event is fired after 
+            all C1ExpressTable components' BeforeFill.
+            </remarks>
+        </member>
+        <member name="E:C1.Data.Express.C1ExpressTable.AfterFill">
+            <summary>
+            Fired after the table has been filled with data.
+            </summary>
+        </member>
+        <member name="E:C1.Data.Express.C1ExpressTable.UpdateError">
+            <summary>
+            Fired when errors occur in an attempt to update the database when the end user leaves a modified row.
+            </summary>
+            <remarks>
+            This event gives the programmer an opportunity to show a custom error message or suppress 
+            showing the message altogether, if the standard error message is not satisfactory. 
+            Error.Description gives you the standard error message. If you do not want the standard 
+            error message to appear, set the ShowMessage argument to False.
+            </remarks>
+        </member>
+        <member name="E:C1.Data.Express.C1ExpressTable.BeforeGenerateSql">
+            <summary>
+            Fired before generating the SQL SELECT statement for fetching table data from the database.
+            </summary>
+            <remarks>See <see cref="E:C1.Data.C1DataSetLogic.BeforeGenerateSql"/>.</remarks>
+            <seealso cref="E:C1.Data.Express.C1ExpressTable.AfterGenerateSql"/>
+        </member>
+        <member name="E:C1.Data.Express.C1ExpressTable.AfterGenerateSql">
+            <summary>
+            Fired after generating the SQL SELECT statement for fetching table data from the database.
+            </summary>
+            <remarks>See <see cref="E:C1.Data.C1DataSetLogic.AfterGenerateSql"/>.</remarks>
+            <seealso cref="E:C1.Data.Express.C1ExpressTable.BeforeGenerateSql"/>
+        </member>
+        <member name="E:C1.Data.Express.C1ExpressTable.BeforeUpdateRow">
+            <summary>
+            Fired before modifications made to a row are committed to the database.
+            </summary>
+            <remarks>See <see cref="E:C1.Data.Express.C1ExpressConnection.BeforeUpdateRow"/>.</remarks>
+            <seealso cref="E:C1.Data.Express.C1ExpressTable.AfterUpdateRow"/>
+        </member>
+        <member name="E:C1.Data.Express.C1ExpressTable.AfterUpdateRow">
+            <summary>
+            Fired after modifications made to a row are committed to the database.
+            </summary>
+            <remarks>
+            See <see cref="E:C1.Data.Express.C1ExpressConnection.AfterUpdateRow"/>.
+            </remarks>
+            <seealso cref="E:C1.Data.Express.C1ExpressTable.BeforeUpdateRow"/>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressTable.ExpressConnection">
+            <summary>
+            Gets the <see cref="T:C1.Data.Express.C1ExpressConnection"/> component for this table.
+            </summary>
+            <remarks>
+            For a stand-alone C1ExpressTable (<see cref="P:C1.Data.Express.C1ExpressTable.ConnectionComponent"/> property not set), 
+            this property returns the internal <see cref="T:C1.Data.Express.C1ExpressConnection"/> component belonging 
+            to this C1ExpressTable.
+            If the <see cref="P:C1.Data.Express.C1ExpressTable.ConnectionComponent"/> property is set, the ExpressConnection property returns the value 
+            of <see cref="P:C1.Data.Express.C1ExpressTable.ConnectionComponent"/>.
+            </remarks>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressTable.ConnectionComponent">
+            <summary>
+            Gets or sets the <see cref="T:C1.Data.Express.C1ExpressConnection"/> component this table is attached to.
+            </summary>
+            <remarks>
+            A C1ExpressTable can be either stand-alone, in which case this property is not set, 
+            or belong to a <see cref="T:C1.Data.Express.C1ExpressConnection"/>.
+            </remarks>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressTable.TableName">
+            <summary>
+            Gets or sets the name of the table as it appears to data bound controls.
+            </summary>
+            <remarks>
+            This name is shown to data bound controls in their DataMember property combo box. 
+            By default, it is the same as DbTableName.
+            </remarks>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressTable.DataAccessMode">
+            <summary>
+            Gets or sets a DataAccessModeEnum value specifying static (everything fetch into memory) or virtual (fetch by segments, for a large data set) mode of operation.
+            </summary>
+            <seealso><span style="Link Topic">Virtual Mode - Dealing with Large Datasets</span></seealso>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressTable.ReadOnly">
+            <summary>
+            Gets or sets a value indicating whether changes to the rows of this table are allowed.
+            </summary>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressTable.UserReadOnly">
+            <summary>
+            Gets or sets a value indicating whether modifying table data in bould controls is allowed.
+            </summary>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressTable.AllowAddNew">
+            <summary>
+            Gets or sets a value indicating whether adding new rows to this table is allowed.
+            </summary>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressTable.AllowDelete">
+            <summary>
+            Gets or sets a value indicating whether deleting rows from this table is allowed.
+            </summary>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressTable.FillFilter">
+            <summary>
+            Gets or sets the filter criteria for filling the table with data.
+            </summary>
+            <remarks>
+            A filter condition specifies a restriction on fetched rows when the table is filled with data. 
+            It must have SQL WHERE syntax with bracketed field names as variables. Example: 
+            [CustomerID] = 'ALFKI'.
+            <para>If the table is automatically filled at start-up time due to <see cref="P:C1.Data.Express.C1ExpressTable.FillOnRequest"/> = True, 
+            use <see cref="E:C1.Data.Express.C1ExpressTable.BeforeFill"/> event to specify FillFilter and <see cref="P:C1.Data.Express.C1ExpressTable.FillSort"/> properties.</para>
+            </remarks>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressTable.FillSort">
+            <summary>
+            Gets or sets the sort field or fields, and sort order for filling the table with data.
+            </summary>
+            <remarks>
+            This property controls the order in which data rows are sorted after fetch. 
+            By default, fetched data is sorted by primary key. If a different sort is required, 
+            set this property to the sort field name(s). To specify sort order (ascending/descending), 
+            add "ASC" (ascending) or "DESC" (descending) after the field name. 
+            If no order is specified, the order is "ASC" (ascending). 
+            Multiple field names are separated with commas. Example: "CustomerID DESC, OrderID".
+            <para>If the table is automatically filled at start-up time due to <see cref="P:C1.Data.Express.C1ExpressTable.FillOnRequest"/> = True, use 
+            <see cref="E:C1.Data.Express.C1ExpressTable.BeforeFill"/> event to specify <see cref="P:C1.Data.Express.C1ExpressTable.FillFilter"/> and FillSort properties.</para>
+            </remarks>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressTable.DbTableName">
+            <summary>
+            Gets or sets the name of the database table.
+            </summary>
+            <remarks>
+            If this component represents a composite table, select "Composite..." as the value of this property.
+            </remarks>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressTable.Fields">
+            <summary>
+            The collection of <see cref="T:C1.Data.Express.C1ExpressTable"/> fields.
+            </summary>
+            <remarks>
+            Use Fields editor to edit this collection.
+            </remarks>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressTable.ConnectionType">
+            <summary>
+            Gets or sets the type of database connection, either via OLE DB or using one of the native database access options.
+            </summary>
+            <remarks>
+            This property only applies to a stand-alone C1ExpressTable (<see cref="P:C1.Data.Express.C1ExpressTable.ConnectionComponent"/> property not set).
+            </remarks>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressTable.FillOnRequest">
+            <summary>
+            Gets or sets a value indicating whether the data set will be automatically filled with data when a data bound control requests data from it.
+            </summary>
+            <remarks>
+            If this property is set to True (default), the data set is automatically 
+            filled with data at startup, once a control bound to it requests data. 
+            <para>If it is set to False, the data set remains empty until the <see cref="M:C1.Data.Express.C1ExpressConnection.Fill"/> method is called.</para>
+            </remarks>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressTable.ConnectionString">
+            <summary>
+            Gets or sets the connection string used to connect to the database.
+            </summary>
+            <remarks>
+            This property only applies to a stand-alone C1ExpressTable (<see cref="P:C1.Data.Express.C1ExpressTable.ConnectionComponent"/> property not set).
+            <para>If the <see cref="P:C1.Data.Express.C1ExpressTable.ConnectionComponent"/> property is set, this property always returns empty string, 
+            because database connection is managed by the <see cref="P:C1.Data.Express.C1ExpressTable.ConnectionComponent"/> component.</para>
+            </remarks>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressTable.ConnectionTimeout">
+            <summary>
+            Gets the time to wait while trying to establish a connection before terminating the attempt and generating an error.
+            </summary>
+            <remarks>
+            The connection string determines the value of this property. 
+            If the <see cref="P:C1.Data.Express.C1ExpressTable.ConnectionComponent"/> property is set, it is determined by <see cref="P:C1.Data.Express.C1ExpressTable.ConnectionComponent"/>.ConnectionTimeout.
+            The time (in seconds) to wait for a connection to open. The default value is 15 seconds.
+            </remarks>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressTable.Database">
+            <summary>
+            Gets the name of the current database or the database to be used once a connection is open.
+            </summary>
+            <remarks>
+            The connection string determines the value of this property. 
+            If the <see cref="P:C1.Data.Express.C1ExpressTable.ConnectionComponent"/> property is set, it is determined by <see cref="P:C1.Data.Express.C1ExpressTable.ConnectionComponent"/>.Database.
+            The default value is an empty string.
+            </remarks>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressTable.DataSource">
+            <summary>
+            Gets the location and file name of the data source.
+            </summary>
+            <remarks>
+            The connection string determines the value of this property. 
+            If the <see cref="P:C1.Data.Express.C1ExpressTable.ConnectionComponent"/> property is set, it is determined by <see cref="P:C1.Data.Express.C1ExpressTable.ConnectionComponent"/>.Database.
+            The default value is an empty string.
+            </remarks>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressTable.Provider">
+            <summary>
+            Gets the name of the OLE DB provider.
+            </summary>
+            <remarks>
+            The connection string determines the value of this property. 
+            If the <see cref="P:C1.Data.Express.C1ExpressTable.ConnectionComponent"/> property is set, it is determined by <see cref="P:C1.Data.Express.C1ExpressTable.ConnectionComponent"/>.Database.
+            The default value is an empty string.
+            </remarks>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressTable.SelectCommandText">
+            <summary>
+            Gets or sets the command text (SQL statement or stored procedure) for fetching data from the database.
+            </summary>
+            <remarks>
+            In C1DataExpress, in a C1ExpressTable component, specifying this property makes the 
+            table SQL-based and clears the <see cref="P:C1.Data.Express.C1ExpressTable.DbTableName"/> property.
+            When this property is set at design time, and a database connection exists, 
+            fields are automatically retrieved from the database structure, with 
+            user confirmation if it is OK to delete the existing fields.
+            </remarks>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressTable.SelectCommandType">
+            <summary>
+            Determines how to interpret <see cref="P:C1.Data.Express.C1ExpressTable.SelectCommandText"/> property.
+            </summary>
+            <remarks>
+            This property determines whether <see cref="P:C1.Data.Express.C1ExpressTable.SelectCommandText"/> is a SQL statement 
+            or a stored procedure name.
+            </remarks>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressTable.DataAdapter">
+            <summary>
+            Returns or sets the IDBDataAdapter component used to fill and update the table 
+            with non-empty <see cref="P:C1.Data.Express.C1ExpressTable.SelectCommandText"/>.
+            </summary>
+            <remarks>
+            This property allows to support updateable SQL-based tables based on a SQL SELECT 
+            statement or a stored procedure, without manual code, using ADO.NET data adapter. 
+            This makes working with SQL-based tables in C1DataObjects almost as easy as working 
+            with bound tables (when DataMode=Bound, DbTableName set to a database table name). 
+            However, bound tables should be always preferable when you have a choice. Bound 
+            tables are more intimately related to database tables, so C1DataObjects can support 
+            features, such as virtual mode, that are unavailable for SQL-based tables, 
+            see <span style="Link Topic">Bound, SQL-Based and Unbound tables</span>. 
+            <para>See the SQLBasedTablesEasy sample in the samples directory for an example of using a data adapter.</para>
+            <para>A data adapter component can be created using the Create 
+            DataAdapter context menu item or created manually and attached to the DataAdapter property.</para>
+            <para>See <span style="Link Property">C1TableLogic.DataAdapter</span>.</para>
+            </remarks>
+        </member>
+        <member name="T:C1.Data.Express.C1ExpressView">
+            <summary>
+            C1ExpressView is a component that can serve as a data source for data-aware controls, 
+            along with <see cref="T:C1.Data.Express.C1ExpressTable"/> and <see cref="T:C1.Data.Express.C1ExpressConnection"/>. 
+            </summary>
+            <remarks>
+            It provides a view of a <see cref="T:C1.Data.Express.C1ExpressTable"/>. 
+            This view can include only rows satisfying certain filter conditions, if such conditions 
+            are specified. This view can also sort the rows in a certain order.
+            C1ExpressView also serves to allow binding of data-aware controls in one form to 
+            <see cref="T:C1.Data.Express.C1ExpressTable"/> components residing in another form, see <span style="Link Topic">Working with Tables in Other Forms</span>.
+            </remarks>
+        </member>
+        <member name="M:C1.Data.Express.C1ExpressView.#ctor">
+            <summary>
+            Initializes a new instance of the C1ExpressView class. 
+            </summary>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressView.ExpressTable">
+            <summary>
+            Gets or sets the source <see cref="T:C1.Data.Express.C1ExpressTable"/> component.
+            </summary>
+            <remarks>
+            Use this property to attach the C1ExpressView to a <see cref="T:C1.Data.Express.C1ExpressTable"/> 
+            component residing in the same form with the C1ExpressView.
+            </remarks>
+        </member>
+        <member name="P:C1.Data.Express.C1ExpressView.ExpressTableName">
+            <summary>
+            Gets or sets the source <see cref="T:C1.Data.Express.C1ExpressTable"/> component name, 
+            including components residing in other forms.
+            </summary>
+            <remarks>
+            Use this property to attach the C1ExpressView to a <see cref="T:C1.Data.Express.C1ExpressTable"/> component residing in 
+            another form. At design time, this property allows you to select from the list of 
+            <see cref="T:C1.Data.Express.C1ExpressTable"/> components from all forms currently open in the environment. 
+            See <span style="Link Topic">Working with Tables in Other Forms</span> for details.
+            </remarks>
+        </member>
+        <member name="T:C1.Util.Localization.StringTables">
+            <summary>
+            StringTables
+            this class contains a single static method InitTables that populates the
+            tables used by the Localizer class.
+            </summary>
+        </member>
+    </members>
+</doc>
