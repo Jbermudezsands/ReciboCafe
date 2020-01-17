@@ -1,0 +1,1 @@
+ALTER TABLE Recepcion ALTER COLUMN NumeroReciboCafe varchar (20)
