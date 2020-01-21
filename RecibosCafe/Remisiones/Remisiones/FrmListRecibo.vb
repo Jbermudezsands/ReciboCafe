@@ -156,8 +156,8 @@ Public Class FrmListRecibo
                 oDatarow("IdTipoSaco") = DataSet.Tables("DatosRecibos").Rows(i)("IdTipoSaco")
                 oDatarow("IdEdoFisico") = DataSet.Tables("DatosRecibos").Rows(i)("IdEdoFisico")
                 oDatarow("IdDano") = DataSet.Tables("DatosRecibos").Rows(i)("IdDano")
-                'oDatarow("IdDetalleReciboPergamino") = DataSet.Tables("DatosRecibos").Rows(i)("IdDetalleReciboPergamino")
-                oDatarow("IdDetalleReciboPergamino") = DataSet.Tables("DatosRecibos").Rows(i)("IdReciboPergamino")
+                oDatarow("IdDetalleReciboPergamino") = DataSet.Tables("DatosRecibos").Rows(i)("IdDetalleReciboPergamino")   '/////Modificado 17-01-2020  quieren que se grabe iddetalle en reciboremision y idrecibo en detalleremision
+                'oDatarow("IdDetalleReciboPergamino") = DataSet.Tables("DatosRecibos").Rows(i)("IdReciboPergamino")
                 oDatarow("Categoria") = DataSet.Tables("DatosRecibos").Rows(i)("RangoImperfec")
                 oDatarow("Aplicar") = DataSet.Tables("DatosRecibos").Rows(i)("Aplicar")
                 oDatarow("Fecha") = DataSet.Tables("DatosRecibos").Rows(i)("Fecha")
@@ -713,7 +713,7 @@ Public Class FrmListRecibo
                     oDatarow("IdEdoFisico") = Me.GribListRecibos.Item(i)("IdEdoFisico")
                     oDatarow("IdDano") = Me.GribListRecibos.Item(i)("IdDano")
                     oDatarow("TipoLocalidad") = Me.GribListRecibos.Item(i)("TipoLocalidad")
-                    oDatarow("IdDetalleReciboPergamino") = Me.GribListRecibos.Item(i)("IdDetalleReciboPergamino")
+                    oDatarow("IdDetalleReciboPergamino") = Me.GribListRecibos.Item(i)("IdReciboPergamino")
                     oDatarow("PesoNeto2") = Me.GribListRecibos.Item(i)("PesoBruto") - Me.GribListRecibos.Item(i)("Tara")
                     oDatarow("CantidadSacos2") = Me.GribListRecibos.Item(i)("CantidadSacos")
                     oDatarow("PesosRecibos") = Me.GribListRecibos.Item(i)("PesoBruto") - Me.GribListRecibos.Item(i)("Tara")
@@ -731,7 +731,7 @@ Public Class FrmListRecibo
                         DataSet.Tables("ListaRecibosAgrupados").Rows(Posicion)("PesoBruto2") = Me.GribListRecibos.Item(i)("PesoBruto") + DataSet.Tables("ListaRecibosAgrupados").Rows(Posicion)("PesoBruto2")
                         DataSet.Tables("ListaRecibosAgrupados").Rows(Posicion)("Tara2") = Me.GribListRecibos.Item(i)("Tara") + DataSet.Tables("ListaRecibosAgrupados").Rows(Posicion)("Tara2")
                         'DataSet.Tables("ListaRecibosAgrupados").Rows(Posicion)("PesoNeto") = 0 '(Me.GribListRecibos.Item(i)("PesoBruto") - Me.GribListRecibos.Item(i)("Tara")) + DataSet.Tables("ListaRecibosAgrupados").Rows(Posicion)("PesoNeto")
-                        DataSet.Tables("ListaRecibosAgrupados").Rows(Posicion)("IdDetalleReciboPergamino") = DataSet.Tables("ListaRecibosAgrupados").Rows(Posicion)("IdDetalleReciboPergamino") & "-" & Me.GribListRecibos.Item(i)("IdDetalleReciboPergamino")
+                        DataSet.Tables("ListaRecibosAgrupados").Rows(Posicion)("IdDetalleReciboPergamino") = DataSet.Tables("ListaRecibosAgrupados").Rows(Posicion)("IdDetalleReciboPergamino") & "-" & Me.GribListRecibos.Item(i)("IdReciboPergamino")
                         DataSet.Tables("ListaRecibosAgrupados").Rows(Posicion)("Codigo") = DataSet.Tables("ListaRecibosAgrupados").Rows(Posicion)("Codigo") & "," & Me.GribListRecibos.Item(i)("Codigo")
                         DataSet.Tables("ListaRecibosAgrupados").Rows(Posicion)("PesoNeto2") = (Me.GribListRecibos.Item(i)("PesoBruto") - Me.GribListRecibos.Item(i)("Tara")) + DataSet.Tables("ListaRecibosAgrupados").Rows(Posicion)("PesoNeto2")
                         DataSet.Tables("ListaRecibosAgrupados").Rows(Posicion)("CantidadSacos2") = Me.GribListRecibos.Item(i)("CantidadSacos") + DataSet.Tables("ListaRecibosAgrupados").Rows(Posicion)("CantidadSacos2")
@@ -753,7 +753,7 @@ Public Class FrmListRecibo
                         oDatarow("IdDano") = Me.GribListRecibos.Item(i)("IdDano")
                         oDatarow("TipoLocalidad") = Me.GribListRecibos.Item(i)("TipoLocalidad")
                         oDatarow("Codigo") = Me.GribListRecibos.Item(i)("Codigo")
-                        oDatarow("IdDetalleReciboPergamino") = Me.GribListRecibos.Item(i)("IdDetalleReciboPergamino")
+                        oDatarow("IdDetalleReciboPergamino") = Me.GribListRecibos.Item(i)("IdReciboPergamino")  'Modificado 17-01-2020  Solicitaron que en detalle en iddetalleRecibo se guarde el idReciboPergamino
                         oDatarow("PesoNeto2") = Me.GribListRecibos.Item(i)("PesoBruto") - Me.GribListRecibos.Item(i)("Tara")
                         oDatarow("CantidadSacos2") = Me.GribListRecibos.Item(i)("CantidadSacos")
                         oDatarow("PesosRecibos") = Format(Me.GribListRecibos.Item(i)("PesoBruto") - Me.GribListRecibos.Item(i)("Tara"), "####0.0000")
@@ -767,7 +767,7 @@ Public Class FrmListRecibo
                 '////////////////////////////ACTUALIZO LA TABLA RECIBO CON LA SELECCION///////////////////////////////////
                 '/////////////////////////////////////////////////////////////////////////////////////////////////
                 MiConexion.Close()
-                SqlString = "UPDATE [ReciboCafePergamino] SET [SeleccionRemision] = 0  WHERE(IdReciboPergamino = " & Me.GribListRecibos.Item(i)("IdDetalleReciboPergamino") & ")"
+                SqlString = "UPDATE [ReciboCafePergamino] SET [SeleccionRemision] = 0  WHERE(IdReciboPergamino = " & Me.GribListRecibos.Item(i)("IdReciboPergamino") & ")"
                 MiConexion.Open()
                 ComandoUpdate = New SqlClient.SqlCommand(SqlString, MiConexion)
                 iResultado = ComandoUpdate.ExecuteNonQuery
@@ -1243,7 +1243,7 @@ Public Class FrmListRecibo
             '////////////////////////////ACTUALIZO LA TABLA RECIBO CON LA SELECCION///////////////////////////////////
             '/////////////////////////////////////////////////////////////////////////////////////////////////
             MiConexion.Close()
-            SqlString = "UPDATE [ReciboCafePergamino] SET [SeleccionRemision] = " & SeleccionRemi & "  WHERE(IdReciboPergamino = " & Me.GribListRecibos.Item(i)("IdDetalleReciboPergamino") & ")"
+            SqlString = "UPDATE [ReciboCafePergamino] SET [SeleccionRemision] = " & SeleccionRemi & "  WHERE(IdReciboPergamino = " & Me.GribListRecibos.Item(i)("IdReciboPergamino") & ")"
             MiConexion.Open()
             ComandoUpdate = New SqlClient.SqlCommand(SqlString, MiConexion)
             iResultado = ComandoUpdate.ExecuteNonQuery
@@ -1375,7 +1375,7 @@ Public Class FrmListRecibo
                         oDatarow("IdEdoFisico") = Me.GribListRecibos.Item(i)("IdEdoFisico")
                         oDatarow("IdDano") = Me.GribListRecibos.Item(i)("IdDano")
                         oDatarow("TipoLocalidad") = Me.GribListRecibos.Item(i)("TipoLocalidad")
-                        oDatarow("IdDetalleReciboPergamino") = Me.GribListRecibos.Item(i)("IdDetalleReciboPergamino")
+                        oDatarow("IdDetalleReciboPergamino") = Me.GribListRecibos.Item(i)("IdReciboPergamino")   'Modificado 21-01-2020 solicitado por IT  en el campo iddetalle grabar Idrecibo
                         oDatarow("PesoNeto2") = Me.GribListRecibos.Item(i)("PesoBruto") - Me.GribListRecibos.Item(i)("Tara")
                         oDatarow("CantidadSacos2") = Me.GribListRecibos.Item(i)("CantidadSacos")
                         oDatarow("PesosRecibos") = Me.GribListRecibos.Item(i)("PesoBruto") - Me.GribListRecibos.Item(i)("Tara")
@@ -1394,7 +1394,7 @@ Public Class FrmListRecibo
                         DataSet.Tables("ListaRecibosAgrupados").Rows(Posicion)("PesoBruto2") = Me.GribListRecibos.Item(i)("PesoBruto") + DataSet.Tables("ListaRecibosAgrupados").Rows(Posicion)("PesoBruto2")
                         DataSet.Tables("ListaRecibosAgrupados").Rows(Posicion)("Tara2") = Me.GribListRecibos.Item(i)("Tara") + DataSet.Tables("ListaRecibosAgrupados").Rows(Posicion)("Tara2")
                         'DataSet.Tables("ListaRecibosAgrupados").Rows(Posicion)("PesoNeto") = 0 '(Me.GribListRecibos.Item(i)("PesoBruto") - Me.GribListRecibos.Item(i)("Tara")) + DataSet.Tables("ListaRecibosAgrupados").Rows(Posicion)("PesoNeto")
-                        DataSet.Tables("ListaRecibosAgrupados").Rows(Posicion)("IdDetalleReciboPergamino") = DataSet.Tables("ListaRecibosAgrupados").Rows(Posicion)("IdDetalleReciboPergamino") & "-" & Me.GribListRecibos.Item(i)("IdDetalleReciboPergamino")
+                        DataSet.Tables("ListaRecibosAgrupados").Rows(Posicion)("IdDetalleReciboPergamino") = DataSet.Tables("ListaRecibosAgrupados").Rows(Posicion)("IdDetalleReciboPergamino") & "-" & Me.GribListRecibos.Item(i)("IdReciboPergamino")
                         DataSet.Tables("ListaRecibosAgrupados").Rows(Posicion)("Codigo") = DataSet.Tables("ListaRecibosAgrupados").Rows(Posicion)("Codigo") & "," & Me.GribListRecibos.Item(i)("Codigo")
                         DataSet.Tables("ListaRecibosAgrupados").Rows(Posicion)("PesoNeto2") = (Me.GribListRecibos.Item(i)("PesoBruto") - Me.GribListRecibos.Item(i)("Tara")) + DataSet.Tables("ListaRecibosAgrupados").Rows(Posicion)("PesoNeto2")
                         DataSet.Tables("ListaRecibosAgrupados").Rows(Posicion)("CantidadSacos2") = Me.GribListRecibos.Item(i)("CantidadSacos") + DataSet.Tables("ListaRecibosAgrupados").Rows(Posicion)("CantidadSacos2")
@@ -1422,7 +1422,7 @@ Public Class FrmListRecibo
                             oDatarow("IdDano") = Me.GribListRecibos.Item(i)("IdDano")
                             oDatarow("TipoLocalidad") = Me.GribListRecibos.Item(i)("TipoLocalidad")
                             oDatarow("Codigo") = Me.GribListRecibos.Item(i)("Codigo")
-                            oDatarow("IdDetalleReciboPergamino") = Me.GribListRecibos.Item(i)("IdDetalleReciboPergamino")
+                            oDatarow("IdDetalleReciboPergamino") = Me.GribListRecibos.Item(i)("IdReciboPergamino")
                             oDatarow("PesoNeto2") = Me.GribListRecibos.Item(i)("PesoBruto") - Me.GribListRecibos.Item(i)("Tara")
                             oDatarow("CantidadSacos2") = Me.GribListRecibos.Item(i)("CantidadSacos")
                             oDatarow("PesosRecibos") = Format(Me.GribListRecibos.Item(i)("PesoBruto") - Me.GribListRecibos.Item(i)("Tara"), "####0.0000")
@@ -1439,7 +1439,7 @@ Public Class FrmListRecibo
                 '////////////////////////////ACTUALIZO LA TABLA RECIBO CON LA SELECCION///////////////////////////////////
                 '/////////////////////////////////////////////////////////////////////////////////////////////////
                 MiConexion.Close()
-                SqlString = "UPDATE [ReciboCafePergamino] SET [SeleccionRemision] = 0  WHERE(IdReciboPergamino = " & Me.GribListRecibos.Item(i)("IdDetalleReciboPergamino") & ")"
+                SqlString = "UPDATE [ReciboCafePergamino] SET [SeleccionRemision] = 0  WHERE(IdReciboPergamino = " & Me.GribListRecibos.Item(i)("IdReciboPergamino") & ")"
                 MiConexion.Open()
                 ComandoUpdate = New SqlClient.SqlCommand(SqlString, MiConexion)
                 iResultado = ComandoUpdate.ExecuteNonQuery
