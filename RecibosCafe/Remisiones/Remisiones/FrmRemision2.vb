@@ -4760,12 +4760,12 @@ Public Class FrmRemision2
                     End If
                     DataSet.Tables("ConsultaPI").Reset()
 
-                    MiConexion.Close()
-                    StrSqlInsert = "DELETE FROM  DetalleIntermadio WHERE(IdIntermedio =" & IdIntermedio & ")"
-                    MiConexion.Open()
-                    ComandoUpdate = New SqlClient.SqlCommand(StrSqlInsert, MiConexion)
-                    iResultado = ComandoUpdate.ExecuteNonQuery
-                    MiConexion.Close()
+                    'MiConexion.Close()
+                    'StrSqlInsert = "DELETE FROM  DetalleIntermadio WHERE(IdIntermedio =" & IdIntermedio & ")"
+                    'MiConexion.Open()
+                    'ComandoUpdate = New SqlClient.SqlCommand(StrSqlInsert, MiConexion)
+                    'iResultado = ComandoUpdate.ExecuteNonQuery
+                    'MiConexion.Close()
 
                     'If IdTipoCafe = 2 Then
 
@@ -4820,7 +4820,7 @@ Public Class FrmRemision2
                             TipoPesada = "Rec" & DataSet.Tables("ConsultaDI").Rows(j)("Codigo") & "-N" & j & "-D" & iPosicionDetalle & "-P1"
                             'TipoPesada = "Rec" & Me.TDGribListRecibos.Columns("Codigo").Text & "-N" & i & "-D" & Me.TDBGridPuntosInter.Row
                             '/////////////////////////////////////BUSCO SI EXISTEN PESADAS PARA LOS RECIBOS //////////////////////////
-                            sql = "SELECT  Cod_Productos, Descripcion_Producto, SUM(Cantidad) AS Cantidad, SUM(PesoKg) AS PesoKg, SUM(Tara) AS Tara, SUM(PesoNetoLb) AS PesoNetoLb, SUM(PesoNetoKg) AS PesoNetoKg, SUM(QQ) AS QQ FROM Detalle_Pesadas WHERE  (TipoPesada = '" & TipoPesada & "') AND (Fecha = CONVERT(DATETIME, '" & Format(Me.DTPRemFechCarga.Value, "yyyy-MM-dd") & "', 102)) AND (TipoRemision = '" & Me.CboTipoRemision.Text & "') AND  (NumeroRemision = '" & Me.TxtNumeroRemision.Text & "') GROUP BY Cod_Productos, Descripcion_Producto"
+                            sql = "SELECT  Cod_Productos, Descripcion_Producto, SUM(Cantidad) AS Cantidad, SUM(PesoKg) AS PesoKg, SUM(Tara) AS Tara, SUM(PesoNetoLb) AS PesoNetoLb, SUM(PesoNetoKg) AS PesoNetoKg, SUM(QQ) AS QQ FROM Detalle_Pesadas WHERE  (TipoPesada = '" & TipoPesada & "') AND (TipoRemision = '" & Me.CboTipoRemision.Text & "') AND  (NumeroRemision = '" & Me.TxtNumeroRemision.Text & "') GROUP BY Cod_Productos, Descripcion_Producto"  'AND (Fecha = CONVERT(DATETIME, '" & Format(Me.DTPRemFechCarga.Value, "yyyy-MM-dd") & "', 102))
                             DataAdapter = New SqlClient.SqlDataAdapter(sql, MiConexion)
                             DataAdapter.Fill(DataSet, "Consulta")
                             If Not DataSet.Tables("Consulta").Rows.Count = 0 Then
@@ -4831,7 +4831,7 @@ Public Class FrmRemision2
 
                             TipoPesada = "Rec" & DataSet.Tables("ConsultaDI").Rows(j)("Codigo") & "-N" & j & "-D" & iPosicionDetalle & "-P2"
                             '/////////////////////////////////////BUSCO SI EXISTEN PESADAS PARA LOS RECIBOS //////////////////////////
-                            sql = "SELECT  Cod_Productos, Descripcion_Producto, SUM(Cantidad) AS Cantidad, SUM(PesoKg) AS PesoKg, SUM(Tara) AS Tara, SUM(PesoNetoLb) AS PesoNetoLb, SUM(PesoNetoKg) AS PesoNetoKg, SUM(QQ) AS QQ FROM Detalle_Pesadas WHERE  (TipoPesada = '" & TipoPesada & "') AND (Fecha = CONVERT(DATETIME, '" & Format(Me.DTPRemFechCarga.Value, "yyyy-MM-dd") & "', 102)) AND (TipoRemision = '" & Me.CboTipoRemision.Text & "') AND  (NumeroRemision = '" & Me.TxtNumeroRemision.Text & "') GROUP BY Cod_Productos, Descripcion_Producto"
+                            sql = "SELECT  Cod_Productos, Descripcion_Producto, SUM(Cantidad) AS Cantidad, SUM(PesoKg) AS PesoKg, SUM(Tara) AS Tara, SUM(PesoNetoLb) AS PesoNetoLb, SUM(PesoNetoKg) AS PesoNetoKg, SUM(QQ) AS QQ FROM Detalle_Pesadas WHERE  (TipoPesada = '" & TipoPesada & "') AND (TipoRemision = '" & Me.CboTipoRemision.Text & "') AND  (NumeroRemision = '" & Me.TxtNumeroRemision.Text & "') GROUP BY Cod_Productos, Descripcion_Producto"  '///////////////////////////////////modificado 22/01/2020  (Fecha = CONVERT(DATETIME, '" & Format(Me.DTPRemFechCarga.Value, "yyyy-MM-dd") & "', 102))
                             DataAdapter = New SqlClient.SqlDataAdapter(sql, MiConexion)
                             DataAdapter.Fill(DataSet, "Consulta")
                             If Not DataSet.Tables("Consulta").Rows.Count = 0 Then
