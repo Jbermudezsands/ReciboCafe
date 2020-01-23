@@ -933,7 +933,7 @@ Public Class FrmListRecibo
         Do While Count > i
 
 
-            My.Forms.FrmRemision2.TDGribListRecibos.Row = i
+            'My.Forms.FrmRemision2.TDGribListRecibos.Row = i
             If My.Forms.FrmRemision2.TDGribListRecibos.Columns("Aplicar").Text = "" Then
                 Aplicar = False
             Else
@@ -942,16 +942,16 @@ Public Class FrmListRecibo
 
             oDatarow = DataSet.Tables("ListaRecibosParciales").NewRow
             oDatarow("Aplicar") = Aplicar
-            oDatarow("Proveedor") = My.Forms.FrmRemision2.TDGribListRecibos.Columns("Proveedor").Text
-            oDatarow("NomFinca") = My.Forms.FrmRemision2.TDGribListRecibos.Columns("NomFinca").Text
-            oDatarow("Codigo") = My.Forms.FrmRemision2.TDGribListRecibos.Columns("Codigo").Text
-            oDatarow("Descripcion") = My.Forms.FrmRemision2.TDGribListRecibos.Columns("Descripcion").Text
-            oDatarow("Dano") = My.Forms.FrmRemision2.TDGribListRecibos.Columns("Dano").Text
-            oDatarow("Categoria") = My.Forms.FrmRemision2.TDGribListRecibos.Columns("Categoria").Text
-            oDatarow("PesoReal") = My.Forms.FrmRemision2.TDGribListRecibos.Columns("PESONETO").Text
-            oDatarow("PesoAplicado") = My.Forms.FrmRemision2.TDGribListRecibos.Columns("PESONETO").Text
+            oDatarow("Proveedor") = My.Forms.FrmRemision2.TDGribListRecibos.Item(i)("Proveedor")
+            oDatarow("NomFinca") = My.Forms.FrmRemision2.TDGribListRecibos.Item(i)("NomFinca")
+            oDatarow("Codigo") = My.Forms.FrmRemision2.TDGribListRecibos.Item(i)("Codigo")
+            oDatarow("Descripcion") = My.Forms.FrmRemision2.TDGribListRecibos.Item(i)("Descripcion")
+            oDatarow("Dano") = My.Forms.FrmRemision2.TDGribListRecibos.Item(i)("Dano")
+            oDatarow("Categoria") = My.Forms.FrmRemision2.TDGribListRecibos.Item(i)("Categoria")
+            oDatarow("PesoReal") = My.Forms.FrmRemision2.TDGribListRecibos.Item(i)("PESONETO")
+            oDatarow("PesoAplicado") = My.Forms.FrmRemision2.TDGribListRecibos.Item(i)("PESONETO")
             oDatarow("PesoPorAplicar") = 0.0
-            oDatarow("IdDetalleReciboPergamino") = My.Forms.FrmRemision2.TDGribListRecibos.Columns("IdDetalleReciboPergamino").Text
+            oDatarow("IdDetalleReciboPergamino") = My.Forms.FrmRemision2.TDGribListRecibos.Item(i)("IdReciboPergamino")  '/////MODIFICADO 23-01-2020  CAMBIADO POR CAMBIO SOLICITADO RECIBOREMISION PERGAMINO 7777777777
             DataSet.Tables("ListaRecibosParciales").Rows.Add(oDatarow)
 
 

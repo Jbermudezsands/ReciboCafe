@@ -2261,6 +2261,11 @@ Public Class FrmRemision2
             Exit Sub
         End If
         Me.TDBGridPuntosInter.Delete()
+
+        BtnGuardar_Click(sender, e)
+
+
+
     End Sub
     Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button4.Click
         Dim Conductor As String
@@ -4533,7 +4538,7 @@ Public Class FrmRemision2
 
             Else
 
-                SQLRem = "SELECT        IdDetalleRemisionPergamino, CantidadSacos, Humedad, PesoBruto, IdRemisionPergamino, IdSaco, IdEdoFisico, IdDano, IdUsuario  FROM  DetalleRemisionPergamino WHERE   (IdRemisionPergamino = '" & IdRemision & "')"
+                SQLRem = "SELECT   IdDetalleRemisionPergamino, CantidadSacos, Humedad, PesoBruto, IdRemisionPergamino, IdSaco, IdEdoFisico, IdDano, IdUsuario  FROM  DetalleRemisionPergamino WHERE   (IdRemisionPergamino = '" & IdRemision & "')"
                 DataAdapter = New SqlClient.SqlDataAdapter(SQLRem, MiConexion)
                 DataAdapter.Fill(DataSet, "IdDetalleRemision")
 
@@ -5153,7 +5158,7 @@ Public Class FrmRemision2
         'ViewerForm.Show()
 
         'Quien2 = "ImprimeLiquida"
-        'BtnGuardar_Click(sender, e)
+        BtnGuardar_Click(sender, e)
 
 
     End Sub
@@ -5279,6 +5284,7 @@ Public Class FrmRemision2
         If respuesta = 6 Then
             ConfirmadoDetalle = True
             Limpiar = False
+
             If Me.TxtIdRemision.Text = "" Then
                 BtnGuardar_Click(sender, e)
             Else
@@ -5293,9 +5299,15 @@ Public Class FrmRemision2
             Me.CmdConfirma.Enabled = False
             Me.CmdPesada.Enabled = False
             Me.BtnFiltrar.Enabled = False
-            Me.BtnImprimir.Enabled = True
+
+            If Me.CboEstadoDoc.Text = "Confirmado" Then
+                Me.BtnImprimir.Enabled = True
+            Else
+                Me.BtnImprimir.Enabled = False
+            End If
+
             MsgBox("Confirmado con Existo", MsgBoxStyle.Exclamation, "Sistema Bascula")
-            Button11_Click(sender, e)
+            'Button11_Click(sender, e)
             Limpiar = True
         End If
 
