@@ -3343,11 +3343,11 @@ Public Class FrmRemision2
                 'LLENO EL GRIND DE USO PARCIALES.
                 '--------------------------------------------------------------------------------------------------------
 
-                'Sql = "SELECT ReciboCafePergamino.AplicarRemision AS Aplicar, CASE WHEN Proveedor.Nombre_Proveedor + ' ' + Proveedor.Apellido_Proveedor IS NULL THEN ReciboCafePergamino.ProductorManual ELSE Proveedor.Nombre_Proveedor + ' ' + Proveedor.Apellido_Proveedor END AS Proveedor, Finca.NomFinca, ReciboCafePergamino.Codigo, EstadoFisico.Descripcion, Dano.Nombre AS Dano, RangoImperfeccion.Nombre AS Categoria, DetalleReciboCafePergamino.PesoBruto - DetalleReciboCafePergamino.Tara AS PesoReal, RecibosRemisionPergamino.PesoNeto AS PesoAplicado, DetalleReciboCafePergamino.PesoBruto - DetalleReciboCafePergamino.Tara - RecibosRemisionPergamino.PesoNeto AS PesoPorAplicar, RemisionPergamino.IdRemisionPergamino, DetalleReciboCafePergamino.IdDetalleReciboPergamino  FROM DetalleReciboCafePergamino INNER JOIN ReciboCafePergamino ON DetalleReciboCafePergamino.IdReciboPergamino = ReciboCafePergamino.IdReciboPergamino INNER JOIN EstadoFisico ON DetalleReciboCafePergamino.IdEdoFisico = EstadoFisico.IdEdoFisico INNER JOIN RecibosRemisionPergamino ON DetalleReciboCafePergamino.IdDetalleReciboPergamino = RecibosRemisionPergamino.IdDetalleReciboPergamino INNER JOIN  DetalleRemisionPergamino ON RecibosRemisionPergamino.IdDetalleRemsionPergamino = DetalleRemisionPergamino.IdDetalleRemisionPergamino INNER JOIN RemisionPergamino ON DetalleRemisionPergamino.IdRemisionPergamino = RemisionPergamino.IdRemisionPergamino INNER JOIN Dano ON ReciboCafePergamino.IdDano = Dano.IdDano INNER JOIN RangoImperfeccion ON ReciboCafePergamino.IdRangoImperfeccion = RangoImperfeccion.IdRangoImperfeccion LEFT OUTER JOIN Proveedor ON ReciboCafePergamino.IdProductor = Proveedor.IdProductor LEFT OUTER JOIN Finca ON ReciboCafePergamino.IdFinca = Finca.IdFinca " & _
+                'Sql = "SELECT ReciboCafePergamino.AplicarRemision AS Aplicar, CASE WHEN Proveedor.Nombre_Proveedor + ' ' + Proveedor.Apellido_Proveedor IS NULL THEN ReciboCafePergamino.ProductorManual ELSE Proveedor.Nombre_Proveedor + ' ' + Proveedor.Apellido_Proveedor END AS Proveedor, Finca.NomFinca, ReciboCafePergamino.Codigo, EstadoFisico.Descripcion, Dano.Nombre AS Dano, RangoImperfeccion.Nombre AS Categoria, DetalleReciboCafePergamino.PesoBruto - DetalleReciboCafePergamino.Tara AS PesoReal, RecibosRemisionPergamino.PesoNeto AS PesoAplicado, DetalleReciboCafePergamino.PesoBruto - DetalleReciboCafePergamino.Tara - RecibosRemisionPergamino.PesoNeto AS PesoPorAplicar, RemisionPergamino.IdRemisionPergamino, DetalleReciboCafePergamino.IdDetalleReciboPergamino As IdDetalleReciboPergamino2, ReciboCafePergamino.IdReciboPergamino as IdDetalleReciboPergamino, ReciboCafePergamino.IdReciboPergamino Dano INNER JOIN DetalleReciboCafePergamino INNER JOIN ReciboCafePergamino ON DetalleReciboCafePergamino.IdReciboPergamino = ReciboCafePergamino.IdReciboPergamino INNER JOIN EstadoFisico ON DetalleReciboCafePergamino.IdEdoFisico = EstadoFisico.IdEdoFisico ON Dano.IdDano = ReciboCafePergamino.IdDano INNER JOIN RangoImperfeccion ON ReciboCafePergamino.IdRangoImperfeccion = RangoImperfeccion.IdRangoImperfeccion INNER JOIN DetalleRemisionPergamino INNER JOIN RecibosRemisionPergamino ON DetalleRemisionPergamino.IdDetalleRemisionPergamino = RecibosRemisionPergamino.IdDetalleRemsionPergamino INNER JOIN RemisionPergamino ON DetalleRemisionPergamino.IdRemisionPergamino = RemisionPergamino.IdRemisionPergamino ON DetalleReciboCafePergamino.IdDetalleReciboPergamino = RecibosRemisionPergamino.IdDetalleReciboPergamino LEFT OUTER JOIN Proveedor ON ReciboCafePergamino.IdProductor = Proveedor.IdProductor LEFT OUTER JOIN Finca ON ReciboCafePergamino.IdFinca = Finca.IdFinca " & _
                 '      "WHERE (RemisionPergamino.IdRemisionPergamino = '" & IdRemision & "') ORDER BY RecibosRemisionPergamino.Orden"
 
-                Sql = "SELECT ReciboCafePergamino.AplicarRemision AS Aplicar, CASE WHEN Proveedor.Nombre_Proveedor + ' ' + Proveedor.Apellido_Proveedor IS NULL THEN ReciboCafePergamino.ProductorManual ELSE Proveedor.Nombre_Proveedor + ' ' + Proveedor.Apellido_Proveedor END AS Proveedor, Finca.NomFinca, ReciboCafePergamino.Codigo, EstadoFisico.Descripcion, Dano.Nombre AS Dano, RangoImperfeccion.Nombre AS Categoria, DetalleReciboCafePergamino.PesoBruto - DetalleReciboCafePergamino.Tara AS PesoReal, RecibosRemisionPergamino.PesoNeto AS PesoAplicado, DetalleReciboCafePergamino.PesoBruto - DetalleReciboCafePergamino.Tara - RecibosRemisionPergamino.PesoNeto AS PesoPorAplicar, RemisionPergamino.IdRemisionPergamino, DetalleReciboCafePergamino.IdDetalleReciboPergamino As IdDetalleReciboPergamino2, ReciboCafePergamino.IdReciboPergamino as IdDetalleReciboPergamino, ReciboCafePergamino.IdReciboPergamino FROM Dano INNER JOIN DetalleReciboCafePergamino INNER JOIN ReciboCafePergamino ON DetalleReciboCafePergamino.IdReciboPergamino = ReciboCafePergamino.IdReciboPergamino INNER JOIN EstadoFisico ON DetalleReciboCafePergamino.IdEdoFisico = EstadoFisico.IdEdoFisico ON Dano.IdDano = ReciboCafePergamino.IdDano INNER JOIN RangoImperfeccion ON ReciboCafePergamino.IdRangoImperfeccion = RangoImperfeccion.IdRangoImperfeccion INNER JOIN DetalleRemisionPergamino INNER JOIN RecibosRemisionPergamino ON DetalleRemisionPergamino.IdDetalleRemisionPergamino = RecibosRemisionPergamino.IdDetalleRemsionPergamino INNER JOIN RemisionPergamino ON DetalleRemisionPergamino.IdRemisionPergamino = RemisionPergamino.IdRemisionPergamino ON ReciboCafePergamino.IdReciboPergamino = RecibosRemisionPergamino.IdDetalleReciboPergamino LEFT OUTER JOIN Proveedor ON ReciboCafePergamino.IdProductor = Proveedor.IdProductor LEFT OUTER JOIN Finca ON ReciboCafePergamino.IdFinca = Finca.IdFinca " & _
-                      "WHERE (RemisionPergamino.IdRemisionPergamino = '" & IdRemision & "') ORDER BY RecibosRemisionPergamino.Orden"
+                Sql = "SELECT   ReciboCafePergamino.AplicarRemision AS Aplicar, CASE WHEN Proveedor.Nombre_Proveedor + ' ' + Proveedor.Apellido_Proveedor IS NULL THEN ReciboCafePergamino.ProductorManual ELSE Proveedor.Nombre_Proveedor + ' ' + Proveedor.Apellido_Proveedor END AS Proveedor, Finca.NomFinca, ReciboCafePergamino.Codigo, EstadoFisico.Descripcion, Dano.Nombre AS Dano, RangoImperfeccion.Nombre AS Categoria, DetalleReciboCafePergamino.PesoBruto - DetalleReciboCafePergamino.Tara AS PesoReal, RecibosRemisionPergamino.PesoNeto AS PesoAplicado, DetalleReciboCafePergamino.PesoBruto - DetalleReciboCafePergamino.Tara - RecibosRemisionPergamino.PesoNeto AS PesoPorAplicar, RemisionPergamino.IdRemisionPergamino, DetalleReciboCafePergamino.IdDetalleReciboPergamino AS IdDetalleReciboPergamino2, ReciboCafePergamino.IdReciboPergamino AS IdDetalleReciboPergamino, ReciboCafePergamino.IdReciboPergamino FROM Dano INNER JOIN DetalleReciboCafePergamino INNER JOIN ReciboCafePergamino ON DetalleReciboCafePergamino.IdReciboPergamino = ReciboCafePergamino.IdReciboPergamino INNER JOIN EstadoFisico ON DetalleReciboCafePergamino.IdEdoFisico = EstadoFisico.IdEdoFisico ON Dano.IdDano = ReciboCafePergamino.IdDano INNER JOIN RangoImperfeccion ON ReciboCafePergamino.IdRangoImperfeccion = RangoImperfeccion.IdRangoImperfeccion INNER JOIN DetalleRemisionPergamino INNER JOIN RecibosRemisionPergamino ON DetalleRemisionPergamino.IdDetalleRemisionPergamino = RecibosRemisionPergamino.IdDetalleRemsionPergamino INNER JOIN RemisionPergamino ON DetalleRemisionPergamino.IdRemisionPergamino = RemisionPergamino.IdRemisionPergamino ON  DetalleReciboCafePergamino.IdDetalleReciboPergamino = RecibosRemisionPergamino.IdDetalleReciboPergamino LEFT OUTER JOIN Proveedor ON ReciboCafePergamino.IdProductor = Proveedor.IdProductor LEFT OUTER JOIN Finca ON ReciboCafePergamino.IdFinca = Finca.IdFinca  " & _
+                       "WHERE (RemisionPergamino.IdRemisionPergamino = '" & IdRemision & "') ORDER BY RecibosRemisionPergamino.Orden"
                 DataAdapter = New SqlClient.SqlDataAdapter(Sql, MiConexion)
                 DataAdapter.Fill(DataSet, "DetallesDeRemisiones")
                 'Me.TDGridUseParc.DataSource = DataSet.Tables("DetallesDeRemisiones")
@@ -4231,14 +4231,14 @@ Public Class FrmRemision2
         Dim i As Integer, Registros As Integer, ID As Double, EmpresaTransporte As String
         Dim StrSqlUpdate As String, ComandoUpdate As New SqlClient.SqlCommand, iResultado As Integer, StrSqlInsert As String
         Dim FechaCrg As String, sql2 As String, FechaSal As String, ContadorDetalle As Double, IdsDetallRecibos As String
-        Dim IdRemision As Double, IdDetalleRecibo As Double, IdDetalleRemision As Double, Sacos As Integer, Encontrado As Double
+        Dim IdRemision As Double, IdDetalleRecibo As Double, idReciboCafe As Double, IdDetalleRemision As Double, Sacos As Integer, Encontrado As Double
         Dim CadenaDiv() As String, Cadena As String, j As Integer, CountDet As Integer, max As Double, h As Double
         Dim Merma As Double = 0, IdLocalidad As Double, ConfirmaIntermedio As Boolean = False, sqlstring As String, NumeroCarga As String
         Dim ConsecutivoCompra As Double, Recibos(,) As Double, TotalGrupo As Double, IdIntermedio As Double, Porciento As Double, MontoRecibo As Double
         Dim IdRecibCafe As Double, PesoNeto As Double, SQlUpdatePesadas As String, IdReciboRemisionPergamino As Double = 0
         Dim CantidadBascula As Double, PesoBascula As Double, iPosicionDetalle As Double, TipoPesada As String, PesoBasculaSalida As Double, CantidadBasculaSalida As Double, PesoRemisionado As Double
         Dim Serie As String
-
+        Dim NumeroRecepcion As String, FechaRecepcion As Date
 
 
 
@@ -4573,7 +4573,7 @@ Public Class FrmRemision2
                 DataAdapter = New SqlClient.SqlDataAdapter(SQLRem, MiConexion)
                 DataAdapter.Fill(DataSet, "IdDetalleRemision")
 
-                IdDetalleRecibo = Me.TDGridUseParc.Item(i)("IdDetalleReciboPergamino")
+                idReciboCafe = Me.TDGridUseParc.Item(i)("IdDetalleReciboPergamino")
                 CountDet = Me.TDBGridDetalle.RowCount
                 j = 0
                 Do While CountDet > j
@@ -4584,9 +4584,22 @@ Public Class FrmRemision2
                     h = 0
                     TotalGrupo = 0
                     For h = 0 To max
-                        If IdDetalleRecibo = CadenaDiv(h) Then
+                        If idReciboCafe = CadenaDiv(h) Then
                             IdDetalleRemision = DataSet.Tables("IdDetalleRemision").Rows(j)("IdDetalleRemisionPergamino")
                             TotalGrupo = Me.TDBGridDetalle.Item(j)("PesoNeto")  'YA ESTA SUMANDO EL TOTAL EN EL GRID DETALLE 
+
+
+                            '//////////////////////////////////////BUSCO EL DETALLE DEL RECIBO A GRABAR EN LA TABLA RECIBOREMISION ///////////////
+                            sql = "SELECT DetalleReciboCafePergamino.IdDetalleReciboPergamino, ReciboCafePergamino.IdReciboPergamino FROM ReciboCafePergamino INNER JOIN DetalleReciboCafePergamino ON ReciboCafePergamino.IdReciboPergamino = DetalleReciboCafePergamino.IdReciboPergamino " & _
+                                  "WHERE(ReciboCafePergamino.IdReciboPergamino = " & idReciboCafe & ")"
+                            DataAdapter = New SqlClient.SqlDataAdapter(sql, MiConexion)
+                            DataAdapter.Fill(DataSet, "ConsultaDetalleRecibo")
+                            IdDetalleRecibo = 0
+                            If DataSet.Tables("ConsultaDetalleRecibo").Rows.Count <> 0 Then
+                                IdDetalleRecibo = DataSet.Tables("ConsultaDetalleRecibo").Rows(0)("IdDetalleReciboPergamino")
+                            End If
+
+                            DataSet.Tables("ConsultaDetalleRecibo").Reset()
 
                             '////////////////////////////////VALIDO QUE NO ESTE REPETIDO 
                             SQLRem = "SELECT  RecibosRemisionPergamino.IdReciboRemisionPergamino, RecibosRemisionPergamino.PesoNeto, RecibosRemisionPergamino.IdDetalleReciboPergamino, RecibosRemisionPergamino.IdDetalleRemsionPergamino, RecibosRemisionPergamino.IdUsuario, RecibosRemisionPergamino.Orden, RemisionPergamino.IdRemisionPergamino FROM  RemisionPergamino INNER JOIN  DetalleRemisionPergamino ON RemisionPergamino.IdRemisionPergamino = DetalleRemisionPergamino.IdRemisionPergamino INNER JOIN  RecibosRemisionPergamino ON DetalleRemisionPergamino.IdDetalleRemisionPergamino = RecibosRemisionPergamino.IdDetalleRemsionPergamino " & _
@@ -4609,7 +4622,7 @@ Public Class FrmRemision2
                                     '------------------------------------------------------------------------------------------------------------------
                                     '------------ACTUALIZO EL VALOR BANDERA PARA EL RECIBO Y LO MARCO COMO REMISIONADO --------------------------------
                                     '------------------------------------------------------------------------------------------------------------------
-                                    sql = "UPDATE [ReciboCafePergamino] SET [Remisionado] = 'False' WHERE(IdReciboPergamino = " & IdDetalleRecibo & ")"
+                                    sql = "UPDATE [ReciboCafePergamino] SET [Remisionado] = 'False' WHERE(IdReciboPergamino = " & idReciboCafe & ")"
                                     MiConexion.Open()
                                     ComandoUpdate = New SqlClient.SqlCommand(sql, MiConexion)
                                     iResultado = ComandoUpdate.ExecuteNonQuery
@@ -4629,7 +4642,7 @@ Public Class FrmRemision2
                                     '------------------------------------------------------------------------------------------------------------------
                                     '------------ACTUALIZO EL VALOR BANDERA PARA EL RECIBO Y LO MARCO COMO REMISIONADO --------------------------------
                                     '------------------------------------------------------------------------------------------------------------------
-                                    sql = "UPDATE [ReciboCafePergamino] SET [Remisionado] = 'True' WHERE(IdReciboPergamino = " & IdDetalleRecibo & ")"
+                                    sql = "UPDATE [ReciboCafePergamino] SET [Remisionado] = 'True' WHERE(IdReciboPergamino = " & idReciboCafe & ")"
                                     MiConexion.Open()
                                     ComandoUpdate = New SqlClient.SqlCommand(sql, MiConexion)
                                     iResultado = ComandoUpdate.ExecuteNonQuery
@@ -4656,7 +4669,7 @@ Public Class FrmRemision2
         Loop
 
 
-        Dim NumeroRecepcion As String, FechaRecepcion As Date, idReciboCafe As Double
+
         '//////////////////////////////RECORRO LOS RECIBOS PARA GRABAR LOS REISGROS DE CARGA //////////////////////////////////////////
 
         Registros = TDGribListRecibos.RowCount
