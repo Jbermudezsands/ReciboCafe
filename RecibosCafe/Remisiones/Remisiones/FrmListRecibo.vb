@@ -13,7 +13,7 @@ Public Class FrmListRecibo
         Dim DataSet As New DataSet, DataAdapter As New SqlClient.SqlDataAdapter
         Dim Count As Double, i As Double, Count1 As Double, j As Double, SqlString As String, PesoRestante As Double, Parcial As Boolean
         Dim IdRecibo As Double, PesoNeto As Double, oDatarow As DataRow, NombreFinca As String, idRemisionLocal As Double, iResultado As Integer, SeleccionRemi As Integer
-        Dim k As Double, Cont As Double, PesoRemisionado As Double
+        Dim k As Double, Cont As Double, PesoRemisionado As Double, idDetalleRecibo As Double
 
         Me.CheckTodosRecibos.Checked = False
 
@@ -58,6 +58,7 @@ Public Class FrmListRecibo
         i = 0
         Do While Count > i
             IdRecibo = DataSet.Tables("DatosRecibos").Rows(i)("IdReciboPergamino")
+            idDetalleRecibo = DataSet.Tables("DatosRecibos").Rows(i)("IdDetalleReciboPergamino")
             PesoNeto = DataSet.Tables("DatosRecibos").Rows(i)("PESONETO")
 
 
@@ -71,8 +72,11 @@ Public Class FrmListRecibo
             'iResultado = ComandoUpdate.ExecuteNonQuery
             'MiConexion.Close()
 
+            '///////////////////////////////////CON ESTA CONSULTA BUSCO SI EN RECIBOMISION YA ESTA REGISTRADO EL RECIBO /////////////////////
             j = 0
-            SqlString = "SELECT  SUM(RecibosRemisionPergamino.PesoNeto) AS PesoRemisionado, RecibosRemisionPergamino.IdDetalleReciboPergamino, DetalleRemisionPergamino.IdRemisionPergamino FROM DetalleRemisionPergamino INNER JOIN  RecibosRemisionPergamino ON DetalleRemisionPergamino.IdDetalleRemisionPergamino = RecibosRemisionPergamino.IdDetalleRemsionPergamino INNER JOIN DetalleReciboCafePergamino ON RecibosRemisionPergamino.IdDetalleReciboPergamino = DetalleReciboCafePergamino.IdDetalleReciboPergamino GROUP BY RecibosRemisionPergamino.IdDetalleReciboPergamino, DetalleRemisionPergamino.IdRemisionPergamino  HAVING (RecibosRemisionPergamino.IdDetalleReciboPergamino = '" & IdRecibo & "')"
+            PesoRemisionado = 0
+
+            SqlString = "SELECT  SUM(RecibosRemisionPergamino.PesoNeto) AS PesoRemisionado, RecibosRemisionPergamino.IdDetalleReciboPergamino, DetalleRemisionPergamino.IdRemisionPergamino FROM DetalleRemisionPergamino INNER JOIN  RecibosRemisionPergamino ON DetalleRemisionPergamino.IdDetalleRemisionPergamino = RecibosRemisionPergamino.IdDetalleRemsionPergamino INNER JOIN DetalleReciboCafePergamino ON RecibosRemisionPergamino.IdDetalleReciboPergamino = DetalleReciboCafePergamino.IdDetalleReciboPergamino GROUP BY RecibosRemisionPergamino.IdDetalleReciboPergamino, DetalleRemisionPergamino.IdRemisionPergamino  HAVING (RecibosRemisionPergamino.IdDetalleReciboPergamino = '" & idDetalleRecibo & "')"
             DataAdapter = New SqlClient.SqlDataAdapter(SqlString, MiConexion)
             DataAdapter.Fill(DataSet, "PesoRemisionado")
             If DataSet.Tables("PesoRemisionado").Rows.Count = 0 Then
@@ -106,15 +110,20 @@ Public Class FrmListRecibo
 
                 DataSet.Tables("PesoRemisionado").Reset()
 
+            End If
+
+
+            If PesoRemisionado <= 0 Then
+                PesoRemisionado = 0
+                PesoRestante = Format(PesoNeto, "####0.00")
+                Parcial = False
+            Else
                 PesoRestante = Format(PesoNeto - PesoRemisionado, "####0.00")
                 If PesoRestante = 0 Then
                     Parcial = False
                 Else
                     Parcial = True
                 End If
-
-
-
             End If
 
             DataSet.Tables("PesoRemisionado").Reset()
