@@ -206,6 +206,10 @@ Public Class FrmRecepcion
 
     End Function
 
+    Private Sub FrmRecepcion_DockChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.DockChanged
+
+    End Sub
+
     Private Sub FrmRecepcion_FormClosed(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles Me.FormClosed
         Dim StrSqlUpdate As String, ComandoUpdate As New SqlClient.SqlCommand, iResultado As Integer
         Dim Cont As Double, i As Double, Eleccion As Boolean, idReciboPergamino As Double, IdRemisionPergamino As Double, Sql As String
@@ -234,6 +238,8 @@ Public Class FrmRecepcion
 
         End If
 
+
+        Me.sp.Close()
     End Sub
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim DataSet As New DataSet, DataAdapter As New SqlClient.SqlDataAdapter

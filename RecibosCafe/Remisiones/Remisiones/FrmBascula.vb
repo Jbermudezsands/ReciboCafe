@@ -153,6 +153,8 @@ Public Class FrmBascula
             End If
         End If
 
+        Me.sp.Close()
+
     End Sub
 
     Private Sub FrmBascula_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
