@@ -295,8 +295,6 @@ Public Class FrmPuntosInter
 
 
 
-
-
                     oDataRow = DataSet.Tables("ListaRecibos").NewRow
                     oDataRow("NumeroRecibo") = "Grupo " & i
                     oDataRow("PesoBruto") = 0
@@ -444,10 +442,10 @@ Public Class FrmPuntosInter
 
                         ODataRowDetalle = DataSet.Tables("ListaRecibosRem").NewRow
                         ODataRowDetalle("NumeroRecibo") = "Grupo " & i
-                        ODataRowDetalle("Daño") = My.Forms.FrmRemision2.TDBGridDetalle.Item(iPosicion)("RangoImperfec")
-                        ODataRowDetalle("EstadoFisico") = My.Forms.FrmRemision2.TDBGridDetalle.Item(iPosicion)("EstadoFisico")
-                        ODataRowDetalle("Sacos") = My.Forms.FrmRemision2.TDBGridDetalle.Item(iPosicion)("CantidadSacos")
-                        ODataRowDetalle("PesoNeto") = My.Forms.FrmRemision2.TDBGridDetalle.Item(iPosicion)("PesoBruto")
+                        ODataRowDetalle("Daño") = My.Forms.FrmRemision2.TDBGridDetalle.Item(i)("RangoImperfec")
+                        ODataRowDetalle("EstadoFisico") = My.Forms.FrmRemision2.TDBGridDetalle.Item(i)("EstadoFisico")
+                        ODataRowDetalle("Sacos") = My.Forms.FrmRemision2.TDBGridDetalle.Item(i)("CantidadSacos")
+                        ODataRowDetalle("PesoNeto") = My.Forms.FrmRemision2.TDBGridDetalle.Item(i)("PesoBruto")
                         DataSet.Tables("ListaRecibosRem").Rows.Add(ODataRowDetalle)
 
 

@@ -403,7 +403,7 @@ Partial Class FrmRemision2
         Me.CboEstadoDoc.EditorHeight = 26
         Me.CboEstadoDoc.Images.Add(CType(resources.GetObject("CboEstadoDoc.Images"), System.Drawing.Image))
         Me.CboEstadoDoc.ItemHeight = 35
-        Me.CboEstadoDoc.Location = New System.Drawing.Point(124, 102)
+        Me.CboEstadoDoc.Location = New System.Drawing.Point(124, 104)
         Me.CboEstadoDoc.MatchEntryTimeout = CType(2000, Long)
         Me.CboEstadoDoc.MaxDropDownItems = CType(5, Short)
         Me.CboEstadoDoc.MaxLength = 32767
