@@ -449,6 +449,7 @@ Public Class FrmPuntosInter
                         DataSet.Tables("ListaRecibosRem").Rows.Add(ODataRowDetalle)
 
 
+                        DataSet.Tables("Consulta").Reset()
                         i = i + 1
                     Loop
 
@@ -504,6 +505,7 @@ Public Class FrmPuntosInter
                         My.Forms.FrmRemision2.TDBGridDetalle.Row = i
                         CantidadBascula = 0
                         PesoBascula = 0
+
                         TipoPesada = "Grupo" & "-N" & i & "-D" & iPosicionDetalle
                         '/////////////////////////////////////BUSCO SI EXISTEN PESADAS PARA LOS RECIBOS //////////////////////////
                         'sql = "SELECT id_Eventos AS Linea, Cod_Productos, Descripcion_Producto, Calidad, Estado, Cantidad, PesoKg, Tara, PesoNetoLb, PesoNetoKg, QQ AS Saco, NumeroRemision, Fecha, TipoRemision FROM Detalle_Pesadas WHERE  (NumeroRemision = '" & FrmRemision2.TxtNumeroRemision.Text & "') AND (Fecha = CONVERT(DATETIME, '" & Format(FrmRemision2.DTPRemFechCarga.Value, "yyyy-MM-dd") & "', 102)) AND (TipoRemision = '" & FrmRemision2.CboTipoRemision.Text & "') AND (TipoPesada = '" & TipoPesada & "')"
@@ -576,6 +578,7 @@ Public Class FrmPuntosInter
                         SacosOrigen = SacosOrigen + CantidadBasculaSalida
                         PesoOrigen = PesoOrigen + PesoBasculaSalida
 
+                        DataSet.Tables("Consulta").Reset()
                         i = i + 1
                     Loop
 
