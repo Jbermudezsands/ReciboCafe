@@ -1611,7 +1611,6 @@ Public Class FrmRemision2
                         If Me.CboEstadoDoc.Text <> "Editable" Then
                             MsgBox("No se puede cambiar el estado sin confirmar detalle", MsgBoxStyle.Exclamation, "Sistema Bascula")
                             Me.CboEstadoDoc.Text = "Editable"
-
                             Exit Sub
                         End If
                     End If
@@ -3046,7 +3045,7 @@ Public Class FrmRemision2
 
 
             'Sql = "SELECT  RemisionPergamino.Numero_Boleta, RemisionPergamino.ConfirmadoDetalle, RemisionPergamino.IdRemisionPergamino, RemisionPergamino.Serie, RemisionPergamino.Codigo AS Numero, RemisionPergamino.Fecha, EstadoDocumento.Descripcion AS Estado, TipoCafe.Nombre AS TipoRemision, Calidad.NomCalidad AS Calidad, LugarAcopio.NomLugarAcopio, EmpresaTransporte.NombreEmpresa, Vehiculo.Placa, Conductor.Nombre AS Conductor, RemisionPergamino.FechaCarga, RemisionPergamino.HoraSalida,RemisionPergamino.IdTipoCafe, TipoIngreso.Descripcion AS TipoIngreso, Conductor.Cedula, RemisionPergamino.IdEstadoDocumento, Cosecha.FechaInicial, Cosecha.FechaFinal,LugarAcopio_1.NomLugarAcopio AS Destino FROM RemisionPergamino INNER JOIN EstadoDocumento ON RemisionPergamino.IdEstadoDocumento = EstadoDocumento.IdEstadoDocumento INNER JOIN     TipoCafe ON RemisionPergamino.IdTipoCafe = TipoCafe.IdTipoCafe INNER JOIN    Calidad ON RemisionPergamino.IdCalidad = Calidad.IdCalidad INNER JOIN  LugarAcopio ON RemisionPergamino.IdLugarAcopio = LugarAcopio.IdLugarAcopio INNER JOIN   EmpresaTransporte ON RemisionPergamino.IdEmpresaTransporte = EmpresaTransporte.IdEmpresaTransporte INNER JOIN  Vehiculo ON RemisionPergamino.IdVehiculo = Vehiculo.IdVehiculo INNER JOIN  Conductor ON RemisionPergamino.IdConductor = Conductor.IdConductor INNER JOIN  TipoIngreso ON RemisionPergamino.IdTipoIngreso = TipoIngreso.IdTipoIngreso INNER JOIN Cosecha ON RemisionPergamino.IdCosecha = Cosecha.IdCosecha INNER JOIN  LugarAcopio AS LugarAcopio_1 ON RemisionPergamino.IdDestino = LugarAcopio_1.IdLugarAcopio  WHERE  (RemisionPergamino.IdRemisionPergamino = '" & Me.TxtIdRemision.Text & "')  AND (RemisionPergamino.IdTipoCafe = " & IdTipoCafe & ")"
-            Sql = "SELECT  RemisionPergamino.Numero_Boleta, RemisionPergamino.ConfirmadoDetalle, RemisionPergamino.IdRemisionPergamino, RemisionPergamino.Serie, RemisionPergamino.Codigo AS Numero, RemisionPergamino.Fecha, EstadoDocumento.Descripcion AS Estado, TipoCafe.Nombre AS TipoRemision, Calidad.NomCalidad AS Calidad, LugarAcopio.NomLugarAcopio, EmpresaTransporte.NombreEmpresa, Vehiculo.Placa, Conductor.Nombre AS Conductor, RemisionPergamino.FechaCarga, RemisionPergamino.HoraSalida, RemisionPergamino.IdTipoCafe, TipoIngreso.Descripcion AS TipoIngreso, Conductor.Cedula, RemisionPergamino.IdEstadoDocumento, Cosecha.FechaInicial, Cosecha.FechaFinal, LugarAcopio_1.NomLugarAcopio AS Destino, RemisionPergamino.IdRutaLogica, LugarAcopio_2.NomLugarAcopio AS NomLugarRuta, RemisionPergamino.FechaModificacion FROM  RemisionPergamino INNER JOIN EstadoDocumento ON RemisionPergamino.IdEstadoDocumento = EstadoDocumento.IdEstadoDocumento INNER JOIN  TipoCafe ON RemisionPergamino.IdTipoCafe = TipoCafe.IdTipoCafe INNER JOIN Calidad ON RemisionPergamino.IdCalidad = Calidad.IdCalidad INNER JOIN LugarAcopio ON RemisionPergamino.IdLugarAcopio = LugarAcopio.IdLugarAcopio INNER JOIN EmpresaTransporte ON RemisionPergamino.IdEmpresaTransporte = EmpresaTransporte.IdEmpresaTransporte INNER JOIN  Vehiculo ON RemisionPergamino.IdVehiculo = Vehiculo.IdVehiculo INNER JOIN Conductor ON RemisionPergamino.IdConductor = Conductor.IdConductor INNER JOIN TipoIngreso ON RemisionPergamino.IdTipoIngreso = TipoIngreso.IdTipoIngreso INNER JOIN Cosecha ON RemisionPergamino.IdCosecha = Cosecha.IdCosecha INNER JOIN LugarAcopio AS LugarAcopio_1 ON RemisionPergamino.IdDestino = LugarAcopio_1.IdLugarAcopio LEFT OUTER JOIN LugarAcopio AS LugarAcopio_2 ON RemisionPergamino.IdRutaLogica = LugarAcopio_2.IdLugarAcopio  " & _
+            Sql = "SELECT  RemisionPergamino.Numero_Boleta, RemisionPergamino.ConfirmadoDetalle, RemisionPergamino.IdRemisionPergamino, RemisionPergamino.Serie, RemisionPergamino.Codigo AS Numero, RemisionPergamino.Fecha, EstadoDocumento.Descripcion AS Estado, TipoCafe.Nombre AS TipoRemision, Calidad.NomCalidad AS Calidad, LugarAcopio.NomLugarAcopio, EmpresaTransporte.NombreEmpresa, Vehiculo.Placa, Conductor.Nombre AS Conductor, RemisionPergamino.FechaCarga, RemisionPergamino.HoraSalida, RemisionPergamino.IdTipoCafe, TipoIngreso.Descripcion AS TipoIngreso, Conductor.Cedula, RemisionPergamino.IdEstadoDocumento, Cosecha.FechaInicial, Cosecha.FechaFinal, LugarAcopio_1.NomLugarAcopio AS Destino, RemisionPergamino.IdRutaLogica, LugarAcopio_2.NomLugarAcopio AS NomLugarRuta, RemisionPergamino.FechaModificacion, RemisionPergamino.Observacion FROM  RemisionPergamino INNER JOIN EstadoDocumento ON RemisionPergamino.IdEstadoDocumento = EstadoDocumento.IdEstadoDocumento INNER JOIN  TipoCafe ON RemisionPergamino.IdTipoCafe = TipoCafe.IdTipoCafe INNER JOIN Calidad ON RemisionPergamino.IdCalidad = Calidad.IdCalidad INNER JOIN LugarAcopio ON RemisionPergamino.IdLugarAcopio = LugarAcopio.IdLugarAcopio INNER JOIN EmpresaTransporte ON RemisionPergamino.IdEmpresaTransporte = EmpresaTransporte.IdEmpresaTransporte INNER JOIN  Vehiculo ON RemisionPergamino.IdVehiculo = Vehiculo.IdVehiculo INNER JOIN Conductor ON RemisionPergamino.IdConductor = Conductor.IdConductor INNER JOIN TipoIngreso ON RemisionPergamino.IdTipoIngreso = TipoIngreso.IdTipoIngreso INNER JOIN Cosecha ON RemisionPergamino.IdCosecha = Cosecha.IdCosecha INNER JOIN LugarAcopio AS LugarAcopio_1 ON RemisionPergamino.IdDestino = LugarAcopio_1.IdLugarAcopio LEFT OUTER JOIN LugarAcopio AS LugarAcopio_2 ON RemisionPergamino.IdRutaLogica = LugarAcopio_2.IdLugarAcopio  " & _
                   "WHERE (RemisionPergamino.IdRemisionPergamino = '" & Me.TxtIdRemision.Text & "') AND (RemisionPergamino.IdTipoCafe = " & IdTipoCafe & ")"
             DataAdapter = New SqlClient.SqlDataAdapter(Sql, MiConexion)
             DataAdapter.Fill(DataSet, "LlamaRemision")
@@ -3104,6 +3103,13 @@ Public Class FrmRemision2
                 '--------------------------------------------------------------------------------------------------------
                 'LLENO EL PRIMER GRUPO
                 '-------------------------------------------------------------------------------------------------------
+
+                If Not IsDBNull(DataSet.Tables("LlamaRemision").Rows(0)("Observacion")) Then
+                    Me.Observaciones = DataSet.Tables("LlamaRemision").Rows(0)("Observacion")
+                End If
+
+
+
                 If Not IsDBNull(DataSet.Tables("LlamaRemision").Rows(0)("ConfirmadoDetalle")) Then
                     ConfirmadoDetalle = DataSet.Tables("LlamaRemision").Rows(0)("ConfirmadoDetalle")
                 Else
@@ -3341,10 +3347,17 @@ Public Class FrmRemision2
                 If Me.CboEstadoDoc.Text <> "Anulado" Then
                     If ConfirmadoDetalle = True Then
                         '////////////////////////SI ESTA CONFIRMADO ES PERMITIDO IMPRIMIR ////////////////////////////
-                        Me.CmdConfirma.Enabled = False
-                        Me.CmdPesada.Enabled = False
-                        Me.BtnFiltrar.Enabled = False
-                        Me.BtnImprimir.Enabled = True
+                        If Me.CboEstadoDoc.Text = "Confirmado" Then
+                            Me.CmdConfirma.Enabled = False
+                            Me.CmdPesada.Enabled = False
+                            Me.BtnFiltrar.Enabled = False
+                            Me.BtnImprimir.Enabled = True
+                        Else
+                            Me.CmdConfirma.Enabled = False
+                            Me.CmdPesada.Enabled = False
+                            Me.BtnFiltrar.Enabled = False
+                            Me.BtnImprimir.Enabled = False
+                        End If
                     Else
                         Me.CmdConfirma.Enabled = True
                         Me.CmdPesada.Enabled = True
@@ -3391,7 +3404,7 @@ Public Class FrmRemision2
                 Me.TDGridUseParc.Splits.Item(0).DisplayColumns("Aplicar").Width = 30
                 Me.TDGridUseParc.Splits.Item(0).DisplayColumns("Proveedor").Width = 180
                 Me.TDGridUseParc.Splits.Item(0).DisplayColumns("NomFinca").Width = 140
-                Me.TDGridUseParc.Splits.Item(0).DisplayColumns("Codigo").Width = 90
+                Me.TDGridUseParc.Splits.Item(0).DisplayColumns("Codigo").Width = 100
                 Me.TDGridUseParc.Splits.Item(0).DisplayColumns("Descripcion").Width = 65
                 Me.TDGridUseParc.Splits.Item(0).DisplayColumns("Dano").Width = 65
                 Me.TDGridUseParc.Splits.Item(0).DisplayColumns("Categoria").Width = 50
@@ -3409,6 +3422,8 @@ Public Class FrmRemision2
                 Me.TDGridUseParc.Columns("PesoPorAplicar").Caption = "Peso Por Aplicar"
                 Me.TDGridUseParc.Splits.Item(0).DisplayColumns("IdRemisionPergamino").Visible = False
                 Me.TDGridUseParc.Splits.Item(0).DisplayColumns("IdDetalleReciboPergamino").Visible = False
+                Me.TDGridUseParc.Splits.Item(0).DisplayColumns("IdDetalleReciboPergamino2").Visible = False
+                Me.TDGridUseParc.Splits.Item(0).DisplayColumns("IdReciboPergamino").Visible = False
                 Me.TDGridUseParc.Columns("PesoReal").NumberFormat = "##,##0.00"
                 Me.TDGridUseParc.Columns("PesoAplicado").NumberFormat = "##,##0.00"
                 Me.TDGridUseParc.Columns("PesoPorAplicar").NumberFormat = "##,##0.00"
@@ -3589,7 +3604,7 @@ Public Class FrmRemision2
                     Me.PanelPergaminio.Visible = True
                     Me.PanelMaquila.Visible = False
                     Me.PanelGRidProveeedores.Visible = False
- 
+
                     'Sql = "SELECT  Dano.Nombre AS Dano, EstadoFisico.Descripcion AS EstadoFisico, TipoSaco.Descripcion AS TipoSaco, DetalleRemisionPergamino.CantidadSacos, DetalleRemisionPergamino.PesoBruto, DetalleRemisionPergamino.Tara, DetalleRemisionPergamino.PesoBruto - DetalleRemisionPergamino.Tara AS PesoNeto, MAX(DetalleReciboCafePergamino.Humedad) AS Humedad, RangoImperfeccion.Nombre AS RangoImperfec, DetalleReciboCafePergamino.IdTipoSaco, ReciboCafePergamino.IdDano, DetalleReciboCafePergamino.IdEdoFisico, ReciboCafePergamino.IdCosecha, TipoLocalidad.Descripcion AS TipoLocalidad, RemisionPergamino.IdRemisionPergamino, DetalleRemisionPergamino.IdDetalleReciboPergamino, DetalleRemisionPergamino.Codigo, DetalleRemisionPergamino.PesoNeto2, DetalleRemisionPergamino.CantidadSacos2, CASE WHEN DetalleRemisionPergamino.Merma IS NULL THEN 0 ELSE DetalleRemisionPergamino.Merma END AS Merma, DetalleRemisionPergamino.PesoBruto2, DetalleRemisionPergamino.Tara2 FROM ReciboCafePergamino INNER JOIN Dano ON ReciboCafePergamino.IdDano = Dano.IdDano INNER JOIN DetalleReciboCafePergamino ON ReciboCafePergamino.IdReciboPergamino = DetalleReciboCafePergamino.IdReciboPergamino INNER JOIN EstadoFisico ON DetalleReciboCafePergamino.IdEdoFisico = EstadoFisico.IdEdoFisico INNER JOIN TipoSaco ON DetalleReciboCafePergamino.IdTipoSaco = TipoSaco.IdTipoSaco INNER JOIN RangoImperfeccion ON ReciboCafePergamino.IdRangoImperfeccion = RangoImperfeccion.IdRangoImperfeccion INNER JOIN LugarAcopio ON ReciboCafePergamino.IdLocalidad = LugarAcopio.IdLugarAcopio INNER JOIN UnidadMedida ON ReciboCafePergamino.IdUnidadMedida = UnidadMedida.IdUnidadMedida INNER JOIN TipoLocalidad ON LugarAcopio.TipoLugarAcopio = TipoLocalidad.IdTipoLocalidad INNER JOIN DetalleRemisionPergamino INNER JOIN RemisionPergamino ON DetalleRemisionPergamino.IdRemisionPergamino = RemisionPergamino.IdRemisionPergamino INNER JOIN RecibosRemisionPergamino ON DetalleRemisionPergamino.IdDetalleRemisionPergamino = RecibosRemisionPergamino.IdDetalleRemsionPergamino ON  ReciboCafePergamino.IdReciboPergamino = RecibosRemisionPergamino.IdDetalleReciboPergamino GROUP BY Dano.Nombre, EstadoFisico.Descripcion, TipoSaco.Descripcion, RangoImperfeccion.Nombre, DetalleReciboCafePergamino.IdTipoSaco, ReciboCafePergamino.IdDano, DetalleReciboCafePergamino.IdEdoFisico, ReciboCafePergamino.IdCosecha, TipoLocalidad.Descripcion, RemisionPergamino.IdRemisionPergamino, DetalleRemisionPergamino.IdDetalleReciboPergamino, DetalleRemisionPergamino.Codigo, DetalleRemisionPergamino.PesoNeto2, DetalleRemisionPergamino.PesoBruto, DetalleRemisionPergamino.Tara, DetalleRemisionPergamino.CantidadSacos, DetalleRemisionPergamino.IdDetalleRemisionPergamino, DetalleRemisionPergamino.CantidadSacos2, DetalleRemisionPergamino.Merma, DetalleRemisionPergamino.PesoBruto2, DetalleRemisionPergamino.Tara2 " & _
                     '"HAVING (RemisionPergamino.IdRemisionPergamino = '" & IdRemision & "') ORDER BY DetalleRemisionPergamino.IdDetalleRemisionPergamino"
 
@@ -4268,14 +4283,7 @@ Public Class FrmRemision2
         Dim IdRecibCafe As Double, PesoNeto As Double, SQlUpdatePesadas As String, IdReciboRemisionPergamino As Double = 0
         Dim CantidadBascula As Double, PesoBascula As Double, iPosicionDetalle As Double, TipoPesada As String, PesoBasculaSalida As Double, CantidadBasculaSalida As Double, PesoRemisionado As Double
         Dim Serie As String
-        Dim NumeroRecepcion As String, FechaRecepcion As Date, ConfirmadoDetalle As Boolean
-
-
-
-
-
-
-
+        Dim NumeroRecepcion As String, FechaRecepcion As Date
 
 
 
@@ -4310,22 +4318,35 @@ Public Class FrmRemision2
         End If
 
 
+        If Me.TxtIdRemision.Text = "" Then
+            SQLRem = "SELECT   *   FROM   RemisionPergamino  WHERE  (Codigo = '" & Me.TxtNumeroRemision.Text & "') AND (IdTipoCafe = " & IdTipoCafe & ") AND (IdLugarAcopio = " & IdLugarAcopio & ")"
+            DataAdapter = New SqlClient.SqlDataAdapter(SQLRem, MiConexion)
+            DataAdapter.Fill(DataSet, "Consulta")
+            If DataSet.Tables("Consulta").Rows.Count <> 0 Then
+                IdRemision = DataSet.Tables("Consulta").Rows(0)("IdRemisionPergamino")
+            End If
+        Else
+            IdRemision = Me.TxtIdRemision.Text
+        End If
 
-        If Me.TxtIdRemision.Text <> "" Then
-            sql = "SELECT  IdRemisionPergamino, ConfirmadoDetalle FROM RemisionPergamino  WHERE (IdRemisionPergamino = " & Me.TxtIdRemision.Text & ")  "
+
+
+        If Val(IdRemision) <> 0 Then
+            sql = "SELECT  IdRemisionPergamino, ConfirmadoDetalle FROM RemisionPergamino  WHERE (IdRemisionPergamino = " & IdRemision & ")  "
             DataAdapter = New SqlClient.SqlDataAdapter(sql, MiConexion)
             DataAdapter.Fill(DataSet, "Consulta")
-            ConfirmadoDetalle = False
+            'ConfirmadoDetalle = False
             If Not DataSet.Tables("Consulta").Rows.Count = 0 Then
                 ConfirmadoDetalle = DataSet.Tables("Consulta").Rows(0)("ConfirmadoDetalle")
             End If
         Else
-            ConfirmadoDetalle = False
+
 
             If Me.TxtIdEstadoDoc.Text <> "293" Then
                 MsgBox("Se cambiara el Estado a Editable, No se puede Grabar sin Confirmar Detalle", MsgBoxStyle.Critical, "Sistema Bascula")
                 Me.TxtIdEstadoDoc.Text = 293
                 Me.CboEstadoDoc.Text = "Editable"
+                ConfirmadoDetalle = False
             End If
 
         End If
@@ -5173,7 +5194,7 @@ Public Class FrmRemision2
             ArepRemisionMaquila.LblDestino.Text = Me.CboLocDest.Text
             ArepRemisionMaquila.LblDescripcion.Text = "CALIDAD:" & Me.CboCalidad.Text & "  UNIDAD DE MEDIDA KG"
             ArepRemisionMaquila.LblTipoRemision.Text = "SERVICIO DE MAQUILA"
-            ArepRemisionMaquila.TxtObservaciones.Text = Observaciones
+            ArepRemisionMaquila.TxtObservaciones.Text = Me.Observaciones
 
             'ArepRemisionTicketMaquila.LblOrden.Text = Me.TxtNumeroRemision.Text
             'ArepRemisionTicketMaquila.LblFechaOrden.Text = Format(Me.DTPRemFechCarga.Value, "dd/MM/yyyy HH:mm")
@@ -5207,7 +5228,7 @@ Public Class FrmRemision2
             ArepRemisionPergamino.LblDestino.Text = Me.CboLocDest.Text
             ArepRemisionPergamino.LblDescripcion.Text = "CALIDAD:" & Me.CboCalidad.Text & "  UNIDAD DE MEDIDA KG"
             ArepRemisionPergamino.LblTipoRemision.Text = "COMPRA DIRECTA - EXPASA"
-            ArepRemisionPergamino.TxtObservaciones.Text = Observaciones
+            ArepRemisionPergamino.TxtObservaciones.Text = Me.Observaciones
             'Arepremisionticket.LblFechaOrden.Text = Format(Me.DTPRemFechCarga.Value, "dd/MM/yyyy HH:mm")
             'Arepremisionticket.LblFechaSalida.Text = Format(Me.DTPRemFechSalid.Value, "dd/MM/yyyy HH:mm")
             'Arepremisionticket.LblCosecha.Text = Mid(Me.LblCosecha.Text, 10)
@@ -5287,7 +5308,7 @@ Public Class FrmRemision2
         'ViewerForm.Show()
 
         'Quien2 = "ImprimeLiquida"
-        BtnGuardar_Click(sender, e)
+        'BtnGuardar_Click(sender, e)
 
 
     End Sub

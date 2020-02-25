@@ -24,7 +24,8 @@ Public Class ArepRemisionPergamino
 
 
         '/////////////////////////////QUITO EL NUMERO DE LA LOCALIDAD AL NUMERO DE RECIBO ///////////////////////////
-        NumeroRecibo = Replace(Me.TxtNumeroRecibos.Text, ",", "-")
+        NumeroRecibo = Trim(Replace(Me.TxtNumeroRecibos.Text, ",", "-"))
+        NumeroRecibo = Trim(Replace(NumeroRecibo, "Ø", ""))
         CadenaDiv = NumeroRecibo.Split("-")
         Max = UBound(CadenaDiv)
         NumeroRecibo = ""

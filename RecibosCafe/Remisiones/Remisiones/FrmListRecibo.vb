@@ -992,7 +992,7 @@ Public Class FrmListRecibo
         My.Forms.FrmRemision2.TDGridUseParc.Splits.Item(0).DisplayColumns("Aplicar").Width = 30
         My.Forms.FrmRemision2.TDGridUseParc.Splits.Item(0).DisplayColumns("Proveedor").Width = 180
         My.Forms.FrmRemision2.TDGridUseParc.Splits.Item(0).DisplayColumns("NomFinca").Width = 140
-        My.Forms.FrmRemision2.TDGridUseParc.Splits.Item(0).DisplayColumns("Codigo").Width = 90
+        My.Forms.FrmRemision2.TDGridUseParc.Splits.Item(0).DisplayColumns("Codigo").Width = 100
         My.Forms.FrmRemision2.TDGridUseParc.Splits.Item(0).DisplayColumns("Descripcion").Width = 65
         My.Forms.FrmRemision2.TDGridUseParc.Splits.Item(0).DisplayColumns("Dano").Width = 65
         My.Forms.FrmRemision2.TDGridUseParc.Splits.Item(0).DisplayColumns("Categoria").Width = 50
@@ -1736,7 +1736,7 @@ Public Class FrmListRecibo
         My.Forms.FrmRemision2.TDGridUseParc.Splits.Item(0).DisplayColumns("Aplicar").Width = 30
         My.Forms.FrmRemision2.TDGridUseParc.Splits.Item(0).DisplayColumns("Proveedor").Width = 180
         My.Forms.FrmRemision2.TDGridUseParc.Splits.Item(0).DisplayColumns("NomFinca").Width = 140
-        My.Forms.FrmRemision2.TDGridUseParc.Splits.Item(0).DisplayColumns("Codigo").Width = 90
+        My.Forms.FrmRemision2.TDGridUseParc.Splits.Item(0).DisplayColumns("Codigo").Width = 100
         My.Forms.FrmRemision2.TDGridUseParc.Splits.Item(0).DisplayColumns("Descripcion").Width = 65
         My.Forms.FrmRemision2.TDGridUseParc.Splits.Item(0).DisplayColumns("Dano").Width = 65
         My.Forms.FrmRemision2.TDGridUseParc.Splits.Item(0).DisplayColumns("Categoria").Width = 50
