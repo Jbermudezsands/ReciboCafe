@@ -27,19 +27,64 @@ Public Class FrmConsultas
 
     Private Sub TrueDBGridConsultas_FilterChange(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TrueDBGridConsultas.FilterChange
         Dim sb As New System.Text.StringBuilder()
-        Dim dc As C1.Win.C1TrueDBGrid.C1DataColumn
+        Dim dc As C1.Win.C1TrueDBGrid.C1DataColumn, Filtro As String
+
 
         For Each dc In Me.TrueDBGridConsultas.Columns
             If dc.FilterText.Length > 0 Then
                 If sb.Length > 0 Then
                     sb.Append(" AND ")
                 End If
-                sb.Append((dc.DataField + " LIKE " + "'%" + dc.FilterText + "%'"))
+
+                'Filtro = dc.FilterText
+                Select Case dc.DataField
+                    Case "FechaRecibo"
+                        If Len(dc.FilterText) < 10 Then
+                            Exit Sub
+                        End If
+                        sb.Append((dc.DataField + "=" + "'" + dc.FilterText + "'"))
+
+                    Case "Fecha"
+                        If Len(dc.FilterText) < 10 Then
+                            Exit Sub
+                        End If
+                        sb.Append((dc.DataField + "=" + "'" + dc.FilterText + "'"))
+                    Case Else
+                        sb.Append((dc.DataField + " LIKE " + "'%" + dc.FilterText + "%'"))
+                End Select
+
+                'sb.Append((dc.DataField + " LIKE " + "'%" + dc.FilterText + "%'"))
+                'Filtro = dc.FilterText
             End If
+
+
+
         Next dc
 
+
         If sb.ToString <> "" Then
+            'Select Case dc.DataField
+            '    Case "FechaRecibo"
+            '        'If Len(Filtro) < 10 Then
+            '        '    Exit Sub
+            '        'End If
+            '        Filtro = dc.DataField + "=" + "'" + Filtro + "'"
+            '        DataSet.Tables("Consultas").DefaultView.RowFilter = Filtro
+            '    Case "Fecha"
+            '        'If Len(Filtro) < 10 Then
+            '        '    Exit Sub
+            '        'End If
+            '        Filtro = dc.DataField + "=" + "'" + Filtro + "'"
+            '        DataSet.Tables("Consultas").DefaultView.RowFilter = Filtro
+            '    Case Else
             DataSet.Tables("Consultas").DefaultView.RowFilter = sb.ToString
+            'End Select
+
+        ElseIf Actualizar = True Then
+            If Quien = "Recepcion" Then
+                CmdActualizar_Click(sender, e)
+            End If
+
         End If
     End Sub
 
@@ -191,28 +236,30 @@ Public Class FrmConsultas
                     Me.CmdFiltrar.Visible = True
                     Me.CmdActualizar.Visible = True
 
-                    SQlProductos = "SELECT Recepcion.NumeroReciboCafe, ReciboCafePergamino.Fecha As FechaRecibo, Proveedor.Cod_Proveedor, CASE WHEN Proveedor.Cod_Proveedor = '00001' THEN ReciboCafePergamino.ProductorManual ELSE Proveedor.Nombre_Proveedor + ' ' + Proveedor.Apellido_Proveedor END AS Nombres, Recepcion.Conductor, Recepcion.TipoRecepcion, Recepcion.NumeroRecepcion, Recepcion.IdReciboPergamino, TipoCafe.Nombre AS TipoCafe, TipoCompra.Nombre AS TipoCompra, TipoIngreso.Descripcion AS TipoIngreso, ReciboCafePergamino.Serie, EstadoDocumento.Descripcion AS Estado, Recepcion.Fecha FROM  Recepcion INNER JOIN Proveedor ON Recepcion.Cod_Proveedor = Proveedor.Cod_Proveedor INNER JOIN ReciboCafePergamino ON Recepcion.IdReciboPergamino = ReciboCafePergamino.IdReciboPergamino INNER JOIN TipoCafe ON ReciboCafePergamino.IdTipoCafe = TipoCafe.IdTipoCafe INNER JOIN TipoCompra ON ReciboCafePergamino.IdTipoCompra = TipoCompra.IdECS INNER JOIN EstadoDocumento ON ReciboCafePergamino.IdEstadoDocumento = EstadoDocumento.IdEstadoDocumento INNER JOIN " & _
-                                   "LugarAcopio ON ReciboCafePergamino.IdLocalidad = LugarAcopio.IdLugarAcopio INNER JOIN TipoIngreso ON ReciboCafePergamino.IdTipoIngreso = TipoIngreso.IdECS WHERE  (Recepcion.Cancelar = 0) AND (Recepcion.TipoRecepcion = 'Recepcion') AND (ReciboCafePergamino.IdLocalidadRegistro = '" & FrmRecepcion.IdLugarAcopioDefecto & "') ORDER BY Recepcion.Fecha DESC, Recepcion.NumeroReciboCafe DESC"
-                    MiConexion.Open()
+                    CmdActualizar_Click(sender, e)
 
-                    DataAdapter = New SqlClient.SqlDataAdapter(SQlProductos, MiConexion)
-                    DataSet.Reset()
-                    DataAdapter.Fill(DataSet, "Consultas")
-                    Me.BindingConsultas.DataSource = DataSet.Tables("Consultas")
-                    Me.TrueDBGridConsultas.DataSource = Me.BindingConsultas
-                    'Me.TrueDBGridConsultas.Columns(13).FilterText = Filtro
-                    Me.TrueDBGridConsultas.Columns(0).Caption = "Recibos"
-                    Me.TrueDBGridConsultas.Splits.Item(0).DisplayColumns(0).Width = 100
-                    Me.TrueDBGridConsultas.Columns(1).Caption = "Fecha"
-                    Me.TrueDBGridConsultas.Splits.Item(0).DisplayColumns(1).Width = 70
-                    Me.TrueDBGridConsultas.Columns(2).Caption = "Proveedor"
-                    Me.TrueDBGridConsultas.Splits.Item(0).DisplayColumns(2).Width = 70
-                    Me.TrueDBGridConsultas.Splits.Item(0).DisplayColumns(3).Width = 150
-                    Me.TrueDBGridConsultas.Splits.Item(0).DisplayColumns(4).Visible = False
-                    Me.TrueDBGridConsultas.Splits.Item(0).DisplayColumns(5).Visible = False
-                    Me.TrueDBGridConsultas.Splits.Item(0).DisplayColumns(6).Visible = False
-                    Me.TrueDBGridConsultas.Splits.Item(0).DisplayColumns(7).Visible = False
-                    Me.TrueDBGridConsultas.Splits.Item(0).DisplayColumns(13).Visible = False
+                    ''SQlProductos = "SELECT Recepcion.NumeroReciboCafe, ReciboCafePergamino.Fecha As FechaRecibo, Proveedor.Cod_Proveedor, CASE WHEN Proveedor.Cod_Proveedor = '00001' THEN ReciboCafePergamino.ProductorManual ELSE Proveedor.Nombre_Proveedor + ' ' + Proveedor.Apellido_Proveedor END AS Nombres, Recepcion.Conductor, Recepcion.TipoRecepcion, Recepcion.NumeroRecepcion, Recepcion.IdReciboPergamino, TipoCafe.Nombre AS TipoCafe, TipoCompra.Nombre AS TipoCompra, TipoIngreso.Descripcion AS TipoIngreso, ReciboCafePergamino.Serie, EstadoDocumento.Descripcion AS Estado, Recepcion.Fecha FROM  Recepcion INNER JOIN Proveedor ON Recepcion.Cod_Proveedor = Proveedor.Cod_Proveedor INNER JOIN ReciboCafePergamino ON Recepcion.IdReciboPergamino = ReciboCafePergamino.IdReciboPergamino INNER JOIN TipoCafe ON ReciboCafePergamino.IdTipoCafe = TipoCafe.IdTipoCafe INNER JOIN TipoCompra ON ReciboCafePergamino.IdTipoCompra = TipoCompra.IdECS INNER JOIN EstadoDocumento ON ReciboCafePergamino.IdEstadoDocumento = EstadoDocumento.IdEstadoDocumento INNER JOIN " & _
+                    ''               "LugarAcopio ON ReciboCafePergamino.IdLocalidad = LugarAcopio.IdLugarAcopio INNER JOIN TipoIngreso ON ReciboCafePergamino.IdTipoIngreso = TipoIngreso.IdECS WHERE  (Recepcion.Cancelar = 0) AND (Recepcion.TipoRecepcion = 'Recepcion') AND (ReciboCafePergamino.IdLocalidadRegistro = '" & FrmRecepcion.IdLugarAcopioDefecto & "') ORDER BY Recepcion.Fecha DESC, Recepcion.NumeroReciboCafe DESC"
+                    ''MiConexion.Open()
+
+                    ''DataAdapter = New SqlClient.SqlDataAdapter(SQlProductos, MiConexion)
+                    ''DataSet.Reset()
+                    ''DataAdapter.Fill(DataSet, "Consultas")
+                    ''Me.BindingConsultas.DataSource = DataSet.Tables("Consultas")
+                    ''Me.TrueDBGridConsultas.DataSource = Me.BindingConsultas
+                    ' ''Me.TrueDBGridConsultas.Columns(13).FilterText = Filtro
+                    ''Me.TrueDBGridConsultas.Columns(0).Caption = "Recibos"
+                    ''Me.TrueDBGridConsultas.Splits.Item(0).DisplayColumns(0).Width = 100
+                    ''Me.TrueDBGridConsultas.Columns(1).Caption = "Fecha"
+                    ''Me.TrueDBGridConsultas.Splits.Item(0).DisplayColumns(1).Width = 70
+                    ''Me.TrueDBGridConsultas.Columns(2).Caption = "Proveedor"
+                    ''Me.TrueDBGridConsultas.Splits.Item(0).DisplayColumns(2).Width = 70
+                    ''Me.TrueDBGridConsultas.Splits.Item(0).DisplayColumns(3).Width = 150
+                    ''Me.TrueDBGridConsultas.Splits.Item(0).DisplayColumns(4).Visible = False
+                    ''Me.TrueDBGridConsultas.Splits.Item(0).DisplayColumns(5).Visible = False
+                    ''Me.TrueDBGridConsultas.Splits.Item(0).DisplayColumns(6).Visible = False
+                    ''Me.TrueDBGridConsultas.Splits.Item(0).DisplayColumns(7).Visible = False
+                    ''Me.TrueDBGridConsultas.Splits.Item(0).DisplayColumns(13).Visible = False
 
                 Case "RecepcionBin"
                     SQlProductos = "SELECT Recepcion.NumeroReciboCafe, Recepcion.Fecha, Proveedor.Nombre_Proveedor + ' ' + Proveedor.Apellido_Proveedor AS Nombres, Conductor, Proveedor.Cod_Proveedor,Recepcion.TipoRecepcion, Recepcion.NumeroRecepcion FROM Recepcion INNER JOIN Proveedor ON Recepcion.Cod_Proveedor = Proveedor.Cod_Proveedor " & _
@@ -597,9 +644,11 @@ Public Class FrmConsultas
 
             End Select
 
+            Actualizar = False
             For Each col As C1.Win.C1TrueDBGrid.C1DataColumn In Me.TrueDBGridConsultas.Columns
                 col.FilterText = ""
             Next
+            Actualizar = True
 
             Me.TrueDBGridConsultas.AlternatingRows = True
             Me.TrueDBGridConsultas.AllowFilter = False
@@ -616,9 +665,11 @@ Public Class FrmConsultas
         Fecha = Format(Now, "dd/MM/yyyy")
         Codigo = "-----0-----"
 
+        Actualizar = False
         For Each col As C1.Win.C1TrueDBGrid.C1DataColumn In Me.TrueDBGridConsultas.Columns
             col.FilterText = ""
         Next
+        Actualizar = True
 
         Me.TxtFiltro.Text = ""
         Me.Close()
@@ -1010,10 +1061,11 @@ Public Class FrmConsultas
 
         End Select
 
-
+        Actualizar = False
         For Each col As C1.Win.C1TrueDBGrid.C1DataColumn In Me.TrueDBGridConsultas.Columns
             col.FilterText = ""
         Next
+        Actualizar = True
 
         Me.Close()
     End Sub

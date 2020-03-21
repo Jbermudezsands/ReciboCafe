@@ -411,4 +411,8 @@ Public Class FrmResumenLiquidacion
     Private Sub CboAnoRL_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CboAnoRL.TextChanged
 
     End Sub
+
+    Private Sub TDGridResumenLiquidacion_FilterChange(ByVal sender As Object, ByVal e As System.EventArgs) Handles TDGridResumenLiquidacion.FilterChange
+
+    End Sub
 End Class

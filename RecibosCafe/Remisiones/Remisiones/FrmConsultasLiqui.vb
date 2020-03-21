@@ -26,7 +26,8 @@ Public Class FrmConsultasLiqui
 
     Private Sub TrueDBGridConsultas_FilterChange(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TrueDBGridConsultas.FilterChange
         Dim sb As New System.Text.StringBuilder()
-        Dim dc As C1.Win.C1TrueDBGrid.C1DataColumn
+        Dim dc As C1.Win.C1TrueDBGrid.C1DataColumn, Buscar_Fila() As DataRow
+        Dim DataAdapter As New SqlClient.SqlDataAdapter, SQlProductos As String
 
 
         For Each dc In Me.TrueDBGridConsultas.Columns
@@ -34,12 +35,54 @@ Public Class FrmConsultasLiqui
                 If sb.Length > 0 Then
                     sb.Append(" AND ")
                 End If
-                sb.Append((dc.DataField + " LIKE " + "'%" + dc.FilterText + "%'"))
+
+                Filtro = dc.FilterText
+                Select Case dc.DataField
+                    Case "FechaRecibo"
+                        If Len(dc.FilterText) < 10 Then
+                            Exit Sub
+                        End If
+                        sb.Append((dc.DataField + " >= " + "'" + dc.FilterText + "'" + " AND " + dc.DataField + "<=" + "'" + dc.FilterText + " 23:59:59" + "'"))
+
+
+
+                    Case "Fecha"
+                        If Len(dc.FilterText) < 10 Then
+                            Exit Sub
+                        End If
+                        sb.Append((dc.DataField + " >= " + "'" + dc.FilterText + "'" + " AND " + dc.DataField + "<=" + "'" + dc.FilterText + " 23:59:59" + "'"))
+
+                    Case Else
+                        sb.Append((dc.DataField + " LIKE " + "'%" + dc.FilterText + "%'"))
+                End Select
+
+                'Filtro = sb.ToString
+                'sb.Append((dc.DataField + " LIKE " + "'%" + dc.FilterText + "%'"))
             End If
         Next
 
+
+
         If sb.ToString <> "" Then
+
             DataSet.Tables("Consultas").DefaultView.RowFilter = sb.ToString
+
+        ElseIf Actualizar = True Then
+            If Quien = "Remision" Then
+                MiConexion.Close()
+                SqlRemision = "SELECT RemisionPergamino.IdRemisionPergamino, RemisionPergamino.Serie + ' ' + RemisionPergamino.Codigo AS Numero, RemisionPergamino.Fecha, EstadoDocumento.Descripcion AS Estado, TipoCafe.Nombre AS TipoRemision, Calidad.NomCalidad AS Calidad, LugarAcopio.NomLugarAcopio, EmpresaTransporte.NombreEmpresa, Vehiculo.Placa, Conductor.Nombre AS Conductor, RemisionPergamino.FechaCarga, RemisionPergamino.HoraSalida, RemisionPergamino.IdTipoCafe, RemisionPergamino.IdLugarAcopio FROM RemisionPergamino INNER JOIN EstadoDocumento ON RemisionPergamino.IdEstadoDocumento = EstadoDocumento.IdEstadoDocumento INNER JOIN TipoCafe ON RemisionPergamino.IdTipoCafe = TipoCafe.IdTipoCafe INNER JOIN Calidad ON RemisionPergamino.IdCalidad = Calidad.IdCalidad INNER JOIN LugarAcopio ON RemisionPergamino.IdLugarAcopio = LugarAcopio.IdLugarAcopio INNER JOIN EmpresaTransporte ON RemisionPergamino.IdEmpresaTransporte = EmpresaTransporte.IdEmpresaTransporte INNER JOIN Vehiculo ON RemisionPergamino.IdVehiculo = Vehiculo.IdVehiculo INNER JOIN  Conductor ON RemisionPergamino.IdConductor = Conductor.IdConductor WHERE (RemisionPergamino.IdLugarAcopio IN (SELECT RutasLogicasTransporte.IdLugarAcopioOrigen  FROM RutasLogicasTransporte INNER JOIN LugarAcopio AS LugarAcopio_2 ON RutasLogicasTransporte.IdLugarAcopioOrigen = LugarAcopio_2.IdLugarAcopio INNER JOIN LugarAcopio AS LugarAcopio_1 ON RutasLogicasTransporte.IdLugarAcopioDestino = LugarAcopio_1.IdLugarAcopio " & _
+                              "WHERE (RutasLogicasTransporte.IdLugarAcopioDestino = " & Me.IdLugarAcopio & ") OR (RutasLogicasTransporte.IdLugarAcopioOrigen = " & Me.IdLugarAcopio & "))) AND (RemisionPergamino.IdTipoCafe = '" & My.Forms.FrmRemision2.IdTipoCafe & "') ORDER BY RemisionPergamino.Fecha DESC, Numero DESC"
+                MiConexion.Open()
+                DataAdapter = New SqlClient.SqlDataAdapter(SqlRemision, MiConexion)
+                DataSet.Reset()
+                DataAdapter.Fill(DataSet, "Consultas")
+                Me.BindingConsultas.DataSource = DataSet.Tables("Consultas")
+                Me.TrueDBGridConsultas.DataSource = Me.BindingConsultas
+
+                Me.TrueDBGridConsultas.Splits.Item(0).DisplayColumns(0).Visible = False
+
+            End If
+
         End If
     End Sub
 
@@ -277,9 +320,11 @@ Public Class FrmConsultasLiqui
                     Me.TrueDBGridConsultas.Splits.Item(0).DisplayColumns(0).Visible = False
             End Select
 
+            Actualizar = False
             For Each col As C1.Win.C1TrueDBGrid.C1DataColumn In Me.TrueDBGridConsultas.Columns
                 col.FilterText = ""
             Next
+            Actualizar = True
 
             Me.TrueDBGridConsultas.AlternatingRows = True
             Me.TrueDBGridConsultas.AllowFilter = False
@@ -296,9 +341,11 @@ Public Class FrmConsultasLiqui
         Fecha = Format(Now, "dd/MM/yyyy")
         Codigo = "-----0-----"
 
+        Actualizar = False
         For Each col As C1.Win.C1TrueDBGrid.C1DataColumn In Me.TrueDBGridConsultas.Columns
             col.FilterText = ""
         Next
+        Actualizar = True
         Me.Close()
     End Sub
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
@@ -482,9 +529,11 @@ Public Class FrmConsultasLiqui
                 End If
         End Select
 
+        Actualizar = False
         For Each col As C1.Win.C1TrueDBGrid.C1DataColumn In Me.TrueDBGridConsultas.Columns
             col.FilterText = ""
         Next
+        Actualizar = True
 
         Me.Close()
     End Sub

@@ -2,7 +2,7 @@ Module Variables
     Public Conexion As String, Enfoque As String, CodigoCosecha As String, Quien3 As String, QuienRemision As String
     Public NombreUsuario As String = "Desconocido", TipoUsuario As String = "Administrador", CodLocalidadActual As String, Quien As String
     Public CodigoRepesaje As String, QuienTec As String, Sugerencia As String, IdUsuario As Double, UsuarioType As String, IdRegionUsuario As Integer, Quien2 As String, CambioPrecio As Boolean = False
-    Public ValidaBoleta As Boolean = True
+    Public ValidaBoleta As Boolean = True, Actualizar As Boolean = False
     Public Function BuscaLocalidad(ByVal CodigoLocalidad As String) As String
         Dim Dataset As New DataSet, DataAdapter As New SqlClient.SqlDataAdapter
         Dim SqlString As String, Ruta As String, fileReader As String
