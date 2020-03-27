@@ -21,7 +21,8 @@ Public Class ArepBitacoraLiquidacion
 
         SqlString = "SELECT  ReciboCafePergamino.Seleccion AS Aplicar, ReciboCafePergamino.Codigo AS NºRecibo, DetalleLiquidacionPergamino.PesoNeto, LiquidacionPergamino.Precio, DetalleLiquidacionPergamino.PesoNeto * LiquidacionPergamino.Precio AS ValorBrutoC$, DetalleLiquidacionPergamino.PesoNeto * LiquidacionPergamino.Precio / TipoCambio.TipoCambio AS ValorBruto$, ReciboCafePergamino.IdReciboPergamino, DetalleReciboCafePergamino.Imperfeccion, DetalleReciboCafePergamino.CantidadSacos, DetalleReciboCafePergamino.PesoBruto, DetalleReciboCafePergamino.Tara, DetalleLiquidacionPergamino.PesoNeto AS PesoNTCompara, TipoCambio.TipoCambio FROM  LiquidacionPergamino INNER JOIN  DetalleLiquidacionPergamino ON LiquidacionPergamino.IdLiquidacionPergamino = DetalleLiquidacionPergamino.IdLiquidacionPergamino INNER JOIN ReciboCafePergamino ON DetalleLiquidacionPergamino.IdReciboPergamino = ReciboCafePergamino.IdReciboPergamino INNER JOIN DetalleReciboCafePergamino ON ReciboCafePergamino.IdReciboPergamino = DetalleReciboCafePergamino.IdReciboPergamino INNER JOIN TipoCambio ON LiquidacionPergamino.IdTipoCambio = TipoCambio.IdTipoCambio " & _
                     "WHERE  (LiquidacionPergamino.IdLiquidacionPergamino = " & idLiquidacion & ")"
-        Me.LblCosecha.Text = My.Forms.FrmLiquidacion.LblCosecha.Text
+        'Me.LblCosecha.Text = My.Forms.FrmLiquidacion.LblCosecha.Text
+        Me.LblCosecha.Text = Me.LblCosecha.Text
 
         '//////////////////////////////ACTUALIZO EL REPORTE CON LA CONSULTA //////////////////////////////////////////////////////////////////////
         CType(Me.SubReportDetalleRecibo.Report.DataSource, DataDynamics.ActiveReports.DataSources.SqlDBDataSource).ConnectionString = Conexion

@@ -2746,7 +2746,10 @@ Public Class FrmLiquidacion
             End If
         End If
         If Quien = "Recibo" Then
-            Quien = ""
+
+            If Salir = True Then
+                Quien = ""
+            End If
 
             My.Forms.FrmRecepcion.SalirLiquidacion(Salir)
             Exit Sub
@@ -4259,6 +4262,10 @@ Public Class FrmLiquidacion
         'ViewerForm.arvMain.Document.Print(False, False, False)
         'ViewerForm.Show()
 
+        Quien2 = "ImprimeLiquida"
+        Salir = False
+        BtnGuardar_Click(sender, e)
+        Salir = True
 
         For i = 1 To 3
             If i = 1 Then
@@ -4285,8 +4292,20 @@ Public Class FrmLiquidacion
             ' SI ESTA HABILITADO PARA GRABAR LO PERMITO GRABAR
         Next
 
-        Quien2 = "ImprimeLiquida"
-        BtnGuardar_Click(sender, e)
+        'Quien2 = "ImprimeLiquida"
+        'BtnGuardar_Click(sender, e)
+
+        If Quien = "Recibo" Then
+            If Salir = True Then
+                Quien = ""
+            End If
+
+            My.Forms.FrmRecepcion.SalirLiquidacion(Salir)
+            Exit Sub
+        Else
+            Button3_Click(sender, e)
+        End If
+
 
         If Quien = "Recibo" Then
             Quien = ""

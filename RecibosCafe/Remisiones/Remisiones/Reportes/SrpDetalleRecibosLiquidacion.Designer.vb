@@ -124,7 +124,7 @@ Partial Public Class SrpDetalleRecibosLiquidacion
         '
         Me.Detail1.ColumnSpacing = 0.0!
         Me.Detail1.Controls.AddRange(New DataDynamics.ActiveReports.ARControl() {Me.TextBox1, Me.TextBox2, Me.TextBox3})
-        Me.Detail1.Height = 0.2708333!
+        Me.Detail1.Height = 0.28125!
         Me.Detail1.Name = "Detail1"
         '
         'TextBox1
@@ -142,6 +142,7 @@ Partial Public Class SrpDetalleRecibosLiquidacion
         Me.TextBox1.Left = 0.0!
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Style = "ddo-char-set: 0; font-size: 8.25pt; "
+        Me.TextBox1.Text = Nothing
         Me.TextBox1.Top = 0.05555556!
         Me.TextBox1.Width = 0.97!
         '
@@ -161,6 +162,7 @@ Partial Public Class SrpDetalleRecibosLiquidacion
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.OutputFormat = resources.GetString("TextBox2.OutputFormat")
         Me.TextBox2.Style = "ddo-char-set: 0; font-size: 8.25pt; "
+        Me.TextBox2.Text = Nothing
         Me.TextBox2.Top = 0.05555556!
         Me.TextBox2.Width = 0.7!
         '
@@ -180,8 +182,9 @@ Partial Public Class SrpDetalleRecibosLiquidacion
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.OutputFormat = resources.GetString("TextBox3.OutputFormat")
         Me.TextBox3.Style = "ddo-char-set: 0; text-align: right; font-size: 8.25pt; "
+        Me.TextBox3.Text = Nothing
         Me.TextBox3.Top = 0.05555556!
-        Me.TextBox3.Width = 0.9!
+        Me.TextBox3.Width = 0.8333333!
         '
         'PageFooter1
         '
