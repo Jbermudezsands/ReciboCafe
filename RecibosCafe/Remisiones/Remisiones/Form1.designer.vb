@@ -44,6 +44,10 @@ Partial Class MDIParent1
         Me.RibbonButton31 = New C1.Win.C1Ribbon.RibbonButton
         Me.RibbonGroup41 = New C1.Win.C1Ribbon.RibbonGroup
         Me.RibbonButton11 = New C1.Win.C1Ribbon.RibbonButton
+        Me.RibbonMenu1 = New C1.Win.C1Ribbon.RibbonMenu
+        Me.RbnTrazabilidad = New C1.Win.C1Ribbon.RibbonButton
+        Me.RbnMermaBodegaXReciboXRemision = New C1.Win.C1Ribbon.RibbonButton
+        Me.RibbonButton8 = New C1.Win.C1Ribbon.RibbonButton
         Me.RibbonGroup4 = New C1.Win.C1Ribbon.RibbonGroup
         Me.RibbonButton1 = New C1.Win.C1Ribbon.RibbonButton
         Me.RibbonTab2 = New C1.Win.C1Ribbon.RibbonTab
@@ -228,6 +232,7 @@ Partial Class MDIParent1
         '
         Me.RibbonGroup41.ID = "RibbonGroup41"
         Me.RibbonGroup41.Items.Add(Me.RibbonButton11)
+        Me.RibbonGroup41.Items.Add(Me.RibbonMenu1)
         Me.RibbonGroup41.Text = "Reportes"
         '
         'RibbonButton11
@@ -238,6 +243,38 @@ Partial Class MDIParent1
         Me.RibbonButton11.Text = "Trazabilidad"
         Me.RibbonButton11.TextImageRelation = C1.Win.C1Ribbon.TextImageRelation.ImageAboveText
         Me.RibbonButton11.ToolTip = "Registro de Trazabilidad"
+        Me.RibbonButton11.Visible = False
+        '
+        'RibbonMenu1
+        '
+        Me.RibbonMenu1.ID = "RibbonMenu1"
+        Me.RibbonMenu1.Items.Add(Me.RbnTrazabilidad)
+        Me.RibbonMenu1.Items.Add(Me.RbnMermaBodegaXReciboXRemision)
+        Me.RibbonMenu1.Items.Add(Me.RibbonButton8)
+        Me.RibbonMenu1.LargeImage = CType(resources.GetObject("RibbonMenu1.LargeImage"), System.Drawing.Image)
+        Me.RibbonMenu1.SmallImage = CType(resources.GetObject("RibbonMenu1.SmallImage"), System.Drawing.Image)
+        Me.RibbonMenu1.Text = "Reportes"
+        Me.RibbonMenu1.TextImageRelation = C1.Win.C1Ribbon.TextImageRelation.ImageAboveText
+        '
+        'RbnTrazabilidad
+        '
+        Me.RbnTrazabilidad.ID = "RbnTrazabilidad"
+        Me.RbnTrazabilidad.LargeImage = CType(resources.GetObject("RbnTrazabilidad.LargeImage"), System.Drawing.Image)
+        Me.RbnTrazabilidad.Text = "Trazabilidad"
+        Me.RbnTrazabilidad.TextImageRelation = C1.Win.C1Ribbon.TextImageRelation.ImageAboveText
+        '
+        'RbnMermaBodegaXReciboXRemision
+        '
+        Me.RbnMermaBodegaXReciboXRemision.ID = "RbnMermaBodegaXReciboXRemision"
+        Me.RbnMermaBodegaXReciboXRemision.LargeImage = CType(resources.GetObject("RbnMermaBodegaXReciboXRemision.LargeImage"), System.Drawing.Image)
+        Me.RbnMermaBodegaXReciboXRemision.Text = "Merma Vrs Bodega Vrs Remision"
+        Me.RbnMermaBodegaXReciboXRemision.TextImageRelation = C1.Win.C1Ribbon.TextImageRelation.ImageAboveText
+        '
+        'RibbonButton8
+        '
+        Me.RibbonButton8.ID = "RibbonButton8"
+        Me.RibbonButton8.SmallImage = CType(resources.GetObject("RibbonButton8.SmallImage"), System.Drawing.Image)
+        Me.RibbonButton8.Text = "Button"
         '
         'RibbonGroup4
         '
@@ -452,5 +489,9 @@ Partial Class MDIParent1
     Friend WithEvents RibbonLabel1 As C1.Win.C1Ribbon.RibbonLabel
     Friend WithEvents RibbonButton21 As C1.Win.C1Ribbon.RibbonButton
     Friend WithEvents RibbonButton5 As C1.Win.C1Ribbon.RibbonButton
+    Friend WithEvents RibbonMenu1 As C1.Win.C1Ribbon.RibbonMenu
+    Friend WithEvents RbnTrazabilidad As C1.Win.C1Ribbon.RibbonButton
+    Friend WithEvents RbnMermaBodegaXReciboXRemision As C1.Win.C1Ribbon.RibbonButton
+    Friend WithEvents RibbonButton8 As C1.Win.C1Ribbon.RibbonButton
 
 End Class

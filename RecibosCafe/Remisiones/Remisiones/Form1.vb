@@ -339,4 +339,19 @@ Public Class MDIParent1
         My.Forms.FrmDiscrecionalidad.MdiParent = Me
         My.Forms.FrmDiscrecionalidad.Show()
     End Sub
+
+    Private Sub RbnTrazabilidad_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles RbnTrazabilidad.Click
+        Me.CmdReporta.Visible = False
+        Me.CmdHoraLlegada.Visible = False
+        Me.CmdCargar.Visible = False
+        Me.CmdReservar.Visible = False
+        Me.CmdSalida.Visible = False
+        My.Forms.FrmConsultaReporte.MdiParent = Me
+        My.Forms.FrmConsultaReporte.Show()
+    End Sub
+
+    Private Sub RbnMermaBodegaXReciboXRemision_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles RbnMermaBodegaXReciboXRemision.Click
+        My.Forms.FrmReportes.MdiParent = Me
+        My.Forms.FrmReportes.Show()
+    End Sub
 End Class

@@ -366,6 +366,12 @@
     <Compile Include="FrmReporta.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FrmReportes.Designer.vb">
+      <DependentUpon>FrmReportes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmReportes.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FrmResumenCalculoPrecio.Designer.vb">
       <DependentUpon>FrmResumenCalculoPrecio.vb</DependentUpon>
     </Compile>
@@ -488,6 +494,12 @@
     <Compile Include="Reportes\ArepBitacoraRecepcion.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reportes\ArepMermaRecibo.Designer.vb">
+      <DependentUpon>ArepMermaRecibo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ArepMermaRecibo.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reportes\ArepRecepcion.designer.vb">
       <DependentUpon>ArepRecepcion.vb</DependentUpon>
     </Compile>
@@ -548,6 +560,12 @@
     <Compile Include="Reportes\SrpDetalleRemision.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reportes\SrpMermaRecibo.Designer.vb">
+      <DependentUpon>SrpMermaRecibo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\SrpMermaRecibo.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reportes\SrpPuntosIntermedio2.Designer.vb">
       <DependentUpon>SrpPuntosIntermedio2.vb</DependentUpon>
     </Compile>
@@ -570,6 +588,12 @@
       <DependentUpon>SrpPuntosIntermedioSalida.vb</DependentUpon>
     </Compile>
     <Compile Include="Reportes\SrpPuntosIntermedioSalida.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\SrpRecibos.Designer.vb">
+      <DependentUpon>SrpRecibos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\SrpRecibos.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Variables.vb">
@@ -709,6 +733,10 @@
       <SubType>Designer</SubType>
       <DependentUpon>FrmReporta.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmReportes.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmReportes.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmResumenCalculoPrecio.resx">
       <SubType>Designer</SubType>
       <DependentUpon>FrmResumenCalculoPrecio.vb</DependentUpon>
@@ -788,6 +816,10 @@
       <DependentUpon>ArepBitacoraRecepcion.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\ArepMermaRecibo.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ArepMermaRecibo.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\ArepRecepcion.resx">
       <DependentUpon>ArepRecepcion.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -828,6 +860,10 @@
       <SubType>Designer</SubType>
       <DependentUpon>SrpDetalleRemision.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\SrpMermaRecibo.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SrpMermaRecibo.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\SrpPuntosIntermedio2.resx">
       <SubType>Designer</SubType>
       <DependentUpon>SrpPuntosIntermedio2.vb</DependentUpon>
@@ -843,6 +879,10 @@
     <EmbeddedResource Include="Reportes\SrpPuntosIntermedioSalida.resx">
       <SubType>Designer</SubType>
       <DependentUpon>SrpPuntosIntermedioSalida.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\SrpRecibos.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SrpRecibos.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
