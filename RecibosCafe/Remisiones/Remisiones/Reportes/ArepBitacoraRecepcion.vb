@@ -3,34 +3,63 @@ Imports DataDynamics.ActiveReports.Document
 
 
 Public Class ArepBitacoraRecepcion
-    Public IdFinca As Double, IdCosecha As Double, IdProductor As Double
-    Private CertificadoSubReport As SrpCertificado = Nothing
+    Public MiConexion As New SqlClient.SqlConnection(Conexion)
+    Public IdFinca As Double, IdCosecha As Double, IdProductor As Double, ListaCertificados As String
+    'Private CertificadoSubReport As SrpCertificado = Nothing
 
 
     Private Sub PageHeader1_Format(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PageHeader1.Format
-        Dim SqlString As String
+        Dim SqlString As String, DataSet As New DataSet, DataAdapter As New SqlClient.SqlDataAdapter, Cont As Double, i As Double
+
+
         SqlString = "SELECT Certificado.Code,Certificado.Descripcion, CertificadoXFinca.Vigencia FROM  CertificadoXFinca INNER JOIN Finca ON CertificadoXFinca.IdFinca = Finca.IdFinca INNER JOIN Certificado ON CertificadoXFinca.IdCertificado = Certificado.IdCertificado  " & _
                     "WHERE (Finca.IdFinca = " & IdFinca & ") AND (CertificadoXFinca.IdCosecha = " & IdCosecha & ") AND (Finca.IdProductor = " & IdProductor & " ) ORDER BY CertificadoXFinca.Vigencia DESC"
 
         Me.LblCosecha.Text = My.Forms.FrmRecepcion.LblCosecha.Text
 
-        '//////////////////////////////ACTUALIZO EL REPORTE CON LA CONSULTA //////////////////////////////////////////////////////////////////////
-        CType(Me.SubReportCertificado.Report.DataSource, DataDynamics.ActiveReports.DataSources.SqlDBDataSource).ConnectionString = Conexion
-        CType(Me.SubReportCertificado.Report.DataSource, DataDynamics.ActiveReports.DataSources.SqlDBDataSource).SQL = SqlString
+        DataAdapter = New SqlClient.SqlDataAdapter(SqlString, MiConexion)
+        DataAdapter.Fill(DataSet, "Consulta")
+        Cont = DataSet.Tables("Consulta").Rows.Count
+        i = 0
+        ListaCertificados = ""
+        Do While Cont > i
+            If i = 0 Then
+                ListaCertificados = "Certificados: " & DataSet.Tables("Consulta").Rows(i)("Descripcion")
+            Else
+                ListaCertificados = ListaCertificados & "," & DataSet.Tables("Consulta").Rows(i)("Descripcion")
+            End If
+
+            i = i + 1
+        Loop
+
+
+        ''//////////////////////////////ACTUALIZO EL REPORTE CON LA CONSULTA //////////////////////////////////////////////////////////////////////
+        'CType(Me.SubReportCertificado.Report.DataSource, DataDynamics.ActiveReports.DataSources.SqlDBDataSource).ConnectionString = Conexion
+        'CType(Me.SubReportCertificado.Report.DataSource, DataDynamics.ActiveReports.DataSources.SqlDBDataSource).SQL = SqlString
         My.Application.DoEvents()
     End Sub
 
     Private Sub GroupFooter1_Format(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GroupFooter1.Format
+        If Me.TxtObservaciones.Text = "" Then
+            Me.Label62.Visible = False
+            Me.Label50.Location = New Point(0, 1.35)
+            Me.Label52.Visible = False
+            Me.Label54.Visible = True
+            Me.Label46.Location = New Point(0.3, 1.75)
+            Me.TxtReal.Location = New Point(1.175, 1.75)
+            Me.Label47.Location = New Point(1.95, 1.75)
 
+
+        End If
     End Sub
 
     Private Sub ArepBitacoraRecepcion_ReportStart(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.ReportStart
 
-        If CertificadoSubReport Is Nothing Then
-            CertificadoSubReport = New SrpCertificado
-            Me.SubReportCertificado.Report = CertificadoSubReport
-            Me.SubReportCertificado.Report.DataSource = New DataDynamics.ActiveReports.DataSources.SqlDBDataSource
-        End If
+        'If CertificadoSubReport Is Nothing Then
+        '    CertificadoSubReport = New SrpCertificado
+        '    Me.SubReportCertificado.Report = CertificadoSubReport
+        '    Me.SubReportCertificado.Report.DataSource = New DataDynamics.ActiveReports.DataSources.SqlDBDataSource
+        'End If
 
         Me.LblTipoCompra.Text = "Recibo Cafe " & FrmRecepcion.CboTipoCafe.Text
         Me.LblFechaOrden.Text = FrmRecepcion.FechaRecibo
@@ -74,6 +103,7 @@ Public Class ArepBitacoraRecepcion
             Me.LblLiquidar.Visible = False
             Me.Label56.Visible = False
             Me.Label59.Visible = False
+            Me.ReportHeader1.Height = 6.448
         End If
 
 
@@ -97,11 +127,23 @@ Public Class ArepBitacoraRecepcion
 
     End Sub
 
-    Private Sub Detail1_Format(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Detail1.Format
+
+    Private Sub ReportHeader1_Format(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ReportHeader1.Format
 
     End Sub
 
-    Private Sub ReportHeader1_Format(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ReportHeader1.Format
+    Private Sub GroupHeader1_Format(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GroupHeader1.Format
+        Me.TxtCertificados.Text = ListaCertificados
+
+        If ListaCertificados = "" Then
+            Me.LblHora.Location = New Point(0.025, 0.4)
+            Me.Label2.Location = New Point(0.1, 0.65)
+            Me.Label58.Location = New Point(0.35, 0.65)
+            Me.Label1.Location = New Point(0.8, 0.65)
+            Me.Label59.Location = New Point(1.45, 0.65)
+            Me.Label37.Location = New Point(1.925, 0.65)
+            Me.GroupHeader1.Height = 0.99
+        End If
 
     End Sub
 End Class

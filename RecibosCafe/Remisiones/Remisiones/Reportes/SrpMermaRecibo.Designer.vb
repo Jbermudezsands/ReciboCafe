@@ -20,8 +20,6 @@ Partial Public Class SrpMermaRecibo
         Dim OleDBDataSource1 As DataDynamics.ActiveReports.DataSources.OleDBDataSource = New DataDynamics.ActiveReports.DataSources.OleDBDataSource
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SrpMermaRecibo))
         Me.PageHeader1 = New DataDynamics.ActiveReports.PageHeader
-        Me.Detail1 = New DataDynamics.ActiveReports.Detail
-        Me.PageFooter1 = New DataDynamics.ActiveReports.PageFooter
         Me.Label12 = New DataDynamics.ActiveReports.Label
         Me.Label3 = New DataDynamics.ActiveReports.Label
         Me.Label4 = New DataDynamics.ActiveReports.Label
@@ -34,6 +32,7 @@ Partial Public Class SrpMermaRecibo
         Me.Label11 = New DataDynamics.ActiveReports.Label
         Me.Label2 = New DataDynamics.ActiveReports.Label
         Me.SubReportRecibos = New DataDynamics.ActiveReports.SubReport
+        Me.Detail1 = New DataDynamics.ActiveReports.Detail
         Me.TextBox1 = New DataDynamics.ActiveReports.TextBox
         Me.TextBox2 = New DataDynamics.ActiveReports.TextBox
         Me.TextBox3 = New DataDynamics.ActiveReports.TextBox
@@ -43,11 +42,18 @@ Partial Public Class SrpMermaRecibo
         Me.TextBox7 = New DataDynamics.ActiveReports.TextBox
         Me.TextBox8 = New DataDynamics.ActiveReports.TextBox
         Me.TextBox9 = New DataDynamics.ActiveReports.TextBox
+        Me.PageFooter1 = New DataDynamics.ActiveReports.PageFooter
         Me.GroupHeader1 = New DataDynamics.ActiveReports.GroupHeader
         Me.GroupFooter1 = New DataDynamics.ActiveReports.GroupFooter
         Me.TextBox10 = New DataDynamics.ActiveReports.TextBox
         Me.TextBox11 = New DataDynamics.ActiveReports.TextBox
         Me.TextBox12 = New DataDynamics.ActiveReports.TextBox
+        Me.TextBox13 = New DataDynamics.ActiveReports.TextBox
+        Me.TextBox14 = New DataDynamics.ActiveReports.TextBox
+        Me.TextBox15 = New DataDynamics.ActiveReports.TextBox
+        Me.TextBox16 = New DataDynamics.ActiveReports.TextBox
+        Me.TextBox17 = New DataDynamics.ActiveReports.TextBox
+        Me.TextBox18 = New DataDynamics.ActiveReports.TextBox
         CType(Me.Label12, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Label3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Label4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -71,6 +77,12 @@ Partial Public Class SrpMermaRecibo
         CType(Me.TextBox10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextBox11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextBox12, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextBox13, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextBox14, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextBox15, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextBox16, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextBox17, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextBox18, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'PageHeader1
@@ -78,18 +90,6 @@ Partial Public Class SrpMermaRecibo
         Me.PageHeader1.Controls.AddRange(New DataDynamics.ActiveReports.ARControl() {Me.Label12, Me.Label3, Me.Label4, Me.Label5, Me.Label6, Me.Label7, Me.Label8, Me.Label9, Me.Label10, Me.Label11, Me.Label2, Me.SubReportRecibos})
         Me.PageHeader1.Height = 0.8541667!
         Me.PageHeader1.Name = "PageHeader1"
-        '
-        'Detail1
-        '
-        Me.Detail1.ColumnSpacing = 0.0!
-        Me.Detail1.Controls.AddRange(New DataDynamics.ActiveReports.ARControl() {Me.TextBox1, Me.TextBox2, Me.TextBox3, Me.TextBox4, Me.TextBox5, Me.TextBox6, Me.TextBox7, Me.TextBox8, Me.TextBox9})
-        Me.Detail1.Height = 0.2291667!
-        Me.Detail1.Name = "Detail1"
-        '
-        'PageFooter1
-        '
-        Me.PageFooter1.Height = 0.4166667!
-        Me.PageFooter1.Name = "PageFooter1"
         '
         'Label12
         '
@@ -321,6 +321,13 @@ Partial Public Class SrpMermaRecibo
         Me.SubReportRecibos.Top = 0.7999999!
         Me.SubReportRecibos.Width = 7.425001!
         '
+        'Detail1
+        '
+        Me.Detail1.ColumnSpacing = 0.0!
+        Me.Detail1.Controls.AddRange(New DataDynamics.ActiveReports.ARControl() {Me.TextBox1, Me.TextBox2, Me.TextBox3, Me.TextBox4, Me.TextBox5, Me.TextBox6, Me.TextBox7, Me.TextBox8, Me.TextBox9, Me.TextBox13, Me.TextBox14, Me.TextBox15, Me.TextBox16, Me.TextBox17, Me.TextBox18})
+        Me.Detail1.Height = 0.2291667!
+        Me.Detail1.Name = "Detail1"
+        '
         'TextBox1
         '
         Me.TextBox1.Border.BottomColor = System.Drawing.Color.Black
@@ -336,6 +343,7 @@ Partial Public Class SrpMermaRecibo
         Me.TextBox1.Left = 0.05!
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Style = "ddo-char-set: 0; font-size: 9pt; "
+        Me.TextBox1.Text = Nothing
         Me.TextBox1.Top = 0.0!
         Me.TextBox1.Width = 0.875!
         '
@@ -354,6 +362,7 @@ Partial Public Class SrpMermaRecibo
         Me.TextBox2.Left = 0.925!
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Style = "ddo-char-set: 0; font-size: 9pt; "
+        Me.TextBox2.Text = Nothing
         Me.TextBox2.Top = 0.0!
         Me.TextBox2.Width = 0.875!
         '
@@ -372,6 +381,7 @@ Partial Public Class SrpMermaRecibo
         Me.TextBox3.Left = 1.825!
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.Style = "ddo-char-set: 0; font-size: 9pt; "
+        Me.TextBox3.Text = Nothing
         Me.TextBox3.Top = 0.0!
         Me.TextBox3.Width = 0.7!
         '
@@ -390,6 +400,7 @@ Partial Public Class SrpMermaRecibo
         Me.TextBox4.Left = 2.5!
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.Style = "ddo-char-set: 0; font-size: 9pt; "
+        Me.TextBox4.Text = Nothing
         Me.TextBox4.Top = 0.0!
         Me.TextBox4.Width = 0.75!
         '
@@ -408,6 +419,7 @@ Partial Public Class SrpMermaRecibo
         Me.TextBox5.Left = 3.25!
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.Style = "ddo-char-set: 0; font-size: 9pt; "
+        Me.TextBox5.Text = Nothing
         Me.TextBox5.Top = 0.0!
         Me.TextBox5.Width = 0.75!
         '
@@ -426,6 +438,7 @@ Partial Public Class SrpMermaRecibo
         Me.TextBox6.Left = 4.025!
         Me.TextBox6.Name = "TextBox6"
         Me.TextBox6.Style = "ddo-char-set: 0; font-size: 9pt; "
+        Me.TextBox6.Text = Nothing
         Me.TextBox6.Top = 0.0!
         Me.TextBox6.Width = 0.75!
         '
@@ -445,6 +458,7 @@ Partial Public Class SrpMermaRecibo
         Me.TextBox7.Name = "TextBox7"
         Me.TextBox7.OutputFormat = resources.GetString("TextBox7.OutputFormat")
         Me.TextBox7.Style = "ddo-char-set: 0; font-size: 9pt; "
+        Me.TextBox7.Text = Nothing
         Me.TextBox7.Top = 0.0!
         Me.TextBox7.Width = 0.825!
         '
@@ -464,6 +478,7 @@ Partial Public Class SrpMermaRecibo
         Me.TextBox8.Name = "TextBox8"
         Me.TextBox8.OutputFormat = resources.GetString("TextBox8.OutputFormat")
         Me.TextBox8.Style = "ddo-char-set: 0; font-size: 9pt; "
+        Me.TextBox8.Text = Nothing
         Me.TextBox8.Top = 0.0!
         Me.TextBox8.Width = 0.825!
         '
@@ -483,8 +498,14 @@ Partial Public Class SrpMermaRecibo
         Me.TextBox9.Name = "TextBox9"
         Me.TextBox9.OutputFormat = resources.GetString("TextBox9.OutputFormat")
         Me.TextBox9.Style = "ddo-char-set: 0; font-size: 9pt; "
+        Me.TextBox9.Text = Nothing
         Me.TextBox9.Top = 0.0!
         Me.TextBox9.Width = 0.9249999!
+        '
+        'PageFooter1
+        '
+        Me.PageFooter1.Height = 0.4166667!
+        Me.PageFooter1.Name = "PageFooter1"
         '
         'GroupHeader1
         '
@@ -517,6 +538,7 @@ Partial Public Class SrpMermaRecibo
         Me.TextBox10.SummaryGroup = "GroupHeader1"
         Me.TextBox10.SummaryRunning = DataDynamics.ActiveReports.SummaryRunning.Group
         Me.TextBox10.SummaryType = DataDynamics.ActiveReports.SummaryType.GrandTotal
+        Me.TextBox10.Text = Nothing
         Me.TextBox10.Top = 0.0!
         Me.TextBox10.Width = 0.9249999!
         '
@@ -539,6 +561,7 @@ Partial Public Class SrpMermaRecibo
         Me.TextBox11.SummaryGroup = "GroupHeader1"
         Me.TextBox11.SummaryRunning = DataDynamics.ActiveReports.SummaryRunning.Group
         Me.TextBox11.SummaryType = DataDynamics.ActiveReports.SummaryType.GrandTotal
+        Me.TextBox11.Text = Nothing
         Me.TextBox11.Top = 0.0!
         Me.TextBox11.Width = 0.825!
         '
@@ -561,8 +584,123 @@ Partial Public Class SrpMermaRecibo
         Me.TextBox12.SummaryGroup = "GroupHeader1"
         Me.TextBox12.SummaryRunning = DataDynamics.ActiveReports.SummaryRunning.Group
         Me.TextBox12.SummaryType = DataDynamics.ActiveReports.SummaryType.GrandTotal
+        Me.TextBox12.Text = Nothing
         Me.TextBox12.Top = 0.0!
         Me.TextBox12.Width = 0.825!
+        '
+        'TextBox13
+        '
+        Me.TextBox13.Border.BottomColor = System.Drawing.Color.Black
+        Me.TextBox13.Border.BottomStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TextBox13.Border.LeftColor = System.Drawing.Color.Black
+        Me.TextBox13.Border.LeftStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TextBox13.Border.RightColor = System.Drawing.Color.Black
+        Me.TextBox13.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TextBox13.Border.TopColor = System.Drawing.Color.Black
+        Me.TextBox13.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TextBox13.DataField = "Region"
+        Me.TextBox13.Height = 0.2!
+        Me.TextBox13.Left = 0.05!
+        Me.TextBox13.Name = "TextBox13"
+        Me.TextBox13.Style = "ddo-char-set: 0; font-size: 9pt; "
+        Me.TextBox13.Text = Nothing
+        Me.TextBox13.Top = 0.0!
+        Me.TextBox13.Width = 0.875!
+        '
+        'TextBox14
+        '
+        Me.TextBox14.Border.BottomColor = System.Drawing.Color.Black
+        Me.TextBox14.Border.BottomStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TextBox14.Border.LeftColor = System.Drawing.Color.Black
+        Me.TextBox14.Border.LeftStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TextBox14.Border.RightColor = System.Drawing.Color.Black
+        Me.TextBox14.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TextBox14.Border.TopColor = System.Drawing.Color.Black
+        Me.TextBox14.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TextBox14.DataField = "Localidad"
+        Me.TextBox14.Height = 0.2!
+        Me.TextBox14.Left = 0.925!
+        Me.TextBox14.Name = "TextBox14"
+        Me.TextBox14.Style = "ddo-char-set: 0; font-size: 9pt; "
+        Me.TextBox14.Text = Nothing
+        Me.TextBox14.Top = 0.0!
+        Me.TextBox14.Width = 0.875!
+        '
+        'TextBox15
+        '
+        Me.TextBox15.Border.BottomColor = System.Drawing.Color.Black
+        Me.TextBox15.Border.BottomStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TextBox15.Border.LeftColor = System.Drawing.Color.Black
+        Me.TextBox15.Border.LeftStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TextBox15.Border.RightColor = System.Drawing.Color.Black
+        Me.TextBox15.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TextBox15.Border.TopColor = System.Drawing.Color.Black
+        Me.TextBox15.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TextBox15.DataField = "Calidad"
+        Me.TextBox15.Height = 0.2!
+        Me.TextBox15.Left = 1.825!
+        Me.TextBox15.Name = "TextBox15"
+        Me.TextBox15.Style = "ddo-char-set: 0; font-size: 9pt; "
+        Me.TextBox15.Text = Nothing
+        Me.TextBox15.Top = 0.0!
+        Me.TextBox15.Width = 0.7!
+        '
+        'TextBox16
+        '
+        Me.TextBox16.Border.BottomColor = System.Drawing.Color.Black
+        Me.TextBox16.Border.BottomStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TextBox16.Border.LeftColor = System.Drawing.Color.Black
+        Me.TextBox16.Border.LeftStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TextBox16.Border.RightColor = System.Drawing.Color.Black
+        Me.TextBox16.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TextBox16.Border.TopColor = System.Drawing.Color.Black
+        Me.TextBox16.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TextBox16.DataField = "EstadoFisico"
+        Me.TextBox16.Height = 0.2!
+        Me.TextBox16.Left = 2.5!
+        Me.TextBox16.Name = "TextBox16"
+        Me.TextBox16.Style = "ddo-char-set: 0; font-size: 9pt; "
+        Me.TextBox16.Text = Nothing
+        Me.TextBox16.Top = 0.0!
+        Me.TextBox16.Width = 0.75!
+        '
+        'TextBox17
+        '
+        Me.TextBox17.Border.BottomColor = System.Drawing.Color.Black
+        Me.TextBox17.Border.BottomStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TextBox17.Border.LeftColor = System.Drawing.Color.Black
+        Me.TextBox17.Border.LeftStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TextBox17.Border.RightColor = System.Drawing.Color.Black
+        Me.TextBox17.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TextBox17.Border.TopColor = System.Drawing.Color.Black
+        Me.TextBox17.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TextBox17.DataField = "TipoCafe"
+        Me.TextBox17.Height = 0.2!
+        Me.TextBox17.Left = 3.25!
+        Me.TextBox17.Name = "TextBox17"
+        Me.TextBox17.Style = "ddo-char-set: 0; font-size: 9pt; "
+        Me.TextBox17.Text = Nothing
+        Me.TextBox17.Top = 0.0!
+        Me.TextBox17.Width = 0.75!
+        '
+        'TextBox18
+        '
+        Me.TextBox18.Border.BottomColor = System.Drawing.Color.Black
+        Me.TextBox18.Border.BottomStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TextBox18.Border.LeftColor = System.Drawing.Color.Black
+        Me.TextBox18.Border.LeftStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TextBox18.Border.RightColor = System.Drawing.Color.Black
+        Me.TextBox18.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TextBox18.Border.TopColor = System.Drawing.Color.Black
+        Me.TextBox18.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TextBox18.DataField = "TipoCompra"
+        Me.TextBox18.Height = 0.2!
+        Me.TextBox18.Left = 4.025!
+        Me.TextBox18.Name = "TextBox18"
+        Me.TextBox18.Style = "ddo-char-set: 0; font-size: 9pt; "
+        Me.TextBox18.Text = Nothing
+        Me.TextBox18.Top = 0.0!
+        Me.TextBox18.Width = 0.75!
         '
         'SrpMermaRecibo
         '
@@ -608,6 +746,12 @@ Partial Public Class SrpMermaRecibo
         CType(Me.TextBox10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TextBox11, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TextBox12, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextBox13, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextBox14, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextBox15, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextBox16, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextBox17, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextBox18, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub
@@ -637,4 +781,10 @@ Partial Public Class SrpMermaRecibo
     Friend WithEvents TextBox10 As DataDynamics.ActiveReports.TextBox
     Friend WithEvents TextBox11 As DataDynamics.ActiveReports.TextBox
     Friend WithEvents TextBox12 As DataDynamics.ActiveReports.TextBox
+    Friend WithEvents TextBox13 As DataDynamics.ActiveReports.TextBox
+    Friend WithEvents TextBox14 As DataDynamics.ActiveReports.TextBox
+    Friend WithEvents TextBox15 As DataDynamics.ActiveReports.TextBox
+    Friend WithEvents TextBox16 As DataDynamics.ActiveReports.TextBox
+    Friend WithEvents TextBox17 As DataDynamics.ActiveReports.TextBox
+    Friend WithEvents TextBox18 As DataDynamics.ActiveReports.TextBox
 End Class

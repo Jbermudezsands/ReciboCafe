@@ -107,6 +107,29 @@ Public Class FrmConsultas
 
             Dim DataAdapter As New SqlClient.SqlDataAdapter, SQlProductos As String
             Select Case Quien
+                Case "EmpresaTransporteReporte"
+                    SQlProductos = "SELECT DISTINCT EmpresaTransporte.Codigo, EmpresaTransporte.NombreEmpresa FROM EmpresaTransporte INNER JOIN VehiculoEmpresaTransporte ON EmpresaTransporte.IdEmpresaTransporte = VehiculoEmpresaTransporte.IdEmpresaTransporte INNER JOIN ContratoTransporte ON EmpresaTransporte.IdEmpresaTransporte = ContratoTransporte.IdEmpresaTransporte "
+
+                    Me.TrueDBGridConsultas.Columns(0).Caption = "Còdigo"
+                    Me.TrueDBGridConsultas.Columns(1).Caption = "Nombre"
+                    MiConexion.Open()
+
+                    DataAdapter = New SqlClient.SqlDataAdapter(SQlProductos, MiConexion)
+                    DataSet.Reset()
+                    DataAdapter.Fill(DataSet, "Consultas")
+                    Me.BindingConsultas.DataSource = DataSet.Tables("Consultas")
+                    Me.TrueDBGridConsultas.DataSource = Me.BindingConsultas
+                    Me.TrueDBGridConsultas.Columns(0).Caption = "Codigo"
+                    Me.TrueDBGridConsultas.Splits.Item(0).DisplayColumns(0).Width = 70
+                    Me.TrueDBGridConsultas.Columns(1).Caption = "Nombre Transportista"
+                    Me.TrueDBGridConsultas.Splits.Item(0).DisplayColumns(1).Width = 400
+
+
+
+                    MiConexion.Close()
+
+
+
                 Case "EmpresaTransporte"
                     SQlProductos = "SELECT DISTINCT EmpresaTransporte.Codigo, EmpresaTransporte.NombreEmpresa FROM EmpresaTransporte INNER JOIN VehiculoEmpresaTransporte ON EmpresaTransporte.IdEmpresaTransporte = VehiculoEmpresaTransporte.IdEmpresaTransporte INNER JOIN ContratoTransporte ON EmpresaTransporte.IdEmpresaTransporte = ContratoTransporte.IdEmpresaTransporte " & _
                                    "WHERE(ContratoTransporte.IdCosecha = " & IdCosecha & ")"
@@ -587,7 +610,7 @@ Public Class FrmConsultas
 
 
                 Case "CodigoProveedor"
-                    SQlProductos = "SELECT Cod_Proveedor As Codigo, Nombre_Proveedor + ' ' + Apellido_Proveedor As Nombres FROM Proveedor"
+                    SQlProductos = "SELECT Cod_Proveedor As Codigo, Nombre_Proveedor + ' ' + Apellido_Proveedor As Nombres, Cedula FROM Proveedor"
                     Me.TrueDBGridConsultas.Columns(0).Caption = "Còdigo"
                     Me.TrueDBGridConsultas.Columns(1).Caption = "Descripcion"
                     MiConexion.Open()
@@ -680,6 +703,10 @@ Public Class FrmConsultas
 
 
         Select Case Quien
+            Case "EmpresaTransporteReporte"
+                Posicion = Me.BindingConsultas.Position
+                Codigo = Me.BindingConsultas.Item(Posicion)("Codigo")
+                Descripcion = Me.BindingConsultas.Item(Posicion)("NombreEmpresa")
             Case "EmpresaTransporte"
                 Posicion = Me.BindingConsultas.Position
                 Codigo = Me.BindingConsultas.Item(Posicion)("Codigo")

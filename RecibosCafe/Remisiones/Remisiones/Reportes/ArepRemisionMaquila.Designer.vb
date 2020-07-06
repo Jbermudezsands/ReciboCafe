@@ -3302,7 +3302,7 @@ Partial Public Class ArepRemisionMaquila
         Me.PageSettings.Orientation = DataDynamics.ActiveReports.Document.PageOrientation.Landscape
         Me.PageSettings.PaperHeight = 11.0!
         Me.PageSettings.PaperWidth = 8.5!
-        Me.PrintWidth = 10.95486!
+        Me.PrintWidth = 11.06944!
         Me.Sections.Add(Me.ReportHeader1)
         Me.Sections.Add(Me.PageHeader1)
         Me.Sections.Add(Me.Detail1)

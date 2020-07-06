@@ -650,7 +650,7 @@ Public Class FrmLiquidacion
             Me.Button10.Enabled = False
             Me.txtnombre.Enabled = False
             Me.TxtCedula.Enabled = False
-            Me.CboMunicipio.Enabled = False
+            Me.CboMunicipio.Enabled = True
             Me.CboMoneda.Enabled = True
             Me.CboMonedas.Enabled = True
             Me.TabControl1.Enabled = True
@@ -887,17 +887,20 @@ Public Class FrmLiquidacion
             MsgBox("ESTE PROVEEDOR NO TIENE  CALIDADES", MsgBoxStyle.Information, "liquidacion")
         End If
 
+        '/////////////////reemplazo... Requerimiento 8
+        'SELECT  LugarAcopio.NomLugarAcopio, LugarAcopio.IdLugarAcopio, LugarAcopio.IdPadre, Municipio.Nombre, LugarAcopio.Activo  FROM LugarAcopio INNER JOIN   Municipio ON LugarAcopio.IdPadre = Municipio.IdLugarAcopio   WHERE(LugarAcopio.Activo = 1)
+
         IdMunicipio = 0
         If EsProductorManual = False Then
             '///////////////////////// CARGO EL COMBO MUNICIPIO SEGUN LOS DATOS DEL PROVEEDOR ////////////////////////////
             sql = " SELECT DISTINCT Finca.IdFinca, Finca.NomFinca, Finca.UbicaFinca, Municipio.IdMunicipio, Municipio.Nombre  FROM   Proveedor INNER JOIN  Finca ON Proveedor.IdProductor = Finca.IdProductor INNER JOIN        Comarca ON Finca.IdComarca = Comarca.IdComarca INNER JOIN   Municipio ON Comarca.IdMunicipio = Municipio.IdMunicipio WHERE (Proveedor.IdProductor = '" & IdProductor & "')"
             DataAdapter = New SqlClient.SqlDataAdapter(sql, MiConexion)
             DataAdapter.Fill(DataSet, "municio")
-            Me.CboMunicipio.DisplayMember = "Nombre"
+            'Me.CboMunicipio.DisplayMember = "Nombre"    
             Me.CboFinca.DisplayMember = "NomFinca"
             If DataSet.Tables("municio").Rows.Count <> 0 Then
-                Me.CboMunicipio.DataSource = DataSet.Tables("municio")
-                Me.CboMunicipio.Text = DataSet.Tables("municio").Rows(0)("Nombre")
+                'Me.CboMunicipio.DataSource = DataSet.Tables("municio")
+                'Me.CboMunicipio.Text = DataSet.Tables("municio").Rows(0)("Nombre")
 
                 Me.CboFinca.DataSource = DataSet.Tables("municio")
                 Me.CboFinca.Text = DataSet.Tables("municio").Rows(0)("NomFinca")
@@ -905,10 +908,10 @@ Public Class FrmLiquidacion
                 sql = " SELECT DISTINCT IdMunicipio, Nombre, IdLugarAcopio FROM     Municipio WHERE        (IdLugarAcopio = '" & IdLocalidadLiqui & "')"
                 DataAdapter = New SqlClient.SqlDataAdapter(sql, MiConexion)
                 DataAdapter.Fill(DataSet, "municipo")
-                Me.CboMunicipio.DisplayMember = "Nombre"
+                'Me.CboMunicipio.DisplayMember = "Nombre"
                 If DataSet.Tables("municipo").Rows.Count <> 0 Then
-                    Me.CboMunicipio.DataSource = DataSet.Tables("municipo")
-                    Me.CboMunicipio.Text = DataSet.Tables("municipo").Rows(0)("Nombre")
+                    'Me.CboMunicipio.DataSource = DataSet.Tables("municipo")
+                    'Me.CboMunicipio.Text = DataSet.Tables("municipo").Rows(0)("Nombre")
                 Else
                     Me.CboMunicipio.Text = ""
                     Me.CboFinca.Text = ""
@@ -919,9 +922,9 @@ Public Class FrmLiquidacion
             sql = " SELECT DISTINCT Finca.IdFinca, Finca.NomFinca, Finca.UbicaFinca, Municipio.IdMunicipio, Municipio.Nombre  FROM   Proveedor INNER JOIN  Finca ON Proveedor.IdProductor = Finca.IdProductor INNER JOIN  Comarca ON Finca.IdComarca = Comarca.IdComarca INNER JOIN   Municipio ON Comarca.IdMunicipio = Municipio.IdMunicipio WHERE (Proveedor.IdProductor = '-10000')"
             DataAdapter = New SqlClient.SqlDataAdapter(sql, MiConexion)
             DataAdapter.Fill(DataSet, "municio")
-            Me.CboMunicipio.DisplayMember = "Nombre"
+            'Me.CboMunicipio.DisplayMember = "Nombre"
             Me.CboFinca.DisplayMember = "NomFinca"
-            Me.CboMunicipio.DataSource = DataSet.Tables("municipo")
+            'Me.CboMunicipio.DataSource = DataSet.Tables("municipo")
             Me.CboMunicipio.Text = ""
         End If
 

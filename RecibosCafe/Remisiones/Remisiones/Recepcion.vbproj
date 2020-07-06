@@ -542,6 +542,18 @@
     <Compile Include="Reportes\ArepRemisionTicketMaquila.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reportes\ArepReporteRemision.Designer.vb">
+      <DependentUpon>ArepReporteRemision.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ArepReporteRemision.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\ArepReporteResumenLiquidacion.Designer.vb">
+      <DependentUpon>ArepReporteResumenLiquidacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ArepReporteResumenLiquidacion.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reportes\SrpCertificado.Designer.vb">
       <DependentUpon>SrpCertificado.vb</DependentUpon>
     </Compile>
@@ -847,6 +859,14 @@
     <EmbeddedResource Include="Reportes\ArepRemisionTicketMaquila.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ArepRemisionTicketMaquila.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\ArepReporteRemision.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ArepReporteRemision.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\ArepReporteResumenLiquidacion.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ArepReporteResumenLiquidacion.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\SrpCertificado.resx">
       <DependentUpon>SrpCertificado.vb</DependentUpon>

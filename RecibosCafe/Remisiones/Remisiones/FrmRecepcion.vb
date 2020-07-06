@@ -2178,15 +2178,15 @@ Public Class FrmRecepcion
                 ArepBitacoraRecepcion.LblOriginal.Visible = True
                 ArepBitacoraRecepcion.LblOriginal.Text = "O R I G I N A L"
                 ArepBitacoraRecepcion.Run(False)
-                ViewerForm.arvMain.Document.Print(False, False, False)
-                'ViewerForm.Show()
+                'ViewerForm.arvMain.Document.Print(False, False, False)
+                ViewerForm.Show()
                 My.Application.DoEvents()
             Else
                 ArepBitacoraRecepcion.LblOriginal.Visible = True
                 ArepBitacoraRecepcion.LblOriginal.Text = "C O P I A"
                 ArepBitacoraRecepcion.Run(False)
-                ViewerForm.arvMain.Document.Print(False, False, False)
-                'ViewerForm.Show()
+                'ViewerForm.arvMain.Document.Print(False, False, False)
+                ViewerForm.Show()
                 My.Application.DoEvents()
 
             End If

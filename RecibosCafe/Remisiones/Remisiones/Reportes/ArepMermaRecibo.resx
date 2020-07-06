@@ -117,7 +117,49 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="TextBox7.OutputFormat" xml:space="preserve">
+    <value>#,##0.00</value>
+  </data>
+  <data name="TextBox8.OutputFormat" xml:space="preserve">
+    <value>#,##0.00</value>
+  </data>
+  <data name="TxtMontoPagado.OutputFormat" xml:space="preserve">
+    <value>#,##0.00</value>
+  </data>
+  <data name="TxtMerma.OutputFormat" xml:space="preserve">
+    <value>#,##0.00</value>
+  </data>
+  <data name="TxtTotalMontoPagado.OutputFormat" xml:space="preserve">
+    <value>#,##0.00</value>
+  </data>
+  <data name="TextBox10.OutputFormat" xml:space="preserve">
+    <value>#,##0.00</value>
+  </data>
+  <data name="TextBox11.OutputFormat" xml:space="preserve">
+    <value>#,##0.00</value>
+  </data>
+  <data name="TxtTotalMerma.OutputFormat" xml:space="preserve">
+    <value>#,##0.00</value>
+  </data>
   <metadata name="$this.TrayLargeIcon" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="OleDBDataSource1.SQL" xml:space="preserve">
+    <value>SELECT        Region.Nombre AS Region, LugarAcopio.NomLugarAcopio AS Localidad, Calidad.NomCalidad AS Calidad, EstadoFisico.Descripcion AS EstadoFisico, 
+                         TipoCafe.Nombre AS TipoCompra,  TipoCafe.Nombre As TipoCafe, DetalleReciboCafePergamino.PesoBruto - DetalleReciboCafePergamino.Tara AS PesoNeto, ReciboCafePergamino.Codigo, 
+                         CASE WHEN DetalleDistribucion.Monto IS NULL THEN 0 ELSE DetalleDistribucion.Monto END AS MontoPagado, DetalleReciboCafePergamino.PesoBruto, 
+                         Region.Nombre AS Tipo, DetalleDistribucion.Monto AS Merma
+FROM            LiquidacionPergamino INNER JOIN
+                         DetalleLiquidacionPergamino ON LiquidacionPergamino.IdLiquidacionPergamino = DetalleLiquidacionPergamino.IdLiquidacionPergamino INNER JOIN
+                         DetalleDistribucion ON LiquidacionPergamino.IdLiquidacionPergamino = DetalleDistribucion.IdLiquidacionPergamino RIGHT OUTER JOIN
+                         ReciboCafePergamino INNER JOIN
+                         LugarAcopio ON ReciboCafePergamino.IdLocalidad = LugarAcopio.IdLugarAcopio INNER JOIN
+                         Region ON LugarAcopio.IdRegion = Region.IdRegion INNER JOIN
+                         Calidad ON ReciboCafePergamino.IdCalidad = Calidad.IdCalidad INNER JOIN
+                         DetalleReciboCafePergamino ON ReciboCafePergamino.IdReciboPergamino = DetalleReciboCafePergamino.IdReciboPergamino INNER JOIN
+                         EstadoFisico ON DetalleReciboCafePergamino.IdEdoFisico = EstadoFisico.EstadoFisico INNER JOIN
+                         TipoCafe ON ReciboCafePergamino.IdTipoCafe = TipoCafe.IdTipoCafe ON 
+                         DetalleLiquidacionPergamino.IdReciboPergamino = ReciboCafePergamino.IdReciboPergamino
+WHERE        (Region.Nombre = '000000')</value>
+  </data>
 </root>

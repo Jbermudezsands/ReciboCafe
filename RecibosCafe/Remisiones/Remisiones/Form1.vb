@@ -352,6 +352,28 @@ Public Class MDIParent1
 
     Private Sub RbnMermaBodegaXReciboXRemision_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles RbnMermaBodegaXReciboXRemision.Click
         My.Forms.FrmReportes.MdiParent = Me
+        My.Forms.FrmReportes.GroupBox4.Location = New Point(12, 102)
+        My.Forms.FrmReportes.GroupBox4.Visible = True
+        My.Forms.FrmReportes.GroupBox6.Location = New Point(446, 10)
+        My.Forms.FrmReportes.GroupBox6.Visible = True
+
+        My.Forms.FrmReportes.BtnImprimir.Visible = True
+        My.Forms.FrmReportes.BtnImprimir.Location = New Point(875, 16)
+        My.Forms.FrmReportes.Show()
+    End Sub
+
+    Private Sub RbnMermaPI_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles RbnMermaPI.Click
+        My.Forms.FrmReportes.MdiParent = Me
+        My.Forms.FrmReportes.GroupBox4.Location = New Point(12, 102)
+        My.Forms.FrmReportes.GroupBox4.Visible = True
+        My.Forms.FrmReportes.GroupBox6.Location = New Point(446, 10)
+        My.Forms.FrmReportes.GroupBox6.Visible = True
+        My.Forms.FrmReportes.GroupBox8.Location = New Point(12, 99)
+        My.Forms.FrmReportes.GroupBox8.Visible = True
+        My.Forms.FrmReportes.GroupBox11.Location = New Point(12, 261)
+        My.Forms.FrmReportes.GroupBox11.Visible = True
+        My.Forms.FrmReportes.BtnImprimirMermaPI.Visible = True
+        My.Forms.FrmReportes.BtnImprimirMermaPI.Location = New Point(875, 16)
         My.Forms.FrmReportes.Show()
     End Sub
 End Class
