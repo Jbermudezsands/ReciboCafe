@@ -5195,6 +5195,7 @@ Public Class FrmRemision2
             ArepRemisionMaquila.LblDescripcion.Text = "CALIDAD:" & Me.CboCalidad.Text & "  UNIDAD DE MEDIDA KG"
             ArepRemisionMaquila.LblTipoRemision.Text = "SERVICIO DE MAQUILA"
             ArepRemisionMaquila.TxtObservaciones.Text = Me.Observaciones
+            ArepRemisionMaquila.TxtOrigenRemision.Text = Me.LblSucursal.Text
 
             'ArepRemisionTicketMaquila.LblOrden.Text = Me.TxtNumeroRemision.Text
             'ArepRemisionTicketMaquila.LblFechaOrden.Text = Format(Me.DTPRemFechCarga.Value, "dd/MM/yyyy HH:mm")
@@ -5229,6 +5230,7 @@ Public Class FrmRemision2
             ArepRemisionPergamino.LblDescripcion.Text = "CALIDAD:" & Me.CboCalidad.Text & "  UNIDAD DE MEDIDA KG"
             ArepRemisionPergamino.LblTipoRemision.Text = "COMPRA DIRECTA - EXPASA"
             ArepRemisionPergamino.TxtObservaciones.Text = Me.Observaciones
+            ArepRemisionPergamino.TxtOrigenRemision.Text = Me.LblSucursal.Text
             'Arepremisionticket.LblFechaOrden.Text = Format(Me.DTPRemFechCarga.Value, "dd/MM/yyyy HH:mm")
             'Arepremisionticket.LblFechaSalida.Text = Format(Me.DTPRemFechSalid.Value, "dd/MM/yyyy HH:mm")
             'Arepremisionticket.LblCosecha.Text = Mid(Me.LblCosecha.Text, 10)

@@ -366,6 +366,9 @@ Public Class FrmLiquidacion
         Dim Fechainicial As Date, FechaFinal As Date, Fechanow As Date, i As Integer, count As Double, TipoImp As String
 
 
+        Me.LblSaldoDeudor.Text = "0.00"
+        Me.txtnombre.Text = ""
+        Me.TxtCedula.Text = ""
 
         'Quien = "Load"
         'If UsuarioType = "AutorizaPrecioDiscrecionalidad" Or UsuarioType = "AutorizaPrecioFueraDiscrecionalidad" Then
@@ -862,6 +865,17 @@ Public Class FrmLiquidacion
                 i = i + 1
             Loop
         End If
+
+        Me.LblSaldoDeudor.Text = "0.00"
+        '//////////////////////////////////////////CARGO EL SALO DEL PROVEEDOR //////////////////////////////////////////////////////////
+        sql = "SELECT IdAvioXProductor, NumeroAvio, IdAvio, IdProductor, IdMoneda, Saldo, FechaActualizacion FROM AvioXProductor  WHERE(IdProductor = " & IdProductor & ") ORDER BY FechaActualizacion DESC"
+        DataAdapter = New SqlClient.SqlDataAdapter(sql, MiConexion)
+        DataAdapter.Fill(DataSet, "SaldoAvio")
+        If DataSet.Tables("SaldoAvio").Rows.Count <> 0 Then
+            Me.LblSaldoDeudor.Text = Format(DataSet.Tables("SaldoAvio").Rows(0)("Saldo"), "##,##0.00")
+        End If
+
+
         '///////////////////////////CARGO LAS CALIDADES SEGUN LAS CALIDADES QUE HA DADO EL PROVEEDOR//////////////////////////////////
 
         If Me.CboCodigoProveedor.Text = "00001" Then
@@ -1708,6 +1722,8 @@ Public Class FrmLiquidacion
     End Sub
 
     Private Sub C1Combo1_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CboLocalidadLiq.TextChanged
+        Dim IdRegion As Double
+
         DataSet.Reset()
         Me.BinDistribucion.ResetBindings(True)
         Me.LblSucursal.Text = Me.CboLocalidadLiq.Text
@@ -1719,7 +1735,31 @@ Public Class FrmLiquidacion
             'Exit Sub
         Else
             IdLocalidadLiqui = DataSet.Tables("locali").Rows(0)("IdLugarAcopio")
+            IdRegion = DataSet.Tables("locali").Rows(0)("IdRegion")
             Me.TxtIdLocalidad.Text = DataSet.Tables("locali").Rows(0)("CodLugarAcopio")
+
+            '//////////////////////////////////LISTADO DE MUNICIPIOS //////////////////////////
+            sql = "SELECT DISTINCT Municipio.Nombre FROM LugarAcopio INNER JOIN Region ON LugarAcopio.IdRegion = Region.IdRegion INNER JOIN Municipio ON LugarAcopio.IdPadre = Municipio.IdMunicipio WHERE(Region.IdRegion =  " & IdRegion & ")"
+            DataAdapter = New SqlClient.SqlDataAdapter(sql, MiConexion)
+            DataAdapter.Fill(DataSet, "Municipio")
+            If DataSet.Tables("Municipio").Rows.Count <> 0 Then
+                Me.CboMunicipio.DisplayMember = "Nombre"
+                Me.CboMunicipio.DataSource = DataSet.Tables("Municipio")
+            End If
+
+
+
+
+            '////////////////////////////////////MUNICIPIOS SEGUN LA LOCALIDAD///////////////////////////////
+            sql = "SELECT  LugarAcopio.NomLugarAcopio, LugarAcopio.IdLugarAcopio, LugarAcopio.IdPadre, Municipio.Nombre, LugarAcopio.Activo FROM LugarAcopio INNER JOIN Municipio ON LugarAcopio.IdPadre = Municipio.IdLugarAcopio  WHERE (LugarAcopio.IdLugarAcopio = " & IdLocalidadLiqui & ") ORDER BY Municipio.Nombre"
+            DataAdapter = New SqlClient.SqlDataAdapter(sql, MiConexion)
+            DataAdapter.Fill(DataSet, "MunicipioLocalidad")
+            If DataSet.Tables("MunicipioLocalidad").Rows.Count <> 0 Then
+                Me.CboMunicipio.Text = DataSet.Tables("MunicipioLocalidad").Rows(0)("Nombre")
+            End If
+
+            DataSet.Tables("MunicipioLocalidad").Reset()
+
 
             'If Quien = "NumeroChange" Then
             '    Quien = ""
@@ -1737,8 +1777,8 @@ Public Class FrmLiquidacion
             '    Me.TxtNumeroEnsamble.Text = Format(DataSet.Tables("LiquidaCodigo").Rows(0)("Codigo") + 1, "00000#")
             'End If
 
-        End If
-        CalculaPrecioBruto()
+            End If
+            CalculaPrecioBruto()
 
     End Sub
 
@@ -2399,6 +2439,11 @@ Public Class FrmLiquidacion
 
         Me.LblMontoComp.Text = Monto
 
+
+        If Me.CboMunicipio.Text = "" Then
+            MsgBox("El Municipio no Puede quedar Vacio", MsgBoxStyle.Critical, "Sistema Bascula")
+            Exit Sub
+        End If
 
 
         If CDbl(Me.LblMontoComp.Text) <> CDbl(Me.TxtTotalDol.Text) Then
@@ -3305,6 +3350,7 @@ Public Class FrmLiquidacion
             Me.CboLocalidadLiq.Text = Me.LblSucursal.Text
         End If
 
+        Me.LblSaldoDeudor.Text = "0.00"
         Me.CboCodigoProveedor.Text = ""
         'Me.TxtNumeroEnsamble.Text = "---0---"
         Me.txtnombre.Text = ""

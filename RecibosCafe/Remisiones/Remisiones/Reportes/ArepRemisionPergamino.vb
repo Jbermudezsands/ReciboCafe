@@ -2,7 +2,7 @@ Imports DataDynamics.ActiveReports
 Imports DataDynamics.ActiveReports.Document 
 
 Public Class ArepRemisionPergamino
-    Public MiConexion As New SqlClient.SqlConnection(Conexion)
+    Public MiConexion As New SqlClient.SqlConnection(Conexion), OrigenRemision As String
     Public IdRemision As Double, i As Double
 
     Private Sub PageHeader1_Format(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PageHeader1.Format

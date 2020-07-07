@@ -2,7 +2,7 @@ Imports DataDynamics.ActiveReports
 Imports DataDynamics.ActiveReports.Document 
 
 Public Class ArepRemisionMaquila 
-    Public IdRemision As Double
+    Public IdRemision As Double, OrigenRemision As String
     Public MiConexion As New SqlClient.SqlConnection(Conexion)
     Public i As Double
 

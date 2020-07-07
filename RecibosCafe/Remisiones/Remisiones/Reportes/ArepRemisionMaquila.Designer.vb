@@ -110,6 +110,8 @@ Partial Public Class ArepRemisionMaquila
         Me.LblOrigen = New DataDynamics.ActiveReports.TextBox
         Me.LblDestino = New DataDynamics.ActiveReports.TextBox
         Me.Label4 = New DataDynamics.ActiveReports.Label
+        Me.Label40 = New DataDynamics.ActiveReports.Label
+        Me.TxtOrigenRemision = New DataDynamics.ActiveReports.TextBox
         Me.ReportFooter1 = New DataDynamics.ActiveReports.ReportFooter
         Me.Label25 = New DataDynamics.ActiveReports.Label
         Me.Label22 = New DataDynamics.ActiveReports.Label
@@ -261,6 +263,8 @@ Partial Public Class ArepRemisionMaquila
         CType(Me.LblOrigen, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LblDestino, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Label4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Label40, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtOrigenRemision, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Label25, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Label22, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtFechaCarga1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -922,7 +926,7 @@ Partial Public Class ArepRemisionMaquila
         '
         'ReportHeader1
         '
-        Me.ReportHeader1.Controls.AddRange(New DataDynamics.ActiveReports.ARControl() {Me.Label36, Me.LblDescripcion, Me.Label38, Me.Label39, Me.Label42, Me.Label43, Me.Label44, Me.Label45, Me.Label46, Me.Label47, Me.Label49, Me.Label48, Me.LblCantSaco1, Me.LblPBRecepcion1, Me.LblP1, Me.LblPBRemision1, Me.ImgLogo, Me.LblCompañia, Me.Label1, Me.LblTipoRemision, Me.lblOrderNum, Me.LblNumeroRemision, Me.LblCosecha, Me.lblOrderDate, Me.Label59, Me.Label60, Me.LblCantSaco11, Me.LblCantSaco2, Me.LblPBRecepcion2, Me.LblP2, Me.LblPBRemision2, Me.LblCantSaco22, Me.LblCantSaco3, Me.LblPBRecepcion3, Me.LblP3, Me.LblPBRemision3, Me.LblCantSaco33, Me.Label3, Me.LblEmpresaTransporte, Me.Label5, Me.LblPlaca, Me.Label6, Me.Label7, Me.Label8, Me.Label9, Me.Label10, Me.Label11, Me.LblConductor, Me.LblMarca, Me.LblCedula, Me.TextBox5, Me.LblFechaOrden, Me.LblFechaSalida, Me.Label12, Me.Label13, Me.LblOrigen, Me.LblDestino, Me.Label4})
+        Me.ReportHeader1.Controls.AddRange(New DataDynamics.ActiveReports.ARControl() {Me.Label36, Me.LblDescripcion, Me.Label38, Me.Label39, Me.Label42, Me.Label43, Me.Label44, Me.Label45, Me.Label46, Me.Label47, Me.Label49, Me.Label48, Me.LblCantSaco1, Me.LblPBRecepcion1, Me.LblP1, Me.LblPBRemision1, Me.ImgLogo, Me.LblCompañia, Me.Label1, Me.LblTipoRemision, Me.lblOrderNum, Me.LblNumeroRemision, Me.LblCosecha, Me.lblOrderDate, Me.Label59, Me.Label60, Me.LblCantSaco11, Me.LblCantSaco2, Me.LblPBRecepcion2, Me.LblP2, Me.LblPBRemision2, Me.LblCantSaco22, Me.LblCantSaco3, Me.LblPBRecepcion3, Me.LblP3, Me.LblPBRemision3, Me.LblCantSaco33, Me.Label3, Me.LblEmpresaTransporte, Me.Label5, Me.LblPlaca, Me.Label6, Me.Label7, Me.Label8, Me.Label9, Me.Label10, Me.Label11, Me.LblConductor, Me.LblMarca, Me.LblCedula, Me.TextBox5, Me.LblFechaOrden, Me.LblFechaSalida, Me.Label12, Me.Label13, Me.LblOrigen, Me.LblDestino, Me.Label4, Me.Label40, Me.TxtOrigenRemision})
         Me.ReportHeader1.Height = 2.333333!
         Me.ReportHeader1.Name = "ReportHeader1"
         '
@@ -1986,11 +1990,11 @@ Partial Public Class ArepRemisionMaquila
         Me.Label13.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
         Me.Label13.Height = 0.1666667!
         Me.Label13.HyperLink = Nothing
-        Me.Label13.Left = 8.666667!
+        Me.Label13.Left = 8.675!
         Me.Label13.Name = "Label13"
         Me.Label13.Style = "ddo-char-set: 0; text-align: left; font-weight: normal; font-size: 8.25pt; "
         Me.Label13.Text = "Destino"
-        Me.Label13.Top = 1.166667!
+        Me.Label13.Top = 1.4!
         Me.Label13.Width = 0.5000003!
         '
         'LblOrigen
@@ -2003,13 +2007,13 @@ Partial Public Class ArepRemisionMaquila
         Me.LblOrigen.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
         Me.LblOrigen.Border.TopColor = System.Drawing.Color.Black
         Me.LblOrigen.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.LblOrigen.Height = 0.1666667!
-        Me.LblOrigen.Left = 9.166667!
+        Me.LblOrigen.Height = 0.175!
+        Me.LblOrigen.Left = 9.225!
         Me.LblOrigen.Name = "LblOrigen"
         Me.LblOrigen.Style = "ddo-char-set: 0; font-size: 8.25pt; "
         Me.LblOrigen.Text = Nothing
-        Me.LblOrigen.Top = 1.0!
-        Me.LblOrigen.Width = 1.777778!
+        Me.LblOrigen.Top = 1.2!
+        Me.LblOrigen.Width = 1.675!
         '
         'LblDestino
         '
@@ -2022,11 +2026,11 @@ Partial Public Class ArepRemisionMaquila
         Me.LblDestino.Border.TopColor = System.Drawing.Color.Black
         Me.LblDestino.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
         Me.LblDestino.Height = 0.1666667!
-        Me.LblDestino.Left = 9.166667!
+        Me.LblDestino.Left = 9.175!
         Me.LblDestino.Name = "LblDestino"
         Me.LblDestino.Style = "ddo-char-set: 0; font-size: 8.25pt; "
         Me.LblDestino.Text = Nothing
-        Me.LblDestino.Top = 1.166667!
+        Me.LblDestino.Top = 1.4!
         Me.LblDestino.Width = 1.777778!
         '
         'Label4
@@ -2047,6 +2051,43 @@ Partial Public Class ArepRemisionMaquila
         Me.Label4.Text = "Emp. Transporte:"
         Me.Label4.Top = 1.0!
         Me.Label4.Width = 0.9444445!
+        '
+        'Label40
+        '
+        Me.Label40.Border.BottomColor = System.Drawing.Color.Black
+        Me.Label40.Border.BottomStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.Label40.Border.LeftColor = System.Drawing.Color.Black
+        Me.Label40.Border.LeftStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.Label40.Border.RightColor = System.Drawing.Color.Black
+        Me.Label40.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.Label40.Border.TopColor = System.Drawing.Color.Black
+        Me.Label40.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.Label40.Height = 0.15!
+        Me.Label40.HyperLink = Nothing
+        Me.Label40.Left = 8.675!
+        Me.Label40.Name = "Label40"
+        Me.Label40.Style = "ddo-char-set: 0; text-align: left; font-weight: normal; font-size: 8.25pt; "
+        Me.Label40.Text = "Ultimo PI"
+        Me.Label40.Top = 1.225!
+        Me.Label40.Width = 0.4999999!
+        '
+        'TxtOrigenRemision
+        '
+        Me.TxtOrigenRemision.Border.BottomColor = System.Drawing.Color.Black
+        Me.TxtOrigenRemision.Border.BottomStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TxtOrigenRemision.Border.LeftColor = System.Drawing.Color.Black
+        Me.TxtOrigenRemision.Border.LeftStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TxtOrigenRemision.Border.RightColor = System.Drawing.Color.Black
+        Me.TxtOrigenRemision.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TxtOrigenRemision.Border.TopColor = System.Drawing.Color.Black
+        Me.TxtOrigenRemision.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TxtOrigenRemision.Height = 0.1750001!
+        Me.TxtOrigenRemision.Left = 9.225!
+        Me.TxtOrigenRemision.Name = "TxtOrigenRemision"
+        Me.TxtOrigenRemision.Style = "ddo-char-set: 0; font-size: 8.25pt; "
+        Me.TxtOrigenRemision.Text = Nothing
+        Me.TxtOrigenRemision.Top = 1.0!
+        Me.TxtOrigenRemision.Width = 1.7!
         '
         'ReportFooter1
         '
@@ -3302,7 +3343,7 @@ Partial Public Class ArepRemisionMaquila
         Me.PageSettings.Orientation = DataDynamics.ActiveReports.Document.PageOrientation.Landscape
         Me.PageSettings.PaperHeight = 11.0!
         Me.PageSettings.PaperWidth = 8.5!
-        Me.PrintWidth = 11.06944!
+        Me.PrintWidth = 11.08194!
         Me.Sections.Add(Me.ReportHeader1)
         Me.Sections.Add(Me.PageHeader1)
         Me.Sections.Add(Me.Detail1)
@@ -3401,6 +3442,8 @@ Partial Public Class ArepRemisionMaquila
         CType(Me.LblOrigen, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LblDestino, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Label4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Label40, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtOrigenRemision, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Label25, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Label22, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtFechaCarga1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3619,4 +3662,6 @@ Partial Public Class ArepRemisionMaquila
     Private WithEvents Label75 As DataDynamics.ActiveReports.Label
     Friend WithEvents TxtDestino3 As DataDynamics.ActiveReports.TextBox
     Friend WithEvents LblNumero As DataDynamics.ActiveReports.Label
+    Private WithEvents Label40 As DataDynamics.ActiveReports.Label
+    Friend WithEvents TxtOrigenRemision As DataDynamics.ActiveReports.TextBox
 End Class
