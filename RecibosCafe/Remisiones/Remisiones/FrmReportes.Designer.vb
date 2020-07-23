@@ -30,6 +30,7 @@ Partial Class FrmReportes
         Me.GroupBox1 = New System.Windows.Forms.GroupBox
         Me.Label4 = New System.Windows.Forms.Label
         Me.GroupBox6 = New System.Windows.Forms.GroupBox
+        Me.ChkTodasCalidades = New System.Windows.Forms.CheckBox
         Me.Label21 = New System.Windows.Forms.Label
         Me.CboUnidadRL = New C1.Win.C1List.C1Combo
         Me.CboCalidadRL = New C1.Win.C1List.C1Combo
@@ -40,6 +41,7 @@ Partial Class FrmReportes
         Me.CboEstado = New System.Windows.Forms.ComboBox
         Me.Label11 = New System.Windows.Forms.Label
         Me.GroupBox4 = New System.Windows.Forms.GroupBox
+        Me.ChkEstadoTodos = New System.Windows.Forms.CheckBox
         Me.GroupBox5 = New System.Windows.Forms.GroupBox
         Me.Label7 = New System.Windows.Forms.Label
         Me.BtnImprimir = New System.Windows.Forms.Button
@@ -47,6 +49,7 @@ Partial Class FrmReportes
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar
         Me.ProgressBar2 = New System.Windows.Forms.ProgressBar
         Me.GroupBox8 = New System.Windows.Forms.GroupBox
+        Me.ChkTodasLocalidades = New System.Windows.Forms.CheckBox
         Me.Label10 = New System.Windows.Forms.Label
         Me.CboRegion = New C1.Win.C1List.C1Combo
         Me.GroupBox7 = New System.Windows.Forms.GroupBox
@@ -61,10 +64,14 @@ Partial Class FrmReportes
         Me.Label6 = New System.Windows.Forms.Label
         Me.BtnImprimirMermaPI = New System.Windows.Forms.Button
         Me.GroupBox11 = New System.Windows.Forms.GroupBox
+        Me.ChkTodasModalidades = New System.Windows.Forms.CheckBox
         Me.GroupBox12 = New System.Windows.Forms.GroupBox
         Me.Label12 = New System.Windows.Forms.Label
         Me.Label13 = New System.Windows.Forms.Label
         Me.CboModalidad = New System.Windows.Forms.ComboBox
+        Me.BtnProcesar = New System.Windows.Forms.Button
+        Me.TDGridResumenLiquidacion = New C1.Win.C1TrueDBGrid.C1TrueDBGrid
+        Me.BtnReimprimir = New System.Windows.Forms.Button
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -83,6 +90,7 @@ Partial Class FrmReportes
         Me.GroupBox10.SuspendLayout()
         Me.GroupBox11.SuspendLayout()
         Me.GroupBox12.SuspendLayout()
+        CType(Me.TDGridResumenLiquidacion, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupBox2
@@ -181,6 +189,7 @@ Partial Class FrmReportes
         'GroupBox6
         '
         Me.GroupBox6.BackColor = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(94, Byte), Integer), CType(CType(32, Byte), Integer))
+        Me.GroupBox6.Controls.Add(Me.ChkTodasCalidades)
         Me.GroupBox6.Controls.Add(Me.GroupBox1)
         Me.GroupBox6.Controls.Add(Me.Label21)
         Me.GroupBox6.Controls.Add(Me.CboUnidadRL)
@@ -192,6 +201,17 @@ Partial Class FrmReportes
         Me.GroupBox6.TabIndex = 251
         Me.GroupBox6.TabStop = False
         Me.GroupBox6.Visible = False
+        '
+        'ChkTodasCalidades
+        '
+        Me.ChkTodasCalidades.AutoSize = True
+        Me.ChkTodasCalidades.ForeColor = System.Drawing.Color.White
+        Me.ChkTodasCalidades.Location = New System.Drawing.Point(272, 57)
+        Me.ChkTodasCalidades.Name = "ChkTodasCalidades"
+        Me.ChkTodasCalidades.Size = New System.Drawing.Size(121, 17)
+        Me.ChkTodasCalidades.TabIndex = 249
+        Me.ChkTodasCalidades.Text = "Todas las Calidades"
+        Me.ChkTodasCalidades.UseVisualStyleBackColor = True
         '
         'Label21
         '
@@ -285,7 +305,7 @@ Partial Class FrmReportes
         'Button15
         '
         Me.Button15.Image = CType(resources.GetObject("Button15.Image"), System.Drawing.Image)
-        Me.Button15.Location = New System.Drawing.Point(368, 101)
+        Me.Button15.Location = New System.Drawing.Point(368, 91)
         Me.Button15.Name = "Button15"
         Me.Button15.Size = New System.Drawing.Size(35, 38)
         Me.Button15.TabIndex = 244
@@ -313,7 +333,7 @@ Partial Class FrmReportes
         Me.CboLocalidad.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CboLocalidad.Images.Add(CType(resources.GetObject("CboLocalidad.Images"), System.Drawing.Image))
         Me.CboLocalidad.ItemHeight = 35
-        Me.CboLocalidad.Location = New System.Drawing.Point(86, 101)
+        Me.CboLocalidad.Location = New System.Drawing.Point(86, 91)
         Me.CboLocalidad.MatchEntryTimeout = CType(2000, Long)
         Me.CboLocalidad.MaxDropDownItems = CType(6, Short)
         Me.CboLocalidad.MaxLength = 32767
@@ -332,7 +352,7 @@ Partial Class FrmReportes
         Me.Label18.AutoSize = True
         Me.Label18.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label18.ForeColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(253, Byte), Integer), CType(CType(253, Byte), Integer))
-        Me.Label18.Location = New System.Drawing.Point(9, 111)
+        Me.Label18.Location = New System.Drawing.Point(9, 101)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(77, 20)
         Me.Label18.TabIndex = 241
@@ -362,15 +382,28 @@ Partial Class FrmReportes
         '
         'GroupBox4
         '
+        Me.GroupBox4.Controls.Add(Me.ChkEstadoTodos)
         Me.GroupBox4.Controls.Add(Me.GroupBox5)
         Me.GroupBox4.Controls.Add(Me.Label11)
         Me.GroupBox4.Controls.Add(Me.CboEstado)
-        Me.GroupBox4.Location = New System.Drawing.Point(532, 457)
+        Me.GroupBox4.Location = New System.Drawing.Point(532, 455)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(406, 104)
+        Me.GroupBox4.Size = New System.Drawing.Size(406, 114)
         Me.GroupBox4.TabIndex = 254
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Visible = False
+        '
+        'ChkEstadoTodos
+        '
+        Me.ChkEstadoTodos.AutoSize = True
+        Me.ChkEstadoTodos.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ChkEstadoTodos.ForeColor = System.Drawing.Color.White
+        Me.ChkEstadoTodos.Location = New System.Drawing.Point(198, 90)
+        Me.ChkEstadoTodos.Name = "ChkEstadoTodos"
+        Me.ChkEstadoTodos.Size = New System.Drawing.Size(167, 19)
+        Me.ChkEstadoTodos.TabIndex = 254
+        Me.ChkEstadoTodos.Text = "Todos los Estados Fisicos"
+        Me.ChkEstadoTodos.UseVisualStyleBackColor = True
         '
         'GroupBox5
         '
@@ -397,7 +430,7 @@ Partial Class FrmReportes
         Me.BtnImprimir.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnImprimir.Image = Global.Remisiones.My.Resources.Resources.icons8_print_48
         Me.BtnImprimir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtnImprimir.Location = New System.Drawing.Point(924, 16)
+        Me.BtnImprimir.Location = New System.Drawing.Point(869, 8)
         Me.BtnImprimir.Name = "BtnImprimir"
         Me.BtnImprimir.Size = New System.Drawing.Size(131, 48)
         Me.BtnImprimir.TabIndex = 255
@@ -436,6 +469,7 @@ Partial Class FrmReportes
         'GroupBox8
         '
         Me.GroupBox8.BackColor = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(94, Byte), Integer), CType(CType(32, Byte), Integer))
+        Me.GroupBox8.Controls.Add(Me.ChkTodasLocalidades)
         Me.GroupBox8.Controls.Add(Me.Label10)
         Me.GroupBox8.Controls.Add(Me.CboRegion)
         Me.GroupBox8.Controls.Add(Me.GroupBox7)
@@ -448,12 +482,23 @@ Partial Class FrmReportes
         Me.GroupBox8.TabIndex = 259
         Me.GroupBox8.TabStop = False
         '
+        'ChkTodasLocalidades
+        '
+        Me.ChkTodasLocalidades.AutoSize = True
+        Me.ChkTodasLocalidades.ForeColor = System.Drawing.Color.White
+        Me.ChkTodasLocalidades.Location = New System.Drawing.Point(203, 133)
+        Me.ChkTodasLocalidades.Name = "ChkTodasLocalidades"
+        Me.ChkTodasLocalidades.Size = New System.Drawing.Size(132, 17)
+        Me.ChkTodasLocalidades.TabIndex = 248
+        Me.ChkTodasLocalidades.Text = "Todas las Localidades"
+        Me.ChkTodasLocalidades.UseVisualStyleBackColor = True
+        '
         'Label10
         '
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(253, Byte), Integer), CType(CType(253, Byte), Integer))
-        Me.Label10.Location = New System.Drawing.Point(9, 61)
+        Me.Label10.Location = New System.Drawing.Point(9, 56)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(60, 20)
         Me.Label10.TabIndex = 246
@@ -481,7 +526,7 @@ Partial Class FrmReportes
         Me.CboRegion.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CboRegion.Images.Add(CType(resources.GetObject("CboRegion.Images"), System.Drawing.Image))
         Me.CboRegion.ItemHeight = 35
-        Me.CboRegion.Location = New System.Drawing.Point(86, 51)
+        Me.CboRegion.Location = New System.Drawing.Point(86, 46)
         Me.CboRegion.MatchEntryTimeout = CType(2000, Long)
         Me.CboRegion.MaxDropDownItems = CType(6, Short)
         Me.CboRegion.MaxLength = 32767
@@ -656,7 +701,7 @@ Partial Class FrmReportes
         Me.BtnImprimirMermaPI.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnImprimirMermaPI.Image = Global.Remisiones.My.Resources.Resources.icons8_print_48
         Me.BtnImprimirMermaPI.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtnImprimirMermaPI.Location = New System.Drawing.Point(924, 132)
+        Me.BtnImprimirMermaPI.Location = New System.Drawing.Point(869, 63)
         Me.BtnImprimirMermaPI.Name = "BtnImprimirMermaPI"
         Me.BtnImprimirMermaPI.Size = New System.Drawing.Size(131, 48)
         Me.BtnImprimirMermaPI.TabIndex = 261
@@ -667,6 +712,7 @@ Partial Class FrmReportes
         '
         'GroupBox11
         '
+        Me.GroupBox11.Controls.Add(Me.ChkTodasModalidades)
         Me.GroupBox11.Controls.Add(Me.GroupBox12)
         Me.GroupBox11.Controls.Add(Me.Label13)
         Me.GroupBox11.Controls.Add(Me.CboModalidad)
@@ -676,6 +722,17 @@ Partial Class FrmReportes
         Me.GroupBox11.TabIndex = 262
         Me.GroupBox11.TabStop = False
         Me.GroupBox11.Visible = False
+        '
+        'ChkTodasModalidades
+        '
+        Me.ChkTodasModalidades.AutoSize = True
+        Me.ChkTodasModalidades.ForeColor = System.Drawing.Color.White
+        Me.ChkTodasModalidades.Location = New System.Drawing.Point(198, 85)
+        Me.ChkTodasModalidades.Name = "ChkTodasModalidades"
+        Me.ChkTodasModalidades.Size = New System.Drawing.Size(135, 17)
+        Me.ChkTodasModalidades.TabIndex = 254
+        Me.ChkTodasModalidades.Text = "Todas las Modalidades"
+        Me.ChkTodasModalidades.UseVisualStyleBackColor = True
         '
         'GroupBox12
         '
@@ -702,7 +759,7 @@ Partial Class FrmReportes
         Me.Label13.AutoSize = True
         Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(253, Byte), Integer), CType(CType(253, Byte), Integer))
-        Me.Label13.Location = New System.Drawing.Point(31, 59)
+        Me.Label13.Location = New System.Drawing.Point(31, 56)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(82, 20)
         Me.Label13.TabIndex = 252
@@ -715,18 +772,69 @@ Partial Class FrmReportes
         Me.CboModalidad.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CboModalidad.FormattingEnabled = True
         Me.CboModalidad.Items.AddRange(New Object() {"PERGAMINO", "MAQUILA"})
-        Me.CboModalidad.Location = New System.Drawing.Point(198, 52)
+        Me.CboModalidad.Location = New System.Drawing.Point(198, 49)
         Me.CboModalidad.Name = "CboModalidad"
         Me.CboModalidad.Size = New System.Drawing.Size(196, 33)
         Me.CboModalidad.TabIndex = 253
+        '
+        'BtnProcesar
+        '
+        Me.BtnProcesar.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnProcesar.Image = Global.Remisiones.My.Resources.Resources.icons8_print_48
+        Me.BtnProcesar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtnProcesar.Location = New System.Drawing.Point(869, 117)
+        Me.BtnProcesar.Name = "BtnProcesar"
+        Me.BtnProcesar.Size = New System.Drawing.Size(131, 48)
+        Me.BtnProcesar.TabIndex = 263
+        Me.BtnProcesar.Text = "IMPRIMIR"
+        Me.BtnProcesar.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BtnProcesar.UseVisualStyleBackColor = True
+        Me.BtnProcesar.Visible = False
+        '
+        'TDGridResumenLiquidacion
+        '
+        Me.TDGridResumenLiquidacion.AlternatingRows = True
+        Me.TDGridResumenLiquidacion.Caption = "Listado de Productos"
+        Me.TDGridResumenLiquidacion.CaptionHeight = 17
+        Me.TDGridResumenLiquidacion.FilterBar = True
+        Me.TDGridResumenLiquidacion.GroupByCaption = "Drag a column header here to group by that column"
+        Me.TDGridResumenLiquidacion.Images.Add(CType(resources.GetObject("TDGridResumenLiquidacion.Images"), System.Drawing.Image))
+        Me.TDGridResumenLiquidacion.Location = New System.Drawing.Point(1086, 210)
+        Me.TDGridResumenLiquidacion.Name = "TDGridResumenLiquidacion"
+        Me.TDGridResumenLiquidacion.PreviewInfo.Location = New System.Drawing.Point(0, 0)
+        Me.TDGridResumenLiquidacion.PreviewInfo.Size = New System.Drawing.Size(0, 0)
+        Me.TDGridResumenLiquidacion.PreviewInfo.ZoomFactor = 75
+        Me.TDGridResumenLiquidacion.PrintInfo.PageSettings = CType(resources.GetObject("TDGridResumenLiquidacion.PrintInfo.PageSettings"), System.Drawing.Printing.PageSettings)
+        Me.TDGridResumenLiquidacion.RowHeight = 15
+        Me.TDGridResumenLiquidacion.Size = New System.Drawing.Size(869, 351)
+        Me.TDGridResumenLiquidacion.TabIndex = 264
+        Me.TDGridResumenLiquidacion.Text = "C1TrueDBGrid1"
+        Me.TDGridResumenLiquidacion.PropBag = resources.GetString("TDGridResumenLiquidacion.PropBag")
+        '
+        'BtnReimprimir
+        '
+        Me.BtnReimprimir.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnReimprimir.Image = Global.Remisiones.My.Resources.Resources.icons8_print_48
+        Me.BtnReimprimir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtnReimprimir.Location = New System.Drawing.Point(869, 173)
+        Me.BtnReimprimir.Name = "BtnReimprimir"
+        Me.BtnReimprimir.Size = New System.Drawing.Size(131, 48)
+        Me.BtnReimprimir.TabIndex = 265
+        Me.BtnReimprimir.Text = "IMPRIMIR"
+        Me.BtnReimprimir.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BtnReimprimir.UseVisualStyleBackColor = True
+        Me.BtnReimprimir.Visible = False
         '
         'FrmReportes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(94, Byte), Integer), CType(CType(32, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1067, 455)
+        Me.ClientSize = New System.Drawing.Size(1010, 451)
         Me.ControlBox = False
+        Me.Controls.Add(Me.BtnReimprimir)
+        Me.Controls.Add(Me.TDGridResumenLiquidacion)
+        Me.Controls.Add(Me.BtnProcesar)
         Me.Controls.Add(Me.GroupBox11)
         Me.Controls.Add(Me.BtnImprimirMermaPI)
         Me.Controls.Add(Me.GroupBox9)
@@ -770,6 +878,7 @@ Partial Class FrmReportes
         Me.GroupBox11.PerformLayout()
         Me.GroupBox12.ResumeLayout(False)
         Me.GroupBox12.PerformLayout()
+        CType(Me.TDGridResumenLiquidacion, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -818,4 +927,11 @@ Partial Class FrmReportes
     Friend WithEvents Label12 As System.Windows.Forms.Label
     Friend WithEvents Label13 As System.Windows.Forms.Label
     Friend WithEvents CboModalidad As System.Windows.Forms.ComboBox
+    Friend WithEvents ChkEstadoTodos As System.Windows.Forms.CheckBox
+    Friend WithEvents ChkTodasCalidades As System.Windows.Forms.CheckBox
+    Friend WithEvents ChkTodasLocalidades As System.Windows.Forms.CheckBox
+    Friend WithEvents ChkTodasModalidades As System.Windows.Forms.CheckBox
+    Friend WithEvents BtnProcesar As System.Windows.Forms.Button
+    Friend WithEvents TDGridResumenLiquidacion As C1.Win.C1TrueDBGrid.C1TrueDBGrid
+    Friend WithEvents BtnReimprimir As System.Windows.Forms.Button
 End Class

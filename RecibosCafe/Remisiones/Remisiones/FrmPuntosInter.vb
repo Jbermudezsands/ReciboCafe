@@ -1227,21 +1227,131 @@ Public Class FrmPuntosInter
     End Sub
 
     Private Sub Button_Pesada_Maquila_Salida_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_Pesada_Maquila_Salida.Click
-        Dim iPosicion As Double, TipoPesada As String
+        Dim iPosicion As Double, TipoPesada As String, FechaP1 As Date, TipoPesadaP1 As String, TipoRemision As String, ExisteRecibo2HMas As Boolean
+        Dim PesoBascula As Double, CantidadBascula As Double, NumeroRemision As String, CodigoProducto As String, Linea As Double, Descripcion As String, Calidad As String, Estado As String, Precio As Double, PesoKg As Double
+        Dim Tara As Double, PesoNetoKg As Double, QQ As Double
+        Dim DataSetConsulta As New DataSet, DataAdapterConsulta As New SqlClient.SqlDataAdapter
+
         iPosicion = TDGribListRecibosSalida.Row
         TipoPesada = "Rec" & Me.TDGribListRecibosSalida.Columns("NumeroRecibo").Text & "-N" & iPosicion & "-D" & iPosicionDetalle & "-P2"
 
-        My.Forms.FrmBascula.TipoPesada = TipoPesada
-        My.Forms.FrmBascula.Posicion = iPosicion
-        My.Forms.FrmBascula.Calidad = FrmRemision2.CboCalidad.Text
-        My.Forms.FrmBascula.EstadoFisico = "Ninguno"
-        My.Forms.FrmBascula.Categoria = "Ninguno"
-        My.Forms.FrmBascula.DTPFecha.Text = Format(FrmRemision2.DTPRemFechCarga.Value, "dd/MM/yyyy")
-        My.Forms.FrmBascula.DTPRemFechCarga.Value = FrmRemision2.DTPRemFechCarga.Value
-        My.Forms.FrmBascula.ShowDialog()
+        '/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        '/////////////////////////////////////////////////VERIFICO EL TIEMPO DE LA PRIMER PESADA /////////////////////////////////////////////////
+        '////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        FechaP1 = Format(FrmRemision2.DTPRemFechCarga.Value, "dd/MM/yyyy")
+        TipoPesadaP1 = "Rec" & Me.TDGribListRecibos.Columns("NumeroRecibo").Text & "-N" & iPosicion & "-D" & iPosicionDetalle & "-P1"
+        TipoRemision = FrmRemision2.CboTipoRemision.Text
+        ExisteRecibo2HMas = False
+        'Me.TDGribListRecibos.Row = iPosicion
 
-        Me.TDGribListRecibosSalida.Columns("PesoBascula").Text = FrmBascula.SubTotalRemision
-        Me.TDGribListRecibosSalida.Columns("CantidadBascula").Text = FrmBascula.QQRemision
+        sql = "SELECT id_Eventos AS Linea, Precio, Cod_Productos, Descripcion_Producto, Calidad, Estado, Cantidad, PesoKg, Tara, PesoNetoLb, PesoNetoKg, QQ AS Saco, NumeroRemision, Fecha, TipoRemision, FechaCarga FROM Detalle_Pesadas  " & _
+              "WHERE  (IdRemisionPergamino = " & Me.IdRemisionPergamino & ") AND (TipoRemision = '" & TipoRemision & "') AND (TipoPesada = '" & TipoPesadaP1 & "')"
+        DataAdapterConsulta = New SqlClient.SqlDataAdapter(sql, MiConexion)
+        DataAdapterConsulta.Fill(DataSetConsulta, "DetallePesada")
+
+        If DataSetConsulta.Tables("DetallePesada").Rows.Count <> 0 Then
+
+            NumeroRemision = DataSetConsulta.Tables("DetallePesada").Rows(0)("NumeroRemision")
+            CodigoProducto = DataSetConsulta.Tables("DetallePesada").Rows(0)("Cod_Productos")
+            Linea = DataSetConsulta.Tables("DetallePesada").Rows(0)("Linea")
+            Descripcion = DataSetConsulta.Tables("DetallePesada").Rows(0)("Descripcion_Producto")
+            Calidad = DataSetConsulta.Tables("DetallePesada").Rows(0)("Calidad")
+            Estado = DataSetConsulta.Tables("DetallePesada").Rows(0)("Estado")
+            Precio = DataSetConsulta.Tables("DetallePesada").Rows(0)("Precio")
+            Tara = DataSetConsulta.Tables("DetallePesada").Rows(0)("Tara")
+            PesoNetoKg = DataSetConsulta.Tables("DetallePesada").Rows(0)("PesoNetoKg")
+            QQ = DataSetConsulta.Tables("DetallePesada").Rows(0)("Saco")
+
+
+            If DateDiff(DateInterval.Hour, DataSetConsulta.Tables("DetallePesada").Rows(0)("FechaCarga"), Me.DTPPISalida.Value) > 2 Then
+                ExisteRecibo2HMas = True
+            End If
+        End If
+
+
+        If ExisteRecibo2HMas = False Then
+
+            '//////////////////////////////////////////SI YA ESTA GRABADO NO PREGUNTO /////////////////////////////////////////////
+            sql = "SELECT id_Eventos AS Linea, Precio, Cod_Productos, Descripcion_Producto, Calidad, Estado, Cantidad, PesoKg, Tara, PesoNetoLb, PesoNetoKg, QQ AS Saco, NumeroRemision, Fecha, TipoRemision, FechaCarga FROM Detalle_Pesadas  " & _
+                  "WHERE  (IdRemisionPergamino = " & Me.IdRemisionPergamino & ") AND (TipoRemision = '" & TipoRemision & "') AND (TipoPesada = '" & TipoPesada & "')"
+            DataAdapterConsulta = New SqlClient.SqlDataAdapter(sql, MiConexion)
+            DataAdapterConsulta.Fill(DataSetConsulta, "Consulta")
+            If DataSetConsulta.Tables("Consulta").Rows.Count <> 0 Then
+                My.Forms.FrmBascula.TipoPesada = TipoPesada
+                My.Forms.FrmBascula.Posicion = iPosicion
+                My.Forms.FrmBascula.Calidad = FrmRemision2.CboCalidad.Text
+                My.Forms.FrmBascula.EstadoFisico = "Ninguno"
+                My.Forms.FrmBascula.Categoria = "Ninguno"
+                My.Forms.FrmBascula.DTPFecha.Text = Format(FrmRemision2.DTPRemFechCarga.Value, "dd/MM/yyyy")
+                My.Forms.FrmBascula.DTPRemFechCarga.Value = FrmRemision2.DTPRemFechCarga.Value
+                My.Forms.FrmBascula.ShowDialog()
+
+                Me.TDGribListRecibosSalida.Columns("PesoBascula").Text = FrmBascula.SubTotalRemision
+                Me.TDGribListRecibosSalida.Columns("CantidadBascula").Text = FrmBascula.QQRemision
+
+            Else
+
+
+                If MsgBox("No es necesario realizar la Pesada por tiempo Menor a 2 Horas, ¿Desea persarlos?", MsgBoxStyle.YesNo, "Sistema Bascula") = MsgBoxResult.No Then
+
+
+
+                    PesoBascula = Dataset.Tables("DetallePesada").Rows(0)("PesoKg")
+                    CantidadBascula = Dataset.Tables("DetallePesada").Rows(0)("Saco")
+
+                    GrabaDetallePesadas(NumeroRemision, CodigoProducto, CantidadBascula, Linea, Descripcion, Calidad, Estado, Precio, PesoBascula, TipoRemision, Tara, PesoNetoKg, QQ, Calidad, TipoPesada, Me.DTPPISalida.Value, IdRemisionPergamino)
+
+                    Me.TDGribListRecibosSalida.Columns("PesoBascula").Text = PesoBascula
+                    Me.TDGribListRecibosSalida.Columns("CantidadBascula").Text = CantidadBascula
+                Else
+
+                    '//////////////////////////////////SI TIENE MENOS DE 2 HORAS PERO QUIERE PESARLO /////////////////////////////////////////////////
+                    My.Forms.FrmBascula.TipoPesada = TipoPesada
+                    My.Forms.FrmBascula.Posicion = iPosicion
+                    My.Forms.FrmBascula.Calidad = FrmRemision2.CboCalidad.Text
+                    My.Forms.FrmBascula.EstadoFisico = "Ninguno"
+                    My.Forms.FrmBascula.Categoria = "Ninguno"
+                    My.Forms.FrmBascula.DTPFecha.Text = Format(FrmRemision2.DTPRemFechCarga.Value, "dd/MM/yyyy")
+                    My.Forms.FrmBascula.DTPRemFechCarga.Value = FrmRemision2.DTPRemFechCarga.Value
+                    My.Forms.FrmBascula.ShowDialog()
+
+                    Me.TDGribListRecibosSalida.Columns("PesoBascula").Text = FrmBascula.SubTotalRemision
+                    Me.TDGribListRecibosSalida.Columns("CantidadBascula").Text = FrmBascula.QQRemision
+
+                End If
+
+
+
+
+
+
+
+            End If
+
+
+
+        Else
+
+            '//////////////////////////////////SI TIENE DE MAS DE 2 HORAS ES OBLIGATORIO PESARLO/////////////////////////////////////////////////
+            My.Forms.FrmBascula.TipoPesada = TipoPesada
+            My.Forms.FrmBascula.Posicion = iPosicion
+            My.Forms.FrmBascula.Calidad = FrmRemision2.CboCalidad.Text
+            My.Forms.FrmBascula.EstadoFisico = "Ninguno"
+            My.Forms.FrmBascula.Categoria = "Ninguno"
+            My.Forms.FrmBascula.DTPFecha.Text = Format(FrmRemision2.DTPRemFechCarga.Value, "dd/MM/yyyy")
+            My.Forms.FrmBascula.DTPRemFechCarga.Value = FrmRemision2.DTPRemFechCarga.Value
+            My.Forms.FrmBascula.ShowDialog()
+
+            Me.TDGribListRecibosSalida.Columns("PesoBascula").Text = FrmBascula.SubTotalRemision
+            Me.TDGribListRecibosSalida.Columns("CantidadBascula").Text = FrmBascula.QQRemision
+        End If
+
+
+
+
+
+
+
 
         SumaGridRecibosSSalida(iPosicion)
 

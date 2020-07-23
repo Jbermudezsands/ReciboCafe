@@ -123,7 +123,7 @@
   <data name="TextBox7.OutputFormat" xml:space="preserve">
     <value>#,##0</value>
   </data>
-  <data name="TextBox8.OutputFormat" xml:space="preserve">
+  <data name="TxtPesoBrutoRemision.OutputFormat" xml:space="preserve">
     <value>#,##0.00</value>
   </data>
   <data name="TextBox9.OutputFormat" xml:space="preserve">
@@ -135,31 +135,64 @@
   <data name="TextBox5.OutputFormat" xml:space="preserve">
     <value>#,##0</value>
   </data>
-  <data name="TextBox11.OutputFormat" xml:space="preserve">
+  <data name="TxtPesoNetoRecibos.OutputFormat" xml:space="preserve">
     <value>#,##0.00</value>
   </data>
   <data name="TextBox12.OutputFormat" xml:space="preserve">
     <value>#,##0.00</value>
   </data>
   <data name="TextBox1.OutputFormat" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TxtTaraPlanta.OutputFormat" xml:space="preserve">
     <value>#,##0.00</value>
+  </data>
+  <data name="TextBox2.OutputFormat" xml:space="preserve">
+    <value>#,##0.00</value>
+  </data>
+  <data name="TextBox11.OutputFormat" xml:space="preserve">
+    <value>#,##0.00</value>
+  </data>
+  <data name="TextBox13.OutputFormat" xml:space="preserve">
+    <value>#,##0.00</value>
+  </data>
+  <data name="TextBox14.OutputFormat" xml:space="preserve">
+    <value>#,##0.00</value>
+  </data>
+  <data name="TextBox15.OutputFormat" xml:space="preserve">
+    <value>#,##0</value>
+  </data>
+  <data name="TextBox16.OutputFormat" xml:space="preserve">
+    <value>#,##0.00</value>
+  </data>
+  <data name="TextBox17.OutputFormat" xml:space="preserve">
+    <value>#,##0.00</value>
+  </data>
+  <data name="TextBox24.OutputFormat" xml:space="preserve">
+    <value>#,##0.00</value>
+  </data>
+  <data name="TextBox27.OutputFormat" xml:space="preserve">
+    <value>#,##0.00</value>
+  </data>
+  <data name="TextBox29.OutputFormat" xml:space="preserve">
+    <value>#,##0</value>
   </data>
   <metadata name="$this.TrayLargeIcon" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="OleDBDataSource1.SQL" xml:space="preserve">
-    <value>SELECT        DetalleRemisionPergamino.Codigo AS Rango, DetalleReciboCafePergamino.Imperfeccion, Dano.Nombre AS Daño, EstadoFisico.Descripcion AS EstadoFisico, 
-                         Proveedor.Nombre_Proveedor + ' ' + Proveedor.Apellido_Proveedor AS Proveedor, ReciboCafePergamino.Codigo, DetalleRemisionPergamino.CantidadSacos, 
+    <value>SELECT        DetalleRemisionPergamino.Codigo AS N0, DetalleRemisionPergamino.Codigo AS Rango, RemisionPergamino.Codigo AS NumeroRemision, 
+                         CASE WHEN TipoCafe.Nombre = 'PERGAMINO' THEN 'EXPASA' ELSE Proveedor.Nombre_Proveedor + ' ' + Proveedor.Apellido_Proveedor END AS Proveedor, 
+                         DetalleReciboCafePergamino.Imperfeccion, Dano.Nombre AS Daño, EstadoFisico.Descripcion AS EstadoFisico, DetalleRemisionPergamino.CantidadSacos, 
                          DetalleRemisionPergamino.PesoBruto, DetalleRemisionPergamino.Tara, DetalleRemisionPergamino.PesoBruto - DetalleRemisionPergamino.Tara AS PesoNeto, 
                          DetalleReciboCafePergamino.CantidadSacos AS CantidadSacosRecibos, 
-                         DetalleReciboCafePergamino.PesoBruto - DetalleReciboCafePergamino.Tara AS PesoNetoRecibos, RecibosRemisionPergamino.PesoNeto AS PesoAplicado, 
-                         EstadoFisico.Descripcion, EstadoFisico.Descripcion AS Categoria, DetalleReciboCafePergamino.PesoBruto - DetalleReciboCafePergamino.Tara AS PesoReal, 
-                         DetalleReciboCafePergamino.PesoBruto - DetalleReciboCafePergamino.Tara - RecibosRemisionPergamino.PesoNeto AS PesoPorAplicar, 
-                         RemisionPergamino.IdRemisionPergamino, DetalleReciboCafePergamino.IdDetalleReciboPergamino, Dano.IdDano, Finca.CodFinca, 
-                         RemisionPergamino.FechaCarga, RemisionPergamino.IdLugarAcopio, RemisionPergamino.IdEmpresaTransporte, Vehiculo.Placa, 
-                         (DetalleRemisionPergamino.PesoBruto - DetalleRemisionPergamino.Tara) - (DetalleReciboCafePergamino.PesoBruto - DetalleReciboCafePergamino.Tara) AS Merma,
-                          TipoCafe.Nombre, Calidad.NomCalidad, Calidad.IdCalidad, TipoCafe.IdTipoCafe, RemisionPergamino.Codigo AS NumeroRemision, 
-                         RemisionPergamino.Numero_Boleta
+                         DetalleReciboCafePergamino.PesoBruto - DetalleReciboCafePergamino.Tara AS PesoNetoRecibos, DetalleReciboCafePergamino.PesoBruto AS MermaBodega, 
+                         DetalleReciboCafePergamino.CantidadSacos AS CantidadSacosPI, DetalleReciboCafePergamino.PesoBruto AS PesoBrutoIniPI, 
+                         DetalleReciboCafePergamino.PesoBruto AS PesoBrutoFinPI, DetalleReciboCafePergamino.PesoBruto AS MermaTransitoPI, 
+                         DetalleReciboCafePergamino.PesoBruto AS MermaBodegaPI, DetalleReciboCafePergamino.CantidadSacos AS CantidadSacosPII, 
+                         DetalleReciboCafePergamino.PesoBruto AS PesoBrutoIniPII, DetalleReciboCafePergamino.PesoBruto AS TaraIniPII, 
+                         DetalleReciboCafePergamino.PesoBruto AS PesoNetoIniPII, DetalleReciboCafePergamino.PesoBruto AS PesoBrutoFinPII, 
+                         DetalleReciboCafePergamino.PesoBruto AS MermaTransitoPII, DetalleReciboCafePergamino.PesoBruto AS MermaBodegaTotal
 FROM            DetalleReciboCafePergamino INNER JOIN
                          ReciboCafePergamino ON DetalleReciboCafePergamino.IdReciboPergamino = ReciboCafePergamino.IdReciboPergamino INNER JOIN
                          EstadoFisico ON DetalleReciboCafePergamino.IdEdoFisico = EstadoFisico.IdEdoFisico INNER JOIN
@@ -173,7 +206,7 @@ FROM            DetalleReciboCafePergamino INNER JOIN
                          Calidad ON ReciboCafePergamino.IdCalidad = Calidad.IdCalidad LEFT OUTER JOIN
                          Intermedio ON RemisionPergamino.IdRemisionPergamino = Intermedio.IdRemisionPergamino LEFT OUTER JOIN
                          Finca ON ReciboCafePergamino.IdFinca = Finca.IdFinca
-WHERE        (RemisionPergamino.IdLugarAcopio = 4) AND (TipoCafe.IdTipoCafe = 1) AND (Calidad.IdCalidad = 1)
+WHERE        (TipoCafe.IdTipoCafe = - 1000000) AND (Calidad.IdCalidad = 1)
 ORDER BY ReciboCafePergamino.Codigo</value>
   </data>
 </root>

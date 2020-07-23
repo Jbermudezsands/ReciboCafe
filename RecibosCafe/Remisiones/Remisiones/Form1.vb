@@ -352,28 +352,76 @@ Public Class MDIParent1
 
     Private Sub RbnMermaBodegaXReciboXRemision_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles RbnMermaBodegaXReciboXRemision.Click
         My.Forms.FrmReportes.MdiParent = Me
-        My.Forms.FrmReportes.GroupBox4.Location = New Point(12, 102)
+        My.Forms.FrmReportes.GroupBox4.Location = New Point(446, 147)
         My.Forms.FrmReportes.GroupBox4.Visible = True
         My.Forms.FrmReportes.GroupBox6.Location = New Point(446, 10)
         My.Forms.FrmReportes.GroupBox6.Visible = True
-
+        My.Forms.FrmReportes.ChkTodasLocalidades.Visible = True
         My.Forms.FrmReportes.BtnImprimir.Visible = True
         My.Forms.FrmReportes.BtnImprimir.Location = New Point(875, 16)
+        My.Forms.FrmReportes.TDGridResumenLiquidacion.Visible = False
         My.Forms.FrmReportes.Show()
     End Sub
 
     Private Sub RbnMermaPI_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles RbnMermaPI.Click
         My.Forms.FrmReportes.MdiParent = Me
-        My.Forms.FrmReportes.GroupBox4.Location = New Point(12, 102)
+        My.Forms.FrmReportes.GroupBox4.Location = New Point(446, 147)
         My.Forms.FrmReportes.GroupBox4.Visible = True
         My.Forms.FrmReportes.GroupBox6.Location = New Point(446, 10)
         My.Forms.FrmReportes.GroupBox6.Visible = True
         My.Forms.FrmReportes.GroupBox8.Location = New Point(12, 99)
         My.Forms.FrmReportes.GroupBox8.Visible = True
+        My.Forms.FrmReportes.ChkTodasLocalidades.Visible = True
         My.Forms.FrmReportes.GroupBox11.Location = New Point(12, 261)
         My.Forms.FrmReportes.GroupBox11.Visible = True
         My.Forms.FrmReportes.BtnImprimirMermaPI.Visible = True
         My.Forms.FrmReportes.BtnImprimirMermaPI.Location = New Point(875, 16)
+        My.Forms.FrmReportes.TDGridResumenLiquidacion.Visible = False
         My.Forms.FrmReportes.Show()
+    End Sub
+
+
+    Private Sub RbnResumenLiquidacion_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles RbnResumenLiquidacion.Click
+        My.Forms.FrmReportes.MdiParent = Me
+        My.Forms.FrmReportes.GroupBox3.Visible = False
+        My.Forms.FrmReportes.GroupBox8.Location = New Point(12, 8)
+        My.Forms.FrmReportes.ChkTodasLocalidades.Visible = False
+        My.Forms.FrmReportes.GroupBox8.Visible = True
+        My.Forms.FrmReportes.BtnProcesar.Visible = True
+        My.Forms.FrmReportes.BtnProcesar.Location = New Point(875, 16)
+        My.Forms.FrmReportes.TDGridResumenLiquidacion.Visible = False
+        My.Forms.FrmReportes.Show()
+    End Sub
+
+    Private Sub RbnReimpresionResumeLiq_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles RbnReimpresionResumeLiq.Click
+        Dim SqlString As String, DataAdapter As New SqlClient.SqlDataAdapter, DataSet As New DataSet
+
+        SqlString = "SELECT DISTINCT LiquidacionPergamino.NumeroReportado, LugarAcopio.CodLugarAcopio, LugarAcopio.NomLugarAcopio FROM LiquidacionPergamino INNER JOIN LugarAcopio ON LiquidacionPergamino.IdLocalidad = LugarAcopio.IdLugarAcopio WHERE(Not (LiquidacionPergamino.NumeroReportado Is NULL))"
+        DataAdapter = New SqlClient.SqlDataAdapter(SqlString, MiConexion)
+        DataAdapter.Fill(DataSet, "Consulta")
+        My.Forms.FrmReportes.TDGridResumenLiquidacion.DataSource = DataSet.Tables("Consulta")
+        My.Forms.FrmReportes.TDGridResumenLiquidacion.Location = New Point(12, 8)
+        My.Forms.FrmReportes.TDGridResumenLiquidacion.Visible = True
+        My.Forms.FrmReportes.TDGridResumenLiquidacion.Splits.Item(0).DisplayColumns("NumeroReportado").Width = 100
+        My.Forms.FrmReportes.TDGridResumenLiquidacion.Splits.Item(0).DisplayColumns("NumeroReportado").Locked = True
+        My.Forms.FrmReportes.TDGridResumenLiquidacion.Columns("NumeroReportado").Caption = "Numero Proceso"
+
+        My.Forms.FrmReportes.TDGridResumenLiquidacion.Splits.Item(0).DisplayColumns("CodLugarAcopio").Width = 100
+        My.Forms.FrmReportes.TDGridResumenLiquidacion.Splits.Item(0).DisplayColumns("CodLugarAcopio").Locked = True
+        My.Forms.FrmReportes.TDGridResumenLiquidacion.Columns("CodLugarAcopio").Caption = "Codigo Acopio"
+
+        My.Forms.FrmReportes.TDGridResumenLiquidacion.Splits.Item(0).DisplayColumns("NomLugarAcopio").Width = 400
+        My.Forms.FrmReportes.TDGridResumenLiquidacion.Splits.Item(0).DisplayColumns("NomLugarAcopio").Locked = True
+        My.Forms.FrmReportes.TDGridResumenLiquidacion.Columns("NomLugarAcopio").Caption = "Lugar Acopio"
+
+        My.Forms.FrmReportes.BtnReimprimir.Visible = True
+        My.Forms.FrmReportes.BtnReimprimir.Location = New Point(875, 16)
+
+        My.Forms.FrmReportes.TDGridResumenLiquidacion.RowHeight = 20
+
+        My.Forms.FrmReportes.Show()
+
+
+
     End Sub
 End Class

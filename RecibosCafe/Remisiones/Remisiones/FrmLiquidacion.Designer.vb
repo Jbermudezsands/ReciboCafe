@@ -155,9 +155,9 @@ Partial Class FrmLiquidacion
         Me.BinDetalleRecLiq = New System.Windows.Forms.BindingSource(Me.components)
         Me.BinDistribucion = New System.Windows.Forms.BindingSource(Me.components)
         Me.GroupBox8 = New System.Windows.Forms.GroupBox
-        Me.Label20 = New System.Windows.Forms.Label
         Me.Label39 = New System.Windows.Forms.Label
         Me.LblSaldoDeudor = New System.Windows.Forms.Label
+        Me.Label20 = New System.Windows.Forms.Label
         Me.GroupBox7.SuspendLayout()
         Me.GroupBox6.SuspendLayout()
         CType(Me.CboMonedas, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1180,12 +1180,6 @@ Partial Class FrmLiquidacion
         Me.GroupBox8.Name = "GroupBox8"
         Me.GroupBox8.TabStop = False
         '
-        'Label20
-        '
-        resources.ApplyResources(Me.Label20, "Label20")
-        Me.Label20.ForeColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(253, Byte), Integer), CType(CType(253, Byte), Integer))
-        Me.Label20.Name = "Label20"
-        '
         'Label39
         '
         resources.ApplyResources(Me.Label39, "Label39")
@@ -1197,6 +1191,12 @@ Partial Class FrmLiquidacion
         resources.ApplyResources(Me.LblSaldoDeudor, "LblSaldoDeudor")
         Me.LblSaldoDeudor.ForeColor = System.Drawing.Color.White
         Me.LblSaldoDeudor.Name = "LblSaldoDeudor"
+        '
+        'Label20
+        '
+        resources.ApplyResources(Me.Label20, "Label20")
+        Me.Label20.ForeColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(253, Byte), Integer), CType(CType(253, Byte), Integer))
+        Me.Label20.Name = "Label20"
         '
         'FrmLiquidacion
         '

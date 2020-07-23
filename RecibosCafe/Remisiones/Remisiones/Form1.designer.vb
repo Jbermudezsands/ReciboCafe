@@ -48,6 +48,7 @@ Partial Class MDIParent1
         Me.RbnTrazabilidad = New C1.Win.C1Ribbon.RibbonButton
         Me.RbnMermaBodegaXReciboXRemision = New C1.Win.C1Ribbon.RibbonButton
         Me.RbnMermaPI = New C1.Win.C1Ribbon.RibbonButton
+        Me.RbnResumenLiquidacion = New C1.Win.C1Ribbon.RibbonButton
         Me.RibbonGroup4 = New C1.Win.C1Ribbon.RibbonGroup
         Me.RibbonButton1 = New C1.Win.C1Ribbon.RibbonButton
         Me.RibbonTab2 = New C1.Win.C1Ribbon.RibbonTab
@@ -64,7 +65,7 @@ Partial Class MDIParent1
         Me.CmdReservar = New System.Windows.Forms.Button
         Me.CmdSalida = New System.Windows.Forms.Button
         Me.CmdReporta = New System.Windows.Forms.Button
-        Me.RbnResumenLiquidacion = New C1.Win.C1Ribbon.RibbonButton
+        Me.RbnReimpresionResumeLiq = New C1.Win.C1Ribbon.RibbonButton
         CType(Me.C1Ribbon1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C1StatusBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -253,6 +254,7 @@ Partial Class MDIParent1
         Me.RibbonMenu1.Items.Add(Me.RbnMermaBodegaXReciboXRemision)
         Me.RibbonMenu1.Items.Add(Me.RbnMermaPI)
         Me.RibbonMenu1.Items.Add(Me.RbnResumenLiquidacion)
+        Me.RibbonMenu1.Items.Add(Me.RbnReimpresionResumeLiq)
         Me.RibbonMenu1.LargeImage = CType(resources.GetObject("RibbonMenu1.LargeImage"), System.Drawing.Image)
         Me.RibbonMenu1.SmallImage = CType(resources.GetObject("RibbonMenu1.SmallImage"), System.Drawing.Image)
         Me.RibbonMenu1.Text = "Reportes"
@@ -277,6 +279,12 @@ Partial Class MDIParent1
         Me.RbnMermaPI.ID = "RbnMermaPI"
         Me.RbnMermaPI.SmallImage = CType(resources.GetObject("RbnMermaPI.SmallImage"), System.Drawing.Image)
         Me.RbnMermaPI.Text = "Reporte Merma Punto Intermedio"
+        '
+        'RbnResumenLiquidacion
+        '
+        Me.RbnResumenLiquidacion.ID = "RbnResumenLiquidacion"
+        Me.RbnResumenLiquidacion.SmallImage = Global.Remisiones.My.Resources.Resources.exportea32
+        Me.RbnResumenLiquidacion.Text = "Reporte Resumen Liquidacion"
         '
         'RibbonGroup4
         '
@@ -427,11 +435,11 @@ Partial Class MDIParent1
         Me.CmdReporta.UseVisualStyleBackColor = True
         Me.CmdReporta.Visible = False
         '
-        'RbnResumenLiquidacion
+        'RbnReimpresionResumeLiq
         '
-        Me.RbnResumenLiquidacion.ID = "RbnResumenLiquidacion"
-        Me.RbnResumenLiquidacion.SmallImage = Global.Remisiones.My.Resources.Resources.exportea32
-        Me.RbnResumenLiquidacion.Text = "Reporte Resumen Liquidacion"
+        Me.RbnReimpresionResumeLiq.ID = "RbnReimpresionResumeLiq"
+        Me.RbnReimpresionResumeLiq.SmallImage = CType(resources.GetObject("RbnReimpresionResumeLiq.SmallImage"), System.Drawing.Image)
+        Me.RbnReimpresionResumeLiq.Text = "Reimpresion Resumen Liquidacion"
         '
         'MDIParent1
         '
@@ -502,5 +510,6 @@ Partial Class MDIParent1
     Friend WithEvents RbnMermaBodegaXReciboXRemision As C1.Win.C1Ribbon.RibbonButton
     Friend WithEvents RbnMermaPI As C1.Win.C1Ribbon.RibbonButton
     Friend WithEvents RbnResumenLiquidacion As C1.Win.C1Ribbon.RibbonButton
+    Friend WithEvents RbnReimpresionResumeLiq As C1.Win.C1Ribbon.RibbonButton
 
 End Class

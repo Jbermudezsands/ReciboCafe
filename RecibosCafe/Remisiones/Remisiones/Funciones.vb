@@ -560,6 +560,49 @@ errSub:
 
 
     End Sub
+    Public Sub GrabaDetallePesadas(ByVal ConsecutivoRemision As String, ByVal CodigoProducto As String, ByVal Cantidad As Double, ByVal Linea As Double, ByVal Descripcion As String, ByVal Calidad As String, ByVal Estado As String, ByVal Precio As Double, ByVal PesoKg As Double, ByVal TipoRemision As String, ByVal Tara As Double, ByVal PesoNetoKg As Double, ByVal QQ As Double, ByVal CalidadCafe As String, ByVal TipoPesada As String, ByVal FechaCarga As Date, ByVal IdRemision As Double)
+        Dim Sqldetalle As String, ComandoUpdate As New SqlClient.SqlCommand, iResultado As Integer
+        Dim Fecha As String, MiConexion As New SqlClient.SqlConnection(Conexion), SqlUpdate As String
+        Dim DataSet As New DataSet, DataAdapter As New SqlClient.SqlDataAdapter, PesoNetoLb As Double
+
+
+        PesoNetoLb = Format((PesoNetoKg / 46) * 100, "##,##0.0000")
+
+        ''If FrmRecepcion.CboTipoDocumento.Text = "Recibo Bascula Manual" Then
+        ''    Fecha = Format(CDate(FrmRecepcion.DtpFechaManual.Text), "yyyy-MM-dd")
+        ''Else
+        Fecha = Format(CDate(FechaCarga), "yyyy-MM-dd")
+        'End If
+
+
+        Sqldetalle = "SELECT Detalle_Pesadas.* FROM Detalle_Pesadas " & _
+                     "WHERE (IdRemisionPergamino = " & IdRemision & ") AND (id_Eventos = " & Linea & ") AND (NumeroRemision = '" & ConsecutivoRemision & "') AND (Fecha = CONVERT(DATETIME, '" & Format(CDate(Fecha), "yyyy-MM-dd") & "', 102)) AND (TipoRemision = '" & TipoRemision & "')  AND (TipoPesada = '" & TipoPesada & "')"
+        DataAdapter = New SqlClient.SqlDataAdapter(Sqldetalle, MiConexion)
+        DataAdapter.Fill(DataSet, "DetalleRecepcion")
+        If Not DataSet.Tables("DetalleRecepcion").Rows.Count = 0 Then
+            '//////////////////////////////////////////////////////////////////////////////////////////////
+            '////////////////////////////EDITO EL DETALLE DE COMPRAS///////////////////////////////////
+            '/////////////////////////////////////////////////////////////////////////////////////////////////
+            SqlUpdate = "UPDATE [Detalle_Pesadas] SET [Cod_Productos] = '" & CodigoProducto & "',[Descripcion_Producto] = '" & Descripcion & "',[Cantidad] = " & Cantidad & ",[PesoKg] = " & PesoKg & ", [Calidad] = '" & Calidad & "', [Estado] = '" & Estado & "', [Precio] = " & Precio & ", [Tara] = " & Tara & ", [PesoNetoLb] = " & PesoNetoLb & ", [PesoNetoKg] = " & PesoNetoKg & " , [QQ] = " & QQ & ", [Calidad_Cafe] = '" & CalidadCafe & "', [FechaCarga] = CONVERT(DATETIME, '" & Format(CDate(FechaCarga), "yyyy-MM-dd HH:mm:ss") & "', 102) " & _
+                        "WHERE (id_Eventos = " & Linea & ") AND (NumeroRemision = '" & ConsecutivoRemision & "') AND (Fecha = CONVERT(DATETIME, '" & Format(CDate(Fecha), "yyyy-MM-dd") & "', 102)) AND (TipoRemision = '" & TipoRemision & "') AND (TipoPesada = '" & TipoPesada & "') "  'AND (Cod_Productos = '" & CodigoProducto & "')
+            MiConexion.Open()
+            ComandoUpdate = New SqlClient.SqlCommand(SqlUpdate, MiConexion)
+            iResultado = ComandoUpdate.ExecuteNonQuery
+            MiConexion.Close()
+
+        Else
+
+            SqlUpdate = "INSERT INTO [Detalle_Pesadas] ([id_Eventos],[NumeroRemision],[Fecha],[TipoRemision],[Cod_Productos],[Descripcion_Producto],[Cantidad],[PesoKg],[Calidad],[Estado],[Precio],[Tara],[PesoNetoLb],[PesoNetoKg],[QQ],[Calidad_Cafe],[TipoPesada],[FechaCarga],[IdRemisionPergamino]) " & _
+                        "VALUES (" & Linea & " ,'" & ConsecutivoRemision & "',CONVERT(DATETIME, '" & Format(CDate(Fecha), "yyyy-MM-dd") & "', 102) ,'" & TipoRemision & "','" & CodigoProducto & "','" & Descripcion & "'," & Cantidad & "," & PesoKg & ", '" & Calidad & "','" & Estado & "', " & Precio & ", " & Tara & ", " & PesoNetoLb & ", " & PesoNetoKg & ", " & QQ & ", '" & CalidadCafe & "', '" & TipoPesada & "', CONVERT(DATETIME, '" & Format(CDate(FechaCarga), "yyyy-MM-dd HH:mm:ss") & "', 102), " & IdRemision & ") "
+            MiConexion.Open()
+            ComandoUpdate = New SqlClient.SqlCommand(SqlUpdate, MiConexion)
+            iResultado = ComandoUpdate.ExecuteNonQuery
+            MiConexion.Close()
+
+        End If
+
+        '  '" & Format(CDate(Fecha), "dd/MM/yyyy") & "'
+    End Sub
 
     Public Sub GrabaDetalleRemision(ByVal ConsecutivoRemision As String, ByVal CodigoProducto As String, ByVal Cantidad As Double, ByVal Linea As Double, ByVal Descripcion As String, ByVal Calidad As String, ByVal Estado As String, ByVal Precio As Double, ByVal PesoKg As Double, ByVal TipoRemision As String, ByVal Tara As Double, ByVal PesoNetoKg As Double, ByVal QQ As Double, ByVal CalidadCafe As String, ByVal TipoPesada As String, ByVal FechaCarga As Date, ByVal IdRemision As Double)
         Dim Sqldetalle As String, ComandoUpdate As New SqlClient.SqlCommand, iResultado As Integer

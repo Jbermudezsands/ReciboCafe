@@ -491,4 +491,8 @@ Public Class FrmBascula
 
 
     End Sub
+
+    Private Sub TrueDBGridComponentes_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TrueDBGridComponentes.Click
+
+    End Sub
 End Class

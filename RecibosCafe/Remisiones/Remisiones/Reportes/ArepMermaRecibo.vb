@@ -40,6 +40,12 @@ Public Class ArepMermaRecibo
                 Me.TxtMerma.Visible = False
                 Me.TxtTotalMontoPagado.Visible = True
                 Me.TxtTotalMerma.Visible = False
+                Me.TextBox21.Visible = False
+                Me.TextBox22.Visible = False
+                Me.TextBox23.Visible = False
+                Me.TextBox20.Visible = True
+                Me.TextBox14.Visible = True
+                Me.TextBox13.Visible = True
 
             Case "Recepcion2"
                 Me.LblTipoInformacion.Text = "INFORMACION MODULO DE REMISION"
@@ -49,6 +55,12 @@ Public Class ArepMermaRecibo
                 Me.TxtMerma.Visible = True
                 Me.TxtTotalMontoPagado.Visible = False
                 Me.TxtTotalMerma.Visible = True
+                Me.TextBox21.Visible = True
+                Me.TextBox22.Visible = True
+                Me.TextBox23.Visible = True
+                Me.TextBox20.Visible = False
+                Me.TextBox14.Visible = False
+                Me.TextBox13.Visible = False
 
             Case "Recepcion3"
                 Me.LblTipoInformacion.Text = "INFORMACION MODULO DE BODEGA"
@@ -58,7 +70,28 @@ Public Class ArepMermaRecibo
                 Me.TxtMerma.Visible = False
                 Me.TxtTotalMontoPagado.Visible = False
                 Me.TxtTotalMerma.Visible = False
-
+                Me.TextBox21.Visible = False
+                Me.TextBox22.Visible = False
+                Me.TextBox23.Visible = False
+                Me.TextBox20.Visible = False
+                Me.TextBox14.Visible = False
+                Me.TextBox13.Visible = False
         End Select
+    End Sub
+
+    Private Sub GroupHeader2_Format(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GroupHeader2.Format
+
+    End Sub
+
+    Private Sub GroupFooter3_Format(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GroupFooter3.Format
+        Me.LblTotalTipoCafe.Text = "TOTAL " & Me.TxtTipoCafe.Text
+    End Sub
+
+    Private Sub GroupFooter2_Format(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GroupFooter2.Format
+        Me.LblLocalidad.Text = "Total " & Me.TxtLocalidad.Text
+    End Sub
+
+    Private Sub GroupFooter4_Format(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GroupFooter4.Format
+        Me.LblTotalTipoCompra.Text = "Total " & Me.TxtTipoCompra.Text
     End Sub
 End Class
