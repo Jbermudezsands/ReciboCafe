@@ -38,6 +38,7 @@ Partial Public Class ArepBitacoraRecepcion
         Me.TextBox11 = New DataDynamics.ActiveReports.TextBox
         Me.TextBox4 = New DataDynamics.ActiveReports.TextBox
         Me.PageFooter1 = New DataDynamics.ActiveReports.PageFooter
+        Me.TxtFinal = New DataDynamics.ActiveReports.TextBox
         Me.ReportHeader1 = New DataDynamics.ActiveReports.ReportHeader
         Me.lblOrderNum = New DataDynamics.ActiveReports.Label
         Me.lblOrderDate = New DataDynamics.ActiveReports.Label
@@ -82,7 +83,6 @@ Partial Public Class ArepBitacoraRecepcion
         Me.ReportFooter1 = New DataDynamics.ActiveReports.ReportFooter
         Me.GroupHeader1 = New DataDynamics.ActiveReports.GroupHeader
         Me.lblProductID = New DataDynamics.ActiveReports.Label
-        Me.lblQty = New DataDynamics.ActiveReports.Label
         Me.Label2 = New DataDynamics.ActiveReports.Label
         Me.LblApellidos = New DataDynamics.ActiveReports.Label
         Me.Label5 = New DataDynamics.ActiveReports.Label
@@ -128,6 +128,7 @@ Partial Public Class ArepBitacoraRecepcion
         Me.Label58 = New DataDynamics.ActiveReports.Label
         Me.Label60 = New DataDynamics.ActiveReports.Label
         Me.TxtCertificados = New DataDynamics.ActiveReports.TextBox
+        Me.lblQty = New DataDynamics.ActiveReports.Label
         Me.GroupFooter1 = New DataDynamics.ActiveReports.GroupFooter
         Me.lblSubTotals = New DataDynamics.ActiveReports.Label
         Me.TxtPesoNeto = New DataDynamics.ActiveReports.TextBox
@@ -145,7 +146,6 @@ Partial Public Class ArepBitacoraRecepcion
         Me.Label63 = New DataDynamics.ActiveReports.Label
         Me.TxtQQOreado = New DataDynamics.ActiveReports.Label
         Me.Label65 = New DataDynamics.ActiveReports.Label
-        Me.TxtFinal = New DataDynamics.ActiveReports.TextBox
         Me.Label54 = New DataDynamics.ActiveReports.Label
         CType(Me.LblDireccion, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LblRuc, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -162,6 +162,7 @@ Partial Public Class ArepBitacoraRecepcion
         CType(Me.TextBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextBox11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextBox4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtFinal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.lblOrderNum, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.lblOrderDate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ImgLogo, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -203,7 +204,6 @@ Partial Public Class ArepBitacoraRecepcion
         CType(Me.LblLiquidar, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Label59, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.lblProductID, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.lblQty, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Label2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LblApellidos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Label5, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -248,6 +248,7 @@ Partial Public Class ArepBitacoraRecepcion
         CType(Me.Label58, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Label60, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCertificados, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.lblQty, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.lblSubTotals, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtPesoNeto, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Label36, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -264,7 +265,6 @@ Partial Public Class ArepBitacoraRecepcion
         CType(Me.Label63, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtQQOreado, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Label65, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtFinal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Label54, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
@@ -599,14 +599,31 @@ Partial Public Class ArepBitacoraRecepcion
         '
         'PageFooter1
         '
-        Me.PageFooter1.Controls.AddRange(New DataDynamics.ActiveReports.ARControl() {Me.TxtFinal})
-        Me.PageFooter1.Height = 2.239583!
+        Me.PageFooter1.Height = 0.0!
         Me.PageFooter1.Name = "PageFooter1"
+        '
+        'TxtFinal
+        '
+        Me.TxtFinal.Border.BottomColor = System.Drawing.Color.Black
+        Me.TxtFinal.Border.BottomStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TxtFinal.Border.LeftColor = System.Drawing.Color.Black
+        Me.TxtFinal.Border.LeftStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TxtFinal.Border.RightColor = System.Drawing.Color.Black
+        Me.TxtFinal.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TxtFinal.Border.TopColor = System.Drawing.Color.Black
+        Me.TxtFinal.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TxtFinal.Height = 1.92!
+        Me.TxtFinal.Left = 0.125!
+        Me.TxtFinal.Name = "TxtFinal"
+        Me.TxtFinal.Style = "ddo-char-set: 0; text-align: justify; font-size: 8.25pt; "
+        Me.TxtFinal.Text = Nothing
+        Me.TxtFinal.Top = 2.85!
+        Me.TxtFinal.Width = 2.48!
         '
         'ReportHeader1
         '
         Me.ReportHeader1.Controls.AddRange(New DataDynamics.ActiveReports.ARControl() {Me.lblOrderNum, Me.lblOrderDate, Me.ImgLogo, Me.LblEncabezado, Me.LblOrden, Me.LblFechaOrden, Me.LblTipoCompra, Me.Label6, Me.LblNombres, Me.LblCosecha, Me.LblLocalidad, Me.LblHoraRecibo, Me.Label38, Me.Label35, Me.LblCedulas, Me.Label39, Me.LblFinca, Me.LblOriginal, Me.Label61, Me.LblPignorado, Me.Label40, Me.Label41, Me.Label42, Me.LblEstado, Me.LblCalidad, Me.Label45, Me.LblDaño, Me.LblCategoria, Me.Label48, Me.Label49, Me.LblHum, Me.Label51, Me.LblImp, Me.Label53, Me.LblIngreso, Me.Label55, Me.Label56, Me.LblCompra, Me.LblLiquidar, Me.Label59})
-        Me.ReportHeader1.Height = 6.927083!
+        Me.ReportHeader1.Height = 6.96875!
         Me.ReportHeader1.Name = "ReportHeader1"
         '
         'lblOrderNum
@@ -640,7 +657,7 @@ Partial Public Class ArepBitacoraRecepcion
         Me.lblOrderDate.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
         Me.lblOrderDate.Height = 0.2399999!
         Me.lblOrderDate.HyperLink = Nothing
-        Me.lblOrderDate.Left = 0.2!
+        Me.lblOrderDate.Left = 0.225!
         Me.lblOrderDate.Name = "lblOrderDate"
         Me.lblOrderDate.Style = "ddo-char-set: 0; text-align: right; font-weight: bold; font-size: 8.25pt; "
         Me.lblOrderDate.Text = "Fecha :"
@@ -740,8 +757,8 @@ Partial Public Class ArepBitacoraRecepcion
         Me.LblTipoCompra.HyperLink = Nothing
         Me.LblTipoCompra.Left = 0.0!
         Me.LblTipoCompra.Name = "LblTipoCompra"
-        Me.LblTipoCompra.Style = "color: #404040; ddo-char-set: 0; text-align: center; font-weight: bold; backgroun" & _
-            "d-color: White; font-size: 9pt; "
+        Me.LblTipoCompra.Style = "color: White; ddo-char-set: 0; text-align: center; font-weight: bold; background-" & _
+            "color: Black; font-size: 12pt; "
         Me.LblTipoCompra.Text = "Recepción"
         Me.LblTipoCompra.Top = 1.56!
         Me.LblTipoCompra.Width = 2.56!
@@ -1005,11 +1022,12 @@ Partial Public Class ArepBitacoraRecepcion
         Me.Label40.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
         Me.Label40.Height = 0.1599999!
         Me.Label40.HyperLink = Nothing
-        Me.Label40.Left = 0.05!
+        Me.Label40.Left = 0.075!
         Me.Label40.Name = "Label40"
-        Me.Label40.Style = "ddo-char-set: 0; text-align: center; font-weight: bold; font-size: 8.25pt; "
-        Me.Label40.Text = "Datos del Producto"
-        Me.Label40.Top = 4.35!
+        Me.Label40.Style = "color: White; ddo-char-set: 0; text-align: center; font-weight: bold; background-" & _
+            "color: Black; font-size: 8.25pt; "
+        Me.Label40.Text = "DATOS CAFE"
+        Me.Label40.Top = 4.375!
         Me.Label40.Width = 2.52!
         '
         'Label41
@@ -1029,7 +1047,7 @@ Partial Public Class ArepBitacoraRecepcion
         Me.Label41.Style = "ddo-char-set: 0; text-align: right; font-weight: bold; font-size: 8.25pt; "
         Me.Label41.Text = "Estado:"
         Me.Label41.Top = 5.0!
-        Me.Label41.Width = 0.64!
+        Me.Label41.Width = 0.65!
         '
         'Label42
         '
@@ -1041,14 +1059,14 @@ Partial Public Class ArepBitacoraRecepcion
         Me.Label42.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
         Me.Label42.Border.TopColor = System.Drawing.Color.Black
         Me.Label42.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.Label42.Height = 0.24!
+        Me.Label42.Height = 0.25!
         Me.Label42.HyperLink = Nothing
-        Me.Label42.Left = 0.2!
+        Me.Label42.Left = 0.075!
         Me.Label42.Name = "Label42"
         Me.Label42.Style = "ddo-char-set: 0; text-align: right; font-weight: bold; font-size: 8.25pt; "
         Me.Label42.Text = "Calidad:"
         Me.Label42.Top = 4.55!
-        Me.Label42.Width = 0.52!
+        Me.Label42.Width = 0.65!
         '
         'LblEstado
         '
@@ -1162,7 +1180,7 @@ Partial Public Class ArepBitacoraRecepcion
         Me.Label48.Style = "ddo-char-set: 0; text-align: right; font-weight: bold; font-size: 8.25pt; "
         Me.Label48.Text = "Categoria:"
         Me.Label48.Top = 4.8!
-        Me.Label48.Width = 0.72!
+        Me.Label48.Width = 0.65!
         '
         'Label49
         '
@@ -1174,13 +1192,13 @@ Partial Public Class ArepBitacoraRecepcion
         Me.Label49.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
         Me.Label49.Border.TopColor = System.Drawing.Color.Black
         Me.Label49.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.Label49.Height = 0.1999999!
+        Me.Label49.Height = 0.2000002!
         Me.Label49.HyperLink = Nothing
-        Me.Label49.Left = 0.125!
+        Me.Label49.Left = 0.075!
         Me.Label49.Name = "Label49"
         Me.Label49.Style = "ddo-char-set: 0; text-align: right; font-weight: bold; font-size: 8.25pt; "
-        Me.Label49.Text = "%Hum"
-        Me.Label49.Top = 5.475!
+        Me.Label49.Text = "%Hum:"
+        Me.Label49.Top = 5.525!
         Me.Label49.Width = 0.65!
         '
         'LblHum
@@ -1212,13 +1230,13 @@ Partial Public Class ArepBitacoraRecepcion
         Me.Label51.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
         Me.Label51.Border.TopColor = System.Drawing.Color.Black
         Me.Label51.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.Label51.Height = 0.1999999!
+        Me.Label51.Height = 0.2000002!
         Me.Label51.HyperLink = Nothing
-        Me.Label51.Left = 0.125!
+        Me.Label51.Left = 0.05!
         Me.Label51.Name = "Label51"
         Me.Label51.Style = "ddo-char-set: 0; text-align: right; font-weight: bold; font-size: 8.25pt; "
-        Me.Label51.Text = "%Imp"
-        Me.Label51.Top = 5.725!
+        Me.Label51.Text = "%Imp:"
+        Me.Label51.Top = 5.75!
         Me.Label51.Width = 0.65!
         '
         'LblImp
@@ -1254,8 +1272,9 @@ Partial Public Class ArepBitacoraRecepcion
         Me.Label53.HyperLink = Nothing
         Me.Label53.Left = 0.05!
         Me.Label53.Name = "Label53"
-        Me.Label53.Style = "ddo-char-set: 0; text-align: center; font-weight: bold; font-size: 8.25pt; "
-        Me.Label53.Text = "Generales Recibo"
+        Me.Label53.Style = "color: White; ddo-char-set: 0; text-align: center; font-weight: bold; background-" & _
+            "color: Black; font-size: 8.25pt; "
+        Me.Label53.Text = "GENERALES RECIBO"
         Me.Label53.Top = 5.975!
         Me.Label53.Width = 2.525!
         '
@@ -1290,12 +1309,12 @@ Partial Public Class ArepBitacoraRecepcion
         Me.Label55.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
         Me.Label55.Height = 0.1999999!
         Me.Label55.HyperLink = Nothing
-        Me.Label55.Left = 0.25!
+        Me.Label55.Left = 0.05!
         Me.Label55.Name = "Label55"
         Me.Label55.Style = "ddo-char-set: 0; text-align: right; font-weight: bold; font-size: 8.25pt; "
         Me.Label55.Text = "Ingreso:"
         Me.Label55.Top = 6.225!
-        Me.Label55.Width = 0.5!
+        Me.Label55.Width = 0.7!
         '
         'Label56
         '
@@ -1364,14 +1383,14 @@ Partial Public Class ArepBitacoraRecepcion
         Me.Label59.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
         Me.Label59.Border.TopColor = System.Drawing.Color.Black
         Me.Label59.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.Label59.Height = 0.2!
+        Me.Label59.Height = 0.1999998!
         Me.Label59.HyperLink = Nothing
-        Me.Label59.Left = 0.125!
+        Me.Label59.Left = 0.05!
         Me.Label59.Name = "Label59"
         Me.Label59.Style = "ddo-char-set: 0; text-align: right; font-weight: bold; font-size: 8.25pt; "
         Me.Label59.Text = "Liquidar:"
         Me.Label59.Top = 6.675001!
-        Me.Label59.Width = 0.65!
+        Me.Label59.Width = 0.7250001!
         '
         'ReportFooter1
         '
@@ -1382,7 +1401,7 @@ Partial Public Class ArepBitacoraRecepcion
         '
         Me.GroupHeader1.Controls.AddRange(New DataDynamics.ActiveReports.ARControl() {Me.lblProductID, Me.Label2, Me.LblApellidos, Me.Label5, Me.Line2, Me.LblBodegas, Me.LblBarco, Me.LblConductor, Me.Label8, Me.Label9, Me.LblOrigen, Me.Label10, Me.Label11, Me.LblPila, Me.Label12, Me.LblPlaca, Me.Label14, Me.Label15, Me.Label16, Me.Label17, Me.Label18, Me.Label19, Me.Label20, Me.Label21, Me.Label22, Me.Label23, Me.Label24, Me.Label25, Me.Label26, Me.Label27, Me.Label28, Me.Label29, Me.Label30, Me.Label31, Me.Label32, Me.Label33, Me.Label34, Me.TextBox4, Me.Label1, Me.Label3, Me.Label4, Me.Label7, Me.Label37, Me.Label57, Me.Label58, Me.SubReportCertificado, Me.LblHora, Me.Label60, Me.TxtCertificados, Me.lblQty})
         Me.GroupHeader1.DataField = "NumeroRecepcion"
-        Me.GroupHeader1.Height = 1.21875!
+        Me.GroupHeader1.Height = 1.229167!
         Me.GroupHeader1.Name = "GroupHeader1"
         '
         'lblProductID
@@ -1406,27 +1425,6 @@ Partial Public Class ArepBitacoraRecepcion
         Me.lblProductID.Visible = False
         Me.lblProductID.Width = 0.6842105!
         '
-        'lblQty
-        '
-        Me.lblQty.Border.BottomColor = System.Drawing.Color.Black
-        Me.lblQty.Border.BottomStyle = DataDynamics.ActiveReports.BorderLineStyle.Solid
-        Me.lblQty.Border.LeftColor = System.Drawing.Color.Black
-        Me.lblQty.Border.LeftStyle = DataDynamics.ActiveReports.BorderLineStyle.Solid
-        Me.lblQty.Border.RightColor = System.Drawing.Color.Black
-        Me.lblQty.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.Solid
-        Me.lblQty.Border.TopColor = System.Drawing.Color.Black
-        Me.lblQty.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.Solid
-        Me.lblQty.Height = 0.3125!
-        Me.lblQty.HyperLink = Nothing
-        Me.lblQty.Left = 1.1!
-        Me.lblQty.Name = "lblQty"
-        Me.lblQty.Style = "color: #000040; ddo-char-set: 0; text-align: center; font-weight: bold; backgroun" & _
-            "d-color: White; font-size: 8.25pt; "
-        Me.lblQty.Text = "Peso LB"
-        Me.lblQty.Top = 1.85!
-        Me.lblQty.Visible = False
-        Me.lblQty.Width = 0.5!
-        '
         'Label2
         '
         Me.Label2.Border.BottomColor = System.Drawing.Color.Black
@@ -1441,8 +1439,8 @@ Partial Public Class ArepBitacoraRecepcion
         Me.Label2.HyperLink = Nothing
         Me.Label2.Left = 0.1!
         Me.Label2.Name = "Label2"
-        Me.Label2.Style = "color: #000040; text-align: center; font-weight: bold; background-color: White; f" & _
-            "ont-size: 8.5pt; "
+        Me.Label2.Style = "color: White; text-align: center; font-weight: bold; background-color: Black; fon" & _
+            "t-size: 8.5pt; "
         Me.Label2.Text = "Pd"
         Me.Label2.Top = 0.875!
         Me.Label2.Width = 0.25!
@@ -2164,8 +2162,8 @@ Partial Public Class ArepBitacoraRecepcion
         Me.Label1.HyperLink = Nothing
         Me.Label1.Left = 0.8!
         Me.Label1.Name = "Label1"
-        Me.Label1.Style = "color: #000040; ddo-char-set: 0; text-align: center; font-weight: bold; backgroun" & _
-            "d-color: White; font-size: 8.25pt; "
+        Me.Label1.Style = "color: White; ddo-char-set: 0; text-align: center; font-weight: bold; background-" & _
+            "color: Black; font-size: 8.25pt; "
         Me.Label1.Text = "Peso Bruto KG"
         Me.Label1.Top = 0.875!
         Me.Label1.Width = 0.64!
@@ -2248,8 +2246,8 @@ Partial Public Class ArepBitacoraRecepcion
         Me.Label37.HyperLink = Nothing
         Me.Label37.Left = 1.925!
         Me.Label37.Name = "Label37"
-        Me.Label37.Style = "color: #000040; ddo-char-set: 0; text-align: center; font-weight: bold; backgroun" & _
-            "d-color: White; font-size: 8.25pt; "
+        Me.Label37.Style = "color: White; ddo-char-set: 0; text-align: center; font-weight: bold; background-" & _
+            "color: Black; font-size: 8.25pt; "
         Me.Label37.Text = "Peso Neto KG"
         Me.Label37.Top = 0.875!
         Me.Label37.Width = 0.6!
@@ -2268,8 +2266,8 @@ Partial Public Class ArepBitacoraRecepcion
         Me.Label57.HyperLink = Nothing
         Me.Label57.Left = 1.45!
         Me.Label57.Name = "Label57"
-        Me.Label57.Style = "color: #000040; ddo-char-set: 0; text-align: center; font-weight: bold; backgroun" & _
-            "d-color: White; font-size: 8.25pt; "
+        Me.Label57.Style = "color: White; ddo-char-set: 0; text-align: center; font-weight: bold; background-" & _
+            "color: Black; font-size: 8.25pt; "
         Me.Label57.Text = "Tara"
         Me.Label57.Top = 0.875!
         Me.Label57.Width = 0.48!
@@ -2288,8 +2286,8 @@ Partial Public Class ArepBitacoraRecepcion
         Me.Label58.HyperLink = Nothing
         Me.Label58.Left = 0.35!
         Me.Label58.Name = "Label58"
-        Me.Label58.Style = "color: #000040; ddo-char-set: 0; text-align: center; font-weight: bold; backgroun" & _
-            "d-color: White; font-size: 8.25pt; "
+        Me.Label58.Style = "color: White; ddo-char-set: 0; text-align: center; font-weight: bold; background-" & _
+            "color: Black; font-size: 8.25pt; "
         Me.Label58.Text = "Saco"
         Me.Label58.Top = 0.875!
         Me.Label58.Width = 0.4375!
@@ -2324,17 +2322,38 @@ Partial Public Class ArepBitacoraRecepcion
         Me.TxtCertificados.Border.TopColor = System.Drawing.Color.Black
         Me.TxtCertificados.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
         Me.TxtCertificados.Height = 0.375!
-        Me.TxtCertificados.Left = 0.1!
+        Me.TxtCertificados.Left = 0.05!
         Me.TxtCertificados.Name = "TxtCertificados"
         Me.TxtCertificados.Style = "ddo-char-set: 0; font-size: 8.25pt; "
         Me.TxtCertificados.Text = Nothing
         Me.TxtCertificados.Top = 0.2!
         Me.TxtCertificados.Width = 2.525!
         '
+        'lblQty
+        '
+        Me.lblQty.Border.BottomColor = System.Drawing.Color.Black
+        Me.lblQty.Border.BottomStyle = DataDynamics.ActiveReports.BorderLineStyle.Solid
+        Me.lblQty.Border.LeftColor = System.Drawing.Color.Black
+        Me.lblQty.Border.LeftStyle = DataDynamics.ActiveReports.BorderLineStyle.Solid
+        Me.lblQty.Border.RightColor = System.Drawing.Color.Black
+        Me.lblQty.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.Solid
+        Me.lblQty.Border.TopColor = System.Drawing.Color.Black
+        Me.lblQty.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.Solid
+        Me.lblQty.Height = 0.3125!
+        Me.lblQty.HyperLink = Nothing
+        Me.lblQty.Left = 1.1!
+        Me.lblQty.Name = "lblQty"
+        Me.lblQty.Style = "color: #000040; ddo-char-set: 0; text-align: center; font-weight: bold; backgroun" & _
+            "d-color: White; font-size: 8.25pt; "
+        Me.lblQty.Text = "Peso LB"
+        Me.lblQty.Top = 1.85!
+        Me.lblQty.Visible = False
+        Me.lblQty.Width = 0.5!
+        '
         'GroupFooter1
         '
-        Me.GroupFooter1.Controls.AddRange(New DataDynamics.ActiveReports.ARControl() {Me.lblSubTotals, Me.TxtPesoNeto, Me.Label36, Me.Label43, Me.Label44, Me.Label46, Me.Label47, Me.Label50, Me.Label52, Me.TxtOreado, Me.TxtReal, Me.Label62, Me.TxtObservaciones, Me.Label63, Me.TxtQQOreado, Me.Label65, Me.Label54})
-        Me.GroupFooter1.Height = 2.729167!
+        Me.GroupFooter1.Controls.AddRange(New DataDynamics.ActiveReports.ARControl() {Me.lblSubTotals, Me.TxtPesoNeto, Me.Label36, Me.Label43, Me.Label44, Me.Label46, Me.Label47, Me.Label50, Me.Label52, Me.TxtOreado, Me.TxtReal, Me.Label62, Me.TxtObservaciones, Me.Label63, Me.TxtQQOreado, Me.Label65, Me.Label54, Me.TxtFinal})
+        Me.GroupFooter1.Height = 4.9375!
         Me.GroupFooter1.Name = "GroupFooter1"
         '
         'lblSubTotals
@@ -2455,7 +2474,7 @@ Partial Public Class ArepBitacoraRecepcion
         Me.Label46.Style = "color: #000040; text-align: right; font-weight: bold; background-color: White; fo" & _
             "nt-size: 8.5pt; "
         Me.Label46.Text = "Eq.Real"
-        Me.Label46.Top = 2.45!
+        Me.Label46.Top = 2.6!
         Me.Label46.Visible = False
         Me.Label46.Width = 0.8125!
         '
@@ -2471,11 +2490,11 @@ Partial Public Class ArepBitacoraRecepcion
         Me.Label47.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
         Me.Label47.Height = 0.1875!
         Me.Label47.HyperLink = Nothing
-        Me.Label47.Left = 1.95!
+        Me.Label47.Left = 1.925!
         Me.Label47.Name = "Label47"
         Me.Label47.Style = "ddo-char-set: 0; font-weight: bold; font-size: 9pt; "
         Me.Label47.Text = "Kg"
-        Me.Label47.Top = 2.45!
+        Me.Label47.Top = 2.625!
         Me.Label47.Visible = False
         Me.Label47.Width = 0.3125!
         '
@@ -2495,7 +2514,7 @@ Partial Public Class ArepBitacoraRecepcion
         Me.Label50.Name = "Label50"
         Me.Label50.Style = "ddo-char-set: 0; text-align: center; font-weight: bold; font-size: 8.25pt; "
         Me.Label50.Text = "Realizado Por"
-        Me.Label50.Top = 2.05!
+        Me.Label50.Top = 2.425!
         Me.Label50.Width = 0.95!
         '
         'Label52
@@ -2514,7 +2533,7 @@ Partial Public Class ArepBitacoraRecepcion
         Me.Label52.Name = "Label52"
         Me.Label52.Style = "ddo-char-set: 0; text-align: center; font-weight: bold; font-size: 8.25pt; "
         Me.Label52.Text = "Entregue Conforme"
-        Me.Label52.Top = 2.05!
+        Me.Label52.Top = 2.425!
         Me.Label52.Width = 1.075!
         '
         'TxtOreado
@@ -2552,7 +2571,7 @@ Partial Public Class ArepBitacoraRecepcion
         Me.TxtReal.Name = "TxtReal"
         Me.TxtReal.Style = "ddo-char-set: 0; text-align: right; font-size: 8.25pt; "
         Me.TxtReal.Text = ""
-        Me.TxtReal.Top = 2.425!
+        Me.TxtReal.Top = 2.575!
         Me.TxtReal.Visible = False
         Me.TxtReal.Width = 0.725!
         '
@@ -2651,24 +2670,6 @@ Partial Public Class ArepBitacoraRecepcion
         Me.Label65.Top = 0.44!
         Me.Label65.Width = 0.3125!
         '
-        'TxtFinal
-        '
-        Me.TxtFinal.Border.BottomColor = System.Drawing.Color.Black
-        Me.TxtFinal.Border.BottomStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.TxtFinal.Border.LeftColor = System.Drawing.Color.Black
-        Me.TxtFinal.Border.LeftStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.TxtFinal.Border.RightColor = System.Drawing.Color.Black
-        Me.TxtFinal.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.TxtFinal.Border.TopColor = System.Drawing.Color.Black
-        Me.TxtFinal.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.TxtFinal.Height = 1.92!
-        Me.TxtFinal.Left = 0.1!
-        Me.TxtFinal.Name = "TxtFinal"
-        Me.TxtFinal.Style = "ddo-char-set: 0; text-align: justify; font-size: 8.25pt; "
-        Me.TxtFinal.Text = Nothing
-        Me.TxtFinal.Top = 0.1!
-        Me.TxtFinal.Width = 2.48!
-        '
         'Label54
         '
         Me.Label54.Border.BottomColor = System.Drawing.Color.Black
@@ -2702,7 +2703,7 @@ Partial Public Class ArepBitacoraRecepcion
         Me.PageSettings.Margins.Top = 0.0!
         Me.PageSettings.PaperHeight = 11.0!
         Me.PageSettings.PaperWidth = 8.5!
-        Me.PrintWidth = 2.666667!
+        Me.PrintWidth = 2.67625!
         Me.Sections.Add(Me.ReportHeader1)
         Me.Sections.Add(Me.PageHeader1)
         Me.Sections.Add(Me.GroupHeader1)
@@ -2731,6 +2732,7 @@ Partial Public Class ArepBitacoraRecepcion
         CType(Me.TextBox3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TextBox11, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TextBox4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtFinal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.lblOrderNum, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.lblOrderDate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ImgLogo, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2772,7 +2774,6 @@ Partial Public Class ArepBitacoraRecepcion
         CType(Me.LblLiquidar, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Label59, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.lblProductID, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.lblQty, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Label2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LblApellidos, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Label5, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2817,6 +2818,7 @@ Partial Public Class ArepBitacoraRecepcion
         CType(Me.Label58, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Label60, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCertificados, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.lblQty, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.lblSubTotals, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtPesoNeto, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Label36, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2833,7 +2835,6 @@ Partial Public Class ArepBitacoraRecepcion
         CType(Me.Label63, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtQQOreado, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Label65, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtFinal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Label54, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 

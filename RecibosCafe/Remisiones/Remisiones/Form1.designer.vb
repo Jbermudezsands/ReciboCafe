@@ -49,6 +49,7 @@ Partial Class MDIParent1
         Me.RbnMermaBodegaXReciboXRemision = New C1.Win.C1Ribbon.RibbonButton
         Me.RbnMermaPI = New C1.Win.C1Ribbon.RibbonButton
         Me.RbnResumenLiquidacion = New C1.Win.C1Ribbon.RibbonButton
+        Me.RbnReimpresionResumeLiq = New C1.Win.C1Ribbon.RibbonButton
         Me.RibbonGroup4 = New C1.Win.C1Ribbon.RibbonGroup
         Me.RibbonButton1 = New C1.Win.C1Ribbon.RibbonButton
         Me.RibbonTab2 = New C1.Win.C1Ribbon.RibbonTab
@@ -65,7 +66,6 @@ Partial Class MDIParent1
         Me.CmdReservar = New System.Windows.Forms.Button
         Me.CmdSalida = New System.Windows.Forms.Button
         Me.CmdReporta = New System.Windows.Forms.Button
-        Me.RbnReimpresionResumeLiq = New C1.Win.C1Ribbon.RibbonButton
         CType(Me.C1Ribbon1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.C1StatusBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -286,6 +286,12 @@ Partial Class MDIParent1
         Me.RbnResumenLiquidacion.SmallImage = Global.Remisiones.My.Resources.Resources.exportea32
         Me.RbnResumenLiquidacion.Text = "Reporte Resumen Liquidacion"
         '
+        'RbnReimpresionResumeLiq
+        '
+        Me.RbnReimpresionResumeLiq.ID = "RbnReimpresionResumeLiq"
+        Me.RbnReimpresionResumeLiq.SmallImage = CType(resources.GetObject("RbnReimpresionResumeLiq.SmallImage"), System.Drawing.Image)
+        Me.RbnReimpresionResumeLiq.Text = "Reimpresion Resumen Liquidacion"
+        '
         'RibbonGroup4
         '
         Me.RibbonGroup4.ID = "RibbonGroup4"
@@ -367,7 +373,7 @@ Partial Class MDIParent1
         'RibbonLabel1
         '
         Me.RibbonLabel1.ID = "RibbonLabel1"
-        Me.RibbonLabel1.Text = "Version  1.24"
+        Me.RibbonLabel1.Text = "Version  1.26"
         '
         'CmdHoraLlegada
         '
@@ -434,12 +440,6 @@ Partial Class MDIParent1
         Me.CmdReporta.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.CmdReporta.UseVisualStyleBackColor = True
         Me.CmdReporta.Visible = False
-        '
-        'RbnReimpresionResumeLiq
-        '
-        Me.RbnReimpresionResumeLiq.ID = "RbnReimpresionResumeLiq"
-        Me.RbnReimpresionResumeLiq.SmallImage = CType(resources.GetObject("RbnReimpresionResumeLiq.SmallImage"), System.Drawing.Image)
-        Me.RbnReimpresionResumeLiq.Text = "Reimpresion Resumen Liquidacion"
         '
         'MDIParent1
         '

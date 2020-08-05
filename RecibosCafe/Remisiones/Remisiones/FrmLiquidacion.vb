@@ -12,8 +12,16 @@ Public Class FrmLiquidacion
     Public Ret3C As Double, Ret3D As Double, valorCor As Double, ValorDol As Double, TotalDecC As Double, TotalDecD As Double, NetoPagarC As Double
     Public NetoPagarD As Double, Reten2C As Double, Reten2D As Double, Precio As Double, Fecha As Date, IdFinca As Double, TasaCambio As Double, SumaAbono As Double
     Public count1 As Integer, count2 As Integer, PrecioAnterior As Double, NumEnsambleJust As String, CambioPrecio As Boolean = False, codigoProveedor As String
+    Public SaldoAvio As Double = 0, NumeroAvio As String = "", IdAvio As Double = 0
+    Public MontoEfectivo As Double = 0
+    Private Sub RellenaEfectivo(ByVal MontoEfectivo As Double, ByVal iPosicion As Double)
+        Me.TDBGRidDistribucion.Item(iPosicion)("Monto") = MontoEfectivo
+    End Sub
+
+
     Private Sub ValidaDistribuicion()
         Dim ContarGrid As Double, i As Double, Monto As Double
+
 
         ContarGrid = 0
         i = 0
@@ -868,7 +876,8 @@ Public Class FrmLiquidacion
 
         Me.LblSaldoDeudor.Text = "0.00"
         '//////////////////////////////////////////CARGO EL SALO DEL PROVEEDOR //////////////////////////////////////////////////////////
-        sql = "SELECT IdAvioXProductor, NumeroAvio, IdAvio, IdProductor, IdMoneda, Saldo, FechaActualizacion FROM AvioXProductor  WHERE(IdProductor = " & IdProductor & ") ORDER BY FechaActualizacion DESC"
+        'sql = "SELECT SUM(Saldo) as Saldo FROM AvioXProductor  WHERE(IdProductor = " & IdProductor & ") ORDER BY FechaActualizacion DESC"
+        sql = "SELECT IdProductor, SUM(Saldo) AS Saldo FROM AvioXProductor GROUP BY IdProductor HAVING(IdProductor = " & IdProductor & ")"
         DataAdapter = New SqlClient.SqlDataAdapter(sql, MiConexion)
         DataAdapter.Fill(DataSet, "SaldoAvio")
         If DataSet.Tables("SaldoAvio").Rows.Count <> 0 Then
@@ -1738,8 +1747,10 @@ Public Class FrmLiquidacion
             IdRegion = DataSet.Tables("locali").Rows(0)("IdRegion")
             Me.TxtIdLocalidad.Text = DataSet.Tables("locali").Rows(0)("CodLugarAcopio")
 
+            sql = ""
             '//////////////////////////////////LISTADO DE MUNICIPIOS //////////////////////////
-            sql = "SELECT DISTINCT Municipio.Nombre FROM LugarAcopio INNER JOIN Region ON LugarAcopio.IdRegion = Region.IdRegion INNER JOIN Municipio ON LugarAcopio.IdPadre = Municipio.IdMunicipio WHERE(Region.IdRegion =  " & IdRegion & ")"
+            'sql = "SELECT Municipio.IdMunicipio, Municipio.Nombre, Municipio.IdLugarAcopio, Region.Nombre AS Region, Region.IdRegion, LugarAcopio.Activo FROM  Municipio INNER JOIN LugarAcopio ON Municipio.IdLugarAcopio = LugarAcopio.IdLugarAcopio INNER JOIN Region ON LugarAcopio.IdRegion = Region.IdRegion  WHERE  (Region.IdRegion = 2) AND (LugarAcopio.Activo = 1)
+            sql = "SELECT  IdMunicipio, Nombre, IdLugarAcopio FROM Municipio WHERE(IdLugarAcopio = " & IdLocalidadLiqui & ") "
             DataAdapter = New SqlClient.SqlDataAdapter(sql, MiConexion)
             DataAdapter.Fill(DataSet, "Municipio")
             If DataSet.Tables("Municipio").Rows.Count <> 0 Then
@@ -1804,6 +1815,10 @@ Public Class FrmLiquidacion
         Dim Fechainicial As Date, FechaFinal As Date, Fechanow As Date, EsPorcentaje As Boolean, IdLocalidad As Integer, DeduccionDano As Double, DD As Double
         Dim DeducEstado As Double, Descripcion As String, PesoRestante As Double, EstadoLiquidado As Boolean, Parcial As Boolean
         Dim Saldo As Double, Monto As Double, TotalSaldo As Double, TotalMonto As Double, IdRecibo As Integer
+
+        SaldoAvio = 0
+        IdAvio = 0
+        NumeroAvio = 0
 
         If CDbl(Me.TxtPrecio.Text) = 0.0 Then
             MsgBox("No se encontro precio", MsgBoxStyle.Exclamation, "Liquidacion")
@@ -2007,7 +2022,7 @@ Public Class FrmLiquidacion
         'CARGO EL GRID CON UNA CONSULTA NULLA DISTRIBUCION
         '____________________________________________________
 
-        SqlString = "SELECT  AplicacionLiquidacionPergamino.Descripcion AS Concepto, TipoPago.Descripcion AS TipoPago, TipoPago.Descripcion AS NumeroSolicitud, DetalleDistribucion.Monto, DetalleDistribucion.FechaPago,DetalleDistribucion.IdDetalleDistribucion  FROM DetalleDistribucion INNER JOIN  AplicacionLiquidacionPergamino ON DetalleDistribucion.IdAplicacionLiquidacionPergamino = AplicacionLiquidacionPergamino.IdAplicacionLiquidacionPergamino INNER JOIN                          TipoPago ON DetalleDistribucion.IdTipoPago = TipoPago.IdTipoPago WHERE        (DetalleDistribucion.IdDetalleDistribucion = - 100)"
+        SqlString = "SELECT  AplicacionLiquidacionPergamino.Descripcion AS Concepto, TipoPago.Descripcion AS TipoPago, TipoPago.Descripcion AS NumeroSolicitud, TipoPago.Descripcion AS Saldo, DetalleDistribucion.Monto, DetalleDistribucion.FechaPago,DetalleDistribucion.IdDetalleDistribucion, IdAvio  FROM DetalleDistribucion INNER JOIN  AplicacionLiquidacionPergamino ON DetalleDistribucion.IdAplicacionLiquidacionPergamino = AplicacionLiquidacionPergamino.IdAplicacionLiquidacionPergamino INNER JOIN                          TipoPago ON DetalleDistribucion.IdTipoPago = TipoPago.IdTipoPago WHERE        (DetalleDistribucion.IdDetalleDistribucion = - 100)"
         DataAdapter = New SqlClient.SqlDataAdapter(SqlString, MiConexion)
         DataAdapter.Fill(DataSet, "Distribucion15")
         'Me.BinDistribucion.DataSource = DataSet.Tables("Distribucion")
@@ -2024,14 +2039,64 @@ Public Class FrmLiquidacion
         DataAdapter.Fill(DataSet, "PagoLiquida")
         TipoPago = DataSet.Tables("PagoLiquida").Rows(0)("Descripcion")
 
+        sql = "SELECT IdAvioXProductor, NumeroAvio, IdAvio, IdProductor, IdMoneda, Saldo, FechaActualizacion FROM AvioXProductor  WHERE(IdProductor = " & IdProductor & ") AND (Saldo <> 0) ORDER BY FechaActualizacion"
+        DataAdapter = New SqlClient.SqlDataAdapter(sql, MiConexion)
+        DataAdapter.Fill(DataSet, "SaldoAvio")
+
+
         Dim DataRowDistribucion As DataRow
+
+        SaldoAvio = 0
+        NumeroAvio = ""
+        i = 0
+
+        Me.LblSaldoDeudor.Text = "0.00"
+        '//////////////////////////////////////////CARGO EL SALO DEL PROVEEDOR //////////////////////////////////////////////////////////
+        'sql = "SELECT SUM(Saldo) as Saldo FROM AvioXProductor  WHERE(IdProductor = " & IdProductor & ") ORDER BY FechaActualizacion DESC"
+        sql = "SELECT IdProductor, SUM(Saldo) AS Saldo FROM AvioXProductor GROUP BY IdProductor HAVING(IdProductor = " & IdProductor & ")"
+        DataAdapter = New SqlClient.SqlDataAdapter(sql, MiConexion)
+        DataAdapter.Fill(DataSet, "SaldoDeudor")
+        If DataSet.Tables("SaldoDeudor").Rows.Count <> 0 Then
+            Me.LblSaldoDeudor.Text = Format(DataSet.Tables("SaldoDeudor").Rows(0)("Saldo"), "##,##0.00")
+        End If
+
+
+        Do While DataSet.Tables("SaldoAvio").Rows.Count > i
+            SaldoAvio = Format(DataSet.Tables("SaldoAvio").Rows(i)("Saldo"), "##,##0.00")
+            NumeroAvio = DataSet.Tables("SaldoAvio").Rows(i)("NumeroAvio")
+            IdAvio = DataSet.Tables("SaldoAvio").Rows(i)("IdAvio")
+            'Me.LblSaldoDeudor.Text = Format(SaldoAvio, "##,##0.00")
+
+            DataRowDistribucion = DataSet.Tables("Distribucion15").NewRow
+            DataRowDistribucion("Concepto") = "Abono"
+            DataRowDistribucion("TipoPago") = TipoPago
+            DataRowDistribucion("Saldo") = Format(SaldoAvio, "##,##0.00")
+            DataRowDistribucion("NumeroSolicitud") = NumeroAvio
+            DataRowDistribucion("Monto") = 0.0
+            DataRowDistribucion("IdAvio") = IdAvio
+            DataRowDistribucion("FechaPago") = Format(CDate(Me.DTPFecha.Value), "dd/MM/yyyy")
+            DataSet.Tables("Distribucion15").Rows.Add(DataRowDistribucion)
+
+            i = i + 1
+        Loop
+
+
+
+
+
         DataRowDistribucion = DataSet.Tables("Distribucion15").NewRow
         DataRowDistribucion("Concepto") = Concepto
         DataRowDistribucion("TipoPago") = TipoPago
+        DataRowDistribucion("Saldo") = 0.0
         DataRowDistribucion("NumeroSolicitud") = ""
         DataRowDistribucion("Monto") = Me.TxtTotalDol.Text
         DataRowDistribucion("FechaPago") = Format(CDate(Me.DTPFecha.Value), "dd/MM/yyyy")
+        DataRowDistribucion("IdAvio") = 0
         DataSet.Tables("Distribucion15").Rows.Add(DataRowDistribucion)
+
+
+
+
 
         Me.BinDistribucion.DataSource = DataSet.Tables("Distribucion15")
         Me.TDBGRidDistribucion.DataSource = Me.BinDistribucion.DataSource
@@ -2094,15 +2159,23 @@ Public Class FrmLiquidacion
         Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns(3).HeadingStyle.HorizontalAlignment = C1.Win.C1TrueDBGrid.AlignHorzEnum.Center
         Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns(4).HeadingStyle.HorizontalAlignment = C1.Win.C1TrueDBGrid.AlignHorzEnum.Center
 
-        Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns(0).Width = 160
-        Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns(1).Width = 160
-        Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns(2).Width = 200
-        Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns(3).Width = 160
-        Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns(4).Width = 160
-        Me.TDBGRidDistribucion.Columns(2).EditMask = "#-##-#####"
-        Me.TDBGRidDistribucion.Columns(2).EditMaskUpdate = True
+        Me.TDBGRidDistribucion.AllowAddNew = False
+        Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns("Concepto").Width = 160
+        Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns("Concepto").Button = False
+        Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns("Concepto").Locked = True
+        Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns("TipoPago").Width = 160
+        Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns("NumeroSolicitud").Width = 120
+        Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns("NumeroSolicitud").Locked = True
+        Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns("Saldo").Width = 120
+        Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns("Saldo").Locked = True
+        Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns("Monto").Width = 120
+        Me.TDBGRidDistribucion.Columns("NumeroSolicitud").EditMask = "#-##-#####"
+        Me.TDBGRidDistribucion.Columns("NumeroSolicitud").EditMaskUpdate = True
+        Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns("FechaPago").Locked = True
+        Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns("IdAvio").Visible = False
 
-        Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns(5).Visible = False
+        Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns("Saldo").Visible = True
+        Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns("IdDetalleDistribucion").Visible = False
 
         '///////////////////////////////// LLENARE EL GRID DISTRIBUION /////////////////////////
         'If IdTipoCompra = 108 Then
@@ -2740,7 +2813,7 @@ Public Class FrmLiquidacion
                 ' Actualizar el detalledistribucion 
                 '__________________________________________________________________________________________________________________________________________________________
 
-                sql2 = "UPDATE [dbo].[DetalleDistribucion]  SET [IdAplicacionLiquidacionPergamino] ='" & IdAplicacion & "'   ,[IdTipoPago] =   '" & IdtipoPago & "'    ,[FechaPago] =  CONVERT(DATETIME, '" & Format(CDate(Me.TDBGRidDistribucion.Item(i)("FechaPago")), "yyyy-MM-dd hh:mm.ss") & "', 102)   ,[Monto] =   '" & Me.TDBGRidDistribucion.Item(i)("Monto") & "', [NumeroAvio] =   '" & Me.TDBGRidDistribucion.Item(i)("NumeroSolicitud") & "'  WHERE  (IdLiquidacionPergamino =  '" & Idliquidacion & "' )AND (IdDetalleDistribucion = '" & Me.TDBGRidDistribucion.Item(i)("IdDetalleDistribucion") & "')"
+                sql2 = "UPDATE [dbo].[DetalleDistribucion]  SET [IdAplicacionLiquidacionPergamino] ='" & IdAplicacion & "'   ,[IdTipoPago] =   '" & IdtipoPago & "'    ,[FechaPago] =  CONVERT(DATETIME, '" & Format(CDate(Me.TDBGRidDistribucion.Item(i)("FechaPago")), "yyyy-MM-dd hh:mm.ss") & "', 102)   ,[Monto] =   '" & Me.TDBGRidDistribucion.Item(i)("Monto") & "', [NumeroAvio] =   '" & Me.TDBGRidDistribucion.Item(i)("NumeroSolicitud") & "', [IdAvio] =   " & Me.TDBGRidDistribucion.Item(i)("IdAvio") & ", [SaldoAvio] = " & CDbl(Me.TDBGRidDistribucion.Item(i)("Saldo")) & "  WHERE  (IdLiquidacionPergamino =  '" & Idliquidacion & "' )AND (IdDetalleDistribucion = '" & Me.TDBGRidDistribucion.Item(i)("IdDetalleDistribucion") & "')"
                 MiConexion.Open()
                 ComandoUpdate = New SqlClient.SqlCommand(sql2, MiConexion)
                 iResultado = ComandoUpdate.ExecuteNonQuery
@@ -2769,8 +2842,8 @@ Public Class FrmLiquidacion
                 ' Guardo en la tabla detalle de distribucion 
                 '__________________________________________________________________________________________________________________________________________________________
 
-                StrSqlInsert = "INSERT INTO [dbo].[DetalleDistribucion]([IdLiquidacionPergamino],[IdAplicacionLiquidacionPergamino],[IdTipoPago],[FechaPago],[Monto],[NumeroAvio])" & _
-                                      " VALUES('" & IdLiquida & "','" & IdAplicacion & "','" & IdtipoPago & "', CONVERT(DATETIME, '" & Format(Me.DTPFecha.Value, "yyyy-MM-dd HH:mm:ss") & "', 102) , '" & Me.TDBGRidDistribucion.Item(i)("Monto") & "', '" & Me.TDBGRidDistribucion.Item(i)("NumeroSolicitud") & "')"
+                StrSqlInsert = "INSERT INTO [dbo].[DetalleDistribucion]([IdLiquidacionPergamino],[IdAplicacionLiquidacionPergamino],[IdTipoPago],[FechaPago],[Monto],[NumeroAvio],[IdAvio],[SaldoAvio])" & _
+                                      " VALUES('" & IdLiquida & "','" & IdAplicacion & "','" & IdtipoPago & "', CONVERT(DATETIME, '" & Format(Me.DTPFecha.Value, "yyyy-MM-dd HH:mm:ss") & "', 102) , '" & Me.TDBGRidDistribucion.Item(i)("Monto") & "', '" & Me.TDBGRidDistribucion.Item(i)("NumeroSolicitud") & "'," & Me.TDBGRidDistribucion.Item(i)("IdAvio") & ", " & CDbl(Me.TDBGRidDistribucion.Item(i)("Saldo")) & " )"
                 MiConexion.Open()
                 ComandoUpdate = New SqlClient.SqlCommand(StrSqlInsert, MiConexion)
                 iResultado = ComandoUpdate.ExecuteNonQuery
@@ -3245,68 +3318,91 @@ Public Class FrmLiquidacion
     End Sub
 
     Private Sub TDBGRidDistribucion_AfterColEdit(ByVal sender As Object, ByVal e As C1.Win.C1TrueDBGrid.ColEventArgs) Handles TDBGRidDistribucion.AfterColEdit
-        Dim DataSet5 As New DataSet, SqlString As String, NumeroRecibo As String
-        Dim PesoBruto As Double
-        Dim i As Integer, APlicado As Double, PorAplicar As Double, Registros As Integer, ContarGrid As Double, TotalMonto As Double, ResultadoD As Double, TipoImpuesto As String
-        Dim ContarSelec As Double, estado As Boolean, codigo As String, ContaTrue As Double
-        Dim IdTipCompra As Integer, Ingreso As Integer, eleccion As Boolean, CodLocalidad As String, codigoRecibo As String, CadenaDiv() As String, Cadena As String
-        Dim PorImperfeccion As Double, Sacos As Double, PesoBruto2 As Double, Tara As Double, NewValorBrtCor As Double, Monto As Double, Posicion As Integer
-        Dim PesoNeto As Double, PrecioNetoCor As Double, PrecioNetoDol As Double, PesoCompara As Double, addrow As String
+        'Dim DataSet5 As New DataSet, SqlString As String, NumeroRecibo As String
+        'Dim PesoBruto As Double
+        'Dim i As Integer, APlicado As Double, PorAplicar As Double, Registros As Integer, ContarGrid As Double, TotalMonto As Double, ResultadoD As Double, TipoImpuesto As String
+        'Dim ContarSelec As Double, estado As Boolean, codigo As String, ContaTrue As Double
+        'Dim IdTipCompra As Integer, Ingreso As Integer, eleccion As Boolean, CodLocalidad As String, codigoRecibo As String, CadenaDiv() As String, Cadena As String
+        'Dim PorImperfeccion As Double, Sacos As Double, PesoBruto2 As Double, Tara As Double, NewValorBrtCor As Double, Monto As Double, Posicion As Integer
+        'Dim PesoNeto As Double, PrecioNetoCor As Double, PrecioNetoDol As Double, PesoCompara As Double, addrow As String
 
-        'If addrow <> "NoRow" Then
-        '    addrow = ""
-        '    If Me.TDBGRidDistribucion.Col = 0 Then
-        '        'Posicion = Me.BinDistribucion.Position
-        '        sql = " SELECT     IdAplicacionLiquidacionPergamino, Code, Descripcion, Activo   FROM   AplicacionLiquidacionPergamino   WHERE (Activo = 1) AND   (Descripcion = '" & Me.TDBGRidDistribucion.Columns(0).Text & "')"
-        '        DataAdapter = New SqlClient.SqlDataAdapter(sql, MiConexion)
-        '        DataAdapter.Fill(DataSet5, "AplicaLiquidacion")
-        '        If DataSet5.Tables("AplicaLiquidacion").Rows.Count <> 0 Then
-        '            IdConcepto = DataSet5.Tables("AplicaLiquidacion").Rows(0)("IdAplicacionLiquidacionPergamino")
+        ''If addrow <> "NoRow" Then
+        ''    addrow = ""
+        ''    If Me.TDBGRidDistribucion.Col = 0 Then
+        ''        'Posicion = Me.BinDistribucion.Position
+        ''        sql = " SELECT     IdAplicacionLiquidacionPergamino, Code, Descripcion, Activo   FROM   AplicacionLiquidacionPergamino   WHERE (Activo = 1) AND   (Descripcion = '" & Me.TDBGRidDistribucion.Columns(0).Text & "')"
+        ''        DataAdapter = New SqlClient.SqlDataAdapter(sql, MiConexion)
+        ''        DataAdapter.Fill(DataSet5, "AplicaLiquidacion")
+        ''        If DataSet5.Tables("AplicaLiquidacion").Rows.Count <> 0 Then
+        ''            IdConcepto = DataSet5.Tables("AplicaLiquidacion").Rows(0)("IdAplicacionLiquidacionPergamino")
+        ''        End If
+
+        ''        If IdConcepto = 724 Then
+        ''            Posicion = Me.TDBGRidDistribucion.Row
+        ''            Me.TDBGRidDistribucion.Item(Posicion, "Monto") = CDbl(Me.TxtTotalDol.Text) - CDbl(Me.LblMontoComp.Text)
+
+        ''            Me.TDBGRidDistribucion.AllowAddNew = False
+        ''            'Me.TDBGRidDistribucion.Item(Posicion, "FechaPago") = Me.DTPFecha.Text
+        ''        ElseIf IdConcepto = 725 Then
+        ''            Posicion = Me.TDBGRidDistribucion.Row
+        ''            Me.TDBGRidDistribucion.Item(Posicion, "Monto") = 0.0
+        ''            addrow = "NoRow"
+        ''            'Me.TDBGRidDistribucion.Item(Posicion, "FechaPago") = Me.DTPFecha.Text
+        ''            Me.TDBGRidDistribucion.AllowAddNew = True
+        ''        End If
+        ''    End If
+        ''End If
+
+        ''Posicion = Me.BinDistribucion.Position
+        ''If Posicion >= 0 Then
+        ''    Monto = Me.BinDistribucion.Item(Posicion)("Monto")
+        ''    PrecioNetoDol = Me.TxtTotalDol.Text
+        ''End If
+        ''If Monto > PrecioNetoDol Then
+        ''    Me.BinDistribucion.Item(Posicion)("Monto") = 0.0
+        ''End If
+        'ContarGrid = 0
+        'MontoEfectivo = 0
+        'Monto = 0
+        'i = 0
+        'ContarGrid = Me.TDBGRidDistribucion.RowCount
+        'Do While ContarGrid > i
+
+
+        '    If IsDBNull(Me.TDBGRidDistribucion.Item(i)("Monto")) Then
+        '        i = i + 1
+        '    Else
+
+        '        If Me.TDBGRidDistribucion.Item(i)("Concepto") = "Efectivo" Then
+        '            MontoEfectivo = MontoEfectivo + Me.TDBGRidDistribucion.Item(i)("Monto")
+        '        Else
+        '            Monto = CDbl(Me.TDBGRidDistribucion.Item(i)("Monto")) + Monto
+        '            Monto = Format(Monto, "####0.00")
         '        End If
 
-        '        If IdConcepto = 724 Then
-        '            Posicion = Me.TDBGRidDistribucion.Row
-        '            Me.TDBGRidDistribucion.Item(Posicion, "Monto") = CDbl(Me.TxtTotalDol.Text) - CDbl(Me.LblMontoComp.Text)
-
-        '            Me.TDBGRidDistribucion.AllowAddNew = False
-        '            'Me.TDBGRidDistribucion.Item(Posicion, "FechaPago") = Me.DTPFecha.Text
-        '        ElseIf IdConcepto = 725 Then
-        '            Posicion = Me.TDBGRidDistribucion.Row
-        '            Me.TDBGRidDistribucion.Item(Posicion, "Monto") = 0.0
-        '            addrow = "NoRow"
-        '            'Me.TDBGRidDistribucion.Item(Posicion, "FechaPago") = Me.DTPFecha.Text
-        '            Me.TDBGRidDistribucion.AllowAddNew = True
+        '        If ContarGrid = i + 1 Then
+        '            If MontoEfectivo > Monto Then
+        '                MontoEfectivo = MontoEfectivo - Monto
+        '            End If
         '        End If
+
+        '        i = i + 1
         '    End If
+
+        'Loop
+
+
+        'If (MontoEfectivo + Monto) > CDbl(Me.TxtTotalDol.Text) Then
+        '    MsgBox("El total de distribucion es mayor a lo digitado", MsgBoxStyle.Critical, "Liquidacion")
+        '    Me.TDBGRidDistribucion.Columns("Monto").Text = 0.0
+        '    'Else
+        '    '    Me.TDBGRidDistribucion.Row = i - 1
+        '    '    Me.TDBGRidDistribucion.Columns("Monto").Text = MontoEfectivo
         'End If
 
-        'Posicion = Me.BinDistribucion.Position
-        'If Posicion >= 0 Then
-        '    Monto = Me.BinDistribucion.Item(Posicion)("Monto")
-        '    PrecioNetoDol = Me.TxtTotalDol.Text
-        'End If
-        'If Monto > PrecioNetoDol Then
-        '    Me.BinDistribucion.Item(Posicion)("Monto") = 0.0
-        'End If
-        ContarGrid = 0
-        i = 0
-        ContarGrid = Me.TDBGRidDistribucion.RowCount
-        Do While ContarGrid > i
-            'Me.TDBGRidDistribucion.Row = i
-            If IsDBNull(Me.TDBGRidDistribucion.Item(i)("Monto")) Then
-                i = i + 1
-            Else
-                Monto = CDbl(Me.TDBGRidDistribucion.Item(i)("Monto")) + Monto
-                Monto = Format(Monto, "####0.00")
-                i = i + 1
-            End If
-        Loop
-        If Monto > CDbl(Me.TxtTotalDol.Text) Then
-            MsgBox("El total de distribucion es mayor a lo digitado", MsgBoxStyle.Critical, "Liquidacion")
-            Me.TDBGRidDistribucion.Columns("Monto").Text = 0.0
-        End If
 
-        sumagriddistribucion()
+        'sumagriddistribucion()
+
 
 
     End Sub
@@ -3457,7 +3553,7 @@ Public Class FrmLiquidacion
         Me.TDGridDetalleRecibos.Splits.Item(0).DisplayColumns(3).Width = 150
         Me.TDGridDetalleRecibos.Splits.Item(0).DisplayColumns(4).Width = 150
         Me.TDGridDetalleRecibos.Splits.Item(0).DisplayColumns(5).Width = 149
-        Me.TDGridDetalleRecibos.Splits.Item(0).DisplayColumns(6).Visible = False
+        Me.TDGridDetalleRecibos.Splits.Item(0).DisplayColumns(6).Visible = True
         Me.TDGridDetalleRecibos.Splits.Item(0).DisplayColumns(7).Visible = False
         Me.TDGridDetalleRecibos.Splits.Item(0).DisplayColumns(8).Visible = False
         Me.TDGridDetalleRecibos.Splits.Item(0).DisplayColumns(9).Visible = False
@@ -3515,7 +3611,8 @@ Public Class FrmLiquidacion
 
                 Me.LblTotalMonto.Location = New Point(600, 536)
                 Me.Lbltxmonto.Location = New Point(245, 555)
-                Me.BtnBorrarLinea.Visible = True
+
+                Me.BtnBorrarLinea.Visible = False
                 sumagriddistribucion()
 
         End Select
@@ -3612,7 +3709,7 @@ Public Class FrmLiquidacion
                 Me.Button10.Enabled = False
                 Me.txtnombre.Enabled = False
                 Me.TxtCedula.Enabled = False
-                Me.CboMunicipio.Enabled = False
+                Me.CboMunicipio.Enabled = True
                 Me.CboMoneda.Enabled = False
                 Me.CboMonedas.Enabled = True
                 Me.TabControl1.Enabled = True
@@ -3901,7 +3998,7 @@ Public Class FrmLiquidacion
                 Me.TDGridDetalleRecibos.Columns("ValorBruto$").NumberFormat = "##,##0.00"
 
 
-                Sql = "SELECT  AplicacionLiquidacionPergamino.Descripcion AS Concepto, TipoPago.Descripcion AS TipoPago, DetalleDistribucion.NumeroAvio AS NumeroSolicitud, DetalleDistribucion.Monto AS Monto,  DetalleDistribucion.FechaPago AS FechaPago, DetalleDistribucion.IdDetalleDistribucion   FROM    DetalleDistribucion INNER JOIN   AplicacionLiquidacionPergamino ON DetalleDistribucion.IdAplicacionLiquidacionPergamino = AplicacionLiquidacionPergamino.IdAplicacionLiquidacionPergamino INNER JOIN  TipoPago ON DetalleDistribucion.IdTipoPago = TipoPago.IdTipoPago INNER JOIN LiquidacionPergamino ON DetalleDistribucion.IdLiquidacionPergamino = LiquidacionPergamino.IdLiquidacionPergamino  WHERE  (LiquidacionPergamino.IdLiquidacionPergamino = '" & Me.TxtIdLiquidacion.Text & "')"
+                Sql = "SELECT  AplicacionLiquidacionPergamino.Descripcion AS Concepto, TipoPago.Descripcion AS TipoPago, DetalleDistribucion.NumeroAvio AS NumeroSolicitud, DetalleDistribucion.SaldoAvio AS Saldo, DetalleDistribucion.Monto AS Monto,  DetalleDistribucion.FechaPago AS FechaPago, DetalleDistribucion.IdDetalleDistribucion, DetalleDistribucion.IdAvio   FROM    DetalleDistribucion INNER JOIN   AplicacionLiquidacionPergamino ON DetalleDistribucion.IdAplicacionLiquidacionPergamino = AplicacionLiquidacionPergamino.IdAplicacionLiquidacionPergamino INNER JOIN  TipoPago ON DetalleDistribucion.IdTipoPago = TipoPago.IdTipoPago INNER JOIN LiquidacionPergamino ON DetalleDistribucion.IdLiquidacionPergamino = LiquidacionPergamino.IdLiquidacionPergamino  WHERE  (LiquidacionPergamino.IdLiquidacionPergamino = '" & Me.TxtIdLiquidacion.Text & "')"
                 DataAdapter = New SqlClient.SqlDataAdapter(Sql, MiConexion)
                 DataAdapter.Fill(DataSet, "DistrbLiquida")
                 Me.TDBGRidDistribucion.DataSource = DataSet.Tables("DistrbLiquida")
@@ -3964,20 +4061,40 @@ Public Class FrmLiquidacion
             Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns(3).HeadingStyle.HorizontalAlignment = C1.Win.C1TrueDBGrid.AlignHorzEnum.Center
             Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns(4).HeadingStyle.HorizontalAlignment = C1.Win.C1TrueDBGrid.AlignHorzEnum.Center
 
-            Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns(0).Width = 160
-            Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns(1).Width = 160
-            Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns(2).Width = 200
-            Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns(3).Width = 160
-            Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns(4).Width = 160
-            Me.TDBGRidDistribucion.Columns(3).NumberFormat = "##,##0.00"
+            Me.TDBGRidDistribucion.AllowAddNew = False
+            Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns("Concepto").Width = 160
+            Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns("Concepto").Button = False
+            Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns("Concepto").Locked = True
+            Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns("TipoPago").Width = 160
+            Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns("NumeroSolicitud").Width = 120
+            Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns("NumeroSolicitud").Locked = True
+            Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns("Saldo").Width = 120
+            Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns("Saldo").Locked = True
+            Me.TDBGRidDistribucion.Columns("Saldo").NumberFormat = "##,##0.00"
+            Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns("Monto").Width = 120
+            Me.TDBGRidDistribucion.Columns("Monto").NumberFormat = "##,##0.00"
+            Me.TDBGRidDistribucion.Columns("NumeroSolicitud").EditMask = "#-##-#####"
+            Me.TDBGRidDistribucion.Columns("NumeroSolicitud").EditMaskUpdate = True
+            Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns("FechaPago").Locked = True
+            Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns("IdAvio").Visible = False
+
+            Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns("Saldo").Visible = True
+            Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns("IdDetalleDistribucion").Visible = False
+
+            'Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns(0).Width = 160
+            'Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns(1).Width = 160
+            'Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns(2).Width = 200
+            'Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns(3).Width = 160
+            'Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns(4).Width = 160
+            'Me.TDBGRidDistribucion.Columns(3).NumberFormat = "##,##0.00"
 
 
-            Me.TDBGRidDistribucion.Columns(2).EditMask = "#-##-#####"
-            Me.TDBGRidDistribucion.Columns(2).EditMaskUpdate = True
+            'Me.TDBGRidDistribucion.Columns(2).EditMask = "#-##-#####"
+            'Me.TDBGRidDistribucion.Columns(2).EditMaskUpdate = True
 
-            Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns(0).Locked = False
+            'Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns(0).Locked = False
 
-            Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns(5).Visible = False
+            'Me.TDBGRidDistribucion.Splits.Item(0).DisplayColumns("IdDetalleDistribucion").Visible = False
 
             'ACTUALIZO EL GRID
             SumaGrid1()
@@ -4543,6 +4660,94 @@ Public Class FrmLiquidacion
         End If
     End Sub
 
+    Private Sub TDBGRidDistribucion_AfterColUpdate(ByVal sender As Object, ByVal e As C1.Win.C1TrueDBGrid.ColEventArgs) Handles TDBGRidDistribucion.AfterColUpdate
+        Dim DataSet5 As New DataSet, SqlString As String, NumeroRecibo As String
+        Dim PesoBruto As Double
+        Dim i As Integer, APlicado As Double, PorAplicar As Double, Registros As Integer, ContarGrid As Double, TotalMonto As Double, ResultadoD As Double, TipoImpuesto As String
+        Dim ContarSelec As Double, estado As Boolean, codigo As String, ContaTrue As Double
+        Dim IdTipCompra As Integer, Ingreso As Integer, eleccion As Boolean, CodLocalidad As String, codigoRecibo As String, CadenaDiv() As String, Cadena As String
+        Dim PorImperfeccion As Double, Sacos As Double, PesoBruto2 As Double, Tara As Double, NewValorBrtCor As Double, Monto As Double, Posicion As Integer
+        Dim PesoNeto As Double, PrecioNetoCor As Double, PrecioNetoDol As Double, PesoCompara As Double, addrow As String
+
+        'If addrow <> "NoRow" Then
+        '    addrow = ""
+        '    If Me.TDBGRidDistribucion.Col = 0 Then
+        '        'Posicion = Me.BinDistribucion.Position
+        '        sql = " SELECT     IdAplicacionLiquidacionPergamino, Code, Descripcion, Activo   FROM   AplicacionLiquidacionPergamino   WHERE (Activo = 1) AND   (Descripcion = '" & Me.TDBGRidDistribucion.Columns(0).Text & "')"
+        '        DataAdapter = New SqlClient.SqlDataAdapter(sql, MiConexion)
+        '        DataAdapter.Fill(DataSet5, "AplicaLiquidacion")
+        '        If DataSet5.Tables("AplicaLiquidacion").Rows.Count <> 0 Then
+        '            IdConcepto = DataSet5.Tables("AplicaLiquidacion").Rows(0)("IdAplicacionLiquidacionPergamino")
+        '        End If
+
+        '        If IdConcepto = 724 Then
+        '            Posicion = Me.TDBGRidDistribucion.Row
+        '            Me.TDBGRidDistribucion.Item(Posicion, "Monto") = CDbl(Me.TxtTotalDol.Text) - CDbl(Me.LblMontoComp.Text)
+
+        '            Me.TDBGRidDistribucion.AllowAddNew = False
+        '            'Me.TDBGRidDistribucion.Item(Posicion, "FechaPago") = Me.DTPFecha.Text
+        '        ElseIf IdConcepto = 725 Then
+        '            Posicion = Me.TDBGRidDistribucion.Row
+        '            Me.TDBGRidDistribucion.Item(Posicion, "Monto") = 0.0
+        '            addrow = "NoRow"
+        '            'Me.TDBGRidDistribucion.Item(Posicion, "FechaPago") = Me.DTPFecha.Text
+        '            Me.TDBGRidDistribucion.AllowAddNew = True
+        '        End If
+        '    End If
+        'End If
+
+        'Posicion = Me.BinDistribucion.Position
+        'If Posicion >= 0 Then
+        '    Monto = Me.BinDistribucion.Item(Posicion)("Monto")
+        '    PrecioNetoDol = Me.TxtTotalDol.Text
+        'End If
+        'If Monto > PrecioNetoDol Then
+        '    Me.BinDistribucion.Item(Posicion)("Monto") = 0.0
+        'End If
+        ContarGrid = 0
+        MontoEfectivo = Me.TxtTotalDol.Text
+        Monto = 0
+        i = 0
+        ContarGrid = Me.TDBGRidDistribucion.RowCount
+        Do While ContarGrid > i
+
+
+            If IsDBNull(Me.TDBGRidDistribucion.Item(i)("Monto")) Then
+                i = i + 1
+            Else
+
+                If Me.TDBGRidDistribucion.Item(i)("Concepto") = "Efectivo" Then
+                    'MontoEfectivo = MontoEfectivo + Me.TDBGRidDistribucion.Item(i)("Monto")
+                Else
+                    Monto = CDbl(Me.TDBGRidDistribucion.Item(i)("Monto")) + Monto
+                    Monto = Format(Monto, "####0.00")
+                End If
+
+                If ContarGrid = i + 1 Then
+                    If MontoEfectivo > Monto Then
+                        MontoEfectivo = MontoEfectivo - Monto
+                    End If
+                End If
+
+                i = i + 1
+            End If
+
+        Loop
+
+
+        If (MontoEfectivo + Monto) > CDbl(Me.TxtTotalDol.Text) Then
+            MsgBox("El total de distribucion es mayor a lo digitado", MsgBoxStyle.Critical, "Liquidacion")
+            Me.TDBGRidDistribucion.Columns("Monto").Text = 0.0
+        Else
+            Me.TDBGRidDistribucion.Row = i - 1
+            Me.TDBGRidDistribucion.Columns("Monto").Text = MontoEfectivo
+        End If
+
+        sumagriddistribucion()
+    End Sub
+
+
+
     Private Sub TDBGRidDistribucion_BeforeColUpdate(ByVal sender As Object, ByVal e As C1.Win.C1TrueDBGrid.BeforeColUpdateEventArgs) Handles TDBGRidDistribucion.BeforeColUpdate
         Dim DataSet5 As New DataSet, SqlString As String, NumeroRecibo As String
         Dim PesoBruto As Double, count As Integer, i As Integer, SumaAbono As Double, ConceptoReco As String
@@ -4550,7 +4755,7 @@ Public Class FrmLiquidacion
         Dim ContarGrid As Double, estado As Boolean, codigo As String, ContaTrue As Double
         Dim IdTipCompra As Integer, Ingreso As Integer, eleccion As Boolean, CodLocalidad As String, codigoRecibo As String, CadenaDiv() As String, Cadena As String
         Dim PorImperfeccion As Double, Sacos As Double, PesoBruto2 As Double, Tara As Double, NewValorBrtCor As Double, Monto As Double, Posicion As Integer
-        Dim PesoNeto As Double, PrecioNetoCor As Double, PrecioNetoDol As Double, PesoCompara As Double, addrow As String
+        Dim PesoNeto As Double, PrecioNetoCor As Double, PrecioNetoDol As Double, PesoCompara As Double, addrow As String, MontoEfectivo As Double
 
         If Me.TDBGRidDistribucion.Columns("Monto").Text = "" Or Me.TDBGRidDistribucion.Columns("Monto").Text = " " Then
             Me.TDBGRidDistribucion.Columns("Monto").Text = 0.0
@@ -4593,6 +4798,8 @@ Public Class FrmLiquidacion
                 End If
             End If
         End If
+
+
         Me.TDBGRidDistribucion.Columns("FechaPago").Text = Me.DTPFecha.Text
         Me.TDBGRidDistribucion.Columns("TipoPago").Text = "Efectivo"
         If Me.TDBGRidDistribucion.Col = 3 Then
@@ -4603,6 +4810,35 @@ Public Class FrmLiquidacion
                 End If
             End If
         End If
+
+
+        ''////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ''////////////////////////////////////RECORRO EL GRID-DISTRIBUCION PARA AJUSTAR EL EFECTIVO ////////////////
+        ''//////////////////////////////////////////////////////////////////////////////////////////////////////////
+        'ContarGrid = 0
+        'MontoEfectivo = 0
+        'Monto = 0
+        'i = 0
+        'ContarGrid = Me.TDBGRidDistribucion.RowCount
+        'Do While ContarGrid > i
+        '    If Not IsDBNull(Me.TDBGRidDistribucion.Item(i)("Monto")) Then
+        '        If Me.TDBGRidDistribucion.Item(i)("Concepto") = "Efectivo" Then
+        '            MontoEfectivo = Me.TDBGRidDistribucion.Item(i)("Monto")
+        '        Else
+        '            Monto = CDbl(Me.TDBGRidDistribucion.Item(i)("Monto")) + Monto
+        '            Monto = Format(Monto, "####0.00")
+        '        End If
+
+        '        If MontoEfectivo > Monto Then
+        '            If ContarGrid = i + 1 Then
+        '                Me.TDBGRidDistribucion.Item(i)("Monto") = MontoEfectivo - Monto
+        '                Monto = MontoEfectivo
+        '            End If
+        '        End If
+        '    End If
+
+        '    i = i + 1
+        'Loop
 
 
     End Sub
@@ -4625,16 +4861,38 @@ Public Class FrmLiquidacion
         Me.TDBGRidDistribucion.Columns("Monto").Text = CDbl(Me.TxtTotalDol.Text) - SumaAbono
     End Sub
     Private Sub TxtTotalDol_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TxtTotalDol.TextChanged
+        Dim Cont As Double, i As Double
+
         If Quien3 = "Recibo" Then
             Quien3 = ""
             Exit Sub
         End If
+
+        Cont = Me.TDBGRidDistribucion.RowCount
+
+
         If IdTipoCompra = 108 Or IdTipoCompra = 109 Then
-            If Me.TDBGRidDistribucion.Columns("Concepto").Text <> "" Then
-                If Me.TDBGRidDistribucion.Columns("TipoPago").Text <> "" Then
-                    Me.TDBGRidDistribucion.Columns("Monto").Text = CDbl(Me.TxtTotalDol.Text)
+
+            '//////////////////RECORRO EL GRID DE DISTRUBUCION PARA LLENARLO CON EL TOTAL DE RECIBOS ///////////////////
+            i = 0
+            Do While Cont > i
+
+                If Me.TDBGRidDistribucion.Item(i)("Concepto") = "Efectivo" Then
+                    If Me.TDBGRidDistribucion.Item(i)("TipoPago") <> "" Then
+                        Me.TDBGRidDistribucion.Item(i)("Monto") = CDbl(Me.TxtTotalDol.Text)
+                    End If
+                Else
+                    Me.TDBGRidDistribucion.Item(i)("Monto") = 0.0
                 End If
-            End If
+
+                'If Me.TDBGRidDistribucion.Columns("Concepto").Text <> "" Then
+                '    If Me.TDBGRidDistribucion.Columns("TipoPago").Text <> "" Then
+                '        Me.TDBGRidDistribucion.Columns("Monto").Text = CDbl(Me.TxtTotalDol.Text)
+                '    End If
+                'End If
+
+                i = i + 1
+            Loop
         End If
         sumagriddistribucion()
     End Sub

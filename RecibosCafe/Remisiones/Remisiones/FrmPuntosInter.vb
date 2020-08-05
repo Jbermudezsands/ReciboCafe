@@ -1296,8 +1296,8 @@ Public Class FrmPuntosInter
 
 
 
-                    PesoBascula = Dataset.Tables("DetallePesada").Rows(0)("PesoKg")
-                    CantidadBascula = Dataset.Tables("DetallePesada").Rows(0)("Saco")
+                    PesoBascula = DataSetConsulta.Tables("DetallePesada").Rows(0)("PesoNetoKg")
+                    CantidadBascula = DataSetConsulta.Tables("DetallePesada").Rows(0)("Saco")
 
                     GrabaDetallePesadas(NumeroRemision, CodigoProducto, CantidadBascula, Linea, Descripcion, Calidad, Estado, Precio, PesoBascula, TipoRemision, Tara, PesoNetoKg, QQ, Calidad, TipoPesada, Me.DTPPISalida.Value, IdRemisionPergamino)
 

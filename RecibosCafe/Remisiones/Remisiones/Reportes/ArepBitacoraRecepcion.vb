@@ -48,6 +48,7 @@ Public Class ArepBitacoraRecepcion
             Me.Label46.Location = New Point(0.3, 1.75)
             Me.TxtReal.Location = New Point(1.175, 1.75)
             Me.Label47.Location = New Point(1.95, 1.75)
+            Me.TxtFinal.Location = New Point(0.1, 2.05)
 
 
         End If
@@ -129,21 +130,97 @@ Public Class ArepBitacoraRecepcion
 
 
     Private Sub ReportHeader1_Format(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ReportHeader1.Format
+        Dim p As System.Drawing.PointF
 
+
+
+        If Me.LblPignorado.Text = "" Then
+            Me.Label40.Location = New Point(0.075, 4.08)
+            p.X = 0.075 : p.Y = 4.3
+            Me.Label42.Location = p
+            p.X = 0.75 : p.Y = 4.3
+            Me.LblCalidad.Location = p
+            p.X = 0.075 : p.Y = 4.55
+            Me.Label48.Location = p
+            p.X = 0.75 : p.Y = 4.55
+            Me.LblCategoria.Location = p
+            p.X = 0.075 : p.Y = 4.8
+            Me.Label41.Location = p
+            p.X = 0.75 : p.Y = 4.8
+            Me.LblEstado.Location = p
+            p.X = 0.075 : p.Y = 5
+            Me.Label45.Location = p
+            p.X = 0.75 : p.Y = 5
+            Me.LblDaño.Location = p
+            p.X = 0.075 : p.Y = 5.275
+            Me.Label49.Location = p
+            p.X = 0.75 : p.Y = 5.275
+            Me.LblHum.Location = p
+            p.X = 0.075 : p.Y = 5.525
+            Me.Label51.Location = p
+            p.X = 0.75 : p.Y = 5.525
+            Me.LblImp.Location = p
+
+            p.X = 0.05 : p.Y = 5.75
+            Me.Label53.Location = p
+            p.X = 0.05 : p.Y = 5.975
+            Me.Label55.Location = p
+            p.X = 0.8 : p.Y = 5.975
+            Me.LblIngreso.Location = p
+
+            p.X = 0.05 : p.Y = 6.225
+            Me.Label56.Location = p
+            p.X = 0.8 : p.Y = 6.225
+            Me.LblCompra.Location = p
+            p.X = 0.05 : p.Y = 6.425
+            Me.Label59.Location = p
+            p.X = 0.8 : p.Y = 6.425
+            Me.LblLiquidar.Location = p
+
+
+            If Me.LblCompra.Text = "" Then
+                Me.ReportHeader1.Height = 6.427
+            Else
+                Me.ReportHeader1.Height = 6.677
+            End If
+
+
+
+
+
+
+
+
+
+        End If
     End Sub
 
     Private Sub GroupHeader1_Format(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GroupHeader1.Format
+        Dim p As System.Drawing.PointF
+
         Me.TxtCertificados.Text = ListaCertificados
 
         If ListaCertificados = "" Then
-            Me.LblHora.Location = New Point(0.025, 0.4)
-            Me.Label2.Location = New Point(0.1, 0.65)
-            Me.Label58.Location = New Point(0.35, 0.65)
-            Me.Label1.Location = New Point(0.8, 0.65)
-            Me.Label59.Location = New Point(1.45, 0.65)
-            Me.Label37.Location = New Point(1.925, 0.65)
-            Me.GroupHeader1.Height = 0.99
+
+            Me.Label60.Visible = False
+            p.X = 0 : p.Y = 0
+            Me.LblHora.Location = p
+            p.X = 0.1 : p.Y = 0.3
+            Me.Label2.Location = p
+            p.X = 0.35 : p.Y = 0.3
+            Me.Label58.Location = p
+            p.X = 0.8 : p.Y = 0.3
+            Me.Label1.Location = p
+            p.X = 1.45 : p.Y = 0.3
+            Me.Label57.Location = p
+            p.X = 1.93 : p.Y = 0.3
+            Me.Label37.Location = p
+            Me.GroupHeader1.Height = 0.59
         End If
+
+    End Sub
+
+    Private Sub Detail1_Format(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Detail1.Format
 
     End Sub
 End Class

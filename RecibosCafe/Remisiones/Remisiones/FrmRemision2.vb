@@ -5183,7 +5183,8 @@ Public Class FrmRemision2
             ArepRemisionMaquila.LblFechaOrden.Text = Format(Me.DTPRemFechCarga.Value, "dd/MM/yyyy HH:mm:ss")
             ArepRemisionMaquila.LblFechaSalida.Text = Format(Me.DTPRemFechSalid.Value, "dd/MM/yyyy HH:mm:ss")
             ArepRemisionMaquila.LblCosecha.Text = Mid(Me.LblCosecha.Text, 10)
-            ArepRemisionMaquila.LblOrigen.Text = Me.LblSucursal.Text
+            ArepRemisionMaquila.LblOrigen.Text = ""
+
 
             ArepRemisionMaquila.LblEmpresaTransporte.Text = Me.CboEmpresaTrans.Text
             ArepRemisionMaquila.LblPlaca.Text = Me.CboEmprsPlaca.Text
@@ -5191,7 +5192,7 @@ Public Class FrmRemision2
             ArepRemisionMaquila.LblConductor.Text = Me.CboEmpresaCond.Text
             ArepRemisionMaquila.LblCedula.Text = Me.TxtCedula.Text
             'ArepRemisionPergamino.LblRutaLogica.Text = Me.CboLocDest.Text
-            ArepRemisionMaquila.LblDestino.Text = Me.CboLocDest.Text
+            ArepRemisionMaquila.LblDestino.Text = Me.CboRemLocDest.Text
             ArepRemisionMaquila.LblDescripcion.Text = "CALIDAD:" & Me.CboCalidad.Text & "  UNIDAD DE MEDIDA KG"
             ArepRemisionMaquila.LblTipoRemision.Text = "SERVICIO DE MAQUILA"
             ArepRemisionMaquila.TxtObservaciones.Text = Me.Observaciones
@@ -5218,7 +5219,7 @@ Public Class FrmRemision2
             ArepRemisionPergamino.LblFechaOrden.Text = Format(Me.DTPRemFechCarga.Value, "dd/MM/yyyy HH:mm:ss")
             ArepRemisionPergamino.LblFechaSalida.Text = Format(Me.DTPRemFechSalid.Value, "dd/MM/yyyy HH:mm:ss")
             ArepRemisionPergamino.LblCosecha.Text = Cosecha
-            ArepRemisionPergamino.LblOrigen.Text = Me.LblSucursal.Text
+            ArepRemisionPergamino.LblOrigen.Text = ""
 
             ArepRemisionPergamino.LblEmpresaTransporte.Text = Me.CboEmpresaTrans.Text
             ArepRemisionPergamino.TextBox12.Text = Me.CboEmprsPlaca.Text
@@ -5226,7 +5227,7 @@ Public Class FrmRemision2
             ArepRemisionPergamino.LblConductor.Text = Me.CboEmpresaCond.Text
             ArepRemisionPergamino.LblCedula.Text = Me.TxtCedula.Text
             'ArepRemisionPergamino.LblRutaLogica.Text = Me.CboLocDest.Text
-            ArepRemisionPergamino.LblDestino.Text = Me.CboLocDest.Text
+            ArepRemisionPergamino.LblDestino.Text = Me.CboRemLocDest.Text
             ArepRemisionPergamino.LblDescripcion.Text = "CALIDAD:" & Me.CboCalidad.Text & "  UNIDAD DE MEDIDA KG"
             ArepRemisionPergamino.LblTipoRemision.Text = "COMPRA DIRECTA - EXPASA"
             ArepRemisionPergamino.TxtObservaciones.Text = Me.Observaciones

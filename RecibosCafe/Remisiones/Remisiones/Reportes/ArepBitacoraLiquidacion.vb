@@ -16,6 +16,16 @@ Public Class ArepBitacoraLiquidacion
 
     Private Sub GroupHeader1_Format(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GroupHeader1.Format
         Dim SqlString As String
+        Dim p As System.Drawing.PointF
+
+        If Me.LblRecibos.Text = "" Then
+            Me.Label14.Visible = False
+            p.X = 0.35 : p.Y = 6.889
+            Me.Label15.Location = p
+            p.X = 0.35 : p.Y = 7.775
+            Me.Label25.Location = p
+        End If
+
         'SqlString = "SELECT ReciboCafePergamino.Seleccion AS Aplicar, ReciboCafePergamino.Codigo AS NºRecibo, DetalleLiquidacionPergamino.PesoNeto, LiquidacionPergamino.Precio,   DetalleLiquidacionPergamino.PesoNeto * LiquidacionPergamino.Precio AS ValorBrutoC$, DetalleLiquidacionPergamino.PesoNeto * LiquidacionPergamino.Precio / TipoCambio.TipoCambio AS ValorBruto$, ReciboCafePergamino.IdReciboPergamino, DetalleReciboCafePergamino.Imperfeccion, DetalleReciboCafePergamino.CantidadSacos, DetalleReciboCafePergamino.PesoBruto, DetalleReciboCafePergamino.Tara,  DetalleLiquidacionPergamino.PesoNeto AS PesoNTCompara  FROM   LiquidacionPergamino INNER JOIN    DetalleLiquidacionPergamino ON LiquidacionPergamino.IdLiquidacionPergamino = DetalleLiquidacionPergamino.IdLiquidacionPergamino INNER JOIN   ReciboCafePergamino ON DetalleLiquidacionPergamino.IdReciboPergamino = ReciboCafePergamino.IdReciboPergamino INNER JOIN  DetalleReciboCafePergamino ON ReciboCafePergamino.IdReciboPergamino = DetalleReciboCafePergamino.IdReciboPergamino INNER JOIN    TipoCambio ON LiquidacionPergamino.IdMonedaPreecio = TipoCambio.IdTipoCambio " & _
         '            "WHERE (LiquidacionPergamino.IdLiquidacionPergamino = " & idLiquidacion & ")"
 
