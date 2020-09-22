@@ -623,7 +623,7 @@ Partial Public Class ArepBitacoraRecepcion
         'ReportHeader1
         '
         Me.ReportHeader1.Controls.AddRange(New DataDynamics.ActiveReports.ARControl() {Me.lblOrderNum, Me.lblOrderDate, Me.ImgLogo, Me.LblEncabezado, Me.LblOrden, Me.LblFechaOrden, Me.LblTipoCompra, Me.Label6, Me.LblNombres, Me.LblCosecha, Me.LblLocalidad, Me.LblHoraRecibo, Me.Label38, Me.Label35, Me.LblCedulas, Me.Label39, Me.LblFinca, Me.LblOriginal, Me.Label61, Me.LblPignorado, Me.Label40, Me.Label41, Me.Label42, Me.LblEstado, Me.LblCalidad, Me.Label45, Me.LblDaño, Me.LblCategoria, Me.Label48, Me.Label49, Me.LblHum, Me.Label51, Me.LblImp, Me.Label53, Me.LblIngreso, Me.Label55, Me.Label56, Me.LblCompra, Me.LblLiquidar, Me.Label59})
-        Me.ReportHeader1.Height = 6.96875!
+        Me.ReportHeader1.Height = 7.197917!
         Me.ReportHeader1.Name = "ReportHeader1"
         '
         'lblOrderNum
@@ -638,11 +638,11 @@ Partial Public Class ArepBitacoraRecepcion
         Me.lblOrderNum.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
         Me.lblOrderNum.Height = 0.2399999!
         Me.lblOrderNum.HyperLink = Nothing
-        Me.lblOrderNum.Left = 0.08!
+        Me.lblOrderNum.Left = 0.075!
         Me.lblOrderNum.Name = "lblOrderNum"
         Me.lblOrderNum.Style = "ddo-char-set: 0; text-align: right; font-weight: bold; font-size: 8.25pt; "
         Me.lblOrderNum.Text = "Recibo No:"
-        Me.lblOrderNum.Top = 2.96!
+        Me.lblOrderNum.Top = 3.0!
         Me.lblOrderNum.Width = 0.64!
         '
         'lblOrderDate
@@ -661,7 +661,7 @@ Partial Public Class ArepBitacoraRecepcion
         Me.lblOrderDate.Name = "lblOrderDate"
         Me.lblOrderDate.Style = "ddo-char-set: 0; text-align: right; font-weight: bold; font-size: 8.25pt; "
         Me.lblOrderDate.Text = "Fecha :"
-        Me.lblOrderDate.Top = 2.6!
+        Me.lblOrderDate.Top = 2.575!
         Me.lblOrderDate.Width = 0.48!
         '
         'ImgLogo
@@ -717,11 +717,11 @@ Partial Public Class ArepBitacoraRecepcion
         Me.LblOrden.DataField = "NumeroReciboCafe"
         Me.LblOrden.Height = 0.2!
         Me.LblOrden.HyperLink = Nothing
-        Me.LblOrden.Left = 0.76!
+        Me.LblOrden.Left = 0.75!
         Me.LblOrden.Name = "LblOrden"
         Me.LblOrden.Style = ""
         Me.LblOrden.Text = ""
-        Me.LblOrden.Top = 3.04!
+        Me.LblOrden.Top = 3.025!
         Me.LblOrden.Width = 1.04!
         '
         'LblFechaOrden
@@ -736,11 +736,11 @@ Partial Public Class ArepBitacoraRecepcion
         Me.LblFechaOrden.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
         Me.LblFechaOrden.Height = 0.1999999!
         Me.LblFechaOrden.HyperLink = Nothing
-        Me.LblFechaOrden.Left = 0.76!
+        Me.LblFechaOrden.Left = 0.75!
         Me.LblFechaOrden.Name = "LblFechaOrden"
         Me.LblFechaOrden.Style = ""
         Me.LblFechaOrden.Text = ""
-        Me.LblFechaOrden.Top = 2.6!
+        Me.LblFechaOrden.Top = 2.575!
         Me.LblFechaOrden.Width = 1.08!
         '
         'LblTipoCompra
@@ -775,11 +775,11 @@ Partial Public Class ArepBitacoraRecepcion
         Me.Label6.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
         Me.Label6.Height = 0.2399998!
         Me.Label6.HyperLink = Nothing
-        Me.Label6.Left = 0.08!
+        Me.Label6.Left = 0.075!
         Me.Label6.Name = "Label6"
         Me.Label6.Style = "ddo-char-set: 0; text-align: right; font-weight: bold; font-size: 8.25pt; "
         Me.Label6.Text = "Proveedor:"
-        Me.Label6.Top = 3.2!
+        Me.Label6.Top = 3.225!
         Me.Label6.Width = 0.64!
         '
         'LblNombres
@@ -792,14 +792,14 @@ Partial Public Class ArepBitacoraRecepcion
         Me.LblNombres.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
         Me.LblNombres.Border.TopColor = System.Drawing.Color.Black
         Me.LblNombres.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.LblNombres.Height = 0.3199999!
+        Me.LblNombres.Height = 0.4750001!
         Me.LblNombres.HyperLink = Nothing
-        Me.LblNombres.Left = 0.76!
+        Me.LblNombres.Left = 0.75!
         Me.LblNombres.Name = "LblNombres"
-        Me.LblNombres.Style = "ddo-char-set: 0; font-size: 8.25pt; "
+        Me.LblNombres.Style = "ddo-char-set: 0; font-size: 6.75pt; "
         Me.LblNombres.Text = ""
-        Me.LblNombres.Top = 3.28!
-        Me.LblNombres.Width = 1.72!
+        Me.LblNombres.Top = 3.225!
+        Me.LblNombres.Width = 1.875!
         '
         'LblCosecha
         '
@@ -851,11 +851,11 @@ Partial Public Class ArepBitacoraRecepcion
         Me.LblHoraRecibo.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
         Me.LblHoraRecibo.Height = 0.2!
         Me.LblHoraRecibo.HyperLink = Nothing
-        Me.LblHoraRecibo.Left = 0.76!
+        Me.LblHoraRecibo.Left = 0.75!
         Me.LblHoraRecibo.Name = "LblHoraRecibo"
         Me.LblHoraRecibo.Style = ""
         Me.LblHoraRecibo.Text = ""
-        Me.LblHoraRecibo.Top = 2.8!
+        Me.LblHoraRecibo.Top = 2.775!
         Me.LblHoraRecibo.Width = 1.04!
         '
         'Label38
@@ -874,7 +874,7 @@ Partial Public Class ArepBitacoraRecepcion
         Me.Label38.Name = "Label38"
         Me.Label38.Style = "ddo-char-set: 0; text-align: right; font-weight: bold; font-size: 8.25pt; "
         Me.Label38.Text = "Hora :"
-        Me.Label38.Top = 2.8!
+        Me.Label38.Top = 2.775!
         Me.Label38.Width = 0.52!
         '
         'Label35
@@ -889,11 +889,11 @@ Partial Public Class ArepBitacoraRecepcion
         Me.Label35.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
         Me.Label35.Height = 0.2399999!
         Me.Label35.HyperLink = Nothing
-        Me.Label35.Left = 0.08!
+        Me.Label35.Left = 0.075!
         Me.Label35.Name = "Label35"
         Me.Label35.Style = "ddo-char-set: 0; text-align: right; font-weight: bold; font-size: 8.25pt; "
         Me.Label35.Text = "Cedula:"
-        Me.Label35.Top = 3.6!
+        Me.Label35.Top = 3.75!
         Me.Label35.Width = 0.64!
         '
         'LblCedulas
@@ -908,11 +908,11 @@ Partial Public Class ArepBitacoraRecepcion
         Me.LblCedulas.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
         Me.LblCedulas.Height = 0.1999999!
         Me.LblCedulas.HyperLink = Nothing
-        Me.LblCedulas.Left = 0.76!
+        Me.LblCedulas.Left = 0.75!
         Me.LblCedulas.Name = "LblCedulas"
-        Me.LblCedulas.Style = ""
+        Me.LblCedulas.Style = "ddo-char-set: 0; font-size: 8.25pt; "
         Me.LblCedulas.Text = ""
-        Me.LblCedulas.Top = 3.6!
+        Me.LblCedulas.Top = 3.75!
         Me.LblCedulas.Width = 1.72!
         '
         'Label39
@@ -927,11 +927,11 @@ Partial Public Class ArepBitacoraRecepcion
         Me.Label39.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
         Me.Label39.Height = 0.2400001!
         Me.Label39.HyperLink = Nothing
-        Me.Label39.Left = 0.08!
+        Me.Label39.Left = 0.075!
         Me.Label39.Name = "Label39"
         Me.Label39.Style = "ddo-char-set: 0; text-align: right; font-weight: bold; font-size: 8.25pt; "
         Me.Label39.Text = "Finca:"
-        Me.Label39.Top = 3.84!
+        Me.Label39.Top = 3.975!
         Me.Label39.Width = 0.64!
         '
         'LblFinca
@@ -948,9 +948,9 @@ Partial Public Class ArepBitacoraRecepcion
         Me.LblFinca.HyperLink = Nothing
         Me.LblFinca.Left = 0.75!
         Me.LblFinca.Name = "LblFinca"
-        Me.LblFinca.Style = "ddo-char-set: 0; font-size: 8.25pt; "
+        Me.LblFinca.Style = "ddo-char-set: 0; font-size: 6.75pt; "
         Me.LblFinca.Text = ""
-        Me.LblFinca.Top = 3.825!
+        Me.LblFinca.Top = 3.975!
         Me.LblFinca.Width = 1.725!
         '
         'LblOriginal
@@ -988,7 +988,7 @@ Partial Public Class ArepBitacoraRecepcion
         Me.Label61.Name = "Label61"
         Me.Label61.Style = "ddo-char-set: 0; text-align: right; font-weight: bold; font-size: 8.25pt; "
         Me.Label61.Text = "Pignorado"
-        Me.Label61.Top = 4.1!
+        Me.Label61.Top = 4.25!
         Me.Label61.Width = 0.64!
         '
         'LblPignorado
@@ -1005,9 +1005,9 @@ Partial Public Class ArepBitacoraRecepcion
         Me.LblPignorado.HyperLink = Nothing
         Me.LblPignorado.Left = 0.75!
         Me.LblPignorado.Name = "LblPignorado"
-        Me.LblPignorado.Style = ""
+        Me.LblPignorado.Style = "ddo-char-set: 0; font-size: 6.75pt; "
         Me.LblPignorado.Text = ""
-        Me.LblPignorado.Top = 4.075!
+        Me.LblPignorado.Top = 4.25!
         Me.LblPignorado.Width = 1.725!
         '
         'Label40
@@ -1027,7 +1027,7 @@ Partial Public Class ArepBitacoraRecepcion
         Me.Label40.Style = "color: White; ddo-char-set: 0; text-align: center; font-weight: bold; background-" & _
             "color: Black; font-size: 8.25pt; "
         Me.Label40.Text = "DATOS CAFE"
-        Me.Label40.Top = 4.375!
+        Me.Label40.Top = 4.525!
         Me.Label40.Width = 2.52!
         '
         'Label41
@@ -1046,7 +1046,7 @@ Partial Public Class ArepBitacoraRecepcion
         Me.Label41.Name = "Label41"
         Me.Label41.Style = "ddo-char-set: 0; text-align: right; font-weight: bold; font-size: 8.25pt; "
         Me.Label41.Text = "Estado:"
-        Me.Label41.Top = 5.0!
+        Me.Label41.Top = 5.175!
         Me.Label41.Width = 0.65!
         '
         'Label42
@@ -1065,7 +1065,7 @@ Partial Public Class ArepBitacoraRecepcion
         Me.Label42.Name = "Label42"
         Me.Label42.Style = "ddo-char-set: 0; text-align: right; font-weight: bold; font-size: 8.25pt; "
         Me.Label42.Text = "Calidad:"
-        Me.Label42.Top = 4.55!
+        Me.Label42.Top = 4.725!
         Me.Label42.Width = 0.65!
         '
         'LblEstado
@@ -1084,7 +1084,7 @@ Partial Public Class ArepBitacoraRecepcion
         Me.LblEstado.Name = "LblEstado"
         Me.LblEstado.Style = "ddo-char-set: 0; font-size: 8.25pt; font-family: Microsoft Sans Serif; "
         Me.LblEstado.Text = ""
-        Me.LblEstado.Top = 5.025!
+        Me.LblEstado.Top = 5.2!
         Me.LblEstado.Width = 1.08!
         '
         'LblCalidad
@@ -1103,7 +1103,7 @@ Partial Public Class ArepBitacoraRecepcion
         Me.LblCalidad.Name = "LblCalidad"
         Me.LblCalidad.Style = "ddo-char-set: 0; font-size: 8.25pt; font-family: Microsoft Sans Serif; "
         Me.LblCalidad.Text = ""
-        Me.LblCalidad.Top = 4.55!
+        Me.LblCalidad.Top = 4.725!
         Me.LblCalidad.Width = 1.08!
         '
         'Label45
@@ -1122,7 +1122,7 @@ Partial Public Class ArepBitacoraRecepcion
         Me.Label45.Name = "Label45"
         Me.Label45.Style = "ddo-char-set: 0; text-align: right; font-weight: bold; font-size: 8.25pt; "
         Me.Label45.Text = "Daño:"
-        Me.Label45.Top = 5.275!
+        Me.Label45.Top = 5.45!
         Me.Label45.Width = 0.64!
         '
         'LblDaño
@@ -1141,7 +1141,7 @@ Partial Public Class ArepBitacoraRecepcion
         Me.LblDaño.Name = "LblDaño"
         Me.LblDaño.Style = "ddo-char-set: 0; font-size: 8.25pt; font-family: Microsoft Sans Serif; "
         Me.LblDaño.Text = ""
-        Me.LblDaño.Top = 5.275!
+        Me.LblDaño.Top = 5.45!
         Me.LblDaño.Width = 1.08!
         '
         'LblCategoria
@@ -1160,7 +1160,7 @@ Partial Public Class ArepBitacoraRecepcion
         Me.LblCategoria.Name = "LblCategoria"
         Me.LblCategoria.Style = "ddo-char-set: 0; font-size: 8.25pt; font-family: Microsoft Sans Serif; "
         Me.LblCategoria.Text = ""
-        Me.LblCategoria.Top = 4.8!
+        Me.LblCategoria.Top = 4.975!
         Me.LblCategoria.Width = 1.08!
         '
         'Label48
@@ -1179,7 +1179,7 @@ Partial Public Class ArepBitacoraRecepcion
         Me.Label48.Name = "Label48"
         Me.Label48.Style = "ddo-char-set: 0; text-align: right; font-weight: bold; font-size: 8.25pt; "
         Me.Label48.Text = "Categoria:"
-        Me.Label48.Top = 4.8!
+        Me.Label48.Top = 4.975!
         Me.Label48.Width = 0.65!
         '
         'Label49
@@ -1198,7 +1198,7 @@ Partial Public Class ArepBitacoraRecepcion
         Me.Label49.Name = "Label49"
         Me.Label49.Style = "ddo-char-set: 0; text-align: right; font-weight: bold; font-size: 8.25pt; "
         Me.Label49.Text = "%Hum:"
-        Me.Label49.Top = 5.525!
+        Me.Label49.Top = 5.7!
         Me.Label49.Width = 0.65!
         '
         'LblHum
@@ -1217,7 +1217,7 @@ Partial Public Class ArepBitacoraRecepcion
         Me.LblHum.Name = "LblHum"
         Me.LblHum.Style = "ddo-char-set: 0; font-size: 8.25pt; font-family: Microsoft Sans Serif; "
         Me.LblHum.Text = ""
-        Me.LblHum.Top = 5.525!
+        Me.LblHum.Top = 5.7!
         Me.LblHum.Width = 1.0625!
         '
         'Label51
@@ -1236,7 +1236,7 @@ Partial Public Class ArepBitacoraRecepcion
         Me.Label51.Name = "Label51"
         Me.Label51.Style = "ddo-char-set: 0; text-align: right; font-weight: bold; font-size: 8.25pt; "
         Me.Label51.Text = "%Imp:"
-        Me.Label51.Top = 5.75!
+        Me.Label51.Top = 5.925001!
         Me.Label51.Width = 0.65!
         '
         'LblImp
@@ -1255,7 +1255,7 @@ Partial Public Class ArepBitacoraRecepcion
         Me.LblImp.Name = "LblImp"
         Me.LblImp.Style = "ddo-char-set: 0; font-size: 8.25pt; font-family: Microsoft Sans Serif; "
         Me.LblImp.Text = ""
-        Me.LblImp.Top = 5.75!
+        Me.LblImp.Top = 5.925001!
         Me.LblImp.Width = 1.0625!
         '
         'Label53
@@ -1275,7 +1275,7 @@ Partial Public Class ArepBitacoraRecepcion
         Me.Label53.Style = "color: White; ddo-char-set: 0; text-align: center; font-weight: bold; background-" & _
             "color: Black; font-size: 8.25pt; "
         Me.Label53.Text = "GENERALES RECIBO"
-        Me.Label53.Top = 5.975!
+        Me.Label53.Top = 6.175001!
         Me.Label53.Width = 2.525!
         '
         'LblIngreso
@@ -1294,7 +1294,7 @@ Partial Public Class ArepBitacoraRecepcion
         Me.LblIngreso.Name = "LblIngreso"
         Me.LblIngreso.Style = "ddo-char-set: 0; font-size: 8.25pt; "
         Me.LblIngreso.Text = ""
-        Me.LblIngreso.Top = 6.225!
+        Me.LblIngreso.Top = 6.425001!
         Me.LblIngreso.Width = 1.075!
         '
         'Label55
@@ -1313,7 +1313,7 @@ Partial Public Class ArepBitacoraRecepcion
         Me.Label55.Name = "Label55"
         Me.Label55.Style = "ddo-char-set: 0; text-align: right; font-weight: bold; font-size: 8.25pt; "
         Me.Label55.Text = "Ingreso:"
-        Me.Label55.Top = 6.225!
+        Me.Label55.Top = 6.425001!
         Me.Label55.Width = 0.7!
         '
         'Label56
@@ -1332,7 +1332,7 @@ Partial Public Class ArepBitacoraRecepcion
         Me.Label56.Name = "Label56"
         Me.Label56.Style = "ddo-char-set: 0; text-align: right; font-weight: bold; font-size: 8.25pt; "
         Me.Label56.Text = "Compra:"
-        Me.Label56.Top = 6.425001!
+        Me.Label56.Top = 6.625!
         Me.Label56.Width = 0.7!
         '
         'LblCompra
@@ -1351,7 +1351,7 @@ Partial Public Class ArepBitacoraRecepcion
         Me.LblCompra.Name = "LblCompra"
         Me.LblCompra.Style = "ddo-char-set: 0; font-size: 8.25pt; "
         Me.LblCompra.Text = ""
-        Me.LblCompra.Top = 6.425001!
+        Me.LblCompra.Top = 6.625!
         Me.LblCompra.Width = 1.0625!
         '
         'LblLiquidar
@@ -1370,7 +1370,7 @@ Partial Public Class ArepBitacoraRecepcion
         Me.LblLiquidar.Name = "LblLiquidar"
         Me.LblLiquidar.Style = "ddo-char-set: 0; font-size: 8.25pt; "
         Me.LblLiquidar.Text = ""
-        Me.LblLiquidar.Top = 6.675001!
+        Me.LblLiquidar.Top = 6.875!
         Me.LblLiquidar.Width = 1.0625!
         '
         'Label59
@@ -1389,7 +1389,7 @@ Partial Public Class ArepBitacoraRecepcion
         Me.Label59.Name = "Label59"
         Me.Label59.Style = "ddo-char-set: 0; text-align: right; font-weight: bold; font-size: 8.25pt; "
         Me.Label59.Text = "Liquidar:"
-        Me.Label59.Top = 6.675001!
+        Me.Label59.Top = 6.875!
         Me.Label59.Width = 0.7250001!
         '
         'ReportFooter1
@@ -2703,7 +2703,7 @@ Partial Public Class ArepBitacoraRecepcion
         Me.PageSettings.Margins.Top = 0.0!
         Me.PageSettings.PaperHeight = 11.0!
         Me.PageSettings.PaperWidth = 8.5!
-        Me.PrintWidth = 2.67625!
+        Me.PrintWidth = 2.73875!
         Me.Sections.Add(Me.ReportHeader1)
         Me.Sections.Add(Me.PageHeader1)
         Me.Sections.Add(Me.GroupHeader1)

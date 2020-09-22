@@ -2063,10 +2063,10 @@ Public Class FrmRecepcion
             End If
         End If
 
-        Cedula = ""
-        If Me.TxtNumeroCedula.Text <> "" Then
-            Cedula = Me.TxtNumeroCedula.Text
-        End If
+        'Cedula = ""
+        'If Me.TxtNumeroCedula.Text <> "" Then
+        '    Cedula = Me.TxtNumeroCedula.Text
+        'End If
 
         If Me.CboTipoIngresoBascula.Text = DescripcionTipoIngreso("BA") Then
             NRecibo = Me.TxtIdLocalidad.Text & "-" & Me.TxtNumeroRecibo.Text
@@ -2178,15 +2178,15 @@ Public Class FrmRecepcion
                 ArepBitacoraRecepcion.LblOriginal.Visible = True
                 ArepBitacoraRecepcion.LblOriginal.Text = "O R I G I N A L"
                 ArepBitacoraRecepcion.Run(False)
-                ViewerForm.arvMain.Document.Print(False, False, False)
-                'ViewerForm.Show()
+                'ViewerForm.arvMain.Document.Print(False, False, False)
+                ViewerForm.Show()
                 My.Application.DoEvents()
             Else
                 ArepBitacoraRecepcion.LblOriginal.Visible = True
                 ArepBitacoraRecepcion.LblOriginal.Text = "C O P I A"
                 ArepBitacoraRecepcion.Run(False)
-                ViewerForm.arvMain.Document.Print(False, False, False)
-                'ViewerForm.Show()
+                'ViewerForm.arvMain.Document.Print(False, False, False)
+                ViewerForm.Show()
                 My.Application.DoEvents()
 
             End If
@@ -2510,6 +2510,7 @@ Public Class FrmRecepcion
             Me.TxtNumeroCedula.Visible = False
         End If
 
+        Cedula = ""
 
         SqlProveedor = "SELECT  * FROM Proveedor  WHERE (Cod_Proveedor = '" & Me.CboCodigoProveedor.Text & "')"
         DataAdapter = New SqlClient.SqlDataAdapter(SqlProveedor, MiConexion)
@@ -2519,6 +2520,7 @@ Public Class FrmRecepcion
 
             If Not IsDBNull(DataSet.Tables("Proveedor").Rows(0)("Cedula")) Then
                 Me.TxtNumeroCedula.Text = DataSet.Tables("Proveedor").Rows(0)("Cedula")
+                Cedula = DataSet.Tables("Proveedor").Rows(0)("Cedula")
             End If
 
             If Not IsDBNull(DataSet.Tables("Proveedor").Rows(0)("Apellido_Proveedor")) Then

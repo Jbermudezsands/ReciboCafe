@@ -54,18 +54,22 @@ Partial Public Class ArepMermaRecibo
         Me.TextBox11 = New DataDynamics.ActiveReports.TextBox
         Me.TxtTotalMerma = New DataDynamics.ActiveReports.TextBox
         Me.GroupHeader2 = New DataDynamics.ActiveReports.GroupHeader
+        Me.TextBox17 = New DataDynamics.ActiveReports.TextBox
         Me.GroupFooter2 = New DataDynamics.ActiveReports.GroupFooter
         Me.TextBox9 = New DataDynamics.ActiveReports.TextBox
         Me.TextBox12 = New DataDynamics.ActiveReports.TextBox
         Me.TextBox13 = New DataDynamics.ActiveReports.TextBox
+        Me.TxtLocalidad = New DataDynamics.ActiveReports.TextBox
+        Me.LblLocalidad = New DataDynamics.ActiveReports.Label
+        Me.TextBox23 = New DataDynamics.ActiveReports.TextBox
         Me.GroupHeader3 = New DataDynamics.ActiveReports.GroupHeader
         Me.GroupFooter3 = New DataDynamics.ActiveReports.GroupFooter
         Me.TextBox14 = New DataDynamics.ActiveReports.TextBox
         Me.TextBox15 = New DataDynamics.ActiveReports.TextBox
         Me.TextBox16 = New DataDynamics.ActiveReports.TextBox
-        Me.TxtLocalidad = New DataDynamics.ActiveReports.TextBox
-        Me.LblLocalidad = New DataDynamics.ActiveReports.Label
-        Me.TextBox17 = New DataDynamics.ActiveReports.TextBox
+        Me.TxtTipoCafe = New DataDynamics.ActiveReports.TextBox
+        Me.LblTotalTipoCafe = New DataDynamics.ActiveReports.Label
+        Me.TextBox22 = New DataDynamics.ActiveReports.TextBox
         Me.GroupHeader4 = New DataDynamics.ActiveReports.GroupHeader
         Me.GroupFooter4 = New DataDynamics.ActiveReports.GroupFooter
         Me.TextBox18 = New DataDynamics.ActiveReports.TextBox
@@ -73,11 +77,8 @@ Partial Public Class ArepMermaRecibo
         Me.TextBox20 = New DataDynamics.ActiveReports.TextBox
         Me.LblTotalTipoCompra = New DataDynamics.ActiveReports.Label
         Me.TxtTipoCompra = New DataDynamics.ActiveReports.TextBox
-        Me.TxtTipoCafe = New DataDynamics.ActiveReports.TextBox
-        Me.LblTotalTipoCafe = New DataDynamics.ActiveReports.Label
         Me.TextBox21 = New DataDynamics.ActiveReports.TextBox
-        Me.TextBox22 = New DataDynamics.ActiveReports.TextBox
-        Me.TextBox23 = New DataDynamics.ActiveReports.TextBox
+        Me.LblImpreso = New DataDynamics.ActiveReports.Label
         CType(Me.ImgLogo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LblCompañia, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Label1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -107,30 +108,31 @@ Partial Public Class ArepMermaRecibo
         CType(Me.TextBox10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextBox11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtTotalMerma, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextBox17, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextBox9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextBox12, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextBox13, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtLocalidad, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LblLocalidad, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextBox23, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextBox14, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextBox15, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextBox16, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtLocalidad, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LblLocalidad, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextBox17, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtTipoCafe, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LblTotalTipoCafe, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextBox22, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextBox18, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextBox19, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextBox20, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LblTotalTipoCompra, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtTipoCompra, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtTipoCafe, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LblTotalTipoCafe, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextBox21, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextBox22, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextBox23, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LblImpreso, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'PageHeader1
         '
-        Me.PageHeader1.Controls.AddRange(New DataDynamics.ActiveReports.ARControl() {Me.ImgLogo, Me.LblCompañia, Me.Label1})
+        Me.PageHeader1.Controls.AddRange(New DataDynamics.ActiveReports.ARControl() {Me.ImgLogo, Me.LblCompañia, Me.Label1, Me.LblImpreso})
         Me.PageHeader1.Height = 1.020833!
         Me.PageHeader1.Name = "PageHeader1"
         '
@@ -166,12 +168,13 @@ Partial Public Class ArepMermaRecibo
         Me.LblCompañia.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
         Me.LblCompañia.Height = 0.2!
         Me.LblCompañia.HyperLink = Nothing
-        Me.LblCompañia.Left = 1.975!
+        Me.LblCompañia.Left = 0.0!
         Me.LblCompañia.Name = "LblCompañia"
-        Me.LblCompañia.Style = "color: Green; ddo-char-set: 0; font-style: italic; font-size: 11.25pt; "
+        Me.LblCompañia.Style = "color: Green; ddo-char-set: 0; text-align: center; font-style: italic; font-size:" & _
+            " 11.25pt; "
         Me.LblCompañia.Text = "Exportadora Atlantic S.A"
         Me.LblCompañia.Top = 0.0!
-        Me.LblCompañia.Width = 2.92!
+        Me.LblCompañia.Width = 7.475!
         '
         'Label1
         '
@@ -185,13 +188,13 @@ Partial Public Class ArepMermaRecibo
         Me.Label1.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
         Me.Label1.Height = 0.2!
         Me.Label1.HyperLink = Nothing
-        Me.Label1.Left = 1.975!
+        Me.Label1.Left = 0.0!
         Me.Label1.Name = "Label1"
-        Me.Label1.Style = "color: Black; ddo-char-set: 0; font-weight: bold; font-style: normal; font-size: " & _
-            "9pt; "
+        Me.Label1.Style = "color: Black; ddo-char-set: 0; text-align: center; font-weight: bold; font-style:" & _
+            " normal; font-size: 9pt; "
         Me.Label1.Text = "REPORTE MERMA  BODEGA VRS RECIBO VRS REMISION"
         Me.Label1.Top = 0.225!
-        Me.Label1.Width = 4.5!
+        Me.Label1.Width = 7.5!
         '
         'Detail1
         '
@@ -744,6 +747,25 @@ Partial Public Class ArepMermaRecibo
         Me.GroupHeader2.Height = 0.28125!
         Me.GroupHeader2.Name = "GroupHeader2"
         '
+        'TextBox17
+        '
+        Me.TextBox17.Border.BottomColor = System.Drawing.Color.Black
+        Me.TextBox17.Border.BottomStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TextBox17.Border.LeftColor = System.Drawing.Color.Black
+        Me.TextBox17.Border.LeftStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TextBox17.Border.RightColor = System.Drawing.Color.Black
+        Me.TextBox17.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TextBox17.Border.TopColor = System.Drawing.Color.Black
+        Me.TextBox17.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TextBox17.DataField = "Localidad"
+        Me.TextBox17.Height = 0.2!
+        Me.TextBox17.Left = 0.2!
+        Me.TextBox17.Name = "TextBox17"
+        Me.TextBox17.Style = "ddo-char-set: 0; font-size: 9.75pt; "
+        Me.TextBox17.Text = Nothing
+        Me.TextBox17.Top = 0.0!
+        Me.TextBox17.Width = 2.75!
+        '
         'GroupFooter2
         '
         Me.GroupFooter2.Controls.AddRange(New DataDynamics.ActiveReports.ARControl() {Me.TextBox9, Me.TextBox12, Me.TextBox13, Me.TxtLocalidad, Me.LblLocalidad, Me.TextBox23})
@@ -818,6 +840,68 @@ Partial Public Class ArepMermaRecibo
         Me.TextBox13.Text = Nothing
         Me.TextBox13.Top = 0.0!
         Me.TextBox13.Width = 0.7499999!
+        '
+        'TxtLocalidad
+        '
+        Me.TxtLocalidad.Border.BottomColor = System.Drawing.Color.Black
+        Me.TxtLocalidad.Border.BottomStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TxtLocalidad.Border.LeftColor = System.Drawing.Color.Black
+        Me.TxtLocalidad.Border.LeftStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TxtLocalidad.Border.RightColor = System.Drawing.Color.Black
+        Me.TxtLocalidad.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TxtLocalidad.Border.TopColor = System.Drawing.Color.Black
+        Me.TxtLocalidad.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TxtLocalidad.DataField = "Localidad"
+        Me.TxtLocalidad.Height = 0.2!
+        Me.TxtLocalidad.Left = 0.0!
+        Me.TxtLocalidad.Name = "TxtLocalidad"
+        Me.TxtLocalidad.Style = "ddo-char-set: 0; font-size: 8.25pt; "
+        Me.TxtLocalidad.Text = Nothing
+        Me.TxtLocalidad.Top = 0.0!
+        Me.TxtLocalidad.Visible = False
+        Me.TxtLocalidad.Width = 0.9750001!
+        '
+        'LblLocalidad
+        '
+        Me.LblLocalidad.Border.BottomColor = System.Drawing.Color.Black
+        Me.LblLocalidad.Border.BottomStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.LblLocalidad.Border.LeftColor = System.Drawing.Color.Black
+        Me.LblLocalidad.Border.LeftStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.LblLocalidad.Border.RightColor = System.Drawing.Color.Black
+        Me.LblLocalidad.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.LblLocalidad.Border.TopColor = System.Drawing.Color.Black
+        Me.LblLocalidad.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.LblLocalidad.Height = 0.2!
+        Me.LblLocalidad.HyperLink = Nothing
+        Me.LblLocalidad.Left = 1.75!
+        Me.LblLocalidad.Name = "LblLocalidad"
+        Me.LblLocalidad.Style = "ddo-char-set: 0; text-align: right; font-weight: bold; font-size: 9.75pt; "
+        Me.LblLocalidad.Text = ""
+        Me.LblLocalidad.Top = 0.0!
+        Me.LblLocalidad.Width = 2.75!
+        '
+        'TextBox23
+        '
+        Me.TextBox23.Border.BottomColor = System.Drawing.Color.Black
+        Me.TextBox23.Border.BottomStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TextBox23.Border.LeftColor = System.Drawing.Color.Black
+        Me.TextBox23.Border.LeftStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TextBox23.Border.RightColor = System.Drawing.Color.Black
+        Me.TextBox23.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TextBox23.Border.TopColor = System.Drawing.Color.Black
+        Me.TextBox23.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TextBox23.DataField = "Merma"
+        Me.TextBox23.Height = 0.2!
+        Me.TextBox23.Left = 6.75!
+        Me.TextBox23.Name = "TextBox23"
+        Me.TextBox23.OutputFormat = resources.GetString("TextBox23.OutputFormat")
+        Me.TextBox23.Style = "ddo-char-set: 0; text-align: right; font-weight: bold; font-size: 9.75pt; "
+        Me.TextBox23.SummaryGroup = "GroupHeader2"
+        Me.TextBox23.SummaryRunning = DataDynamics.ActiveReports.SummaryRunning.Group
+        Me.TextBox23.SummaryType = DataDynamics.ActiveReports.SummaryType.SubTotal
+        Me.TextBox23.Text = Nothing
+        Me.TextBox23.Top = 0.0!
+        Me.TextBox23.Width = 0.7499999!
         '
         'GroupHeader3
         '
@@ -900,63 +984,67 @@ Partial Public Class ArepMermaRecibo
         Me.TextBox16.Top = 0.0!
         Me.TextBox16.Width = 0.825!
         '
-        'TxtLocalidad
+        'TxtTipoCafe
         '
-        Me.TxtLocalidad.Border.BottomColor = System.Drawing.Color.Black
-        Me.TxtLocalidad.Border.BottomStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.TxtLocalidad.Border.LeftColor = System.Drawing.Color.Black
-        Me.TxtLocalidad.Border.LeftStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.TxtLocalidad.Border.RightColor = System.Drawing.Color.Black
-        Me.TxtLocalidad.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.TxtLocalidad.Border.TopColor = System.Drawing.Color.Black
-        Me.TxtLocalidad.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.TxtLocalidad.DataField = "Localidad"
-        Me.TxtLocalidad.Height = 0.2!
-        Me.TxtLocalidad.Left = 0.0!
-        Me.TxtLocalidad.Name = "TxtLocalidad"
-        Me.TxtLocalidad.Style = "ddo-char-set: 0; font-size: 8.25pt; "
-        Me.TxtLocalidad.Text = Nothing
-        Me.TxtLocalidad.Top = 0.0!
-        Me.TxtLocalidad.Visible = False
-        Me.TxtLocalidad.Width = 0.9750001!
+        Me.TxtTipoCafe.Border.BottomColor = System.Drawing.Color.Black
+        Me.TxtTipoCafe.Border.BottomStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TxtTipoCafe.Border.LeftColor = System.Drawing.Color.Black
+        Me.TxtTipoCafe.Border.LeftStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TxtTipoCafe.Border.RightColor = System.Drawing.Color.Black
+        Me.TxtTipoCafe.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TxtTipoCafe.Border.TopColor = System.Drawing.Color.Black
+        Me.TxtTipoCafe.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TxtTipoCafe.DataField = "TipoCafe"
+        Me.TxtTipoCafe.Height = 0.2!
+        Me.TxtTipoCafe.Left = 0.0!
+        Me.TxtTipoCafe.Name = "TxtTipoCafe"
+        Me.TxtTipoCafe.Style = "ddo-char-set: 0; font-size: 8.25pt; "
+        Me.TxtTipoCafe.Text = Nothing
+        Me.TxtTipoCafe.Top = 0.0!
+        Me.TxtTipoCafe.Visible = False
+        Me.TxtTipoCafe.Width = 0.75!
         '
-        'LblLocalidad
+        'LblTotalTipoCafe
         '
-        Me.LblLocalidad.Border.BottomColor = System.Drawing.Color.Black
-        Me.LblLocalidad.Border.BottomStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.LblLocalidad.Border.LeftColor = System.Drawing.Color.Black
-        Me.LblLocalidad.Border.LeftStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.LblLocalidad.Border.RightColor = System.Drawing.Color.Black
-        Me.LblLocalidad.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.LblLocalidad.Border.TopColor = System.Drawing.Color.Black
-        Me.LblLocalidad.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.LblLocalidad.Height = 0.2!
-        Me.LblLocalidad.HyperLink = Nothing
-        Me.LblLocalidad.Left = 1.75!
-        Me.LblLocalidad.Name = "LblLocalidad"
-        Me.LblLocalidad.Style = "ddo-char-set: 0; text-align: right; font-weight: bold; font-size: 9.75pt; "
-        Me.LblLocalidad.Text = ""
-        Me.LblLocalidad.Top = 0.0!
-        Me.LblLocalidad.Width = 2.75!
+        Me.LblTotalTipoCafe.Border.BottomColor = System.Drawing.Color.Black
+        Me.LblTotalTipoCafe.Border.BottomStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.LblTotalTipoCafe.Border.LeftColor = System.Drawing.Color.Black
+        Me.LblTotalTipoCafe.Border.LeftStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.LblTotalTipoCafe.Border.RightColor = System.Drawing.Color.Black
+        Me.LblTotalTipoCafe.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.LblTotalTipoCafe.Border.TopColor = System.Drawing.Color.Black
+        Me.LblTotalTipoCafe.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.LblTotalTipoCafe.Height = 0.2!
+        Me.LblTotalTipoCafe.HyperLink = Nothing
+        Me.LblTotalTipoCafe.Left = 1.925!
+        Me.LblTotalTipoCafe.Name = "LblTotalTipoCafe"
+        Me.LblTotalTipoCafe.Style = "ddo-char-set: 0; text-align: right; font-size: 9pt; "
+        Me.LblTotalTipoCafe.Text = ""
+        Me.LblTotalTipoCafe.Top = 0.025!
+        Me.LblTotalTipoCafe.Width = 2.875!
         '
-        'TextBox17
+        'TextBox22
         '
-        Me.TextBox17.Border.BottomColor = System.Drawing.Color.Black
-        Me.TextBox17.Border.BottomStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.TextBox17.Border.LeftColor = System.Drawing.Color.Black
-        Me.TextBox17.Border.LeftStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.TextBox17.Border.RightColor = System.Drawing.Color.Black
-        Me.TextBox17.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.TextBox17.Border.TopColor = System.Drawing.Color.Black
-        Me.TextBox17.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.TextBox17.DataField = "Localidad"
-        Me.TextBox17.Height = 0.2!
-        Me.TextBox17.Left = 0.2!
-        Me.TextBox17.Name = "TextBox17"
-        Me.TextBox17.Style = "ddo-char-set: 0; font-size: 9.75pt; "
-        Me.TextBox17.Text = Nothing
-        Me.TextBox17.Top = 0.0!
-        Me.TextBox17.Width = 2.75!
+        Me.TextBox22.Border.BottomColor = System.Drawing.Color.Black
+        Me.TextBox22.Border.BottomStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TextBox22.Border.LeftColor = System.Drawing.Color.Black
+        Me.TextBox22.Border.LeftStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TextBox22.Border.RightColor = System.Drawing.Color.Black
+        Me.TextBox22.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TextBox22.Border.TopColor = System.Drawing.Color.Black
+        Me.TextBox22.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TextBox22.DataField = "Merma"
+        Me.TextBox22.Height = 0.2!
+        Me.TextBox22.Left = 6.75!
+        Me.TextBox22.Name = "TextBox22"
+        Me.TextBox22.OutputFormat = resources.GetString("TextBox22.OutputFormat")
+        Me.TextBox22.Style = "ddo-char-set: 0; text-align: right; font-weight: bold; font-size: 9pt; "
+        Me.TextBox22.SummaryGroup = "GroupHeader3"
+        Me.TextBox22.SummaryRunning = DataDynamics.ActiveReports.SummaryRunning.Group
+        Me.TextBox22.SummaryType = DataDynamics.ActiveReports.SummaryType.SubTotal
+        Me.TextBox22.Text = Nothing
+        Me.TextBox22.Top = 0.0!
+        Me.TextBox22.Width = 0.7499999!
         '
         'GroupHeader4
         '
@@ -1078,45 +1166,6 @@ Partial Public Class ArepMermaRecibo
         Me.TxtTipoCompra.Visible = False
         Me.TxtTipoCompra.Width = 0.8499999!
         '
-        'TxtTipoCafe
-        '
-        Me.TxtTipoCafe.Border.BottomColor = System.Drawing.Color.Black
-        Me.TxtTipoCafe.Border.BottomStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.TxtTipoCafe.Border.LeftColor = System.Drawing.Color.Black
-        Me.TxtTipoCafe.Border.LeftStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.TxtTipoCafe.Border.RightColor = System.Drawing.Color.Black
-        Me.TxtTipoCafe.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.TxtTipoCafe.Border.TopColor = System.Drawing.Color.Black
-        Me.TxtTipoCafe.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.TxtTipoCafe.DataField = "TipoCafe"
-        Me.TxtTipoCafe.Height = 0.2!
-        Me.TxtTipoCafe.Left = 0.0!
-        Me.TxtTipoCafe.Name = "TxtTipoCafe"
-        Me.TxtTipoCafe.Style = "ddo-char-set: 0; font-size: 8.25pt; "
-        Me.TxtTipoCafe.Text = Nothing
-        Me.TxtTipoCafe.Top = 0.0!
-        Me.TxtTipoCafe.Visible = False
-        Me.TxtTipoCafe.Width = 0.75!
-        '
-        'LblTotalTipoCafe
-        '
-        Me.LblTotalTipoCafe.Border.BottomColor = System.Drawing.Color.Black
-        Me.LblTotalTipoCafe.Border.BottomStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.LblTotalTipoCafe.Border.LeftColor = System.Drawing.Color.Black
-        Me.LblTotalTipoCafe.Border.LeftStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.LblTotalTipoCafe.Border.RightColor = System.Drawing.Color.Black
-        Me.LblTotalTipoCafe.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.LblTotalTipoCafe.Border.TopColor = System.Drawing.Color.Black
-        Me.LblTotalTipoCafe.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.LblTotalTipoCafe.Height = 0.2!
-        Me.LblTotalTipoCafe.HyperLink = Nothing
-        Me.LblTotalTipoCafe.Left = 1.925!
-        Me.LblTotalTipoCafe.Name = "LblTotalTipoCafe"
-        Me.LblTotalTipoCafe.Style = "ddo-char-set: 0; text-align: right; font-size: 9pt; "
-        Me.LblTotalTipoCafe.Text = ""
-        Me.LblTotalTipoCafe.Top = 0.025!
-        Me.LblTotalTipoCafe.Width = 2.875!
-        '
         'TextBox21
         '
         Me.TextBox21.Border.BottomColor = System.Drawing.Color.Black
@@ -1140,51 +1189,25 @@ Partial Public Class ArepMermaRecibo
         Me.TextBox21.Top = 0.0!
         Me.TextBox21.Width = 0.7499999!
         '
-        'TextBox22
+        'LblImpreso
         '
-        Me.TextBox22.Border.BottomColor = System.Drawing.Color.Black
-        Me.TextBox22.Border.BottomStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.TextBox22.Border.LeftColor = System.Drawing.Color.Black
-        Me.TextBox22.Border.LeftStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.TextBox22.Border.RightColor = System.Drawing.Color.Black
-        Me.TextBox22.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.TextBox22.Border.TopColor = System.Drawing.Color.Black
-        Me.TextBox22.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.TextBox22.DataField = "Merma"
-        Me.TextBox22.Height = 0.2!
-        Me.TextBox22.Left = 6.75!
-        Me.TextBox22.Name = "TextBox22"
-        Me.TextBox22.OutputFormat = resources.GetString("TextBox22.OutputFormat")
-        Me.TextBox22.Style = "ddo-char-set: 0; text-align: right; font-weight: bold; font-size: 9pt; "
-        Me.TextBox22.SummaryGroup = "GroupHeader3"
-        Me.TextBox22.SummaryRunning = DataDynamics.ActiveReports.SummaryRunning.Group
-        Me.TextBox22.SummaryType = DataDynamics.ActiveReports.SummaryType.SubTotal
-        Me.TextBox22.Text = Nothing
-        Me.TextBox22.Top = 0.0!
-        Me.TextBox22.Width = 0.7499999!
-        '
-        'TextBox23
-        '
-        Me.TextBox23.Border.BottomColor = System.Drawing.Color.Black
-        Me.TextBox23.Border.BottomStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.TextBox23.Border.LeftColor = System.Drawing.Color.Black
-        Me.TextBox23.Border.LeftStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.TextBox23.Border.RightColor = System.Drawing.Color.Black
-        Me.TextBox23.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.TextBox23.Border.TopColor = System.Drawing.Color.Black
-        Me.TextBox23.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.TextBox23.DataField = "Merma"
-        Me.TextBox23.Height = 0.2!
-        Me.TextBox23.Left = 6.75!
-        Me.TextBox23.Name = "TextBox23"
-        Me.TextBox23.OutputFormat = resources.GetString("TextBox23.OutputFormat")
-        Me.TextBox23.Style = "ddo-char-set: 0; text-align: right; font-weight: bold; font-size: 9.75pt; "
-        Me.TextBox23.SummaryGroup = "GroupHeader2"
-        Me.TextBox23.SummaryRunning = DataDynamics.ActiveReports.SummaryRunning.Group
-        Me.TextBox23.SummaryType = DataDynamics.ActiveReports.SummaryType.SubTotal
-        Me.TextBox23.Text = Nothing
-        Me.TextBox23.Top = 0.0!
-        Me.TextBox23.Width = 0.7499999!
+        Me.LblImpreso.Border.BottomColor = System.Drawing.Color.Black
+        Me.LblImpreso.Border.BottomStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.LblImpreso.Border.LeftColor = System.Drawing.Color.Black
+        Me.LblImpreso.Border.LeftStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.LblImpreso.Border.RightColor = System.Drawing.Color.Black
+        Me.LblImpreso.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.LblImpreso.Border.TopColor = System.Drawing.Color.Black
+        Me.LblImpreso.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.LblImpreso.Height = 0.2!
+        Me.LblImpreso.HyperLink = Nothing
+        Me.LblImpreso.Left = 0.0!
+        Me.LblImpreso.Name = "LblImpreso"
+        Me.LblImpreso.Style = "color: Black; ddo-char-set: 0; text-align: center; font-weight: normal; font-styl" & _
+            "e: normal; font-size: 9pt; "
+        Me.LblImpreso.Text = ""
+        Me.LblImpreso.Top = 0.475!
+        Me.LblImpreso.Width = 7.5!
         '
         'ArepMermaRecibo
         '
@@ -1246,25 +1269,26 @@ Partial Public Class ArepMermaRecibo
         CType(Me.TextBox10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TextBox11, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtTotalMerma, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextBox17, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TextBox9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TextBox12, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TextBox13, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtLocalidad, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LblLocalidad, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextBox23, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TextBox14, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TextBox15, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TextBox16, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtLocalidad, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LblLocalidad, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextBox17, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtTipoCafe, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LblTotalTipoCafe, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextBox22, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TextBox18, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TextBox19, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TextBox20, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LblTotalTipoCompra, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtTipoCompra, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtTipoCafe, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LblTotalTipoCafe, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TextBox21, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextBox22, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextBox23, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LblImpreso, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub
@@ -1324,4 +1348,5 @@ Partial Public Class ArepMermaRecibo
     Friend WithEvents TextBox21 As DataDynamics.ActiveReports.TextBox
     Friend WithEvents TextBox22 As DataDynamics.ActiveReports.TextBox
     Friend WithEvents TextBox23 As DataDynamics.ActiveReports.TextBox
+    Friend WithEvents LblImpreso As DataDynamics.ActiveReports.Label
 End Class

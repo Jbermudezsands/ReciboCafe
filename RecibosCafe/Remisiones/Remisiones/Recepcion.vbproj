@@ -542,6 +542,12 @@
     <Compile Include="Reportes\ArepRemisionTicketMaquila.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reportes\ArepReporteDetalleLiquidacion.Designer.vb">
+      <DependentUpon>ArepReporteDetalleLiquidacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ArepReporteDetalleLiquidacion.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reportes\ArepReporteRemision.Designer.vb">
       <DependentUpon>ArepReporteRemision.vb</DependentUpon>
     </Compile>
@@ -859,6 +865,10 @@
     <EmbeddedResource Include="Reportes\ArepRemisionTicketMaquila.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ArepRemisionTicketMaquila.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\ArepReporteDetalleLiquidacion.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ArepReporteDetalleLiquidacion.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\ArepReporteRemision.resx">
       <SubType>Designer</SubType>

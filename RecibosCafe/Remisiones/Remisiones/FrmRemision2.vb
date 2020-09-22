@@ -152,7 +152,7 @@ Public Class FrmRemision2
 
 
 
-                sql = "SELECT * FROM  RemisionPergamino WHERE  (IdTipoCafe = " & IdTipoCafe & ") AND (IdLugarAcopio = " & IdLugarAcopio & ") AND (IdTipoIngreso = 1) ORDER BY Codigo DESC"
+                sql = "SELECT * FROM  RemisionPergamino WHERE  (IdTipoCafe = " & IdTipoCafe & ") AND (IdLugarAcopio = " & IdLugarAcopio & ") AND (IdTipoIngreso = 1) AND (IdCosecha = " & CodigoCosecha & ") ORDER BY Codigo DESC"
                 DataAdapter = New SqlClient.SqlDataAdapter(sql, MiConexion)
                 DataAdapter.Fill(Dataset, "RemisionPergamino")
                 If Not Dataset.Tables("RemisionPergamino").Rows.Count = 0 Then
@@ -4319,7 +4319,7 @@ Public Class FrmRemision2
 
 
         If Me.TxtIdRemision.Text = "" Then
-            SQLRem = "SELECT   *   FROM   RemisionPergamino  WHERE  (Codigo = '" & Me.TxtNumeroRemision.Text & "') AND (IdTipoCafe = " & IdTipoCafe & ") AND (IdLugarAcopio = " & IdLugarAcopio & ")"
+            SQLRem = "SELECT   *   FROM   RemisionPergamino  WHERE  (Codigo = '" & Me.TxtNumeroRemision.Text & "') AND (IdTipoCafe = " & IdTipoCafe & ") AND (IdLugarAcopio = " & IdLugarAcopio & ") AND (IdCosecha = " & CodigoCosecha & ")"
             DataAdapter = New SqlClient.SqlDataAdapter(SQLRem, MiConexion)
             DataAdapter.Fill(DataSet, "Consulta")
             If DataSet.Tables("Consulta").Rows.Count <> 0 Then
@@ -4402,7 +4402,7 @@ Public Class FrmRemision2
             '---------------------------------------------------------------------------------------------------
 
             If Me.TxtIdRemision.Text = "" Then
-                SQLRem = "SELECT   *   FROM   RemisionPergamino  WHERE  (Codigo = '" & Me.TxtNumeroRemision.Text & "') AND (IdTipoCafe = " & IdTipoCafe & ") AND (IdLugarAcopio = " & IdLugarAcopio & ")"
+            SQLRem = "SELECT   *   FROM   RemisionPergamino  WHERE  (Codigo = '" & Me.TxtNumeroRemision.Text & "') AND (IdTipoCafe = " & IdTipoCafe & ") AND (IdLugarAcopio = " & IdLugarAcopio & ") AND (IdCosecha = " & CodigoCosecha & ")"
                 DataAdapter = New SqlClient.SqlDataAdapter(SQLRem, MiConexion)
                 DataAdapter.Fill(DataSet, "Consulta")
                 If DataSet.Tables("Consulta").Rows.Count <> 0 Then
@@ -4500,7 +4500,7 @@ Public Class FrmRemision2
             End If
 
             If Me.TxtIdRemision.Text = "" Then
-                SQLRem = "SELECT   *   FROM   RemisionPergamino  WHERE  (Codigo = '" & Me.TxtNumeroRemision.Text & "') AND (IdTipoCafe = " & IdTipoCafe & ") AND (IdLugarAcopio = " & IdLugarAcopio & ")"
+            SQLRem = "SELECT   *   FROM   RemisionPergamino  WHERE  (Codigo = '" & Me.TxtNumeroRemision.Text & "') AND (IdTipoCafe = " & IdTipoCafe & ") AND (IdLugarAcopio = " & IdLugarAcopio & ") AND (IdCosecha = " & CodigoCosecha & ")"
                 DataAdapter = New SqlClient.SqlDataAdapter(SQLRem, MiConexion)
                 DataAdapter.Fill(DataSet, "Consulta")
                 If DataSet.Tables("Consulta").Rows.Count <> 0 Then

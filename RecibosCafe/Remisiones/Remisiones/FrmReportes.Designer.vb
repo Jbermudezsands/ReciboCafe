@@ -72,6 +72,10 @@ Partial Class FrmReportes
         Me.BtnProcesar = New System.Windows.Forms.Button
         Me.TDGridResumenLiquidacion = New C1.Win.C1TrueDBGrid.C1TrueDBGrid
         Me.BtnReimprimir = New System.Windows.Forms.Button
+        Me.ListBox = New System.Windows.Forms.ListBox
+        Me.BtnPrevio = New System.Windows.Forms.Button
+        Me.BtnFiltrar = New System.Windows.Forms.Button
+        Me.ChkTodosLosProcesos = New System.Windows.Forms.CheckBox
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -716,7 +720,7 @@ Partial Class FrmReportes
         Me.GroupBox11.Controls.Add(Me.GroupBox12)
         Me.GroupBox11.Controls.Add(Me.Label13)
         Me.GroupBox11.Controls.Add(Me.CboModalidad)
-        Me.GroupBox11.Location = New System.Drawing.Point(12, 261)
+        Me.GroupBox11.Location = New System.Drawing.Point(12, 257)
         Me.GroupBox11.Name = "GroupBox11"
         Me.GroupBox11.Size = New System.Drawing.Size(418, 104)
         Me.GroupBox11.TabIndex = 262
@@ -780,13 +784,13 @@ Partial Class FrmReportes
         'BtnProcesar
         '
         Me.BtnProcesar.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnProcesar.Image = Global.Remisiones.My.Resources.Resources.icons8_print_48
+        Me.BtnProcesar.Image = Global.Remisiones.My.Resources.Resources.Refresh48
         Me.BtnProcesar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.BtnProcesar.Location = New System.Drawing.Point(869, 117)
         Me.BtnProcesar.Name = "BtnProcesar"
         Me.BtnProcesar.Size = New System.Drawing.Size(131, 48)
         Me.BtnProcesar.TabIndex = 263
-        Me.BtnProcesar.Text = "IMPRIMIR"
+        Me.BtnProcesar.Text = "PROCESAR"
         Me.BtnProcesar.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.BtnProcesar.UseVisualStyleBackColor = True
         Me.BtnProcesar.Visible = False
@@ -794,19 +798,19 @@ Partial Class FrmReportes
         'TDGridResumenLiquidacion
         '
         Me.TDGridResumenLiquidacion.AlternatingRows = True
-        Me.TDGridResumenLiquidacion.Caption = "Listado de Productos"
+        Me.TDGridResumenLiquidacion.Caption = "Listado de Procesos"
         Me.TDGridResumenLiquidacion.CaptionHeight = 17
         Me.TDGridResumenLiquidacion.FilterBar = True
         Me.TDGridResumenLiquidacion.GroupByCaption = "Drag a column header here to group by that column"
         Me.TDGridResumenLiquidacion.Images.Add(CType(resources.GetObject("TDGridResumenLiquidacion.Images"), System.Drawing.Image))
-        Me.TDGridResumenLiquidacion.Location = New System.Drawing.Point(1086, 210)
+        Me.TDGridResumenLiquidacion.Location = New System.Drawing.Point(1041, 196)
         Me.TDGridResumenLiquidacion.Name = "TDGridResumenLiquidacion"
         Me.TDGridResumenLiquidacion.PreviewInfo.Location = New System.Drawing.Point(0, 0)
         Me.TDGridResumenLiquidacion.PreviewInfo.Size = New System.Drawing.Size(0, 0)
         Me.TDGridResumenLiquidacion.PreviewInfo.ZoomFactor = 75
         Me.TDGridResumenLiquidacion.PrintInfo.PageSettings = CType(resources.GetObject("TDGridResumenLiquidacion.PrintInfo.PageSettings"), System.Drawing.Printing.PageSettings)
         Me.TDGridResumenLiquidacion.RowHeight = 15
-        Me.TDGridResumenLiquidacion.Size = New System.Drawing.Size(869, 351)
+        Me.TDGridResumenLiquidacion.Size = New System.Drawing.Size(393, 368)
         Me.TDGridResumenLiquidacion.TabIndex = 264
         Me.TDGridResumenLiquidacion.Text = "C1TrueDBGrid1"
         Me.TDGridResumenLiquidacion.PropBag = resources.GetString("TDGridResumenLiquidacion.PropBag")
@@ -825,13 +829,66 @@ Partial Class FrmReportes
         Me.BtnReimprimir.UseVisualStyleBackColor = True
         Me.BtnReimprimir.Visible = False
         '
+        'ListBox
+        '
+        Me.ListBox.FormattingEnabled = True
+        Me.ListBox.Location = New System.Drawing.Point(446, 8)
+        Me.ListBox.Name = "ListBox"
+        Me.ListBox.Size = New System.Drawing.Size(393, 368)
+        Me.ListBox.TabIndex = 266
+        Me.ListBox.Visible = False
+        '
+        'BtnPrevio
+        '
+        Me.BtnPrevio.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnPrevio.Image = Global.Remisiones.My.Resources.Resources.icons8_print_48
+        Me.BtnPrevio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtnPrevio.Location = New System.Drawing.Point(867, 227)
+        Me.BtnPrevio.Name = "BtnPrevio"
+        Me.BtnPrevio.Size = New System.Drawing.Size(131, 48)
+        Me.BtnPrevio.TabIndex = 267
+        Me.BtnPrevio.Text = "PREVIO"
+        Me.BtnPrevio.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BtnPrevio.UseVisualStyleBackColor = True
+        Me.BtnPrevio.Visible = False
+        '
+        'BtnFiltrar
+        '
+        Me.BtnFiltrar.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnFiltrar.Image = Global.Remisiones.My.Resources.Resources.Filter_48
+        Me.BtnFiltrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtnFiltrar.Location = New System.Drawing.Point(867, 280)
+        Me.BtnFiltrar.Name = "BtnFiltrar"
+        Me.BtnFiltrar.Size = New System.Drawing.Size(109, 48)
+        Me.BtnFiltrar.TabIndex = 268
+        Me.BtnFiltrar.Text = "FILTRAR"
+        Me.BtnFiltrar.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BtnFiltrar.UseVisualStyleBackColor = True
+        Me.BtnFiltrar.Visible = False
+        '
+        'ChkTodosLosProcesos
+        '
+        Me.ChkTodosLosProcesos.AutoSize = True
+        Me.ChkTodosLosProcesos.ForeColor = System.Drawing.Color.White
+        Me.ChkTodosLosProcesos.Location = New System.Drawing.Point(869, 335)
+        Me.ChkTodosLosProcesos.Name = "ChkTodosLosProcesos"
+        Me.ChkTodosLosProcesos.Size = New System.Drawing.Size(119, 17)
+        Me.ChkTodosLosProcesos.TabIndex = 269
+        Me.ChkTodosLosProcesos.Text = "Todos los Procesos"
+        Me.ChkTodosLosProcesos.UseVisualStyleBackColor = True
+        Me.ChkTodosLosProcesos.Visible = False
+        '
         'FrmReportes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(94, Byte), Integer), CType(CType(32, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1010, 451)
+        Me.ClientSize = New System.Drawing.Size(1012, 457)
         Me.ControlBox = False
+        Me.Controls.Add(Me.ChkTodosLosProcesos)
+        Me.Controls.Add(Me.BtnFiltrar)
+        Me.Controls.Add(Me.BtnPrevio)
+        Me.Controls.Add(Me.ListBox)
         Me.Controls.Add(Me.BtnReimprimir)
         Me.Controls.Add(Me.TDGridResumenLiquidacion)
         Me.Controls.Add(Me.BtnProcesar)
@@ -880,6 +937,7 @@ Partial Class FrmReportes
         Me.GroupBox12.PerformLayout()
         CType(Me.TDGridResumenLiquidacion, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
@@ -934,4 +992,8 @@ Partial Class FrmReportes
     Friend WithEvents BtnProcesar As System.Windows.Forms.Button
     Friend WithEvents TDGridResumenLiquidacion As C1.Win.C1TrueDBGrid.C1TrueDBGrid
     Friend WithEvents BtnReimprimir As System.Windows.Forms.Button
+    Friend WithEvents ListBox As System.Windows.Forms.ListBox
+    Friend WithEvents BtnPrevio As System.Windows.Forms.Button
+    Friend WithEvents BtnFiltrar As System.Windows.Forms.Button
+    Friend WithEvents ChkTodosLosProcesos As System.Windows.Forms.CheckBox
 End Class

@@ -4,7 +4,7 @@ Imports DataDynamics.ActiveReports.Document
 
 Public Class ArepBitacoraRecepcion
     Public MiConexion As New SqlClient.SqlConnection(Conexion)
-    Public IdFinca As Double, IdCosecha As Double, IdProductor As Double, ListaCertificados As String
+    Public IdFinca As Double, IdCosecha As Double, IdProductor As Double, ListaCertificados As String, Lineas As Double
     'Private CertificadoSubReport As SrpCertificado = Nothing
 
 
@@ -132,67 +132,458 @@ Public Class ArepBitacoraRecepcion
     Private Sub ReportHeader1_Format(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ReportHeader1.Format
         Dim p As System.Drawing.PointF
 
+        Lineas = (Me.LblNombres.Text.Length) / 35
 
-
-        If Me.LblPignorado.Text = "" Then
-            Me.Label40.Location = New Point(0.075, 4.08)
-            p.X = 0.075 : p.Y = 4.3
-            Me.Label42.Location = p
-            p.X = 0.75 : p.Y = 4.3
-            Me.LblCalidad.Location = p
-            p.X = 0.075 : p.Y = 4.55
-            Me.Label48.Location = p
-            p.X = 0.75 : p.Y = 4.55
-            Me.LblCategoria.Location = p
-            p.X = 0.075 : p.Y = 4.8
-            Me.Label41.Location = p
-            p.X = 0.75 : p.Y = 4.8
-            Me.LblEstado.Location = p
-            p.X = 0.075 : p.Y = 5
-            Me.Label45.Location = p
-            p.X = 0.75 : p.Y = 5
-            Me.LblDaño.Location = p
-            p.X = 0.075 : p.Y = 5.275
-            Me.Label49.Location = p
-            p.X = 0.75 : p.Y = 5.275
-            Me.LblHum.Location = p
-            p.X = 0.075 : p.Y = 5.525
-            Me.Label51.Location = p
-            p.X = 0.75 : p.Y = 5.525
-            Me.LblImp.Location = p
-
-            p.X = 0.05 : p.Y = 5.75
-            Me.Label53.Location = p
-            p.X = 0.05 : p.Y = 5.975
-            Me.Label55.Location = p
-            p.X = 0.8 : p.Y = 5.975
-            Me.LblIngreso.Location = p
-
-            p.X = 0.05 : p.Y = 6.225
-            Me.Label56.Location = p
-            p.X = 0.8 : p.Y = 6.225
-            Me.LblCompra.Location = p
-            p.X = 0.05 : p.Y = 6.425
-            Me.Label59.Location = p
-            p.X = 0.8 : p.Y = 6.425
-            Me.LblLiquidar.Location = p
-
-
-            If Me.LblCompra.Text = "" Then
-                Me.ReportHeader1.Height = 6.427
-            Else
-                Me.ReportHeader1.Height = 6.677
-            End If
-
-
-
-
-
-
-
-
-
+        If Lineas > 3 Then
+            Lineas = 4
+        ElseIf Lineas <= 1 Then
+            Lineas = 1
+        Else
+            Lineas = Int(Lineas)
         End If
+
+        Select Case Lineas
+            Case 1
+                p.X = 0.075 : p.Y = 3.45
+                Me.Label35.Location = p
+                p.X = 0.75 : p.Y = 3.45
+                Me.LblCedulas.Location = p
+
+                p.X = 0.075 : p.Y = 3.65
+                Me.Label39.Location = p
+                p.X = 0.75 : p.Y = 3.65
+                Me.LblFinca.Location = p
+
+                p.X = 0.075 : p.Y = 3.85
+                Me.Label61.Location = p
+                p.X = 0.75 : p.Y = 3.85
+                Me.LblPignorado.Location = p
+
+
+                If Me.LblPignorado.Text <> "" Then
+                    p.X = 0.075 : p.Y = 4.05
+                    Me.Label40.Location = p
+                    p.X = 0.075 : p.Y = 4.25
+                    Me.Label42.Location = p
+                    p.X = 0.75 : p.Y = 4.25
+                    Me.LblCalidad.Location = p
+
+                    p.X = 0.075 : p.Y = 4.45
+                    Me.Label48.Location = p
+                    p.X = 0.75 : p.Y = 4.45
+                    Me.LblCategoria.Location = p
+
+                    p.X = 0.075 : p.Y = 4.65
+                    Me.Label41.Location = p
+                    p.X = 0.75 : p.Y = 4.65
+                    Me.LblEstado.Location = p
+
+                    p.X = 0.075 : p.Y = 4.85
+                    Me.Label45.Location = p
+                    p.X = 0.75 : p.Y = 4.85
+                    Me.LblDaño.Location = p
+
+                    p.X = 0.075 : p.Y = 5.05
+                    Me.Label49.Location = p
+                    p.X = 0.75 : p.Y = 5.05
+                    Me.LblHum.Location = p
+
+                    p.X = 0.075 : p.Y = 5.3
+                    Me.Label51.Location = p
+                    p.X = 0.75 : p.Y = 5.3
+                    Me.LblImp.Location = p
+
+                    p.X = 0.05 : p.Y = 5.45
+                    Me.Label53.Location = p
+                    p.X = 0.05 : p.Y = 5.65
+                    Me.Label55.Location = p
+                    p.X = 0.8 : p.Y = 5.65
+                    Me.LblIngreso.Location = p
+
+                    p.X = 0.05 : p.Y = 5.85
+                    Me.Label56.Location = p
+                    p.X = 0.8 : p.Y = 5.85
+                    Me.LblCompra.Location = p
+
+                    p.X = 0.05 : p.Y = 6.05
+                    Me.Label59.Location = p
+                    p.X = 0.8 : p.Y = 6.05
+                    Me.LblLiquidar.Location = p
+
+                    If Me.LblCompra.Text = "" Then
+                        Me.ReportHeader1.Height = 6.0
+                    Else
+                        Me.ReportHeader1.Height = 6.1
+                    End If
+
+                Else
+                    p.X = 0.075 : p.Y = 3.85
+                    Me.Label40.Location = p
+                    p.X = 0.075 : p.Y = 4.05
+                    Me.Label42.Location = p
+                    p.X = 0.75 : p.Y = 4.05
+                    Me.LblCalidad.Location = p
+
+                    p.X = 0.075 : p.Y = 4.25
+                    Me.Label48.Location = p
+                    p.X = 0.75 : p.Y = 4.25
+                    Me.LblCategoria.Location = p
+
+                    p.X = 0.075 : p.Y = 4.45
+                    Me.Label41.Location = p
+                    p.X = 0.75 : p.Y = 4.45
+                    Me.LblEstado.Location = p
+
+                    p.X = 0.075 : p.Y = 4.65
+                    Me.Label45.Location = p
+                    p.X = 0.75 : p.Y = 4.65
+                    Me.LblDaño.Location = p
+
+                    p.X = 0.075 : p.Y = 4.85
+                    Me.Label49.Location = p
+                    p.X = 0.75 : p.Y = 4.85
+                    Me.LblHum.Location = p
+
+                    p.X = 0.075 : p.Y = 5.0
+                    Me.Label51.Location = p
+                    p.X = 0.75 : p.Y = 5.0
+                    Me.LblImp.Location = p
+
+                    p.X = 0.05 : p.Y = 5.15
+                    Me.Label53.Location = p
+                    p.X = 0.05 : p.Y = 5.35
+                    Me.Label55.Location = p
+                    p.X = 0.8 : p.Y = 5.35
+                    Me.LblIngreso.Location = p
+
+                    p.X = 0.05 : p.Y = 5.55
+                    Me.Label56.Location = p
+                    p.X = 0.8 : p.Y = 5.55
+                    Me.LblCompra.Location = p
+
+                    p.X = 0.05 : p.Y = 5.75
+                    Me.Label59.Location = p
+                    p.X = 0.8 : p.Y = 5.75
+                    Me.LblLiquidar.Location = p
+
+                    If Me.LblCompra.Text = "" Then
+                        Me.ReportHeader1.Height = 6.0
+                    Else
+                        Me.ReportHeader1.Height = 6.1
+                    End If
+
+                End If
+
+            Case 2
+
+                p.X = 0.075 : p.Y = 3.65
+                Me.Label35.Location = p
+                p.X = 0.75 : p.Y = 3.65
+                Me.LblCedulas.Location = p
+
+                p.X = 0.075 : p.Y = 3.85
+                Me.Label39.Location = p
+                p.X = 0.75 : p.Y = 3.85
+                Me.LblFinca.Location = p
+
+                p.X = 0.075 : p.Y = 4.05
+                Me.Label61.Location = p
+                p.X = 0.75 : p.Y = 4.05
+                Me.LblPignorado.Location = p
+
+                If Me.LblPignorado.Text <> "" Then
+                    p.X = 0.075 : p.Y = 4.25
+                    Me.Label40.Location = p
+                    p.X = 0.075 : p.Y = 4.82
+                    Me.Label42.Location = p
+                    p.X = 0.75 : p.Y = 4.82
+                    Me.LblCalidad.Location = p
+                    p.X = 0.075 : p.Y = 5.02
+                    Me.Label48.Location = p
+                    p.X = 0.75 : p.Y = 5.22
+                    Me.LblCategoria.Location = p
+                    p.X = 0.075 : p.Y = 5.22
+                    Me.Label41.Location = p
+                    p.X = 0.75 : p.Y = 5.42
+                    Me.LblEstado.Location = p
+                    p.X = 0.075 : p.Y = 5.62
+                    Me.Label45.Location = p
+                    p.X = 0.75 : p.Y = 5.62
+                    Me.LblDaño.Location = p
+                    p.X = 0.075 : p.Y = 5.82
+                    Me.Label49.Location = p
+                    p.X = 0.75 : p.Y = 5.82
+                    Me.LblHum.Location = p
+                    p.X = 0.075 : p.Y = 6.02
+                    Me.Label51.Location = p
+                    p.X = 0.75 : p.Y = 6.02
+                    Me.LblImp.Location = p
+
+                    p.X = 0.05 : p.Y = 6.22
+                    Me.Label53.Location = p
+                    p.X = 0.05 : p.Y = 6.42
+                    Me.Label55.Location = p
+                    p.X = 0.8 : p.Y = 6.42
+                    Me.LblIngreso.Location = p
+
+                    p.X = 0.05 : p.Y = 6.62
+                    Me.Label56.Location = p
+                    p.X = 0.8 : p.Y = 6.62
+                    Me.LblCompra.Location = p
+                    p.X = 0.05 : p.Y = 6.82
+                    Me.Label59.Location = p
+                    p.X = 0.8 : p.Y = 6.82
+                    Me.LblLiquidar.Location = p
+
+                    If Me.LblCompra.Text = "" Then
+                        Me.ReportHeader1.Height = 6.427
+                    Else
+                        Me.ReportHeader1.Height = 6.677
+                    End If
+
+                Else
+                    p.X = 0.075 : p.Y = 4.05
+                    Me.Label40.Location = p
+                    p.X = 0.075 : p.Y = 4.25
+                    Me.Label42.Location = p
+                    p.X = 0.75 : p.Y = 4.25
+                    Me.LblCalidad.Location = p
+
+                    p.X = 0.075 : p.Y = 4.45
+                    Me.Label48.Location = p
+                    p.X = 0.75 : p.Y = 4.45
+                    Me.LblCategoria.Location = p
+
+                    p.X = 0.075 : p.Y = 4.65
+                    Me.Label41.Location = p
+                    p.X = 0.75 : p.Y = 4.65
+                    Me.LblEstado.Location = p
+
+                    p.X = 0.075 : p.Y = 4.85
+                    Me.Label45.Location = p
+                    p.X = 0.75 : p.Y = 4.85
+                    Me.LblDaño.Location = p
+
+                    p.X = 0.075 : p.Y = 5.05
+                    Me.Label49.Location = p
+                    p.X = 0.75 : p.Y = 5.05
+                    Me.LblHum.Location = p
+
+                    p.X = 0.075 : p.Y = 5.25
+                    Me.Label51.Location = p
+                    p.X = 0.75 : p.Y = 5.25
+                    Me.LblImp.Location = p
+
+                    p.X = 0.05 : p.Y = 5.45
+                    Me.Label53.Location = p
+                    p.X = 0.05 : p.Y = 5.65
+                    Me.Label55.Location = p
+                    p.X = 0.8 : p.Y = 5.65
+                    Me.LblIngreso.Location = p
+
+                    p.X = 0.05 : p.Y = 5.85
+                    Me.Label56.Location = p
+                    p.X = 0.8 : p.Y = 5.85
+                    Me.LblCompra.Location = p
+
+                    p.X = 0.05 : p.Y = 6.05
+                    Me.Label59.Location = p
+                    p.X = 0.8 : p.Y = 6.05
+                    Me.LblLiquidar.Location = p
+
+                    If Me.LblCompra.Text = "" Then
+                        Me.ReportHeader1.Height = 6.427
+                    Else
+                        Me.ReportHeader1.Height = 6.677
+                    End If
+
+
+                End If
+
+            Case 3
+
+                p.X = 0.075 : p.Y = 3.85
+                Me.Label35.Location = p
+                p.X = 0.75 : p.Y = 3.85
+                Me.LblCedulas.Location = p
+
+                p.X = 0.075 : p.Y = 4.05
+                Me.Label39.Location = p
+                p.X = 0.75 : p.Y = 4.05
+                Me.LblFinca.Location = p
+
+                p.X = 0.075 : p.Y = 4.25
+                Me.Label61.Location = p
+                p.X = 0.75 : p.Y = 4.25
+                Me.LblPignorado.Location = p
+
+                If Me.LblPignorado.Text <> "" Then
+                    p.X = 0.075 : p.Y = 4.45
+                    Me.Label40.Location = p
+                    p.X = 0.075 : p.Y = 4.65
+                    Me.Label42.Location = p
+                    p.X = 0.75 : p.Y = 4.65
+                    Me.LblCalidad.Location = p
+
+                    p.X = 0.075 : p.Y = 4.85
+                    Me.Label48.Location = p
+                    p.X = 0.75 : p.Y = 4.85
+                    Me.LblCategoria.Location = p
+
+                    p.X = 0.075 : p.Y = 5.05
+                    Me.Label41.Location = p
+                    p.X = 0.75 : p.Y = 5.05
+                    Me.LblEstado.Location = p
+
+                    p.X = 0.075 : p.Y = 5.25
+                    Me.Label45.Location = p
+                    p.X = 0.75 : p.Y = 5.25
+                    Me.LblDaño.Location = p
+
+                    p.X = 0.075 : p.Y = 5.45
+                    Me.Label49.Location = p
+                    p.X = 0.75 : p.Y = 5.45
+                    Me.LblHum.Location = p
+
+                    p.X = 0.075 : p.Y = 5.65
+                    Me.Label51.Location = p
+                    p.X = 0.75 : p.Y = 5.65
+                    Me.LblImp.Location = p
+
+                    p.X = 0.05 : p.Y = 5.85
+                    Me.Label53.Location = p
+                    p.X = 0.05 : p.Y = 6.05
+                    Me.Label55.Location = p
+                    p.X = 0.8 : p.Y = 6.05
+                    Me.LblIngreso.Location = p
+
+                    p.X = 0.05 : p.Y = 6.25
+                    Me.Label56.Location = p
+                    p.X = 0.8 : p.Y = 6.25
+                    Me.LblCompra.Location = p
+
+                    p.X = 0.05 : p.Y = 6.45
+                    Me.Label59.Location = p
+                    p.X = 0.8 : p.Y = 6.45
+                    Me.LblLiquidar.Location = p
+
+                    If Me.LblCompra.Text = "" Then
+                        Me.ReportHeader1.Height = 6.427
+                    Else
+                        Me.ReportHeader1.Height = 6.677
+                    End If
+
+                Else
+                    p.X = 0.075 : p.Y = 4.25
+                    Me.Label40.Location = p
+                    p.X = 0.075 : p.Y = 4.82
+                    Me.Label42.Location = p
+                    p.X = 0.75 : p.Y = 4.82
+                    Me.LblCalidad.Location = p
+                    p.X = 0.075 : p.Y = 5.02
+                    Me.Label48.Location = p
+                    p.X = 0.75 : p.Y = 5.22
+                    Me.LblCategoria.Location = p
+                    p.X = 0.075 : p.Y = 5.22
+                    Me.Label41.Location = p
+                    p.X = 0.75 : p.Y = 5.42
+                    Me.LblEstado.Location = p
+                    p.X = 0.075 : p.Y = 5.62
+                    Me.Label45.Location = p
+                    p.X = 0.75 : p.Y = 5.62
+                    Me.LblDaño.Location = p
+                    p.X = 0.075 : p.Y = 5.82
+                    Me.Label49.Location = p
+                    p.X = 0.75 : p.Y = 5.82
+                    Me.LblHum.Location = p
+                    p.X = 0.075 : p.Y = 6.02
+                    Me.Label51.Location = p
+                    p.X = 0.75 : p.Y = 6.02
+                    Me.LblImp.Location = p
+
+                    p.X = 0.05 : p.Y = 6.22
+                    Me.Label53.Location = p
+                    p.X = 0.05 : p.Y = 6.42
+                    Me.Label55.Location = p
+                    p.X = 0.8 : p.Y = 6.42
+                    Me.LblIngreso.Location = p
+
+                    p.X = 0.05 : p.Y = 6.62
+                    Me.Label56.Location = p
+                    p.X = 0.8 : p.Y = 6.62
+                    Me.LblCompra.Location = p
+                    p.X = 0.05 : p.Y = 6.82
+                    Me.Label59.Location = p
+                    p.X = 0.8 : p.Y = 6.82
+                    Me.LblLiquidar.Location = p
+
+                    If Me.LblCompra.Text = "" Then
+                        Me.ReportHeader1.Height = 6.427
+                    Else
+                        Me.ReportHeader1.Height = 6.677
+                    End If
+
+
+                End If
+            Case Else
+
+                If Me.LblPignorado.Text = "" Then
+                    p.X = 0.075 : p.Y = 4.25
+                    Me.Label40.Location = p
+                    p.X = 0.075 : p.Y = 4.52
+                    Me.Label42.Location = p
+                    p.X = 0.75 : p.Y = 4.52
+                    Me.LblCalidad.Location = p
+                    p.X = 0.075 : p.Y = 4.72
+                    Me.Label48.Location = p
+                    p.X = 0.75 : p.Y = 4.92
+                    Me.LblCategoria.Location = p
+                    p.X = 0.075 : p.Y = 4.92
+                    Me.Label41.Location = p
+                    p.X = 0.75 : p.Y = 5.12
+                    Me.LblEstado.Location = p
+                    p.X = 0.075 : p.Y = 5.32
+                    Me.Label45.Location = p
+                    p.X = 0.75 : p.Y = 5.32
+                    Me.LblDaño.Location = p
+                    p.X = 0.075 : p.Y = 5.52
+                    Me.Label49.Location = p
+                    p.X = 0.75 : p.Y = 5.52
+                    Me.LblHum.Location = p
+                    p.X = 0.075 : p.Y = 5.72
+                    Me.Label51.Location = p
+                    p.X = 0.75 : p.Y = 5.72
+                    Me.LblImp.Location = p
+
+                    p.X = 0.05 : p.Y = 5.92
+                    Me.Label53.Location = p
+                    p.X = 0.05 : p.Y = 6.12
+                    Me.Label55.Location = p
+                    p.X = 0.8 : p.Y = 6.12
+                    Me.LblIngreso.Location = p
+
+                    p.X = 0.05 : p.Y = 6.32
+                    Me.Label56.Location = p
+                    p.X = 0.8 : p.Y = 6.32
+                    Me.LblCompra.Location = p
+                    p.X = 0.05 : p.Y = 6.52
+                    Me.Label59.Location = p
+                    p.X = 0.8 : p.Y = 6.52
+                    Me.LblLiquidar.Location = p
+
+
+                    If Me.LblCompra.Text = "" Then
+                        Me.ReportHeader1.Height = 6.427
+                    Else
+                        Me.ReportHeader1.Height = 6.677
+                    End If
+
+                End If
+
+        End Select
+
+
+
     End Sub
 
     Private Sub GroupHeader1_Format(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GroupHeader1.Format

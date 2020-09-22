@@ -251,7 +251,7 @@ Partial Public Class ArepBitacoraLiquidacion
         Me.Label6.Name = "Label6"
         Me.Label6.Style = "ddo-char-set: 0; text-align: left; font-weight: bold; font-size: 6.75pt; "
         Me.Label6.Text = "PRODUCTOR:"
-        Me.Label6.Top = 0.5625!
+        Me.Label6.Top = 0.55!
         Me.Label6.Width = 0.6875!
         '
         'Label7
@@ -270,7 +270,7 @@ Partial Public Class ArepBitacoraLiquidacion
         Me.Label7.Name = "Label7"
         Me.Label7.Style = "ddo-char-set: 0; text-align: left; font-weight: bold; font-size: 6.75pt; "
         Me.Label7.Text = "CEDULA:"
-        Me.Label7.Top = 0.9!
+        Me.Label7.Top = 1.05!
         Me.Label7.Width = 0.5625!
         '
         'Label8
@@ -289,8 +289,8 @@ Partial Public Class ArepBitacoraLiquidacion
         Me.Label8.Name = "Label8"
         Me.Label8.Style = "ddo-char-set: 0; text-align: left; font-weight: bold; font-size: 6.75pt; "
         Me.Label8.Text = "NOMBRE DE LA FINCA:"
-        Me.Label8.Top = 1.025!
-        Me.Label8.Width = 1.25!
+        Me.Label8.Top = 1.225!
+        Me.Label8.Width = 1.1!
         '
         'Label9
         '
@@ -307,9 +307,9 @@ Partial Public Class ArepBitacoraLiquidacion
         Me.Label9.Left = 0.0!
         Me.Label9.Name = "Label9"
         Me.Label9.Style = "ddo-char-set: 0; text-align: left; font-weight: bold; font-size: 6.75pt; "
-        Me.Label9.Text = "UBICACION DE LA FINCA:"
-        Me.Label9.Top = 1.225!
-        Me.Label9.Width = 1.25!
+        Me.Label9.Text = "UBICACION FINCA:"
+        Me.Label9.Top = 1.425!
+        Me.Label9.Width = 1.1!
         '
         'Label10
         '
@@ -327,7 +327,7 @@ Partial Public Class ArepBitacoraLiquidacion
         Me.Label10.Name = "Label10"
         Me.Label10.Style = "ddo-char-set: 0; text-align: left; font-weight: bold; font-size: 6.75pt; "
         Me.Label10.Text = "MUNICIPIO:"
-        Me.Label10.Top = 1.4!
+        Me.Label10.Top = 1.625!
         Me.Label10.Width = 0.75!
         '
         'TxtDatosCliente
@@ -346,7 +346,7 @@ Partial Public Class ArepBitacoraLiquidacion
         Me.TxtDatosCliente.Style = "color: White; ddo-char-set: 0; text-align: center; font-weight: bold; background-" & _
             "color: Black; font-size: 9.75pt; "
         Me.TxtDatosCliente.Text = "D a t o s   C a f é"
-        Me.TxtDatosCliente.Top = 1.625!
+        Me.TxtDatosCliente.Top = 1.8!
         Me.TxtDatosCliente.Width = 2.625!
         '
         'LblFecha
@@ -419,7 +419,7 @@ Partial Public Class ArepBitacoraLiquidacion
         Me.LblProductor.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
         Me.LblProductor.Border.TopColor = System.Drawing.Color.Black
         Me.LblProductor.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.LblProductor.Height = 0.25!
+        Me.LblProductor.Height = 0.45!
         Me.LblProductor.HyperLink = Nothing
         Me.LblProductor.Left = 0.7250001!
         Me.LblProductor.Name = "LblProductor"
@@ -439,15 +439,15 @@ Partial Public Class ArepBitacoraLiquidacion
         Me.LblIdentificacion.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
         Me.LblIdentificacion.Border.TopColor = System.Drawing.Color.Black
         Me.LblIdentificacion.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.LblIdentificacion.Height = 0.18!
+        Me.LblIdentificacion.Height = 0.1750001!
         Me.LblIdentificacion.HyperLink = Nothing
-        Me.LblIdentificacion.Left = 1.325!
+        Me.LblIdentificacion.Left = 1.1!
         Me.LblIdentificacion.Name = "LblIdentificacion"
         Me.LblIdentificacion.Style = "ddo-char-set: 0; text-align: left; font-weight: normal; font-size: 8.25pt; font-f" & _
             "amily: Microsoft Sans Serif; "
         Me.LblIdentificacion.Text = ""
-        Me.LblIdentificacion.Top = 0.8500001!
-        Me.LblIdentificacion.Width = 1.35!
+        Me.LblIdentificacion.Top = 1.05!
+        Me.LblIdentificacion.Width = 1.75!
         '
         'LblNombreFinca
         '
@@ -461,13 +461,13 @@ Partial Public Class ArepBitacoraLiquidacion
         Me.LblNombreFinca.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
         Me.LblNombreFinca.Height = 0.2!
         Me.LblNombreFinca.HyperLink = Nothing
-        Me.LblNombreFinca.Left = 1.3!
+        Me.LblNombreFinca.Left = 1.1!
         Me.LblNombreFinca.Name = "LblNombreFinca"
-        Me.LblNombreFinca.Style = "ddo-char-set: 0; text-align: left; font-weight: normal; font-size: 8.25pt; font-f" & _
+        Me.LblNombreFinca.Style = "ddo-char-set: 0; text-align: left; font-weight: normal; font-size: 6.75pt; font-f" & _
             "amily: Microsoft Sans Serif; "
         Me.LblNombreFinca.Text = ""
-        Me.LblNombreFinca.Top = 1.025!
-        Me.LblNombreFinca.Width = 1.35!
+        Me.LblNombreFinca.Top = 1.225!
+        Me.LblNombreFinca.Width = 1.75!
         '
         'LblUbiFinca
         '
@@ -479,15 +479,15 @@ Partial Public Class ArepBitacoraLiquidacion
         Me.LblUbiFinca.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
         Me.LblUbiFinca.Border.TopColor = System.Drawing.Color.Black
         Me.LblUbiFinca.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.LblUbiFinca.Height = 0.1875!
+        Me.LblUbiFinca.Height = 0.2!
         Me.LblUbiFinca.HyperLink = Nothing
-        Me.LblUbiFinca.Left = 1.3!
+        Me.LblUbiFinca.Left = 1.1!
         Me.LblUbiFinca.Name = "LblUbiFinca"
-        Me.LblUbiFinca.Style = "ddo-char-set: 0; text-align: left; font-weight: normal; font-size: 8.25pt; font-f" & _
+        Me.LblUbiFinca.Style = "ddo-char-set: 0; text-align: left; font-weight: normal; font-size: 6.75pt; font-f" & _
             "amily: Microsoft Sans Serif; "
         Me.LblUbiFinca.Text = ""
-        Me.LblUbiFinca.Top = 1.225!
-        Me.LblUbiFinca.Width = 1.35!
+        Me.LblUbiFinca.Top = 1.425!
+        Me.LblUbiFinca.Width = 1.725!
         '
         'LblMunicipio
         '
@@ -501,13 +501,13 @@ Partial Public Class ArepBitacoraLiquidacion
         Me.LblMunicipio.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
         Me.LblMunicipio.Height = 0.125!
         Me.LblMunicipio.HyperLink = Nothing
-        Me.LblMunicipio.Left = 1.3!
+        Me.LblMunicipio.Left = 1.1!
         Me.LblMunicipio.Name = "LblMunicipio"
         Me.LblMunicipio.Style = "ddo-char-set: 0; text-align: left; font-weight: normal; font-size: 8.25pt; font-f" & _
             "amily: Microsoft Sans Serif; "
         Me.LblMunicipio.Text = ""
-        Me.LblMunicipio.Top = 1.4!
-        Me.LblMunicipio.Width = 1.35!
+        Me.LblMunicipio.Top = 1.625!
+        Me.LblMunicipio.Width = 1.725!
         '
         'TextBox1
         '
@@ -525,7 +525,7 @@ Partial Public Class ArepBitacoraLiquidacion
         Me.TextBox1.Style = "color: White; ddo-char-set: 0; text-align: center; font-weight: bold; background-" & _
             "color: Black; font-size: 9.75pt; "
         Me.TextBox1.Text = "D a t o s    D e l    P a g o"
-        Me.TextBox1.Top = 3.55!
+        Me.TextBox1.Top = 3.675!
         Me.TextBox1.Width = 2.625!
         '
         'Label11
@@ -544,7 +544,7 @@ Partial Public Class ArepBitacoraLiquidacion
         Me.Label11.Name = "Label11"
         Me.Label11.Style = "ddo-char-set: 0; text-align: left; font-weight: bold; font-size: 6.75pt; "
         Me.Label11.Text = "CALIDAD:"
-        Me.Label11.Top = 1.875!
+        Me.Label11.Top = 2.0!
         Me.Label11.Width = 0.6875!
         '
         'Label12
@@ -563,7 +563,7 @@ Partial Public Class ArepBitacoraLiquidacion
         Me.Label12.Name = "Label12"
         Me.Label12.Style = "ddo-char-set: 0; text-align: left; font-weight: bold; font-size: 6.75pt; "
         Me.Label12.Text = "ESTADO FISICO:"
-        Me.Label12.Top = 2.05!
+        Me.Label12.Top = 2.175!
         Me.Label12.Width = 1.0625!
         '
         'Label19
@@ -582,7 +582,7 @@ Partial Public Class ArepBitacoraLiquidacion
         Me.Label19.Name = "Label19"
         Me.Label19.Style = "ddo-char-set: 0; text-align: left; font-weight: bold; font-size: 6.75pt; "
         Me.Label19.Text = "DAÑO:"
-        Me.Label19.Top = 2.25!
+        Me.Label19.Top = 2.375!
         Me.Label19.Width = 0.6875!
         '
         'Label20
@@ -601,7 +601,7 @@ Partial Public Class ArepBitacoraLiquidacion
         Me.Label20.Name = "Label20"
         Me.Label20.Style = "ddo-char-set: 0; text-align: left; font-weight: bold; font-size: 6.75pt; "
         Me.Label20.Text = "% IMPERFECCION:"
-        Me.Label20.Top = 2.475!
+        Me.Label20.Top = 2.6!
         Me.Label20.Width = 1.125!
         '
         'Label21
@@ -620,7 +620,7 @@ Partial Public Class ArepBitacoraLiquidacion
         Me.Label21.Name = "Label21"
         Me.Label21.Style = "ddo-char-set: 0; text-align: left; font-weight: bold; font-size: 6.75pt; "
         Me.Label21.Text = "CANTIDAD DE SACOS:"
-        Me.Label21.Top = 2.65!
+        Me.Label21.Top = 2.775!
         Me.Label21.Width = 1.375!
         '
         'Label22
@@ -640,7 +640,7 @@ Partial Public Class ArepBitacoraLiquidacion
         Me.Label22.Style = "ddo-char-set: 0; text-align: left; font-weight: bold; font-size: 6.75pt; vertical" & _
             "-align: middle; "
         Me.Label22.Text = "PESO BRUTO (KG):"
-        Me.Label22.Top = 2.875!
+        Me.Label22.Top = 3.0!
         Me.Label22.Width = 1.375!
         '
         'Label23
@@ -660,7 +660,7 @@ Partial Public Class ArepBitacoraLiquidacion
         Me.Label23.Style = "ddo-char-set: 0; text-align: left; font-weight: bold; font-size: 6.75pt; vertical" & _
             "-align: middle; "
         Me.Label23.Text = "TARA (KG):"
-        Me.Label23.Top = 3.1!
+        Me.Label23.Top = 3.225!
         Me.Label23.Width = 0.8125!
         '
         'Label24
@@ -679,7 +679,7 @@ Partial Public Class ArepBitacoraLiquidacion
         Me.Label24.Name = "Label24"
         Me.Label24.Style = "ddo-char-set: 0; text-align: left; font-weight: bold; font-size: 6.75pt; "
         Me.Label24.Text = "PESO NETO (KG)"
-        Me.Label24.Top = 3.325!
+        Me.Label24.Top = 3.45!
         Me.Label24.Width = 0.75!
         '
         'LblEdoFisico
@@ -698,7 +698,7 @@ Partial Public Class ArepBitacoraLiquidacion
         Me.LblEdoFisico.Name = "LblEdoFisico"
         Me.LblEdoFisico.Style = "ddo-char-set: 0; text-align: left; font-weight: bold; font-size: 8.25pt; "
         Me.LblEdoFisico.Text = ""
-        Me.LblEdoFisico.Top = 1.975!
+        Me.LblEdoFisico.Top = 2.1!
         Me.LblEdoFisico.Width = 1.08!
         '
         'LblCalidad
@@ -717,7 +717,7 @@ Partial Public Class ArepBitacoraLiquidacion
         Me.LblCalidad.Name = "LblCalidad"
         Me.LblCalidad.Style = "ddo-char-set: 0; text-align: left; font-weight: bold; font-size: 8.25pt; "
         Me.LblCalidad.Text = ""
-        Me.LblCalidad.Top = 1.85!
+        Me.LblCalidad.Top = 1.975!
         Me.LblCalidad.Width = 1.08!
         '
         'LblDano
@@ -736,7 +736,7 @@ Partial Public Class ArepBitacoraLiquidacion
         Me.LblDano.Name = "LblDano"
         Me.LblDano.Style = "ddo-char-set: 0; text-align: left; font-weight: bold; font-size: 8.25pt; "
         Me.LblDano.Text = ""
-        Me.LblDano.Top = 2.2!
+        Me.LblDano.Top = 2.325!
         Me.LblDano.Width = 1.08!
         '
         'LblPorcImper
@@ -755,7 +755,7 @@ Partial Public Class ArepBitacoraLiquidacion
         Me.LblPorcImper.Name = "LblPorcImper"
         Me.LblPorcImper.Style = "ddo-char-set: 0; text-align: left; font-weight: bold; font-size: 8.25pt; "
         Me.LblPorcImper.Text = ""
-        Me.LblPorcImper.Top = 2.425!
+        Me.LblPorcImper.Top = 2.55!
         Me.LblPorcImper.Width = 1.08!
         '
         'LblCantSacos
@@ -774,7 +774,7 @@ Partial Public Class ArepBitacoraLiquidacion
         Me.LblCantSacos.Name = "LblCantSacos"
         Me.LblCantSacos.Style = "ddo-char-set: 0; text-align: left; font-weight: bold; font-size: 8.25pt; "
         Me.LblCantSacos.Text = ""
-        Me.LblCantSacos.Top = 2.65!
+        Me.LblCantSacos.Top = 2.775!
         Me.LblCantSacos.Width = 1.08!
         '
         'LblPesoBruto
@@ -793,7 +793,7 @@ Partial Public Class ArepBitacoraLiquidacion
         Me.LblPesoBruto.Name = "LblPesoBruto"
         Me.LblPesoBruto.Style = "ddo-char-set: 0; text-align: left; font-weight: bold; font-size: 8.25pt; "
         Me.LblPesoBruto.Text = ""
-        Me.LblPesoBruto.Top = 2.875!
+        Me.LblPesoBruto.Top = 3.0!
         Me.LblPesoBruto.Width = 1.08!
         '
         'LblTara
@@ -812,7 +812,7 @@ Partial Public Class ArepBitacoraLiquidacion
         Me.LblTara.Name = "LblTara"
         Me.LblTara.Style = "ddo-char-set: 0; text-align: left; font-weight: bold; font-size: 8.25pt; "
         Me.LblTara.Text = ""
-        Me.LblTara.Top = 3.1!
+        Me.LblTara.Top = 3.225!
         Me.LblTara.Width = 1.08!
         '
         'LblPesoNeto
@@ -831,7 +831,7 @@ Partial Public Class ArepBitacoraLiquidacion
         Me.LblPesoNeto.Name = "LblPesoNeto"
         Me.LblPesoNeto.Style = "ddo-char-set: 0; text-align: left; font-weight: bold; font-size: 8.25pt; "
         Me.LblPesoNeto.Text = ""
-        Me.LblPesoNeto.Top = 3.325!
+        Me.LblPesoNeto.Top = 3.45!
         Me.LblPesoNeto.Width = 1.08!
         '
         'Label13
@@ -1463,7 +1463,7 @@ Partial Public Class ArepBitacoraLiquidacion
         Me.PageSettings.Margins.Top = 0.1!
         Me.PageSettings.PaperHeight = 11.0!
         Me.PageSettings.PaperWidth = 8.5!
-        Me.PrintWidth = 2.954167!
+        Me.PrintWidth = 2.870834!
         Me.Sections.Add(Me.ReportHeader1)
         Me.Sections.Add(Me.PHLiquidacion)
         Me.Sections.Add(Me.GroupHeader1)

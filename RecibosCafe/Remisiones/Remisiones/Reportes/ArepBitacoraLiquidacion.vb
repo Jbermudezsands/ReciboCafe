@@ -15,8 +15,87 @@ Public Class ArepBitacoraLiquidacion
 
 
     Private Sub GroupHeader1_Format(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GroupHeader1.Format
-        Dim SqlString As String
+        Dim SqlString As String, Lineas As Double
         Dim p As System.Drawing.PointF
+
+
+
+        Lineas = (Me.LblProductor.Text.Length) / 35
+
+        If Lineas > 3 Then
+            Lineas = 4
+        ElseIf Lineas < 1 Then
+            Lineas = 1
+        Else
+            Lineas = Int(Lineas)
+        End If
+
+        Select Case Lineas
+            Case 1
+                p.X = 0 : p.Y = 0.78
+                Me.Label7.Location = p
+                p.X = 1.1 : p.Y = 0.78
+                Me.LblIdentificacion.Location = p
+                p.X = 0 : p.Y = 0.98
+                Me.Label8.Location = p
+                p.X = 1.1 : p.Y = 0.98
+                Me.LblNombreFinca.Location = p
+                p.X = 0 : p.Y = 1.18
+                Me.Label9.Location = p
+                p.X = 1.1 : p.Y = 1.18
+                Me.LblUbiFinca.Location = p
+                p.X = 0 : p.Y = 1.38
+                Me.Label10.Location = p
+                p.X = 1.1 : p.Y = 1.38
+                Me.LblMunicipio.Location = p
+                p.X = 0 : p.Y = 1.6
+                Me.TxtDatosCliente.Location = p
+
+            Case 2
+
+                p.X = 0 : p.Y = 0.98
+                Me.Label7.Location = p
+                p.X = 1.1 : p.Y = 0.98
+                Me.LblIdentificacion.Location = p
+                p.X = 0 : p.Y = 1.18
+                Me.Label8.Location = p
+                p.X = 1.1 : p.Y = 1.18
+                Me.LblNombreFinca.Location = p
+                p.X = 0 : p.Y = 1.38
+                Me.Label9.Location = p
+                p.X = 1.1 : p.Y = 1.38
+                Me.LblUbiFinca.Location = p
+                p.X = 0 : p.Y = 1.58
+                Me.Label10.Location = p
+                p.X = 1.1 : p.Y = 1.58
+                Me.LblMunicipio.Location = p
+                p.X = 0 : p.Y = 1.8
+                Me.TxtDatosCliente.Location = p
+
+            Case 3
+
+                p.X = 0 : p.Y = 1.18
+                Me.Label7.Location = p
+                p.X = 1.1 : p.Y = 1.18
+                Me.LblIdentificacion.Location = p
+                p.X = 0 : p.Y = 1.38
+                Me.Label8.Location = p
+                p.X = 1.1 : p.Y = 1.38
+                Me.LblNombreFinca.Location = p
+                p.X = 0 : p.Y = 1.58
+                Me.Label9.Location = p
+                p.X = 1.1 : p.Y = 1.58
+                Me.LblUbiFinca.Location = p
+                p.X = 0 : p.Y = 1.78
+                Me.Label10.Location = p
+                p.X = 1.1 : p.Y = 1.78
+                Me.LblMunicipio.Location = p
+                p.X = 0 : p.Y = 2
+                Me.TxtDatosCliente.Location = p
+
+        End Select
+
+
 
         If Me.LblRecibos.Text = "" Then
             Me.Label14.Visible = False

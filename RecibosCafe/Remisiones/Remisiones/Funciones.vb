@@ -5,6 +5,152 @@ Imports System.Collections
 
 Module Funciones
 
+    Private Sub CalcularImpuestoLiquidacion(ByVal IdLiquidacion As Double)
+
+        Dim PesoNeto As Double
+        Dim i As Integer, APlicado As Double, PorAplicar As Double, Registros As Integer, Peso As Double, ResultadoC As Double, ResultadoD As Double, TipoImpuesto As String
+        Dim Fechainicial As Date, FechaFinal As Date, Fechanow As Date, ContaTrue As Double, ImpMuniC As Double, RetDefC As Double, Ret3C As Double, Reten2C As Double
+        Dim ImpMuniD As Double, RetDefD As Double, Ret3D As Double, Reten2D As Double, valorCor As Double, ValorDol As Double
+        Dim TotalPesoKG As Double, ValorC As Double, ValorBrutoCor As Double, totalDol As Double, totalCor As Double, SqlString As String
+        Dim DataSet As New DataSet, DataAdapter As New SqlClient.SqlDataAdapter, Porcentaje As Double, RentDefC As Double, RentDefD As Double, TotalDecC As Double
+        Dim TotalDecD As Double, count As Double, PrecioBruto As Double
+        Dim MiConexion As New SqlClient.SqlConnection(Conexion)
+
+
+        ImpMuniC = 0
+        RetDefC = 0
+        Ret3C = 0
+        Reten2C = 0
+
+        ImpMuniD = 0
+        RetDefD = 0
+        Ret3D = 0
+        Reten2D = 0
+
+
+        i = 0
+        PesoNeto = 0
+        valorCor = 0
+        ValorDol = 0
+
+
+        'Registros = Me.TDGridDetalleRecibos.RowCount
+        'SqlString = "SELECT  LiquidacionPergamino.Codigo, LiquidacionPergamino.Precio, DetalleDistribucion.Monto, DetalleLiquidacionPergamino.PesoNeto, LiquidacionPergamino.IdLocalidad, LiquidacionPergamino.ReportadoDistribucion, LiquidacionPergamino.NumeroReportado, Proveedor.Nombre_Proveedor + ' ' + Proveedor.Apellido_Proveedor AS Nombres, TipoCompra.Nombre AS TipoCompra, LiquidacionPergamino.IdLiquidacionPergamino, LiquidacionPergamino.ChkRentDef, LiquidacionPergamino.ChkRent2, LiquidacionPergamino.ChkRent3, LiquidacionPergamino.ChkMuncipal, LiquidacionPergamino.PrecioAutoriza, LiquidacionPergamino.TotalDeducciones, DetalleDistribucion.FechaPago FROM LiquidacionPergamino INNER JOIN DetalleDistribucion ON LiquidacionPergamino.IdLiquidacionPergamino = DetalleDistribucion.IdLiquidacionPergamino INNER JOIN DetalleLiquidacionPergamino ON LiquidacionPergamino.IdLiquidacionPergamino = DetalleLiquidacionPergamino.IdLiquidacionPergamino INNER JOIN Proveedor ON LiquidacionPergamino.Cod_Proveedor = Proveedor.Cod_Proveedor INNER JOIN TipoCompra ON LiquidacionPergamino.IdTipoCompra = TipoCompra.IdECS WHERE  (LiquidacionPergamino.ReportadoDistribucion = 1) AND (LiquidacionPergamino.IdLiquidacionPergamino = " & IdLiquidacion & ")"
+        'DataAdapter = New SqlClient.SqlDataAdapter(SqlString, MiConexion)
+        'DataAdapter.Fill(DataSet, "RecibosLiquida")
+
+        'count = DataSet.Tables("RecibosLiquida").Rows.Count
+        'Do While count > i
+
+        '    PrecioBruto = DataSet.Tables("RecibosLiquida").Rows(i)("Precio")
+        '    PesoNeto = DataSet.Tables("RecibosLiquida").Rows(i)("PesoNeto")
+        '    Me.TDGridDetalleRecibos.Columns(4).Text = Me.TDGridDetalleRecibos.Item(i)("PesoNeto") * Me.TDGridDetalleRecibos.Item(i)("Precio")
+        '    Me.TDGridDetalleRecibos.Columns(5).Text = Me.TDGridDetalleRecibos.Item(i)("PesoNeto") * Me.TDGridDetalleRecibos.Item(i)("Precio") / TasaCambio
+        '    i = i + 1
+        'Loop
+
+
+        'TotalPesoKG = Format(PesoBruto, "##,##0.00")
+        'ValorC = Format(valorCor, "##,##0.00")
+        'ValorBrutoCor = Format(ValorDol, "##,##0.00")
+
+        'totalCor = Mid(ValorC, 3, Len(ValorC))
+        'totalDol = Mid(ValorBrutoCor, 3, Len(ValorBrutoCor))
+
+
+        ''((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((
+        ''(((((((((((((((((((((((((((((((((((((((((((((CALCULO LOS IMPUESTOS MUNICIPALES (((((((((((((((((((((
+        ''((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((
+
+        'If Me.Checkpor1.Checked = True Then
+        '    TipoImpuesto = "Imp. Municipal"
+        '    SqlString = "SELECT  Descripcion, Valor, VigenciaInicial, VigenciaFinal   FROM   Impuesto   WHERE    (Descripcion = '" & TipoImpuesto & "')"
+        '    DataAdapter = New SqlClient.SqlDataAdapter(SqlString, MiConexion)
+        '    DataAdapter.Fill(DataSet, "Impuesto1")
+
+        '    Porcentaje = DataSet.Tables("Impuesto1").Rows(0)("Valor")
+
+        '    ImpMuniC = Porcentaje * totalCor
+        '    ImpMuniD = Porcentaje * totalDol
+        'Else
+        '    ImpMuniC = 0
+        '    ImpMuniD = 0
+        'End If
+
+
+        ''((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((
+        ''(((((((((((((((((((((((((((((((((((((((((((((RETENCION DEFINITIVA (((((((((((((((((((((
+        ''((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((
+
+        'If Me.Checkpor2.Checked = True Then
+        '    TipoImpuesto = "Retención Definitiva"
+        '    SqlString = "SELECT  Descripcion, Valor, VigenciaInicial, VigenciaFinal   FROM   Impuesto   WHERE    (Descripcion = '" & TipoImpuesto & "')"
+        '    DataAdapter = New SqlClient.SqlDataAdapter(SqlString, MiConexion)
+        '    DataAdapter.Fill(DataSet, "Impuesto2")
+        '    Porcentaje = DataSet.Tables("Impuesto2").Rows(0)("Valor")
+        '    RetDefC = Porcentaje * totalCor
+        '    RetDefD = Porcentaje * totalDol
+
+        '    RentDefC = Format(RetDefC, "##,##0.00")
+        '    RentDefD = Format(RetDefD, "##,##0.00")
+        'Else
+        '    RetDefC = 0
+        '    RetDefD = 0
+        '    RentDefC = "0.00"
+        '    RentDefD = "0.00"
+        'End If
+
+
+        ''((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((
+        ''(((((((((((((((((((((((((((((((((((((((((((((RETENCION 3% (((((((((((((((((((((
+        ''((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((
+
+        'If Me.Checkpor3.Checked = True Then
+        '    TipoImpuesto = "Retención 3%"
+        '    SqlString = "SELECT  Descripcion, Valor, VigenciaInicial, VigenciaFinal   FROM   Impuesto   WHERE    (Descripcion = '" & TipoImpuesto & "')"
+        '    DataAdapter = New SqlClient.SqlDataAdapter(SqlString, MiConexion)
+        '    DataAdapter.Fill(DataSet, "Impuesto3")
+        '    Porcentaje = DataSet.Tables("Impuesto3").Rows(0)("Valor")
+        '    Ret3C = Porcentaje * totalCor
+        '    Ret3D = Porcentaje * totalDol
+        'Else
+        '    Ret3C = 0
+        '    Ret3D = 0
+        'End If
+
+        ''((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((
+        ''(((((((((((((((((((((((((((((((((((((((((((((RETENCION 2% (((((((((((((((((((((
+        ''((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((
+
+        'If Me.Checkbox4.Checked = True Then
+        '    TipoImpuesto = "Retención 2%"
+        '    SqlString = "SELECT  Descripcion, Valor, VigenciaInicial, VigenciaFinal   FROM   Impuesto   WHERE    (Descripcion = '" & TipoImpuesto & "')"
+        '    DataAdapter = New SqlClient.SqlDataAdapter(SqlString, MiConexion)
+        '    DataAdapter.Fill(DataSet, "Impuesto4")
+
+        '    Porcentaje = DataSet.Tables("Impuesto4").Rows(0)("Valor")
+        '    Reten2C = Porcentaje * totalCor
+        '    Reten2D = Porcentaje * totalDol
+        'Else
+        '    Reten2C = 0
+        '    Reten2D = 0
+        'End If
+
+        'TotalDecC = ImpMuniC + RetDefC + Ret3C + Reten2C
+        'TotalDecD = ImpMuniD + RetDefD + Ret3D + Reten2D
+
+        'Me.TxtTotalDecC.Text = Format(TotalDecC, "##,##0.00")
+        'Me.TxtTotalDecD.Text = Format(TotalDecD, "##,##0.00")
+
+        'NetoPagarC = totalCor - TotalDecC
+        'NetoPagarD = totalDol - TotalDecD
+
+        'Me.TxtTotalCor.Text = Format(NetoPagarC, "##,##0.00")
+        'Me.TxtTotalDol.Text = Format(NetoPagarD, "##,##0.00")
+
+
+    End Sub
+
     Public Function Establecer_Impresora(ByVal NamePrinter As String) As Boolean
         On Error GoTo errSub
 

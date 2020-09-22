@@ -642,6 +642,7 @@ Public Class FrmLiquidacion
             Me.LocalidadCbo = FrmRecepcion.CboLiquidarLocalidad.Text
             Me.CboLocalidadLiq.Enabled = False
             Me.CboCodigoProveedor.Text = FrmRecepcion.CboCodigoProveedor.Text
+            Me.TxtCedula.Text = FrmRecepcion.Cedula
             Me.CboCodigoProveedor.Enabled = False
             'Me.codigoProveedor = FrmRecepcion.CboCodigoProveedor.Text
             Me.txtnombre.Text = FrmRecepcion.txtnombre.Text
@@ -1750,7 +1751,8 @@ Public Class FrmLiquidacion
             sql = ""
             '//////////////////////////////////LISTADO DE MUNICIPIOS //////////////////////////
             'sql = "SELECT Municipio.IdMunicipio, Municipio.Nombre, Municipio.IdLugarAcopio, Region.Nombre AS Region, Region.IdRegion, LugarAcopio.Activo FROM  Municipio INNER JOIN LugarAcopio ON Municipio.IdLugarAcopio = LugarAcopio.IdLugarAcopio INNER JOIN Region ON LugarAcopio.IdRegion = Region.IdRegion  WHERE  (Region.IdRegion = 2) AND (LugarAcopio.Activo = 1)
-            sql = "SELECT  IdMunicipio, Nombre, IdLugarAcopio FROM Municipio WHERE(IdLugarAcopio = " & IdLocalidadLiqui & ") "
+            'sql = "SELECT  IdMunicipio, Nombre, IdLugarAcopio FROM Municipio WHERE(IdLugarAcopio = " & IdLocalidadLiqui & ") "
+            sql = "SELECT  LugarAcopio.NomLugarAcopio, LugarAcopio.IdLugarAcopio, LugarAcopio.IdPadre, Municipio.Nombre, LugarAcopio.Activo FROM LugarAcopio INNER JOIN Municipio ON LugarAcopio.IdPadre = Municipio.IdLugarAcopio  WHERE (LugarAcopio.IdLugarAcopio = " & IdLocalidadLiqui & ") ORDER BY Municipio.Nombre"
             DataAdapter = New SqlClient.SqlDataAdapter(sql, MiConexion)
             DataAdapter.Fill(DataSet, "Municipio")
             If DataSet.Tables("Municipio").Rows.Count <> 0 Then
@@ -4724,7 +4726,7 @@ Public Class FrmLiquidacion
                 End If
 
                 If ContarGrid = i + 1 Then
-                    If MontoEfectivo > Monto Then
+                    If MontoEfectivo >= Monto Then
                         MontoEfectivo = MontoEfectivo - Monto
                     End If
                 End If
@@ -4740,7 +4742,7 @@ Public Class FrmLiquidacion
             Me.TDBGRidDistribucion.Columns("Monto").Text = 0.0
         Else
             Me.TDBGRidDistribucion.Row = i - 1
-            Me.TDBGRidDistribucion.Columns("Monto").Text = MontoEfectivo
+            Me.TDBGRidDistribucion.Columns("Monto").Text = Format(MontoEfectivo, "##,##0.00")
         End If
 
         sumagriddistribucion()

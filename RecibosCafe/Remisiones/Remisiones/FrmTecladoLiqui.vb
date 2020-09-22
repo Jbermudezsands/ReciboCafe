@@ -158,6 +158,7 @@ Public Class FrmTecladoLiqui
                     End If
                     i = i + 1
                 Loop
+                DataSet.Tables("Combo").Reset()
 
                 Quien = ""
         End Select
@@ -669,7 +670,7 @@ Public Class FrmTecladoLiqui
                 C1Button1.Height = 185
             Case "RemisionNumero"
                 Quien = "Load"
-                Me.CboSerieLiq.ResetText()
+                'Me.CboSerieLiq.ResetText()
                 Me.TxtNumero.Text = ""
                 '/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 '//////////////////////////////BUSCO SI EXISTE EL CONSECUTIVO PARA RECIBOS ///////////////////////////////////////
@@ -682,8 +683,8 @@ Public Class FrmTecladoLiqui
                 'Me.CboSerie.DataSource = DataSet.Tables("Serie")
                 registros = DataSet.Tables("SerieLiq").Rows.Count
                 i = 0
-                Me.CboSerieLiq.Enabled = False
-                Me.CboSerieLiq.ResetText()
+                'Me.CboSerieLiq.Enabled = False
+                'Me.CboSerieLiq.ResetText()
                 SerieBlanco = False
                 Do While registros > i
                     Serie = DataSet.Tables("SerieLiq").Rows(i)("Serie")
@@ -708,30 +709,32 @@ Public Class FrmTecladoLiqui
                 Loop
                 DataSet.Tables("SerieLiq").Reset()
 
-                Sql = "SELECT DISTINCT Serie FROM Preingreso WHERE  (IdLocalidad = " & FrmRemision2.TxtIdLugarAcopio.Text & ") AND (IdCosecha = " & FrmRemision2.TextIdCosecha.Text & ") AND (IdTipoCafe = '" & FrmRemision2.IdTipoCafe & "') AND (IdTipoDocumento = 975) AND (Activo = 1)"
-                DataAdapter = New SqlClient.SqlDataAdapter(Sql, MiConexion)
-                DataAdapter.Fill(DataSet, "Combo")
-                'Me.CboSerie.DataSource = DataSet.Tables("Serie")
-                registros = DataSet.Tables("Combo").Rows.Count
-                i = 0
-                Me.CboSerieLiq.Items.Clear()
-                SerieBlanco = False
-                Do While registros > i
-                    Me.CboSerieLiq.Enabled = True
-                    Serie = DataSet.Tables("Combo").Rows(i)("Serie")
-                    If Serie <> "" Then
-                        Me.CboSerieLiq.Items.Add(Serie)
-                        Me.CboSerieLiq.Enabled = True
-                        'ConsecutivoRecibo = BuscaConsecutivoReciboManual(Serie, IdTipoCafe, IdCosecha, IdLocalidad, IdTipoCompra)
-                    Else
-                        'ConsecutivoRecibo = BuscaConsecutivoReciboManual(Serie, IdTipoCafe, IdCosecha, IdLocalidad, IdTipoCompra)
-                        If SerieBlanco = False Then
-                            Me.CboSerieLiq.Items.Add(Serie)
-                            SerieBlanco = True
-                        End If
-                    End If
-                    i = i + 1
-                Loop
+                'Sql = "SELECT DISTINCT Serie FROM Preingreso WHERE  (IdLocalidad = " & FrmRemision2.TxtIdLugarAcopio.Text & ") AND (IdCosecha = " & FrmRemision2.TextIdCosecha.Text & ") AND (IdTipoCafe = '" & FrmRemision2.IdTipoCafe & "') AND (IdTipoDocumento = 975) AND (Activo = 1)"
+                'DataAdapter = New SqlClient.SqlDataAdapter(Sql, MiConexion)
+                'DataAdapter.Fill(DataSet, "Combo")
+                ''Me.CboSerie.DataSource = DataSet.Tables("Serie")
+                'registros = DataSet.Tables("Combo").Rows.Count
+                'i = 0
+                'Me.CboSerieLiq.Items.Clear()
+                'SerieBlanco = False
+                'Do While registros > i
+                '    Me.CboSerieLiq.Enabled = True
+                '    Serie = DataSet.Tables("Combo").Rows(i)("Serie")
+                '    If Serie <> "" Then
+                '        Me.CboSerieLiq.Items.Add(Serie)
+                '        Me.CboSerieLiq.Enabled = True
+                '        'ConsecutivoRecibo = BuscaConsecutivoReciboManual(Serie, IdTipoCafe, IdCosecha, IdLocalidad, IdTipoCompra)
+                '    Else
+                '        'ConsecutivoRecibo = BuscaConsecutivoReciboManual(Serie, IdTipoCafe, IdCosecha, IdLocalidad, IdTipoCompra)
+                '        If SerieBlanco = False Then
+                '            Me.CboSerieLiq.Items.Add(Serie)
+                '            SerieBlanco = True
+                '        End If
+                '    End If
+                '    i = i + 1
+                'Loop
+
+                'DataSet.Tables("Combo").Reset()
 
                 Quien = ""
         End Select

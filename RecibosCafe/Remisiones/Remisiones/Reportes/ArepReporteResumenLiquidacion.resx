@@ -135,10 +135,12 @@
   <data name="OleDBDataSource1.SQL" xml:space="preserve">
     <value>SELECT        LiquidacionPergamino.Codigo, LiquidacionPergamino.Precio, DetalleDistribucion.Monto, DetalleLiquidacionPergamino.PesoNeto, LiquidacionPergamino.IdLocalidad, 
                          LiquidacionPergamino.ReportadoDistribucion, LiquidacionPergamino.NumeroReportado, 
-                         Proveedor.Nombre_Proveedor + ' ' + Proveedor.Apellido_Proveedor AS Nombres
+                         Proveedor.Nombre_Proveedor + ' ' + Proveedor.Apellido_Proveedor AS Nombres, TipoCompra.Nombre AS TipoCompra
 FROM            LiquidacionPergamino INNER JOIN
                          DetalleDistribucion ON LiquidacionPergamino.IdLiquidacionPergamino = DetalleDistribucion.IdLiquidacionPergamino INNER JOIN
                          DetalleLiquidacionPergamino ON LiquidacionPergamino.IdLiquidacionPergamino = DetalleLiquidacionPergamino.IdLiquidacionPergamino INNER JOIN
-                         Proveedor ON LiquidacionPergamino.Cod_Proveedor = Proveedor.Cod_Proveedor</value>
+                         Proveedor ON LiquidacionPergamino.Cod_Proveedor = Proveedor.Cod_Proveedor INNER JOIN
+                         TipoCompra ON LiquidacionPergamino.IdTipoCompra = TipoCompra.IdECS
+WHERE        (LiquidacionPergamino.ReportadoDistribucion = 1)</value>
   </data>
 </root>

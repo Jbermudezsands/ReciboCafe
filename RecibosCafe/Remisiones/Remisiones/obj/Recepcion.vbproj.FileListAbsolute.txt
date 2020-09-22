@@ -3063,3 +3063,4 @@ D:\Sistemas\ReciboCafeSerieExp\ReciboCafe\RecibosCafe\Remisiones\Remisiones\obj\
 D:\Sistemas\ReciboCafeSerieExp\ReciboCafe\RecibosCafe\Remisiones\Remisiones\obj\Debug\Remisiones.SrpMermaRecibo.resources
 D:\Sistemas\ReciboCafeSerieExp\ReciboCafe\RecibosCafe\Remisiones\Remisiones\obj\Debug\Remisiones.ArepReporteRemision.resources
 D:\Sistemas\ReciboCafeSerieExp\ReciboCafe\RecibosCafe\Remisiones\Remisiones\obj\Debug\Remisiones.ArepReporteResumenLiquidacion.resources
+D:\Sistemas\ReciboCafeSerieExp\ReciboCafe\RecibosCafe\Remisiones\Remisiones\obj\Debug\Remisiones.ArepReporteDetalleLiquidacion.resources
