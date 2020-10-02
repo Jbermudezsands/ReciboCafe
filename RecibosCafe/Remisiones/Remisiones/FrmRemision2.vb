@@ -343,15 +343,6 @@ Public Class FrmRemision2
 
 
 
-        'CboTipoRemision.Items.Add("Remision Pergamino")
-        'CboTipoRemision.Items.Add("Remision Maquila")
-        'CboTipoRemision.Text = "Remision Pergamino"
-
-        'CboRemTipIngr.Items.Add("Manual")
-        'CboRemTipIngr.Items.Add("Automatico")
-        'CboRemTipIngr.Items.Add("Movil")
-        'CboRemTipIngr.Text = "Automatico"
-
         sql = "SELECT IdEstadoDocumento, Descripcion  FROM  EstadoDocumento"
         DataAdapter = New SqlClient.SqlDataAdapter(sql, MiConexion)
         DataAdapter.Fill(Dataset, "Estado")
@@ -1620,7 +1611,7 @@ Public Class FrmRemision2
         End If
     End Sub
     Private Sub CboTipoRemision_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CboTipoRemision.SelectedIndexChanged
-        Dim SQL As String = "SELECT        IdTipoCafe, Codigo, Nombre FROM   TipoCafe  WHERE        (Nombre = '" & Me.CboTipoRemision.Text & "')"
+        Dim SQL As String = "SELECT  IdTipoCafe, Codigo, Nombre FROM   TipoCafe  WHERE        (Nombre = '" & Me.CboTipoRemision.Text & "')"
         Dim DataSet As New DataSet, DataSet1 As New DataSet, DataAdapter As New SqlClient.SqlDataAdapter(SQL, MiConexion), SqlString As String
         Dim MyRuta As String, Ruta As String
         Dim fileReader As String = ""
@@ -1663,7 +1654,7 @@ Public Class FrmRemision2
             Me.PanelPergaminio.Visible = False
             Me.PanelMaquila.Visible = True
             SqlString = "SELECT DISTINCT ReciboCafePergamino.Codigo   FROM  ReciboCafePergamino INNER JOIN  EstadoDocumento ON ReciboCafePergamino.IdEstadoDocumento = EstadoDocumento.IdEstadoDocumento INNER JOIN TipoCafe ON ReciboCafePergamino.IdTipoCafe = TipoCafe.IdTipoCafe " & _
-                        "WHERE (ReciboCafePergamino.IdReciboPergamino NOT IN (SELECT DISTINCT ReciboCafePergamino_1.IdReciboPergamino FROM  RecibosRemisionPergamino INNER JOIN DetalleReciboCafePergamino ON RecibosRemisionPergamino.IdDetalleReciboPergamino = DetalleReciboCafePergamino.IdDetalleReciboPergamino INNER JOIN  ReciboCafePergamino AS ReciboCafePergamino_1 ON DetalleReciboCafePergamino.IdReciboPergamino = ReciboCafePergamino_1.IdReciboPergamino)) AND (EstadoDocumento.Descripcion = 'Confirmado') AND  (TipoCafe.Nombre = 'MAQUILA') AND (ReciboCafePergamino.IdLocalidadRegistro = '" & Me.TxtIdLugarAcopio.Text & "') AND (ReciboCafePergamino.IdCosecha = " & Trim(CodigoCosecha) & ") AND (ReciboCafePergamino.IdEstadoDocumento = 294) "
+                        "WHERE (ReciboCafePergamino.IdReciboPergamino NOT IN (SELECT DISTINCT ReciboCafePergamino_1.IdReciboPergamino FROM  RecibosRemisionPergamino INNER JOIN DetalleReciboCafePergamino ON RecibosRemisionPergamino.IdDetalleReciboPergamino = DetalleReciboCafePergamino.IdDetalleReciboPergamino INNER JOIN  ReciboCafePergamino AS ReciboCafePergamino_1 ON DetalleReciboCafePergamino.IdReciboPergamino = ReciboCafePergamino_1.IdReciboPergamino WHERE (RecibosRemisionPergamino.PesoNeto <> 0))) AND (EstadoDocumento.Descripcion = 'Confirmado') AND  (TipoCafe.Nombre = 'MAQUILA') AND (ReciboCafePergamino.IdLocalidadRegistro = '" & Me.TxtIdLugarAcopio.Text & "') AND (ReciboCafePergamino.IdCosecha = " & Trim(CodigoCosecha) & ") AND (ReciboCafePergamino.IdEstadoDocumento = 294) "
 
             '///////////////////////////////////////CARGO EL GRID DE PUNTOS INTERMEDIOS DE PERGAMINO ///////////////////////////////////////////////////
             SQL = "SELECT  Intermedio.Fecha, Intermedio.FechaCarga, Intermedio.FechaSalida, EmpresaTransporte.NombreEmpresa, Intermedio.IdOrigen, LugarAcopio.NomLugarAcopio as NomLugarAcopioOrigen, Intermedio.CantidadSacosOrigen,  Intermedio.PesoBrutoOrigen, Intermedio.PesoBrutoOrigen As PesoEntrada, Intermedio.IdEmpresaTransporte, Intermedio.IdVehiculo, Vehiculo.Placa, Intermedio.IdConductor, Conductor.Nombre, Intermedio.IdDestino, LugarAcopio_1.NomLugarAcopio AS destino, Intermedio.CantidadSacosDestino, Intermedio.PesoBrutoDestino FROM   Intermedio INNER JOIN  EmpresaTransporte ON Intermedio.IdEmpresaTransporte = EmpresaTransporte.IdEmpresaTransporte INNER JOIN  RemisionPergamino ON Intermedio.IdRemisionPergamino = RemisionPergamino.IdRemisionPergamino INNER JOIN   LugarAcopio ON Intermedio.IdDestino = LugarAcopio.IdLugarAcopio INNER JOIN  Vehiculo ON Intermedio.IdVehiculo = Vehiculo.IdVehiculo INNER JOIN  LugarAcopio AS LugarAcopio_1 ON Intermedio.IdDestino = LugarAcopio_1.IdLugarAcopio INNER JOIN   Conductor ON Intermedio.IdConductor = Conductor.IdConductor WHERE  (RemisionPergamino.Codigo ='" & Me.TxtNumeroRemision.Text & "')AND (Cancelada = '0') AND (RemisionPergamino.IdTipoCafe = " & IdTipoCafe & ") "
@@ -1740,7 +1731,7 @@ Public Class FrmRemision2
             Me.PanelMaquila.Visible = False
             Me.PanelGRidProveeedores.Visible = False
             SqlString = "SELECT   DISTINCT ReciboCafePergamino.Codigo   FROM   ReciboCafePergamino INNER JOIN   EstadoDocumento ON ReciboCafePergamino.IdEstadoDocumento = EstadoDocumento.IdEstadoDocumento INNER JOIN  TipoCafe ON ReciboCafePergamino.IdTipoCafe = TipoCafe.IdTipoCafe " & _
-                        "WHERE (ReciboCafePergamino.IdReciboPergamino NOT IN   (SELECT DISTINCT ReciboCafePergamino_1.IdReciboPergamino FROM RecibosRemisionPergamino INNER JOIN  DetalleReciboCafePergamino ON RecibosRemisionPergamino.IdDetalleReciboPergamino = DetalleReciboCafePergamino.IdDetalleReciboPergamino INNER JOIN  ReciboCafePergamino AS ReciboCafePergamino_1 ON DetalleReciboCafePergamino.IdReciboPergamino = ReciboCafePergamino_1.IdReciboPergamino)) AND (EstadoDocumento.Descripcion = 'Confirmado') AND  (TipoCafe.Nombre = 'PERGAMINO')   AND (ReciboCafePergamino.IdLocalidadRegistro = '" & Me.TxtIdLugarAcopio.Text & "') AND (ReciboCafePergamino.IdCosecha = " & Trim(CodigoCosecha) & ") AND (ReciboCafePergamino.IdEstadoDocumento = 294) "
+                        "WHERE (ReciboCafePergamino.IdReciboPergamino NOT IN   (SELECT DISTINCT ReciboCafePergamino_1.IdReciboPergamino FROM RecibosRemisionPergamino INNER JOIN  DetalleReciboCafePergamino ON RecibosRemisionPergamino.IdDetalleReciboPergamino = DetalleReciboCafePergamino.IdDetalleReciboPergamino INNER JOIN  ReciboCafePergamino AS ReciboCafePergamino_1 ON DetalleReciboCafePergamino.IdReciboPergamino = ReciboCafePergamino_1.IdReciboPergamino WHERE (RecibosRemisionPergamino.PesoNeto <> 0))) AND (EstadoDocumento.Descripcion = 'Confirmado') AND  (TipoCafe.Nombre = 'PERGAMINO')   AND (ReciboCafePergamino.IdLocalidadRegistro = '" & Me.TxtIdLugarAcopio.Text & "') AND (ReciboCafePergamino.IdCosecha = " & Trim(CodigoCosecha) & ") AND (ReciboCafePergamino.IdEstadoDocumento = 294) "
 
             '///////////////////////////////////////CARGO EL GRID DE PUNTOS INTERMEDIOS DE PERGAMINO ///////////////////////////////////////////////////
             SQL = "SELECT  Intermedio.Fecha, Intermedio.FechaCarga, Intermedio.FechaSalida, Intermedio.IdOrigen, LugarAcopio.NomLugarAcopio as NomLugarAcopioOrigen, Intermedio.CantidadSacosOrigen,  Intermedio.PesoBrutoOrigen, Intermedio.PesoBrutoOrigen As PesoEntrada, Intermedio.IdEmpresaTransporte, EmpresaTransporte.NombreEmpresa, Intermedio.IdVehiculo, Vehiculo.Placa, Intermedio.IdConductor, Conductor.Nombre, Intermedio.IdDestino, LugarAcopio_1.NomLugarAcopio AS destino, Intermedio.CantidadSacosDestino, Intermedio.PesoBrutoDestino FROM   Intermedio INNER JOIN  EmpresaTransporte ON Intermedio.IdEmpresaTransporte = EmpresaTransporte.IdEmpresaTransporte INNER JOIN  RemisionPergamino ON Intermedio.IdRemisionPergamino = RemisionPergamino.IdRemisionPergamino INNER JOIN   LugarAcopio ON Intermedio.IdDestino = LugarAcopio.IdLugarAcopio INNER JOIN  Vehiculo ON Intermedio.IdVehiculo = Vehiculo.IdVehiculo INNER JOIN  LugarAcopio AS LugarAcopio_1 ON Intermedio.IdDestino = LugarAcopio_1.IdLugarAcopio INNER JOIN   Conductor ON Intermedio.IdConductor = Conductor.IdConductor WHERE  (RemisionPergamino.Codigo ='" & Me.TxtNumeroRemision.Text & "')AND (Cancelada = '0') AND (RemisionPergamino.IdTipoCafe = " & IdTipoCafe & ")"
@@ -4615,128 +4606,141 @@ Public Class FrmRemision2
             Do While Contador > i
 
                 '"WHERE  (IdDetalleRemsionPergamino = " & IdRemision & ") AND (IdDetalleReciboPergamino = " & Me.TDGridUseParc.Item(i)("IdDetalleReciboPergamino") & ") "
+            'DataSet.Tables("RecibosRemision").Reset()
+
+            SQLRem = "SELECT  RecibosRemisionPergamino.IdReciboRemisionPergamino, RecibosRemisionPergamino.PesoNeto, RecibosRemisionPergamino.IdDetalleReciboPergamino, RecibosRemisionPergamino.IdDetalleRemsionPergamino, RecibosRemisionPergamino.IdUsuario, RecibosRemisionPergamino.Orden, RemisionPergamino.IdRemisionPergamino FROM  RemisionPergamino INNER JOIN  DetalleRemisionPergamino ON RemisionPergamino.IdRemisionPergamino = DetalleRemisionPergamino.IdRemisionPergamino INNER JOIN  RecibosRemisionPergamino ON DetalleRemisionPergamino.IdDetalleRemisionPergamino = RecibosRemisionPergamino.IdDetalleRemsionPergamino " & _
+                     "WHERE   (RemisionPergamino.IdRemisionPergamino = " & IdRemision & ") AND (RecibosRemisionPergamino.IdDetalleReciboPergamino = " & Me.TDGridUseParc.Item(i)("IdDetalleReciboPergamino") & ")"
+
+            'SQLRem = "SELECT DetalleRemisionPergamino.* FROM DetalleRemisionPergamino WHERE (IdRemisionPergamino = " & IdRemision & ") AND (IdDetalleReciboPergamino = " & Me.TDGridUseParc.Item(i)("IdDetalleReciboPergamino") & ")"
+            DataAdapter = New SqlClient.SqlDataAdapter(SQLRem, MiConexion)
+            DataAdapter.Fill(DataSet, "RecibosRemision")
+
+            If DataSet.Tables("RecibosRemision").Rows.Count <> 0 Then
 
 
-                SQLRem = "SELECT  RecibosRemisionPergamino.IdReciboRemisionPergamino, RecibosRemisionPergamino.PesoNeto, RecibosRemisionPergamino.IdDetalleReciboPergamino, RecibosRemisionPergamino.IdDetalleRemsionPergamino, RecibosRemisionPergamino.IdUsuario, RecibosRemisionPergamino.Orden, RemisionPergamino.IdRemisionPergamino FROM  RemisionPergamino INNER JOIN  DetalleRemisionPergamino ON RemisionPergamino.IdRemisionPergamino = DetalleRemisionPergamino.IdRemisionPergamino INNER JOIN  RecibosRemisionPergamino ON DetalleRemisionPergamino.IdDetalleRemisionPergamino = RecibosRemisionPergamino.IdDetalleRemsionPergamino " & _
-                         "WHERE   (RemisionPergamino.IdRemisionPergamino = " & IdRemision & ") AND (RecibosRemisionPergamino.IdDetalleReciboPergamino = " & Me.TDGridUseParc.Item(i)("IdDetalleReciboPergamino") & ")"
-                DataAdapter = New SqlClient.SqlDataAdapter(SQLRem, MiConexion)
-                DataAdapter.Fill(DataSet, "RecibosRemision")
-                If DataSet.Tables("RecibosRemision").Rows.Count <> 0 Then
+                IdReciboRemisionPergamino = DataSet.Tables("RecibosRemision").Rows(0)("IdReciboRemisionPergamino")
 
-                    IdReciboRemisionPergamino = DataSet.Tables("RecibosRemision").Rows(0)("IdReciboRemisionPergamino")
+                If Me.TxtIdEstadoDoc.Text = "292" Then
 
-                    If Me.TxtIdEstadoDoc.Text = "292" Then
-                        'StrSqlUpdate = " UPDATE [RecibosRemisionPergamino] SET [PesoNeto] = '" & Me.TDGridUseParc.Item(i)("PesoAplicado") & "' ,[IdDetalleReciboPergamino] = '" & Me.TDGribListRecibos.Item(i)("IdDetalleReciboPergamino") & "',[IdDetalleRemsionPergamino] = " & IdDetalleRemision & "  WHERE  (IdDetalleRemsionPergamino = " & IdDetalleRemision & ")AND (IdDetalleReciboPergamino =" & Me.TDGribListRecibos.Item(i)("IdDetalleReciboPergamino") & ") "
-                        StrSqlUpdate = "UPDATE [RecibosRemisionPergamino]  SET [PesoNeto] = 0 ,[IdDetalleReciboPergamino] = '" & Me.TDGridUseParc.Item(i)("IdDetalleReciboPergamino") & "',[IdDetalleRemsionPergamino] = " & Me.TxtIdRemision.Text & "  WHERE  (IdDetalleRemsionPergamino = " & IdRemision & ") AND (IdDetalleReciboPergamino = " & Me.TDGridUseParc.Item(i)("IdDetalleReciboPergamino") & ") "
-                        MiConexion.Open()
-                        ComandoUpdate = New SqlClient.SqlCommand(StrSqlUpdate, MiConexion)
-                        iResultado = ComandoUpdate.ExecuteNonQuery
-                        MiConexion.Close()
-                    Else
-                        'StrSqlUpdate = " UPDATE [RecibosRemisionPergamino] SET [PesoNeto] = '" & Me.TDGridUseParc.Item(i)("PesoAplicado") & "' ,[IdDetalleReciboPergamino] = '" & Me.TDGribListRecibos.Item(i)("IdDetalleReciboPergamino") & "',[IdDetalleRemsionPergamino] = " & IdDetalleRemision & "  WHERE  (IdDetalleRemsionPergamino = " & IdDetalleRemision & ")AND (IdDetalleReciboPergamino =" & Me.TDGribListRecibos.Item(i)("IdDetalleReciboPergamino") & ") "
-                        StrSqlUpdate = "UPDATE [RecibosRemisionPergamino]  SET [PesoNeto] = '" & Me.TDGridUseParc.Item(i)("PesoAplicado") & "' ,[IdDetalleReciboPergamino] = '" & Me.TDGridUseParc.Item(i)("IdDetalleReciboPergamino") & "',[IdDetalleRemsionPergamino] = " & Me.TxtIdRemision.Text & "  WHERE  (IdDetalleRemsionPergamino = " & IdRemision & ") AND (IdDetalleReciboPergamino = " & Me.TDGridUseParc.Item(i)("IdDetalleReciboPergamino") & ") "
-                        MiConexion.Open()
-                        ComandoUpdate = New SqlClient.SqlCommand(StrSqlUpdate, MiConexion)
-                        iResultado = ComandoUpdate.ExecuteNonQuery
-                        MiConexion.Close()
-                    End If
-
+                    'StrSqlUpdate = " UPDATE [RecibosRemisionPergamino] SET [PesoNeto] = '" & Me.TDGridUseParc.Item(i)("PesoAplicado") & "' ,[IdDetalleReciboPergamino] = '" & Me.TDGribListRecibos.Item(i)("IdDetalleReciboPergamino") & "',[IdDetalleRemsionPergamino] = " & IdDetalleRemision & "  WHERE  (IdDetalleRemsionPergamino = " & IdDetalleRemision & ")AND (IdDetalleReciboPergamino =" & Me.TDGribListRecibos.Item(i)("IdDetalleReciboPergamino") & ") "
+                    StrSqlUpdate = "UPDATE [RecibosRemisionPergamino]  SET [PesoNeto] = 0 ,[IdDetalleReciboPergamino] = '" & Me.TDGridUseParc.Item(i)("IdDetalleReciboPergamino") & "',[IdDetalleRemsionPergamino] = " & Me.TxtIdRemision.Text & "  WHERE  (IdDetalleRemsionPergamino = " & IdRemision & ") AND (IdDetalleReciboPergamino = " & Me.TDGridUseParc.Item(i)("IdDetalleReciboPergamino") & ") "
+                    MiConexion.Open()
+                    ComandoUpdate = New SqlClient.SqlCommand(StrSqlUpdate, MiConexion)
+                    iResultado = ComandoUpdate.ExecuteNonQuery
+                    MiConexion.Close()
+                    '------------------------------------------------------------------------------------------------------------------
+                    '------------ACTUALIZO EL VALOR BANDERA PARA EL RECIBO Y LO MARCO COMO REMISIONADO --------------------------------
+                    '------------------------------------------------------------------------------------------------------------------
+                    sql = "UPDATE [ReciboCafePergamino] SET [Remisionado] = 'False' , [SeleccionRemision] = 'False' WHERE(IdReciboPergamino = " & idReciboCafe & ")"
+                    MiConexion.Open()
+                    ComandoUpdate = New SqlClient.SqlCommand(sql, MiConexion)
+                    iResultado = ComandoUpdate.ExecuteNonQuery
+                    MiConexion.Close()
                 Else
-
-                    SQLRem = "SELECT   IdDetalleRemisionPergamino, CantidadSacos, Humedad, PesoBruto, IdRemisionPergamino, IdSaco, IdEdoFisico, IdDano, IdUsuario  FROM  DetalleRemisionPergamino WHERE   (IdRemisionPergamino = '" & IdRemision & "')"
-                    DataAdapter = New SqlClient.SqlDataAdapter(SQLRem, MiConexion)
-                    DataAdapter.Fill(DataSet, "IdDetalleRemision")
-
-                    idReciboCafe = Me.TDGridUseParc.Item(i)("IdDetalleReciboPergamino")
-                    CountDet = Me.TDBGridDetalle.RowCount
-                    j = 0
-                    Do While CountDet > j
-                        Cadena = Me.TDBGridDetalle.Item(j)("IdDetalleReciboPergamino")
-                        CadenaDiv = Cadena.Split("-")
-                        max = UBound(CadenaDiv)
-
-                        h = 0
-                        TotalGrupo = 0
-                        For h = 0 To max
-                            If idReciboCafe = CadenaDiv(h) Then
-                                IdDetalleRemision = DataSet.Tables("IdDetalleRemision").Rows(j)("IdDetalleRemisionPergamino")
-                                TotalGrupo = Me.TDBGridDetalle.Item(j)("PesoNeto")  'YA ESTA SUMANDO EL TOTAL EN EL GRID DETALLE 
-
-
-                                '//////////////////////////////////////BUSCO EL DETALLE DEL RECIBO A GRABAR EN LA TABLA RECIBOREMISION ///////////////
-                                sql = "SELECT DetalleReciboCafePergamino.IdDetalleReciboPergamino, ReciboCafePergamino.IdReciboPergamino FROM ReciboCafePergamino INNER JOIN DetalleReciboCafePergamino ON ReciboCafePergamino.IdReciboPergamino = DetalleReciboCafePergamino.IdReciboPergamino " & _
-                                      "WHERE(ReciboCafePergamino.IdReciboPergamino = " & idReciboCafe & ")"
-                                DataAdapter = New SqlClient.SqlDataAdapter(sql, MiConexion)
-                                DataAdapter.Fill(DataSet, "ConsultaDetalleRecibo")
-                                IdDetalleRecibo = 0
-                                If DataSet.Tables("ConsultaDetalleRecibo").Rows.Count <> 0 Then
-                                    IdDetalleRecibo = DataSet.Tables("ConsultaDetalleRecibo").Rows(0)("IdDetalleReciboPergamino")
-                                End If
-
-                                DataSet.Tables("ConsultaDetalleRecibo").Reset()
-
-                                '////////////////////////////////VALIDO QUE NO ESTE REPETIDO 
-                                SQLRem = "SELECT  RecibosRemisionPergamino.IdReciboRemisionPergamino, RecibosRemisionPergamino.PesoNeto, RecibosRemisionPergamino.IdDetalleReciboPergamino, RecibosRemisionPergamino.IdDetalleRemsionPergamino, RecibosRemisionPergamino.IdUsuario, RecibosRemisionPergamino.Orden, RemisionPergamino.IdRemisionPergamino FROM  RemisionPergamino INNER JOIN  DetalleRemisionPergamino ON RemisionPergamino.IdRemisionPergamino = DetalleRemisionPergamino.IdRemisionPergamino INNER JOIN  RecibosRemisionPergamino ON DetalleRemisionPergamino.IdDetalleRemisionPergamino = RecibosRemisionPergamino.IdDetalleRemsionPergamino " & _
-                                         "WHERE        (RecibosRemisionPergamino.IdDetalleRemsionPergamino = " & IdRemision & ") AND (RecibosRemisionPergamino.IdDetalleReciboPergamino = " & Me.TDGridUseParc.Item(i)("IdDetalleReciboPergamino") & ")"
-                                DataAdapter = New SqlClient.SqlDataAdapter(SQLRem, MiConexion)
-                                DataAdapter.Fill(DataSet, "RecibosRemision2")
-                                If DataSet.Tables("RecibosRemision2").Rows.Count = 0 Then
-
-                                    If Me.TxtIdEstadoDoc.Text = "292" Then
-                                        '---------------------------------------------------------------------------------------------------------------------------------
-                                        '---------------------------GUARDO RECIBOS REMISION PERGAMINO 
-                                        '---------------------------------------------------------------------------------------------------------------------------------
-                                        StrSqlInsert = " INSERT INTO  [RecibosRemisionPergamino] ([PesoNeto] ,[IdDetalleReciboPergamino] ,[IdDetalleRemsionPergamino],[IdUsuario],[Orden])" & _
-                                                       "VALUES (0,'" & IdDetalleRecibo & "'," & IdDetalleRemision & ",'" & IdUsuario & "','" & i + 1 & "')"
-                                        MiConexion.Open()
-                                        ComandoUpdate = New SqlClient.SqlCommand(StrSqlInsert, MiConexion)
-                                        iResultado = ComandoUpdate.ExecuteNonQuery
-                                        MiConexion.Close()
-
-                                        '------------------------------------------------------------------------------------------------------------------
-                                        '------------ACTUALIZO EL VALOR BANDERA PARA EL RECIBO Y LO MARCO COMO REMISIONADO --------------------------------
-                                        '------------------------------------------------------------------------------------------------------------------
-                                        sql = "UPDATE [ReciboCafePergamino] SET [Remisionado] = 'False' WHERE(IdReciboPergamino = " & idReciboCafe & ")"
-                                        MiConexion.Open()
-                                        ComandoUpdate = New SqlClient.SqlCommand(sql, MiConexion)
-                                        iResultado = ComandoUpdate.ExecuteNonQuery
-                                        MiConexion.Close()
-
-                                    Else
-                                        '---------------------------------------------------------------------------------------------------------------------------------
-                                        '---------------------------GUARDO RECIBOS REMISION PERGAMINO 
-                                        '---------------------------------------------------------------------------------------------------------------------------------
-                                        StrSqlInsert = " INSERT INTO  [RecibosRemisionPergamino] ([PesoNeto] ,[IdDetalleReciboPergamino] ,[IdDetalleRemsionPergamino],[IdUsuario],[Orden])" & _
-                                                       "VALUES ('" & Me.TDGridUseParc.Item(i)("PesoAplicado") & "','" & IdDetalleRecibo & "'," & IdDetalleRemision & ",'" & IdUsuario & "','" & i + 1 & "')"
-                                        MiConexion.Open()
-                                        ComandoUpdate = New SqlClient.SqlCommand(StrSqlInsert, MiConexion)
-                                        iResultado = ComandoUpdate.ExecuteNonQuery
-                                        MiConexion.Close()
-
-                                        '------------------------------------------------------------------------------------------------------------------
-                                        '------------ACTUALIZO EL VALOR BANDERA PARA EL RECIBO Y LO MARCO COMO REMISIONADO --------------------------------
-                                        '------------------------------------------------------------------------------------------------------------------
-                                        sql = "UPDATE [ReciboCafePergamino] SET [Remisionado] = 'True' WHERE(IdReciboPergamino = " & idReciboCafe & ")"
-                                        MiConexion.Open()
-                                        ComandoUpdate = New SqlClient.SqlCommand(sql, MiConexion)
-                                        iResultado = ComandoUpdate.ExecuteNonQuery
-                                        MiConexion.Close()
-                                    End If
-                                End If
-
-
-                                DataSet.Tables("RecibosRemision2").Reset()
-
-
-
-                                Exit Do
-                            End If
-                        Next
-
-                        j = j + 1
-                    Loop
-
+                    'StrSqlUpdate = " UPDATE [RecibosRemisionPergamino] SET [PesoNeto] = '" & Me.TDGridUseParc.Item(i)("PesoAplicado") & "' ,[IdDetalleReciboPergamino] = '" & Me.TDGribListRecibos.Item(i)("IdDetalleReciboPergamino") & "',[IdDetalleRemsionPergamino] = " & IdDetalleRemision & "  WHERE  (IdDetalleRemsionPergamino = " & IdDetalleRemision & ")AND (IdDetalleReciboPergamino =" & Me.TDGribListRecibos.Item(i)("IdDetalleReciboPergamino") & ") "
+                    StrSqlUpdate = "UPDATE [RecibosRemisionPergamino]  SET [PesoNeto] = '" & Me.TDGridUseParc.Item(i)("PesoAplicado") & "' ,[IdDetalleReciboPergamino] = '" & Me.TDGridUseParc.Item(i)("IdDetalleReciboPergamino") & "',[IdDetalleRemsionPergamino] = " & Me.TxtIdRemision.Text & "  WHERE  (IdDetalleRemsionPergamino = " & IdRemision & ") AND (IdDetalleReciboPergamino = " & Me.TDGridUseParc.Item(i)("IdDetalleReciboPergamino") & ") "
+                    MiConexion.Open()
+                    ComandoUpdate = New SqlClient.SqlCommand(StrSqlUpdate, MiConexion)
+                    iResultado = ComandoUpdate.ExecuteNonQuery
+                    MiConexion.Close()
                 End If
+
+            Else
+
+                SQLRem = "SELECT   IdDetalleRemisionPergamino, CantidadSacos, Humedad, PesoBruto, IdRemisionPergamino, IdSaco, IdEdoFisico, IdDano, IdUsuario  FROM  DetalleRemisionPergamino WHERE   (IdRemisionPergamino = '" & IdRemision & "')"
+                DataAdapter = New SqlClient.SqlDataAdapter(SQLRem, MiConexion)
+                DataAdapter.Fill(DataSet, "IdDetalleRemision")
+
+                idReciboCafe = Me.TDGridUseParc.Item(i)("IdDetalleReciboPergamino")
+                CountDet = Me.TDBGridDetalle.RowCount
+                j = 0
+                Do While CountDet > j
+                    Cadena = Me.TDBGridDetalle.Item(j)("IdDetalleReciboPergamino")
+                    CadenaDiv = Cadena.Split("-")
+                    max = UBound(CadenaDiv)
+
+                    h = 0
+                    TotalGrupo = 0
+                    For h = 0 To max
+                        If idReciboCafe = CadenaDiv(h) Then
+                            IdDetalleRemision = DataSet.Tables("IdDetalleRemision").Rows(j)("IdDetalleRemisionPergamino")
+                            TotalGrupo = Me.TDBGridDetalle.Item(j)("PesoNeto")  'YA ESTA SUMANDO EL TOTAL EN EL GRID DETALLE 
+
+
+                            '//////////////////////////////////////BUSCO EL DETALLE DEL RECIBO A GRABAR EN LA TABLA RECIBOREMISION ///////////////
+                            sql = "SELECT DetalleReciboCafePergamino.IdDetalleReciboPergamino, ReciboCafePergamino.IdReciboPergamino FROM ReciboCafePergamino INNER JOIN DetalleReciboCafePergamino ON ReciboCafePergamino.IdReciboPergamino = DetalleReciboCafePergamino.IdReciboPergamino " & _
+                                  "WHERE(ReciboCafePergamino.IdReciboPergamino = " & idReciboCafe & ")"
+                            DataAdapter = New SqlClient.SqlDataAdapter(sql, MiConexion)
+                            DataAdapter.Fill(DataSet, "ConsultaDetalleRecibo")
+                            IdDetalleRecibo = 0
+                            If DataSet.Tables("ConsultaDetalleRecibo").Rows.Count <> 0 Then
+                                IdDetalleRecibo = DataSet.Tables("ConsultaDetalleRecibo").Rows(0)("IdDetalleReciboPergamino")
+                            End If
+
+                            DataSet.Tables("ConsultaDetalleRecibo").Reset()
+
+                            '////////////////////////////////VALIDO QUE NO ESTE REPETIDO 
+                            SQLRem = "SELECT  RecibosRemisionPergamino.IdReciboRemisionPergamino, RecibosRemisionPergamino.PesoNeto, RecibosRemisionPergamino.IdDetalleReciboPergamino, RecibosRemisionPergamino.IdDetalleRemsionPergamino, RecibosRemisionPergamino.IdUsuario, RecibosRemisionPergamino.Orden, RemisionPergamino.IdRemisionPergamino FROM  RemisionPergamino INNER JOIN  DetalleRemisionPergamino ON RemisionPergamino.IdRemisionPergamino = DetalleRemisionPergamino.IdRemisionPergamino INNER JOIN  RecibosRemisionPergamino ON DetalleRemisionPergamino.IdDetalleRemisionPergamino = RecibosRemisionPergamino.IdDetalleRemsionPergamino " & _
+                                     "WHERE        (RecibosRemisionPergamino.IdDetalleRemsionPergamino = " & IdRemision & ") AND (RecibosRemisionPergamino.IdDetalleReciboPergamino = " & Me.TDGridUseParc.Item(i)("IdDetalleReciboPergamino") & ")"
+                            DataAdapter = New SqlClient.SqlDataAdapter(SQLRem, MiConexion)
+                            DataAdapter.Fill(DataSet, "RecibosRemision2")
+                            If DataSet.Tables("RecibosRemision2").Rows.Count = 0 Then
+
+                                If Me.TxtIdEstadoDoc.Text = "292" Then
+                                    '---------------------------------------------------------------------------------------------------------------------------------
+                                    '---------------------------GUARDO RECIBOS REMISION PERGAMINO 
+                                    '---------------------------------------------------------------------------------------------------------------------------------
+                                    StrSqlInsert = " INSERT INTO  [RecibosRemisionPergamino] ([PesoNeto] ,[IdDetalleReciboPergamino] ,[IdDetalleRemsionPergamino],[IdUsuario],[Orden])" & _
+                                                   "VALUES (0,'" & IdDetalleRecibo & "'," & IdDetalleRemision & ",'" & IdUsuario & "','" & i + 1 & "')"
+                                    MiConexion.Open()
+                                    ComandoUpdate = New SqlClient.SqlCommand(StrSqlInsert, MiConexion)
+                                    iResultado = ComandoUpdate.ExecuteNonQuery
+                                    MiConexion.Close()
+
+                                    '------------------------------------------------------------------------------------------------------------------
+                                    '------------ACTUALIZO EL VALOR BANDERA PARA EL RECIBO Y LO MARCO COMO REMISIONADO --------------------------------
+                                    '------------------------------------------------------------------------------------------------------------------
+                                    sql = "UPDATE [ReciboCafePergamino] SET [Remisionado] = 'False' , [SeleccionRemision] = 'False' WHERE(IdReciboPergamino = " & idReciboCafe & ")"
+                                    MiConexion.Open()
+                                    ComandoUpdate = New SqlClient.SqlCommand(sql, MiConexion)
+                                    iResultado = ComandoUpdate.ExecuteNonQuery
+                                    MiConexion.Close()
+
+                                Else
+                                    '---------------------------------------------------------------------------------------------------------------------------------
+                                    '---------------------------GUARDO RECIBOS REMISION PERGAMINO 
+                                    '---------------------------------------------------------------------------------------------------------------------------------
+                                    StrSqlInsert = " INSERT INTO  [RecibosRemisionPergamino] ([PesoNeto] ,[IdDetalleReciboPergamino] ,[IdDetalleRemsionPergamino],[IdUsuario],[Orden])" & _
+                                                   "VALUES ('" & Me.TDGridUseParc.Item(i)("PesoAplicado") & "','" & IdDetalleRecibo & "'," & IdDetalleRemision & ",'" & IdUsuario & "','" & i + 1 & "')"
+                                    MiConexion.Open()
+                                    ComandoUpdate = New SqlClient.SqlCommand(StrSqlInsert, MiConexion)
+                                    iResultado = ComandoUpdate.ExecuteNonQuery
+                                    MiConexion.Close()
+
+                                    '------------------------------------------------------------------------------------------------------------------
+                                    '------------ACTUALIZO EL VALOR BANDERA PARA EL RECIBO Y LO MARCO COMO REMISIONADO --------------------------------
+                                    '------------------------------------------------------------------------------------------------------------------
+                                    sql = "UPDATE [ReciboCafePergamino] SET [Remisionado] = 'True' WHERE(IdReciboPergamino = " & idReciboCafe & ")"
+                                    MiConexion.Open()
+                                    ComandoUpdate = New SqlClient.SqlCommand(sql, MiConexion)
+                                    iResultado = ComandoUpdate.ExecuteNonQuery
+                                    MiConexion.Close()
+                                End If
+                            End If
+
+
+                            DataSet.Tables("RecibosRemision2").Reset()
+
+
+
+                            Exit Do
+                        End If
+                    Next
+
+                    j = j + 1
+                Loop
+
+            End If
 
                 DataSet.Tables("RecibosRemision").Reset()
                 i = i + 1

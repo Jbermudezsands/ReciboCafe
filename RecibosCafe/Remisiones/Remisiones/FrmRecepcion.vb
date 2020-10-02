@@ -13,6 +13,19 @@ Public Class FrmRecepcion
             Me.TrueDBGridComponentes.Col = 5
         End If
     End Sub
+    Public Function EliminarSalir()
+        Dim DataSet As New DataSet, SqlString As String, DataAdapter As New SqlClient.SqlDataAdapter
+
+        SqlString = "SELECT Recepcion.* FROM Recepcion WHERE (NumeroRecepcion = '" & Me.TxtNumeroEnsamble.Text & "') AND (TipoRecepcion = '" & Me.CboTipoRecepcion.Text & "')"
+        DataAdapter = New SqlClient.SqlDataAdapter(SqlString, MiConexion)
+        DataAdapter.Fill(DataSet, "Recepcion")
+        If DataSet.Tables("Recepcion").Rows.Count = 0 Then
+
+        End If
+    End Function
+
+
+
     Public Function CalculaPrecioBruto(ByVal FechaRecibo As Date, ByVal IdLocalidadLiqui As Double, ByVal idCategoria As Double, ByVal IdDano As Double, ByVal IdMoneda As Double, ByVal IdEdoFisico As Double) As Double
         Dim IdRecibo As Integer, i As Integer, IdlocalidadRec, Precio1 As Double, Fecha As Date, PesoNeto As Double, Precio As Double
         Dim Fechainicial As Date, FechaFinal As Date, Fechanow As Date, EsPorcentaje As Boolean, IdLocalidad As Integer, DeduccionDano As Double, DD As Double
@@ -214,19 +227,31 @@ Public Class FrmRecepcion
         Dim StrSqlUpdate As String, ComandoUpdate As New SqlClient.SqlCommand, iResultado As Integer
         Dim Cont As Double, i As Double, Eleccion As Boolean, idReciboPergamino As Double, IdRemisionPergamino As Double, Sql As String
         Dim DataAdapter As New SqlClient.SqlDataAdapter, DataSet As New DataSet
+        Dim NumeroRecepcion As String
+
 
 
         '//////////////////////////////////////////SI LE DA SALIR Y NO SE GRABO ELIMINO LAS PESADAS //////////////////////////////////////////////
 
-        If Not Me.TxtNumeroEnsamble.Text = "-----0-----" Then
+        If Me.TxtNumeroRecibo.Text = "-----0-----" Then
 
             Sql = "SELECT  * FROM Recepcion WHERE(idReciboPergamino = '" & Me.NumeroTemporal & "')"
             DataAdapter = New SqlClient.SqlDataAdapter(Sql, MiConexion)
             DataAdapter.Fill(DataSet, "ConsultaSalida")
             If DataSet.Tables("ConsultaSalida").Rows.Count <> 0 Then
 
+                NumeroRecepcion = DataSet.Tables("ConsultaSalida").Rows(0)("NumeroRecepcion")
+
                 '---------------------SI NO SE GUARDO LA REMISION BORRO TODO --------------------------------------------
                 StrSqlUpdate = "DELETE FROM Recepcion WHERE (idReciboPergamino = '" & Me.NumeroTemporal & "') "
+                MiConexion.Close()
+                MiConexion.Open()
+                ComandoUpdate = New SqlClient.SqlCommand(StrSqlUpdate, MiConexion)
+                iResultado = ComandoUpdate.ExecuteNonQuery
+                MiConexion.Close()
+
+                '---------------------SI NO SE GUARDO LA REMISION BORRO TODO --------------------------------------------
+                StrSqlUpdate = "DELETE FROM Detalle_Recepcion WHERE (NumeroRecepcion = '" & NumeroRecepcion & "') AND (TipoRecepcion = 'Recepcion')"
                 MiConexion.Close()
                 MiConexion.Open()
                 ComandoUpdate = New SqlClient.SqlCommand(StrSqlUpdate, MiConexion)
@@ -2178,15 +2203,15 @@ Public Class FrmRecepcion
                 ArepBitacoraRecepcion.LblOriginal.Visible = True
                 ArepBitacoraRecepcion.LblOriginal.Text = "O R I G I N A L"
                 ArepBitacoraRecepcion.Run(False)
-                'ViewerForm.arvMain.Document.Print(False, False, False)
-                ViewerForm.Show()
+                ViewerForm.arvMain.Document.Print(False, False, False)
+                'ViewerForm.Show()
                 My.Application.DoEvents()
             Else
                 ArepBitacoraRecepcion.LblOriginal.Visible = True
                 ArepBitacoraRecepcion.LblOriginal.Text = "C O P I A"
                 ArepBitacoraRecepcion.Run(False)
-                'ViewerForm.arvMain.Document.Print(False, False, False)
-                ViewerForm.Show()
+                ViewerForm.arvMain.Document.Print(False, False, False)
+                'ViewerForm.Show()
                 My.Application.DoEvents()
 
             End If
