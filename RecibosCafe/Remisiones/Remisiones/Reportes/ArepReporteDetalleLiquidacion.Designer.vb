@@ -54,6 +54,9 @@ Partial Public Class ArepReporteDetalleLiquidacion
         Me.TextBox8 = New DataDynamics.ActiveReports.TextBox
         Me.ReportHeader1 = New DataDynamics.ActiveReports.ReportHeader
         Me.ReportFooter1 = New DataDynamics.ActiveReports.ReportFooter
+        Me.Label15 = New DataDynamics.ActiveReports.Label
+        Me.Label16 = New DataDynamics.ActiveReports.Label
+        Me.Label17 = New DataDynamics.ActiveReports.Label
         CType(Me.LblEncabezado, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Label1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Label2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -82,6 +85,9 @@ Partial Public Class ArepReporteDetalleLiquidacion
         CType(Me.TextBox19, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Label14, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextBox8, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Label15, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Label16, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Label17, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'PageHeader1
@@ -588,7 +594,7 @@ Partial Public Class ArepReporteDetalleLiquidacion
         '
         'PageFooter1
         '
-        Me.PageFooter1.Height = 0.25!
+        Me.PageFooter1.Height = 0.0!
         Me.PageFooter1.Name = "PageFooter1"
         '
         'GroupHeader1
@@ -621,7 +627,7 @@ Partial Public Class ArepReporteDetalleLiquidacion
         'GroupFooter1
         '
         Me.GroupFooter1.Controls.AddRange(New DataDynamics.ActiveReports.ARControl() {Me.Label14, Me.TextBox8})
-        Me.GroupFooter1.Height = 0.3333333!
+        Me.GroupFooter1.Height = 0.3125!
         Me.GroupFooter1.Name = "GroupFooter1"
         '
         'Label14
@@ -674,8 +680,66 @@ Partial Public Class ArepReporteDetalleLiquidacion
         '
         'ReportFooter1
         '
-        Me.ReportFooter1.Height = 0.25!
+        Me.ReportFooter1.Controls.AddRange(New DataDynamics.ActiveReports.ARControl() {Me.Label15, Me.Label16, Me.Label17})
+        Me.ReportFooter1.Height = 2.697917!
         Me.ReportFooter1.Name = "ReportFooter1"
+        '
+        'Label15
+        '
+        Me.Label15.Border.BottomColor = System.Drawing.Color.Black
+        Me.Label15.Border.BottomStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.Label15.Border.LeftColor = System.Drawing.Color.Black
+        Me.Label15.Border.LeftStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.Label15.Border.RightColor = System.Drawing.Color.Black
+        Me.Label15.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.Label15.Border.TopColor = System.Drawing.Color.Black
+        Me.Label15.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.Solid
+        Me.Label15.Height = 0.2!
+        Me.Label15.HyperLink = Nothing
+        Me.Label15.Left = 0.15!
+        Me.Label15.Name = "Label15"
+        Me.Label15.Style = "text-align: center; "
+        Me.Label15.Text = "RESPONSABLE AGENCIA"
+        Me.Label15.Top = 0.6!
+        Me.Label15.Width = 2.3!
+        '
+        'Label16
+        '
+        Me.Label16.Border.BottomColor = System.Drawing.Color.Black
+        Me.Label16.Border.BottomStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.Label16.Border.LeftColor = System.Drawing.Color.Black
+        Me.Label16.Border.LeftStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.Label16.Border.RightColor = System.Drawing.Color.Black
+        Me.Label16.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.Label16.Border.TopColor = System.Drawing.Color.Black
+        Me.Label16.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.Solid
+        Me.Label16.Height = 0.2!
+        Me.Label16.HyperLink = Nothing
+        Me.Label16.Left = 0.2!
+        Me.Label16.Name = "Label16"
+        Me.Label16.Style = "text-align: center; "
+        Me.Label16.Text = "REVISION TESORERIA"
+        Me.Label16.Top = 1.475!
+        Me.Label16.Width = 2.3!
+        '
+        'Label17
+        '
+        Me.Label17.Border.BottomColor = System.Drawing.Color.Black
+        Me.Label17.Border.BottomStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.Label17.Border.LeftColor = System.Drawing.Color.Black
+        Me.Label17.Border.LeftStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.Label17.Border.RightColor = System.Drawing.Color.Black
+        Me.Label17.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.Label17.Border.TopColor = System.Drawing.Color.Black
+        Me.Label17.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.Solid
+        Me.Label17.Height = 0.2!
+        Me.Label17.HyperLink = Nothing
+        Me.Label17.Left = 0.225!
+        Me.Label17.Name = "Label17"
+        Me.Label17.Style = "text-align: center; "
+        Me.Label17.Text = "AUTORIZADO POR GERENCIA"
+        Me.Label17.Top = 2.3!
+        Me.Label17.Width = 2.3!
         '
         'ArepReporteDetalleLiquidacion
         '
@@ -732,6 +796,9 @@ Partial Public Class ArepReporteDetalleLiquidacion
         CType(Me.TextBox19, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Label14, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TextBox8, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Label15, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Label16, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Label17, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub
@@ -767,4 +834,7 @@ Partial Public Class ArepReporteDetalleLiquidacion
     Friend WithEvents TxtAbono As DataDynamics.ActiveReports.TextBox
     Friend WithEvents ReportHeader1 As DataDynamics.ActiveReports.ReportHeader
     Friend WithEvents ReportFooter1 As DataDynamics.ActiveReports.ReportFooter
-End Class 
+    Friend WithEvents Label15 As DataDynamics.ActiveReports.Label
+    Friend WithEvents Label16 As DataDynamics.ActiveReports.Label
+    Friend WithEvents Label17 As DataDynamics.ActiveReports.Label
+End Class

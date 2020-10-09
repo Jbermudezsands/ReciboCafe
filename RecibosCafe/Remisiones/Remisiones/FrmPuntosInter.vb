@@ -1231,8 +1231,15 @@ Public Class FrmPuntosInter
         Dim PesoBascula As Double, CantidadBascula As Double, NumeroRemision As String, CodigoProducto As String, Linea As Double, Descripcion As String, Calidad As String, Estado As String, Precio As Double, PesoKg As Double
         Dim Tara As Double, PesoNetoKg As Double, QQ As Double
         Dim DataSetConsulta As New DataSet, DataAdapterConsulta As New SqlClient.SqlDataAdapter
+        Dim TipoPesadaAnt As String
+
 
         iPosicion = TDGribListRecibosSalida.Row
+
+        Me.TDGridOrigen.Row = iPosicion
+        Me.TDGribListRecibos.Row = iPosicion
+        Me.TDBGridMerma.Row = iPosicion
+
         TipoPesada = "Rec" & Me.TDGribListRecibosSalida.Columns("NumeroRecibo").Text & "-N" & iPosicion & "-D" & iPosicionDetalle & "-P2"
 
         '/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1296,13 +1303,21 @@ Public Class FrmPuntosInter
 
 
 
+                    '/////////////////////////////////////////////////////////////////////////////////////
+                    '////////////////////SI NO ESTA GRABADO CONSULTO EL NUMERO REMISION /////////////////////
+                    '///////////////////////////////////////////////////////////////////////////////////////
+                    'TipoPesadaAnt = "Rec" & Me.TDGribListRecibos.Columns("NumeroRecibo").Text & "-N" & iPosicion & "-D" & iPosicionDetalle & "-P1"
+                    'PesoBascula = Me.TDGridOrigen.Item(iPosicion)("PesoNeto")
+
                     PesoBascula = DataSetConsulta.Tables("DetallePesada").Rows(0)("PesoNetoKg")
                     CantidadBascula = DataSetConsulta.Tables("DetallePesada").Rows(0)("Saco")
 
-                    GrabaDetallePesadas(NumeroRemision, CodigoProducto, CantidadBascula, Linea, Descripcion, Calidad, Estado, Precio, PesoBascula, TipoRemision, Tara, PesoNetoKg, QQ, Calidad, TipoPesada, Me.DTPPISalida.Value, IdRemisionPergamino)
-
                     Me.TDGribListRecibosSalida.Columns("PesoBascula").Text = PesoBascula
                     Me.TDGribListRecibosSalida.Columns("CantidadBascula").Text = CantidadBascula
+
+                    GrabaDetallePesadas(NumeroRemision, CodigoProducto, CantidadBascula, Linea, Descripcion, Calidad, Estado, Precio, PesoBascula, TipoRemision, Tara, PesoNetoKg, QQ, Calidad, TipoPesada, Me.DTPPISalida.Value, IdRemisionPergamino)
+
+
                 Else
 
                     '//////////////////////////////////SI TIENE MENOS DE 2 HORAS PERO QUIERE PESARLO /////////////////////////////////////////////////

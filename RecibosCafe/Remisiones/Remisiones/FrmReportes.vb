@@ -1136,7 +1136,7 @@ Public Class FrmReportes
         ArepReporteDetalleLiquidacion.LblNumero.Text = "NUMERO: " & Numero
         ArepReporteDetalleLiquidacion.LblFecha.Text = "Fecha: " & Format(Now, "dd/MM/yyyy")
         ArepReporteDetalleLiquidacion.LblCosecha.Text = "Cosecha: " & CodigoCosecha
-        ArepReporteDetalleLiquidacion.LblLocalidad.Text = "Localidad " & Me.CboLocalidad.Text
+        ArepReporteDetalleLiquidacion.LblLocalidad.Text = "Localidad: " & Me.CboLocalidad.Text
 
         Dim ViewerForm As New FrmViewer()
         ViewerForm.arvMain.Document = ArepReporteDetalleLiquidacion.Document
@@ -1193,7 +1193,7 @@ Public Class FrmReportes
         Dim ComandoUpdate As New SqlClient.SqlCommand, iResultado As Integer, SQlUpdate As String
         Dim ArepReporteResumenLiquidacion As New ArepReporteResumenLiquidacion
         Dim ArepReporteDetalleLiquidacion As New ArepReporteDetalleLiquidacion
-        Dim SQL As New DataDynamics.ActiveReports.DataSources.SqlDBDataSource
+        Dim SQL As New DataDynamics.ActiveReports.DataSources.SqlDBDataSource, PeriodoCosecha As String
 
         '///////////////////////////////////////////////LUGAR ACOPIO ///////////////////////////////////////////////////////
         SqlString = "SELECT IdLugarAcopio, CodLugarAcopio, NomLugarAcopio  FROM LugarAcopio WHERE (NomLugarAcopio = '" & Me.CboLocalidad.Text & "')"
@@ -1207,6 +1207,19 @@ Public Class FrmReportes
         End If
         DataSet.Tables("BuscaLocalidad").Reset()
 
+
+        '///////////////////////////////////////////////LUGAR ACOPIO ///////////////////////////////////////////////////////
+        SqlString = "SELECT  Cosecha.* FROM Cosecha WHERE(IdCosecha = " & CodigoCosecha & ")"
+        DataAdapter = New SqlClient.SqlDataAdapter(SqlString, MiConexion)
+        DataAdapter.Fill(DataSet, "Cosecha")
+        If DataSet.Tables("Cosecha").Rows.Count <> 0 Then
+            PeriodoCosecha = Year(CDate(DataSet.Tables("Cosecha").Rows(0)("FechaInicial"))) & "-" & Year(CDate(DataSet.Tables("Cosecha").Rows(0)("FechaFinal")))
+        Else
+            Me.IdLugarAcopio = 0
+        End If
+        DataSet.Tables("Cosecha").Reset()
+
+
         SqlString = "SELECT LiquidacionPergamino.Codigo, LiquidacionPergamino.Precio, (DetalleDistribucion.Monto * TipoCambio.TipoCambio) / DetalleLiquidacionPergamino.PesoNeto AS PrecioNeto, DetalleDistribucion.Monto *  TipoCambio.TipoCambio As Monto, DetalleLiquidacionPergamino.PesoNeto, LiquidacionPergamino.IdLocalidad, LiquidacionPergamino.ReportadoDistribucion, LiquidacionPergamino.NumeroReportado, Proveedor.Nombre_Proveedor + ' ' + Proveedor.Apellido_Proveedor AS Nombres, TipoCompra.Nombre AS TipoCompra, LiquidacionPergamino.IdLiquidacionPergamino FROM LiquidacionPergamino INNER JOIN DetalleDistribucion ON LiquidacionPergamino.IdLiquidacionPergamino = DetalleDistribucion.IdLiquidacionPergamino INNER JOIN DetalleLiquidacionPergamino ON LiquidacionPergamino.IdLiquidacionPergamino = DetalleLiquidacionPergamino.IdLiquidacionPergamino INNER JOIN Proveedor ON LiquidacionPergamino.Cod_Proveedor = Proveedor.IdProductor  INNER JOIN  TipoCompra ON LiquidacionPergamino.IdTipoCompra = TipoCompra.IdECS  INNER JOIN TipoCambio ON LiquidacionPergamino.IdTipoCambio = TipoCambio.IdTipoCambio WHERE (CASE WHEN LiquidacionPergamino.ReportadoDistribucion IS NULL THEN 0 ELSE LiquidacionPergamino.ReportadoDistribucion END = 0) AND (LiquidacionPergamino.IdLocalidad = " & Me.IdLugarAcopio & ") ORDER BY TipoCompra, LiquidacionPergamino.Codigo"
         Sql.ConnectionString = Conexion
         SQL.SQL = SqlString
@@ -1219,8 +1232,8 @@ Public Class FrmReportes
 
         ArepReporteDetalleLiquidacion.LblNumero.Text = "NUMERO: " & Numero
         ArepReporteDetalleLiquidacion.LblFecha.Text = "Fecha: " & Format(Now, "dd/MM/yyyy")
-        ArepReporteDetalleLiquidacion.LblCosecha.Text = "Cosecha: " & CodigoCosecha
-        ArepReporteDetalleLiquidacion.LblLocalidad.Text = "Localidad " & Me.CboLocalidad.Text
+        ArepReporteDetalleLiquidacion.LblCosecha.Text = "Cosecha: " & PeriodoCosecha
+        ArepReporteDetalleLiquidacion.LblLocalidad.Text = "Localidad: " & Me.CboLocalidad.Text
 
         Dim ViewerForm As New FrmViewer()
         ViewerForm.arvMain.Document = ArepReporteDetalleLiquidacion.Document

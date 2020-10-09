@@ -547,9 +547,17 @@ Public Class FrmRemision2
         Dim SqlString As String, texto As String
         Dim Dataset As New DataSet, DataAdapter As New SqlClient.SqlDataAdapter
 
-        Me.TxtIdEmprTrans.Text = Me.CboEmpresaTrans.Columns(2).Text
 
-        IdEmpresaTransporte = Me.TxtIdEmprTrans.Text
+
+
+        '////////////////////////////////////////////////////////LLENO EL COMBO DE DESTINO //////////////////////////////////////////////////77
+        SqlString = "SELECT  IdEmpresaTransporte, Codigo, NombreEmpresa, CedulaEmpresa, NombreRepresentante, CedulaRepresentante, Direccion, Telefono, IdTipoPersoneria, Activo, IdTipoEmpresaTransporte, IdUsuario, IdCompany, FechaActualizacion FROM EmpresaTransporte WHERE  (NombreEmpresa = '" & Me.CboEmpresaTrans.Text & "') AND (Activo = 1)"
+        DataAdapter = New SqlClient.SqlDataAdapter(SqlString, MiConexion)
+        DataAdapter.Fill(Dataset, "EmpresaTransporte")
+        If Dataset.Tables("EmpresaTransporte").Rows.Count > 0 Then
+            Me.TxtIdEmprTrans.Text = Dataset.Tables("EmpresaTransporte").Rows(0)("IdEmpresaTransporte")
+            IdEmpresaTransporte = Me.TxtIdEmprTrans.Text
+        End If
 
 
         '//////////////////////////////////////////////////////////LLENO EL COMBO PLACAS ///////////////////////////////////////////////////
@@ -5403,10 +5411,21 @@ Public Class FrmRemision2
                 Me.CboEmprsPlaca.Text = DataSet.Tables("Consulta2").Rows(0)("Placa")
                 CboEmpresaTrans.Text = DataSet.Tables("Consulta2").Rows(0)("NombreEmpresa")
 
-                Me.TxtIdEmprTrans.Text = Me.CboEmpresaTrans.Columns(2).Text
-                IdEmpresaTransporte = Me.TxtIdEmprTrans.Text
 
-                IdEmpresaTransporte = Me.TxtIdEmprTrans.Text
+
+                '////////////////////////////////////////////////////////LLENO EL COMBO DE DESTINO //////////////////////////////////////////////////77
+                SqlString = "SELECT  IdEmpresaTransporte, Codigo, NombreEmpresa, CedulaEmpresa, NombreRepresentante, CedulaRepresentante, Direccion, Telefono, IdTipoPersoneria, Activo, IdTipoEmpresaTransporte, IdUsuario, IdCompany, FechaActualizacion FROM EmpresaTransporte WHERE  (NombreEmpresa = '" & Me.CboEmpresaTrans.Text & "') AND (Activo = 1)"
+                DataAdapter = New SqlClient.SqlDataAdapter(SqlString, MiConexion)
+                DataAdapter.Fill(DataSet, "EmpresaTransporte")
+                If DataSet.Tables("EmpresaTransporte").Rows.Count > 0 Then
+                    Me.TxtIdEmprTrans.Text = DataSet.Tables("EmpresaTransporte").Rows(0)("IdEmpresaTransporte")
+                    IdEmpresaTransporte = Me.TxtIdEmprTrans.Text
+                End If
+
+                'Me.TxtIdEmprTrans.Text = Me.CboEmpresaTrans.Columns(2).Text
+                'IdEmpresaTransporte = Me.TxtIdEmprTrans.Text
+
+                'IdEmpresaTransporte = Me.TxtIdEmprTrans.Text
 
                 sql = "SELECT   Conductor.Nombre FROM Conductor INNER JOIN ConductorEmpresaTransporte ON Conductor.IdConductor = ConductorEmpresaTransporte.IdConductor  " & _
                       "WHERE  (ConductorEmpresaTransporte.Activo = 1) AND (ConductorEmpresaTransporte.IdEmpresaTransporte = " & IdEmpresaTransporte & ")"
