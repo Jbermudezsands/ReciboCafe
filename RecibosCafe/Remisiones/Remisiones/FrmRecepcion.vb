@@ -1459,7 +1459,7 @@ Public Class FrmRecepcion
         Dim ComandoUpdate As New SqlClient.SqlCommand, iResultado As Integer, Registros As Double, IdCertificado As Double
         Dim StrSqlUpdate As String
 
-
+        Me.Button7.Enabled = False
 
         Fecha = Format(DateFecha, "yyyy-MM-dd") & " " & Me.LblHora.Text
         Fecha = Format(CDate(Fecha), "dd/MM/yyyy")
@@ -1481,7 +1481,7 @@ Public Class FrmRecepcion
         End If
 
 
-        Me.Button7.Enabled = False
+
 
         CalcularEquivalente()
 
@@ -2011,6 +2011,7 @@ Public Class FrmRecepcion
         Dim DataSet As New DataSet, DataAdapter As New SqlClient.SqlDataAdapter, Posicion As Double = 0, DescripcionAnterior As String = ""
         Dim DateFecha As DateTime = Me.DTPFecha.Text
 
+        Me.Button12.Enabled = False
 
         '////////////////////////////////////////////////////////////////////////////////////////////////////
         '/////////////////////////////GRABO ENCABEZADO DE RECEPCION /////////////////////////////////////////////
@@ -2029,7 +2030,7 @@ Public Class FrmRecepcion
 
 
 
-        Me.Button12.Enabled = False
+
 
         'CalcularEquivalente()
 

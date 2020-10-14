@@ -681,7 +681,7 @@ Partial Public Class ArepReporteDetalleLiquidacion
         'ReportFooter1
         '
         Me.ReportFooter1.Controls.AddRange(New DataDynamics.ActiveReports.ARControl() {Me.Label15, Me.Label16, Me.Label17})
-        Me.ReportFooter1.Height = 2.697917!
+        Me.ReportFooter1.Height = 3.15625!
         Me.ReportFooter1.Name = "ReportFooter1"
         '
         'Label15
@@ -696,11 +696,11 @@ Partial Public Class ArepReporteDetalleLiquidacion
         Me.Label15.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.Solid
         Me.Label15.Height = 0.2!
         Me.Label15.HyperLink = Nothing
-        Me.Label15.Left = 0.15!
+        Me.Label15.Left = 0.175!
         Me.Label15.Name = "Label15"
         Me.Label15.Style = "text-align: center; "
         Me.Label15.Text = "RESPONSABLE AGENCIA"
-        Me.Label15.Top = 0.6!
+        Me.Label15.Top = 0.775!
         Me.Label15.Width = 2.3!
         '
         'Label16
@@ -719,7 +719,7 @@ Partial Public Class ArepReporteDetalleLiquidacion
         Me.Label16.Name = "Label16"
         Me.Label16.Style = "text-align: center; "
         Me.Label16.Text = "REVISION TESORERIA"
-        Me.Label16.Top = 1.475!
+        Me.Label16.Top = 1.75!
         Me.Label16.Width = 2.3!
         '
         'Label17
@@ -738,7 +738,7 @@ Partial Public Class ArepReporteDetalleLiquidacion
         Me.Label17.Name = "Label17"
         Me.Label17.Style = "text-align: center; "
         Me.Label17.Text = "AUTORIZADO POR GERENCIA"
-        Me.Label17.Top = 2.3!
+        Me.Label17.Top = 2.7!
         Me.Label17.Width = 2.3!
         '
         'ArepReporteDetalleLiquidacion
