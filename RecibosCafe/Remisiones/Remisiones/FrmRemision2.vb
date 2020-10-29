@@ -329,7 +329,7 @@ Public Class FrmRemision2
             IdLugarAcopio = Dataset.Tables("Localidad").Rows(0)("IdLugarAcopio")
         End If
 
-        sql = "SELECT  Nombre FROM   TipoCafe  WHERE   (Nombre = 'PERGAMINO') OR  (Nombre = 'MAQUILA')"
+        sql = "SELECT  Nombre FROM   TipoCafe  WHERE   (Nombre = 'PERGAMINO') OR (Nombre = 'MAQUILA')"
         DataAdapter = New SqlClient.SqlDataAdapter(sql, MiConexion)
         DataAdapter.Fill(Dataset, "TipoDoc")
         Me.CboTipoRemision.DisplayMember = "Nombre"

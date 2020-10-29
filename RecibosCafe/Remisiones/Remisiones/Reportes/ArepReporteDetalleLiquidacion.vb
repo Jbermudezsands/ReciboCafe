@@ -49,7 +49,7 @@ Public Class ArepReporteDetalleLiquidacion
     End Sub
 
     Private Sub GroupFooter1_Format(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GroupFooter1.Format
-
+        Me.LblTotal.Text = "Total " & Me.TxtGrupo.Text
     End Sub
 
     Private Sub ArepReporteDetalleLiquidacion_PageStart(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.PageStart

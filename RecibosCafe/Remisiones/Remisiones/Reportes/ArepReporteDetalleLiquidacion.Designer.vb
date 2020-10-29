@@ -50,13 +50,16 @@ Partial Public Class ArepReporteDetalleLiquidacion
         Me.GroupHeader1 = New DataDynamics.ActiveReports.GroupHeader
         Me.TextBox19 = New DataDynamics.ActiveReports.TextBox
         Me.GroupFooter1 = New DataDynamics.ActiveReports.GroupFooter
-        Me.Label14 = New DataDynamics.ActiveReports.Label
         Me.TextBox8 = New DataDynamics.ActiveReports.TextBox
         Me.ReportHeader1 = New DataDynamics.ActiveReports.ReportHeader
         Me.ReportFooter1 = New DataDynamics.ActiveReports.ReportFooter
         Me.Label15 = New DataDynamics.ActiveReports.Label
         Me.Label16 = New DataDynamics.ActiveReports.Label
         Me.Label17 = New DataDynamics.ActiveReports.Label
+        Me.Label18 = New DataDynamics.ActiveReports.Label
+        Me.TextBox2 = New DataDynamics.ActiveReports.TextBox
+        Me.TxtGrupo = New DataDynamics.ActiveReports.TextBox
+        Me.LblTotal = New DataDynamics.ActiveReports.Label
         CType(Me.LblEncabezado, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Label1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Label2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -83,11 +86,14 @@ Partial Public Class ArepReporteDetalleLiquidacion
         CType(Me.TxtIdLiquidacion, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtAbono, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextBox19, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Label14, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextBox8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Label15, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Label16, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Label17, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Label18, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtGrupo, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LblTotal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'PageHeader1
@@ -626,28 +632,9 @@ Partial Public Class ArepReporteDetalleLiquidacion
         '
         'GroupFooter1
         '
-        Me.GroupFooter1.Controls.AddRange(New DataDynamics.ActiveReports.ARControl() {Me.Label14, Me.TextBox8})
-        Me.GroupFooter1.Height = 0.3125!
+        Me.GroupFooter1.Controls.AddRange(New DataDynamics.ActiveReports.ARControl() {Me.TextBox8, Me.TxtGrupo, Me.LblTotal})
+        Me.GroupFooter1.Height = 0.25!
         Me.GroupFooter1.Name = "GroupFooter1"
-        '
-        'Label14
-        '
-        Me.Label14.Border.BottomColor = System.Drawing.Color.Black
-        Me.Label14.Border.BottomStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.Label14.Border.LeftColor = System.Drawing.Color.Black
-        Me.Label14.Border.LeftStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.Label14.Border.RightColor = System.Drawing.Color.Black
-        Me.Label14.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.Label14.Border.TopColor = System.Drawing.Color.Black
-        Me.Label14.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
-        Me.Label14.Height = 0.1979167!
-        Me.Label14.HyperLink = Nothing
-        Me.Label14.Left = 0.4!
-        Me.Label14.Name = "Label14"
-        Me.Label14.Style = "ddo-char-set: 0; font-size: 9pt; "
-        Me.Label14.Text = "Total a Pagar"
-        Me.Label14.Top = 0.0!
-        Me.Label14.Width = 1.0!
         '
         'TextBox8
         '
@@ -664,10 +651,11 @@ Partial Public Class ArepReporteDetalleLiquidacion
         Me.TextBox8.Left = 1.425!
         Me.TextBox8.Name = "TextBox8"
         Me.TextBox8.OutputFormat = resources.GetString("TextBox8.OutputFormat")
-        Me.TextBox8.Style = "ddo-char-set: 0; font-size: 8.25pt; "
+        Me.TextBox8.Style = "ddo-char-set: 0; font-weight: bold; font-size: 8.25pt; font-family: Microsoft San" & _
+            "s Serif; "
         Me.TextBox8.SummaryGroup = "GroupHeader1"
         Me.TextBox8.SummaryRunning = DataDynamics.ActiveReports.SummaryRunning.Group
-        Me.TextBox8.SummaryType = DataDynamics.ActiveReports.SummaryType.GrandTotal
+        Me.TextBox8.SummaryType = DataDynamics.ActiveReports.SummaryType.SubTotal
         Me.TextBox8.Text = Nothing
         Me.TextBox8.Top = 0.0!
         Me.TextBox8.Width = 1.125!
@@ -680,8 +668,8 @@ Partial Public Class ArepReporteDetalleLiquidacion
         '
         'ReportFooter1
         '
-        Me.ReportFooter1.Controls.AddRange(New DataDynamics.ActiveReports.ARControl() {Me.Label15, Me.Label16, Me.Label17})
-        Me.ReportFooter1.Height = 3.15625!
+        Me.ReportFooter1.Controls.AddRange(New DataDynamics.ActiveReports.ARControl() {Me.Label15, Me.Label16, Me.Label17, Me.Label18, Me.TextBox2})
+        Me.ReportFooter1.Height = 3.239583!
         Me.ReportFooter1.Name = "ReportFooter1"
         '
         'Label15
@@ -700,7 +688,7 @@ Partial Public Class ArepReporteDetalleLiquidacion
         Me.Label15.Name = "Label15"
         Me.Label15.Style = "text-align: center; "
         Me.Label15.Text = "RESPONSABLE AGENCIA"
-        Me.Label15.Top = 0.775!
+        Me.Label15.Top = 0.9!
         Me.Label15.Width = 2.3!
         '
         'Label16
@@ -719,7 +707,7 @@ Partial Public Class ArepReporteDetalleLiquidacion
         Me.Label16.Name = "Label16"
         Me.Label16.Style = "text-align: center; "
         Me.Label16.Text = "REVISION TESORERIA"
-        Me.Label16.Top = 1.75!
+        Me.Label16.Top = 1.875!
         Me.Label16.Width = 2.3!
         '
         'Label17
@@ -738,8 +726,90 @@ Partial Public Class ArepReporteDetalleLiquidacion
         Me.Label17.Name = "Label17"
         Me.Label17.Style = "text-align: center; "
         Me.Label17.Text = "AUTORIZADO POR GERENCIA"
-        Me.Label17.Top = 2.7!
+        Me.Label17.Top = 2.825!
         Me.Label17.Width = 2.3!
+        '
+        'Label18
+        '
+        Me.Label18.Border.BottomColor = System.Drawing.Color.Black
+        Me.Label18.Border.BottomStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.Label18.Border.LeftColor = System.Drawing.Color.Black
+        Me.Label18.Border.LeftStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.Label18.Border.RightColor = System.Drawing.Color.Black
+        Me.Label18.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.Label18.Border.TopColor = System.Drawing.Color.Black
+        Me.Label18.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.Label18.Height = 0.1979167!
+        Me.Label18.HyperLink = Nothing
+        Me.Label18.Left = 0.4!
+        Me.Label18.Name = "Label18"
+        Me.Label18.Style = "ddo-char-set: 0; font-weight: bold; font-size: 9.75pt; font-family: Microsoft San" & _
+            "s Serif; "
+        Me.Label18.Text = "Total a Pagar"
+        Me.Label18.Top = 0.0!
+        Me.Label18.Width = 1.0!
+        '
+        'TextBox2
+        '
+        Me.TextBox2.Border.BottomColor = System.Drawing.Color.Black
+        Me.TextBox2.Border.BottomStyle = DataDynamics.ActiveReports.BorderLineStyle.Solid
+        Me.TextBox2.Border.LeftColor = System.Drawing.Color.Black
+        Me.TextBox2.Border.LeftStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TextBox2.Border.RightColor = System.Drawing.Color.Black
+        Me.TextBox2.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TextBox2.Border.TopColor = System.Drawing.Color.Black
+        Me.TextBox2.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TextBox2.DataField = "Monto"
+        Me.TextBox2.Height = 0.2!
+        Me.TextBox2.Left = 1.425!
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.OutputFormat = resources.GetString("TextBox2.OutputFormat")
+        Me.TextBox2.Style = "ddo-char-set: 0; font-weight: bold; font-size: 9.75pt; font-family: Microsoft San" & _
+            "s Serif; "
+        Me.TextBox2.SummaryGroup = "GroupHeader1"
+        Me.TextBox2.SummaryRunning = DataDynamics.ActiveReports.SummaryRunning.Group
+        Me.TextBox2.SummaryType = DataDynamics.ActiveReports.SummaryType.GrandTotal
+        Me.TextBox2.Text = Nothing
+        Me.TextBox2.Top = 0.0!
+        Me.TextBox2.Width = 1.125!
+        '
+        'TxtGrupo
+        '
+        Me.TxtGrupo.Border.BottomColor = System.Drawing.Color.Black
+        Me.TxtGrupo.Border.BottomStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TxtGrupo.Border.LeftColor = System.Drawing.Color.Black
+        Me.TxtGrupo.Border.LeftStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TxtGrupo.Border.RightColor = System.Drawing.Color.Black
+        Me.TxtGrupo.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TxtGrupo.Border.TopColor = System.Drawing.Color.Black
+        Me.TxtGrupo.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.TxtGrupo.DataField = "TipoCompra"
+        Me.TxtGrupo.Height = 0.2!
+        Me.TxtGrupo.Left = 0.125!
+        Me.TxtGrupo.Name = "TxtGrupo"
+        Me.TxtGrupo.Style = ""
+        Me.TxtGrupo.Top = 0.575!
+        Me.TxtGrupo.Visible = False
+        Me.TxtGrupo.Width = 1.25!
+        '
+        'LblTotal
+        '
+        Me.LblTotal.Border.BottomColor = System.Drawing.Color.Black
+        Me.LblTotal.Border.BottomStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.LblTotal.Border.LeftColor = System.Drawing.Color.Black
+        Me.LblTotal.Border.LeftStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.LblTotal.Border.RightColor = System.Drawing.Color.Black
+        Me.LblTotal.Border.RightStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.LblTotal.Border.TopColor = System.Drawing.Color.Black
+        Me.LblTotal.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
+        Me.LblTotal.Height = 0.2!
+        Me.LblTotal.HyperLink = Nothing
+        Me.LblTotal.Left = 0.175!
+        Me.LblTotal.Name = "LblTotal"
+        Me.LblTotal.Style = "ddo-char-set: 0; font-weight: bold; font-size: 8.25pt; "
+        Me.LblTotal.Text = ""
+        Me.LblTotal.Top = 0.0!
+        Me.LblTotal.Width = 1.175!
         '
         'ArepReporteDetalleLiquidacion
         '
@@ -794,11 +864,14 @@ Partial Public Class ArepReporteDetalleLiquidacion
         CType(Me.TxtIdLiquidacion, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtAbono, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TextBox19, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Label14, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TextBox8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Label15, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Label16, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Label17, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Label18, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextBox2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtGrupo, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LblTotal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub
@@ -828,7 +901,6 @@ Partial Public Class ArepReporteDetalleLiquidacion
     Friend WithEvents TxtPagado As DataDynamics.ActiveReports.TextBox
     Friend WithEvents Label13 As DataDynamics.ActiveReports.Label
     Friend WithEvents TextBox3 As DataDynamics.ActiveReports.TextBox
-    Friend WithEvents Label14 As DataDynamics.ActiveReports.Label
     Friend WithEvents TextBox8 As DataDynamics.ActiveReports.TextBox
     Friend WithEvents TxtIdLiquidacion As DataDynamics.ActiveReports.TextBox
     Friend WithEvents TxtAbono As DataDynamics.ActiveReports.TextBox
@@ -837,4 +909,8 @@ Partial Public Class ArepReporteDetalleLiquidacion
     Friend WithEvents Label15 As DataDynamics.ActiveReports.Label
     Friend WithEvents Label16 As DataDynamics.ActiveReports.Label
     Friend WithEvents Label17 As DataDynamics.ActiveReports.Label
+    Friend WithEvents Label18 As DataDynamics.ActiveReports.Label
+    Friend WithEvents TextBox2 As DataDynamics.ActiveReports.TextBox
+    Friend WithEvents TxtGrupo As DataDynamics.ActiveReports.TextBox
+    Friend WithEvents LblTotal As DataDynamics.ActiveReports.Label
 End Class

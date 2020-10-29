@@ -373,7 +373,7 @@ Partial Class MDIParent1
         'RibbonLabel1
         '
         Me.RibbonLabel1.ID = "RibbonLabel1"
-        Me.RibbonLabel1.Text = "Version  1.35"
+        Me.RibbonLabel1.Text = "Version  1.36"
         '
         'CmdHoraLlegada
         '
