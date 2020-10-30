@@ -331,7 +331,7 @@ Partial Public Class ArepRemisionPergamino
         '
         Me.Detail1.ColumnSpacing = 0.0!
         Me.Detail1.Controls.AddRange(New DataDynamics.ActiveReports.ARControl() {Me.TextBox1, Me.TxtNumeroRecibos, Me.TextBox3, Me.TextBox4, Me.TextBox6, Me.TextBox7, Me.TextBox8, Me.TextBox9, Me.TextBox10, Me.TxtCantSacos1, Me.TxtPesoBruto1, Me.TxtPesoNeto1, Me.TxtCantSacos2, Me.TxtPesoBruto2, Me.TxtPesoNeto2, Me.TxtCantSacos3, Me.TxtPesoBruto3, Me.TxtPesoNeto3, Me.TxtCantSacos33, Me.TxtCantSacos22, Me.TxtCantSacos11, Me.TxtListadoRecibos})
-        Me.Detail1.Height = 0.6979167!
+        Me.Detail1.Height = 0.2291667!
         Me.Detail1.Name = "Detail1"
         '
         'TextBox1
@@ -512,7 +512,7 @@ Partial Public Class ArepRemisionPergamino
         Me.TextBox10.Border.TopStyle = DataDynamics.ActiveReports.BorderLineStyle.None
         Me.TextBox10.DataField = "PesoNeto"
         Me.TextBox10.Height = 0.2!
-        Me.TextBox10.Left = 5.92!
+        Me.TextBox10.Left = 5.925001!
         Me.TextBox10.MultiLine = False
         Me.TextBox10.Name = "TextBox10"
         Me.TextBox10.OutputFormat = resources.GetString("TextBox10.OutputFormat")

@@ -678,6 +678,8 @@ Public Class FrmLiquidacion
             Me.TxtSerie.Text = Me.TxtSerie.Text
             Me.TDGridDetalleRecibos.Enabled = False
 
+
+
             '------------------------ACTUALIZO LOS ID DE LA LIQUIDACION -----------------------------------------
             Me.IdProductor = My.Forms.FrmRecepcion.IdProductor
             Me.IdLocalidadLiqui = FrmRecepcion.IdLugarAcopio
@@ -687,6 +689,8 @@ Public Class FrmLiquidacion
             Me.IdEdoFisico = FrmRecepcion.IdEstadoFisico
             Me.IdDano = FrmRecepcion.IdDaño
             Me.IdCategoria = FrmRecepcion.IdRangoImperfeccion
+
+
 
             CalculaPrecioBruto()
             Me.Button10_Click(sender, e)
@@ -707,6 +711,15 @@ Public Class FrmLiquidacion
             Me.TDGridDetalleRecibos.Splits.Item(0).DisplayColumns("ValorBruto$").Locked = True
             Me.TDGridDetalleRecibos.Splits.Item(0).DisplayColumns("ValorBruto$").Locked = True
             Me.TDGridDetalleRecibos.Splits.Item(0).DisplayColumns("Precio").Locked = True
+
+            '''''''''''''''''''''''''''''''''
+            sql = "SELECT  LugarAcopio.NomLugarAcopio, LugarAcopio.IdLugarAcopio, LugarAcopio.IdPadre, Municipio.Nombre, LugarAcopio.Activo FROM LugarAcopio INNER JOIN Municipio ON LugarAcopio.IdPadre = Municipio.IdLugarAcopio  WHERE (LugarAcopio.IdLugarAcopio = " & IdLocalidadLiqui & ") ORDER BY Municipio.Nombre"
+            DataAdapter = New SqlClient.SqlDataAdapter(sql, MiConexion)
+            DataAdapter.Fill(DataSet, "MunicipioRec")
+            If DataSet.Tables("MunicipioRec").Rows.Count <> 0 Then
+                Me.CboMunicipio.DisplayMember = "Nombre"
+                Me.CboMunicipio.DataSource = DataSet.Tables("MunicipioRec")
+            End If
         Else
             Me.TxtSerie.Text = "D" & Cod_Cosecha
         End If
