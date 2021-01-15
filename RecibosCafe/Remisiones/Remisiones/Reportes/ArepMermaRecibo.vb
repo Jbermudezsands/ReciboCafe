@@ -47,7 +47,24 @@ Public Class ArepMermaRecibo
                 Me.TextBox14.Visible = True
                 Me.TextBox13.Visible = True
 
+
             Case "Recepcion2"
+                Me.LblTipoInformacion.Text = " "
+                Me.LblTipoInformacion2.Text = "LIQUIDADO DE DEPOSITO PERGAMINO"
+                Me.LblMontoPagado.Text = "MONTO PAGADO"
+                Me.LblMontoPagado.Visible = True
+                Me.TxtMontoPagado.Visible = True
+                Me.TxtMerma.Visible = False
+                Me.TxtTotalMontoPagado.Visible = True
+                Me.TxtTotalMerma.Visible = False
+                Me.TextBox21.Visible = False
+                Me.TextBox22.Visible = False
+                Me.TextBox23.Visible = False
+                Me.TextBox20.Visible = True
+                Me.TextBox14.Visible = True
+                Me.TextBox13.Visible = True
+
+            Case "Recepcion3"
                 Me.LblTipoInformacion.Text = "INFORMACION MODULO DE REMISION"
                 Me.LblTipoInformacion2.Text = "CONSOLIDADO DE ENTRADA - FECHA DE REMISION:"
                 Me.LblMontoPagado.Text = "MERMA"
@@ -62,7 +79,7 @@ Public Class ArepMermaRecibo
                 Me.TextBox14.Visible = False
                 Me.TextBox13.Visible = False
 
-            Case "Recepcion3"
+            Case "Recepcion4"
                 Me.LblTipoInformacion.Text = "INFORMACION MODULO DE BODEGA"
                 Me.LblTipoInformacion2.Text = "CONSOLIDADO DE ENTRADA - FECHA DE BODEGA:"
                 Me.LblMontoPagado.Visible = False
@@ -76,6 +93,7 @@ Public Class ArepMermaRecibo
                 Me.TextBox20.Visible = False
                 Me.TextBox14.Visible = False
                 Me.TextBox13.Visible = False
+
         End Select
     End Sub
 

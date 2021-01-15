@@ -1,1 +1,1 @@
-Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=TRANSPORTE;Data Source=JUANBERMUDEZ-PC\SQL2014
+Password=PosMaster11;Persist Security Info=True;User ID=sa;Initial Catalog=TRANSPORTE2020;Data Source=MA\SOLUCIONES
