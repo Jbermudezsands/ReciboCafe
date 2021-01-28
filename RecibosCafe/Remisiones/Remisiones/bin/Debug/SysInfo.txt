@@ -1,1 +1,1 @@
-Password=PosMaster11;Persist Security Info=True;User ID=sa;Initial Catalog=TRANSPORTE2020;Data Source=MA\SOLUCIONES
+Password=P@ssword;Persist Security Info=True;User ID=sa;Initial Catalog=TRANSPORTE;Data Source=JUANBERMUDEZ\SQL2014

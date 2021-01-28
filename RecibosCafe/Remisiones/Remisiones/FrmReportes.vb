@@ -223,7 +223,7 @@ Public Class FrmReportes
         Dim oDataRow As DataRow, SqlString As String, Filtro As String, i As Double, Cont As Double
         Dim ArepMermaRecepcion As New ArepMermaRecibo, RutaLogo As String, PesoBruto As Double, PesoNeto As Double, MontoPagado As Double, j As Double, Reg As Double
         Dim DvRecepcion As DataView, PesoBrutoRemision As Double, PesoNetoRemision As Double, Filtro1 As String, Filtro2 As String, Filtro3 As String, Filtro4 As String, Filtro5 As String, Filtro6 As String
-        Dim IdLiquidacion As Double, DeduccionLiquidacion As Double = 0, IdRemision As Double
+        Dim IdLiquidacion As Double, DeduccionLiquidacion As Double = 0, IdRemision As Double, Filtro7 As String, FechaInicial As Date
 
         SqlString = "SELECT  IdRegion, Nombre, NombreCorto FROM Region WHERE (Nombre = '" & Me.CboRegion.Text & "')"
         DataAdapter = New SqlClient.SqlDataAdapter(SqlString, MiConexion)
@@ -302,16 +302,20 @@ Public Class FrmReportes
         '++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
+        FechaInicial = Format(Me.DTPFechaInicial.Value, "dd/MM/yyyy") & " 00:00:00"
+        FechaInicial = FechaInicial.AddDays(-3)
         If Me.ChkTodasLocalidades.Checked = True Then
             Filtro = "WHERE  (Region.IdRegion = " & Me.IdRegion & ") AND (UnidadMedida.IdUnidadMedida = " & Me.IdUnidadMedida & ") AND (ReciboCafePergamino.Fecha BETWEEN CONVERT(DATETIME, '" & Format(Me.DTPFechaInicial.Value, "yyyy-MM-dd") & "', 102) AND CONVERT(DATETIME, '" & Format(Me.DTPFechaFinal.Value, "yyyy-MM-dd") & " 23:59:59', 102)) "
             Filtro1 = "WHERE  (Region.IdRegion = " & Me.IdRegion & ") AND (UnidadMedida.IdUnidadMedida = " & Me.IdUnidadMedida & ") AND (ReciboCafePergamino.Fecha BETWEEN CONVERT(DATETIME, '" & Format(Me.DTPFechaInicial.Value, "yyyy-MM-dd") & "', 102) AND CONVERT(DATETIME, '" & Format(Me.DTPFechaFinal.Value, "yyyy-MM-dd") & " 23:59:59', 102)) "
             Filtro3 = "WHERE  (Region.IdRegion = " & Me.IdRegion & ") AND (UnidadMedida.IdUnidadMedida = " & Me.IdUnidadMedida & ") AND (ReciboCafePergamino.Fecha NOT BETWEEN CONVERT(DATETIME, '" & Format(Me.DTPFechaInicial.Value, "yyyy-MM-dd") & "', 102) AND CONVERT(DATETIME, '" & Format(Me.DTPFechaFinal.Value, "yyyy-MM-dd") & " 23:59:59', 102)) "
             Filtro5 = "WHERE  (Region.IdRegion = " & Me.IdRegion & ") AND (UnidadMedida.IdUnidadMedida = " & Me.IdUnidadMedida & ") AND (RemisionPergamino.Fecha BETWEEN CONVERT(DATETIME, '" & Format(Me.DTPFechaInicial.Value, "yyyy-MM-dd") & "', 102) AND CONVERT(DATETIME, '" & Format(Me.DTPFechaFinal.Value, "yyyy-MM-dd") & " 23:59:59', 102)) "
+            Filtro7 = "WHERE  (ReciboCafePergamino.Remisionado = 0) AND (Region.IdRegion = " & Me.IdRegion & ") AND (UnidadMedida.IdUnidadMedida = " & Me.IdUnidadMedida & ") AND (ReciboCafePergamino.Fecha BETWEEN CONVERT(DATETIME, '" & Format(FechaInicial, "yyyy-MM-dd") & "', 102) AND CONVERT(DATETIME, '" & Format(Me.DTPFechaFinal.Value, "yyyy-MM-dd") & " 23:59:59', 102)) "
         Else
             Filtro = "WHERE  (LugarAcopio.IdLugarAcopio = " & Me.IdLugarAcopio & ") AND (UnidadMedida.IdUnidadMedida = " & Me.IdUnidadMedida & ") AND (ReciboCafePergamino.Fecha BETWEEN CONVERT(DATETIME, '" & Format(Me.DTPFechaInicial.Value, "yyyy-MM-dd") & "', 102) AND CONVERT(DATETIME, '" & Format(Me.DTPFechaFinal.Value, "yyyy-MM-dd") & " 23:59:59', 102)) "
             Filtro1 = "WHERE  (LugarAcopio.IdLugarAcopio = " & Me.IdLugarAcopio & ") AND (UnidadMedida.IdUnidadMedida = " & Me.IdUnidadMedida & ") AND (ReciboCafePergamino.Fecha BETWEEN CONVERT(DATETIME, '" & Format(Me.DTPFechaInicial.Value, "yyyy-MM-dd") & "', 102) AND CONVERT(DATETIME, '" & Format(Me.DTPFechaFinal.Value, "yyyy-MM-dd") & " 23:59:59', 102)) "
             Filtro3 = "WHERE  (LugarAcopio.IdLugarAcopio = " & Me.IdLugarAcopio & ") AND (UnidadMedida.IdUnidadMedida = " & Me.IdUnidadMedida & ") AND (ReciboCafePergamino.Fecha NOT BETWEEN CONVERT(DATETIME, '" & Format(Me.DTPFechaInicial.Value, "yyyy-MM-dd") & "', 102) AND CONVERT(DATETIME, '" & Format(Me.DTPFechaFinal.Value, "yyyy-MM-dd") & " 23:59:59', 102)) "
             Filtro5 = "WHERE  (LugarAcopio.IdLugarAcopio = " & Me.IdLugarAcopio & ") AND (UnidadMedida.IdUnidadMedida = " & Me.IdUnidadMedida & ") AND (RemisionPergamino.Fecha BETWEEN CONVERT(DATETIME, '" & Format(Me.DTPFechaInicial.Value, "yyyy-MM-dd") & "', 102) AND CONVERT(DATETIME, '" & Format(Me.DTPFechaFinal.Value, "yyyy-MM-dd") & " 23:59:59', 102)) "
+            Filtro7 = "WHERE  (ReciboCafePergamino.Remisionado = 0) AND (LugarAcopio.IdLugarAcopio = " & Me.IdLugarAcopio & ") AND (UnidadMedida.IdUnidadMedida = " & Me.IdUnidadMedida & ") AND (ReciboCafePergamino.Fecha BETWEEN CONVERT(DATETIME, '" & Format(FechaInicial, "yyyy-MM-dd") & "', 102) AND CONVERT(DATETIME, '" & Format(Me.DTPFechaFinal.Value, "yyyy-MM-dd") & " 23:59:59', 102)) "
 
         End If
 
@@ -320,6 +324,7 @@ Public Class FrmReportes
             Filtro1 = Filtro1 & " AND (EstadoFisico.EstadoFisico = " & Me.IdEstadoFisico & ")"
             Filtro3 = Filtro3 & " AND (EstadoFisico.EstadoFisico = " & Me.IdEstadoFisico & ")"
             Filtro5 = Filtro5 & " AND (EstadoFisico.EstadoFisico = " & Me.IdEstadoFisico & ")"
+            Filtro7 = Filtro7 & " AND (EstadoFisico.EstadoFisico = " & Me.IdEstadoFisico & ")"
         End If
 
         If Me.ChkTodasCalidades.Checked = False Then
@@ -327,6 +332,7 @@ Public Class FrmReportes
             Filtro1 = Filtro1 & " AND (Calidad.IdCalidad = " & Me.IdCalidad & ") "
             Filtro3 = Filtro3 & " AND (Calidad.IdCalidad = " & Me.IdCalidad & ") "
             Filtro5 = Filtro5 & " AND (Calidad.IdCalidad = " & Me.IdCalidad & ") "
+            Filtro7 = Filtro7 & " AND (Calidad.IdCalidad = " & Me.IdCalidad & ") "
         End If
 
 
@@ -406,20 +412,25 @@ Public Class FrmReportes
                 PesoNeto = PesoNeto + DataSet.Tables("Liquidaciones").Rows(j)("PesoNeto")
 
                 If DataSet.Tables("Registros").Rows(i)("TipoCafe") <> "MAQUILA" Then
-                    If IdRemision <> DataSet.Tables("Liquidaciones").Rows(j)("IdRemisionPergamino") Then
-                        PesoBrutoRemision = PesoBrutoRemision + DataSet.Tables("Liquidaciones").Rows(j)("PesoBrutoRemision")
-                        PesoNetoRemision = PesoNetoRemision + DataSet.Tables("Liquidaciones").Rows(j)("PesoNetoRemision")
-                        MontoPagado = MontoPagado + DataSet.Tables("Liquidaciones").Rows(j)("MontoPagado") - DeduccionLiquidacion
+                    If Not IsDBNull(DataSet.Tables("Liquidaciones").Rows(j)("IdRemisionPergamino")) Then
+                        If IdRemision <> DataSet.Tables("Liquidaciones").Rows(j)("IdRemisionPergamino") Then
+                            PesoBrutoRemision = PesoBrutoRemision + DataSet.Tables("Liquidaciones").Rows(j)("PesoBrutoRemision")
+                            PesoNetoRemision = PesoNetoRemision + DataSet.Tables("Liquidaciones").Rows(j)("PesoNetoRemision")
+                            MontoPagado = MontoPagado + DataSet.Tables("Liquidaciones").Rows(j)("MontoPagado") - DeduccionLiquidacion
+                        End If
                     End If
                 Else
                     PesoBrutoRemision = PesoBrutoRemision + DataSet.Tables("Liquidaciones").Rows(j)("PesoBrutoRemision")
                     PesoNetoRemision = PesoNetoRemision + DataSet.Tables("Liquidaciones").Rows(j)("PesoNetoRemision")
                 End If
 
-                IdRemision = DataSet.Tables("Liquidaciones").Rows(j)("IdRemisionPergamino")
+                If Not IsDBNull(DataSet.Tables("Liquidaciones").Rows(j)("IdRemisionPergamino")) Then
+                    IdRemision = DataSet.Tables("Liquidaciones").Rows(j)("IdRemisionPergamino")
+                End If
 
                 Me.ProgressBar2.Value = Me.ProgressBar2.Value + 1
                 j = j + 1
+
             Loop
             DataSet.Tables("Liquidaciones").Reset()
 
@@ -647,6 +658,52 @@ Public Class FrmReportes
             j = j + 1
         Loop
         DataSet.Tables("LiquidacionesMes").Reset()
+
+
+        '/////////////////////////////////////////////////////////////////////////////////////////
+        '////////////////////////BUSCO EL SALDO EN BODEGA //////////////////////////////////
+        '///////////////////////////////////////////////////////////////////////////////////////////
+        Filtro7 = Filtro7 & " GROUP BY TipoCompra.Nombre, EstadoFisico.Descripcion, Region.Nombre,  LugarAcopio.NomLugarAcopio, TipoCafe.Nombre, Calidad.NomCalidad  "
+        Filtro7 = Filtro7 & "ORDER BY Localidad, TipoCafe DESC, TipoCompra"
+        SqlString = "SELECT  Region.Nombre AS Region, LugarAcopio.NomLugarAcopio AS Localidad, Calidad.NomCalidad AS Calidad, EstadoFisico.Descripcion AS EstadoFisico, TipoCafe.Nombre AS TipoCafe, SUM(DetalleReciboCafePergamino.PesoBruto - DetalleReciboCafePergamino.Tara) AS PesoNeto, SUM(CASE WHEN DetalleDistribucion.Monto IS NULL THEN 0 ELSE DetalleLiquidacionPergamino.PesoNeto * LiquidacionPergamino.Precio - LiquidacionPergamino.TotalDeducciones END) AS MontoPagado, MAX(UnidadMedida.Descripcion) AS Descripcion, SUM(CASE WHEN DetalleRemisionPergamino.Merma IS NULL THEN 0 ELSE DetalleRemisionPergamino.Merma END) AS MermaRemision, SUM(CASE WHEN DetalleRemisionPergamino.PesoBruto IS NULL THEN 0 ELSE DetalleRemisionPergamino.PesoBruto END) AS PesoBrutoRemision, SUM(CASE WHEN DetalleRemisionPergamino.PesoNeto2 IS NULL THEN 0 ELSE DetalleRemisionPergamino.PesoNeto2 END) AS PesoNetoRemision, SUM(CASE WHEN DetalleRemisionPergamino.Tara IS NULL THEN 0 ELSE DetalleRemisionPergamino.Tara END) AS TaraRemision, SUM(DetalleReciboCafePergamino.PesoBruto) AS PesoBruto, TipoCompra.Nombre AS TipoCompra  FROM  TipoCambio INNER JOIN LiquidacionPergamino INNER JOIN DetalleLiquidacionPergamino ON LiquidacionPergamino.IdLiquidacionPergamino = DetalleLiquidacionPergamino.IdLiquidacionPergamino INNER JOIN DetalleDistribucion ON LiquidacionPergamino.IdLiquidacionPergamino = DetalleDistribucion.IdLiquidacionPergamino ON TipoCambio.IdTipoCambio = LiquidacionPergamino.IdTipoCambio RIGHT OUTER JOIN TipoCompra INNER JOIN UnidadMedida INNER JOIN ReciboCafePergamino INNER JOIN  LugarAcopio ON ReciboCafePergamino.IdLocalidad = LugarAcopio.IdLugarAcopio INNER JOIN Region ON LugarAcopio.IdRegion = Region.IdRegion INNER JOIN Calidad ON ReciboCafePergamino.IdCalidad = Calidad.IdCalidad INNER JOIN DetalleReciboCafePergamino ON ReciboCafePergamino.IdReciboPergamino = DetalleReciboCafePergamino.IdReciboPergamino INNER JOIN EstadoFisico ON DetalleReciboCafePergamino.IdEdoFisico = EstadoFisico.EstadoFisico INNER JOIN TipoCafe ON ReciboCafePergamino.IdTipoCafe = TipoCafe.IdTipoCafe ON UnidadMedida.IdUnidadMedida = ReciboCafePergamino.IdUnidadMedida ON TipoCompra.IdECS = ReciboCafePergamino.IdTipoCompra LEFT OUTER JOIN DetalleRemisionPergamino INNER JOIN RecibosRemisionPergamino ON DetalleRemisionPergamino.IdDetalleRemisionPergamino = RecibosRemisionPergamino.IdDetalleRemsionPergamino INNER JOIN RemisionPergamino ON DetalleRemisionPergamino.IdRemisionPergamino = RemisionPergamino.IdRemisionPergamino ON DetalleReciboCafePergamino.IdDetalleReciboPergamino = RecibosRemisionPergamino.IdDetalleReciboPergamino ON DetalleLiquidacionPergamino.IdReciboPergamino = ReciboCafePergamino.IdReciboPergamino " & Filtro7
+
+        DataAdapter = New SqlClient.SqlDataAdapter(SqlString, MiConexion)
+        DataAdapter.Fill(DataSet, "Bodega")
+
+        Cont = DataSet.Tables("Bodega").Rows.Count
+        i = 0
+        Me.ProgressBar1.Minimum = 0
+        Me.ProgressBar1.Maximum = Cont
+        Me.ProgressBar1.Value = 0
+
+        If Cont = 0 Then
+            MsgBox("No Existen Registros para este Filtro", MsgBoxStyle.Information, "Sistema Bascula")
+            Exit Sub
+        End If
+
+
+        Do While Cont > i
+
+
+            oDataRow = DataSet.Tables("Recepcion").NewRow
+            oDataRow("Region") = DataSet.Tables("Registros").Rows(i)("Region")
+            oDataRow("Localidad") = DataSet.Tables("Registros").Rows(i)("Localidad")
+            oDataRow("Calidad") = DataSet.Tables("Registros").Rows(i)("Calidad")
+            oDataRow("EstadoFisico") = DataSet.Tables("Registros").Rows(i)("EstadoFisico")
+            oDataRow("TipoCompra") = DataSet.Tables("Registros").Rows(i)("TipoCompra")
+            oDataRow("PesoBruto") = PesoBruto
+            oDataRow("PesoNeto") = PesoNeto
+            oDataRow("Tipo") = "Recepcion4"
+            oDataRow("TipoCafe") = DataSet.Tables("Registros").Rows(i)("TipoCafe")
+            oDataRow("Merma") = 0
+            DataSet.Tables("Recepcion").Rows.Add(oDataRow)
+
+
+            i = i + 1
+            Me.ProgressBar1.Value = Me.ProgressBar1.Value + 1
+            Me.Text = "Procesando " & i & " de " & Cont
+            My.Application.DoEvents()
+        Loop
 
 
 
